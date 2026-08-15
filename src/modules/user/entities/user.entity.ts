@@ -1,0 +1,64 @@
+import * as bcrypt from 'bcrypt';
+import {
+  BeforeInsert,
+  BeforeUpdate,
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { Role } from '../../../common/constants/role.enum';
+
+export enum UserStatus {
+  ACTIVE = 'active',
+  INACTIVE = 'inactive',
+}
+
+@Entity('users')
+export class User {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column({ name: 'full_name', length: 255 })
+  fullName: string;
+
+  @Column({ length: 255, unique: true })
+  email: string;
+
+  @Column({ length: 15, unique: true, nullable: true })
+  phone?: string;
+
+  @Column({ select: false })
+  password: string;
+
+  @Column({ type: 'enum', enum: Role, default: Role.EMPLOYEE })
+  role: Role;
+
+  @Column({ type: 'enum', enum: UserStatus, default: UserStatus.ACTIVE })
+  status: UserStatus;
+
+  @Column({ name: "avatar", default: "" })
+  avatar: string;
+
+  // @Column({ name: 'job_title', length: 255, nullable: true })
+  // jobTitle?: string;
+
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt: Date;
+
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt: Date;
+
+  @DeleteDateColumn({ name: 'deleted_at' })
+  deletedAt?: Date;
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  async hashPasswordIfChanged() {
+    if (this.password && !this.password.startsWith('$2b$')) {
+      this.password = await bcrypt.hash(this.password, 10);
+    }
+  }
+}
