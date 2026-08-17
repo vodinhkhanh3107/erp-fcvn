@@ -14,19 +14,19 @@ import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post("create")
+  @Post()
   @Roles(Role.ADMIN, Role.HR)
   create(@Body() dto: CreateUserDto) {
     return this.userService.createUser(dto);
   }
 
-  @Get("get-all")
+  @Get()
   @Roles(Role.ADMIN,Role.MANAGER,Role.ACCOUNTANT,Role.BOD,)
   findAll(@Query() query: PaginationDto) {
     return this.userService.list(query);
   }
 
-  @Get('get-one/:id')
+  @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: { userId: number; role: Role }) {
     const isPrivileged = (user.role === Role.ADMIN || user.role === Role.HR || user.role === Role.MANAGER || user.role === Role.ACCOUNTANT || user.role === Role.BOD);
     const isOwnProfile = user.userId === id;
@@ -39,7 +39,7 @@ export class UserController {
  
   }
 
-  @Put('change-status/:id')
+  @Put(':id/status')
   @Roles(Role.ADMIN, Role.HR)
   updateStatus(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateUserStatusDto) {
     return this.userService.updateStatus(id, dto);

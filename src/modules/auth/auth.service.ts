@@ -22,15 +22,11 @@ export class AuthService {
       .getOne();
 
     if (!user){
-      console.log('lỗi email');
       throw new UnauthorizedException('email-or-password-incorrect')
 
     } 
     const isMatch = await bcrypt.compare(password, user.password);
-    console.log(password,user.password);
     if (!isMatch) {
-      console.log('lỗi mk');
-      
       throw new UnauthorizedException('email-or-password-incorrect');
 
 

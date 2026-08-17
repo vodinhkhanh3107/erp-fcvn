@@ -64,13 +64,10 @@ let AuthService = class AuthService {
             .where('user.email = :email', { email })
             .getOne();
         if (!user) {
-            console.log('lỗi email');
             throw new common_1.UnauthorizedException('email-or-password-incorrect');
         }
         const isMatch = await bcrypt.compare(password, user.password);
-        console.log(password, user.password);
         if (!isMatch) {
-            console.log('lỗi mk');
             throw new common_1.UnauthorizedException('email-or-password-incorrect');
         }
         if (user.status !== 'active')
