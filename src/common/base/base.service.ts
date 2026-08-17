@@ -1,5 +1,5 @@
 import { NotFoundException } from '@nestjs/common';
-import { FindOptionsWhere, ILike, Repository } from 'typeorm';
+import { DeepPartial, FindOptionsOrder, FindOptionsWhere, ILike, Repository } from 'typeorm';
 import { PaginationDto } from '../dto/pagination.dto';
 
 export class BaseService<T extends { id: number }> {
@@ -16,9 +16,11 @@ export class BaseService<T extends { id: number }> {
         ? this.searchableFields.map((field) => ({ [field]: ILike(`%${keyword}%`) }) as FindOptionsWhere<T>)
         : [];
 
+    const order = { id: 'DESC' } as FindOptionsOrder<T>;
+
     const [items, total] = await this.repository.findAndCount({
       where: where.length ? where : undefined,
-      order: { id: 'DESC' } as any,
+      order,
       skip: (page - 1) * limit,
       take: limit,
     });
@@ -32,12 +34,12 @@ export class BaseService<T extends { id: number }> {
     return entity;
   }
 
-  async create(dto: Partial<T>): Promise<T> {
-    const entity = this.repository.create(dto as T);
+  async create(dto: DeepPartial<T>): Promise<T> {
+    const entity = this.repository.create(dto);
     return this.repository.save(entity);
   }
 
-  async update(id: number, dto: Partial<T>): Promise<T> {
+  async update(id: number, dto: DeepPartial<T>): Promise<T> {
     const entity = await this.findOne(id);
     Object.assign(entity, dto);
     return this.repository.save(entity);
@@ -45,6 +47,6 @@ export class BaseService<T extends { id: number }> {
 
   async remove(id: number): Promise<void> {
     await this.findOne(id); // đảm bảo tồn tại trước khi xóa, trả 404 đúng nghĩa nếu không có
-    await this.repository.softDelete(id as any);
+    await this.repository.softDelete(id);
   }
 }

@@ -13,9 +13,10 @@ class BaseService {
         const where = keyword && this.searchableFields.length > 0
             ? this.searchableFields.map((field) => ({ [field]: (0, typeorm_1.ILike)(`%${keyword}%`) }))
             : [];
+        const order = { id: 'DESC' };
         const [items, total] = await this.repository.findAndCount({
             where: where.length ? where : undefined,
-            order: { id: 'DESC' },
+            order,
             skip: (page - 1) * limit,
             take: limit,
         });

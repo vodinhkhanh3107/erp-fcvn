@@ -25,7 +25,7 @@ export class UserService extends BaseService<User> {
     const existed = await this.repository.findOne({ where: { email: dto.email } });
     if (existed) throw new ConflictException('email-already-exists');
 
-    const saved = await this.create(dto as any); // dùng lại create() có sẵn từ BaseService
+    const saved = await this.create(dto); // dùng lại create() có sẵn từ BaseService
     this.logger.log(`Đã tạo nhân sự #${saved.id} (${saved.email})`);
 
     const { password, ...result } = saved;
@@ -33,17 +33,17 @@ export class UserService extends BaseService<User> {
   }
 
   async list(query: PaginationDto) {
-    return this.findAll(query); // dùng lại findAll() có sẵn từ BaseService, không cần viết lại
+    return this.findAll(query); 
   }
 
   async updateStatus(id: number, dto: UpdateUserStatusDto) {
-    const employee = await this.findOne(id); // dùng lại findOne() có sẵn từ BaseService
+    const employee = await this.findOne(id); 
 
     if (employee.status === dto.status) {
       throw new BadRequestException('status-not-changed');
     }
 
-    const saved = await this.update(id, { status: dto.status } as any); // dùng lại update() có sẵn
+    const saved = await this.update(id, { status: dto.status }); 
     this.logger.log(`Đã đổi trạng thái nhân sự #${id} → ${dto.status}`);
 
     const { password, ...result } = saved;

@@ -7,15 +7,15 @@ import { Role } from '../../common/constants/role.enum';
 import { CreateXxxDto } from './dto/create-xxx.dto';
 import { XxxService } from './xxx.service';
 
-@Controller('xxx') // ĐỔI: tên route thật (vd. 'tasks')
+@Controller('xxx') 
 @UseGuards(JwtAuthGuard, RolesGuard)
 export class XxxController {
   constructor(private readonly xxxService: XxxService) {}
 
   @Post()
-  @Roles(Role.ADMIN) // ĐỔI: role phù hợp nghiệp vụ thật
+  @Roles(Role.ADMIN) 
   create(@Body() dto: CreateXxxDto) {
-    return this.xxxService.create(dto as any);
+    return this.xxxService.create(dto);
   }
 
   @Get()
@@ -30,7 +30,7 @@ export class XxxController {
 
   @Put(':id')
   update(@Param('id', ParseIntPipe) id: number, @Body() dto: Partial<CreateXxxDto>) {
-    return this.xxxService.update(id, dto as any);
+    return this.xxxService.update(id, dto);
   }
 
   @Delete(':id')

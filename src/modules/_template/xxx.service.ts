@@ -13,6 +13,4 @@ export class XxxService extends BaseService<XxxEntity> {
     super(repo, ['name']);
   }
 
-  // Viết thêm method riêng cho nghiệp vụ đặc thù của module này ở dưới đây, nếu cần.
-  // findAll/findOne/create/update/remove đã có sẵn từ BaseService, không cần viết lại.
 }
