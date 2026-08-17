@@ -19,17 +19,20 @@ exports.DatabaseModule = DatabaseModule = __decorate([
             typeorm_1.TypeOrmModule.forRootAsync({
                 imports: [config_1.ConfigModule],
                 inject: [config_1.ConfigService],
-                useFactory: (config) => ({
-                    type: 'mysql',
-                    host: config.get('database.host'),
-                    port: config.get('database.port'),
-                    username: config.get('database.username'),
-                    password: config.get('database.password'),
-                    database: config.get('database.database'),
-                    autoLoadEntities: true,
-                    synchronize: true,
-                    logging: true,
-                }),
+                useFactory: (config) => {
+                    const isDevelopment = config.get('nodeEnv') === 'development';
+                    return {
+                        type: 'mysql',
+                        host: config.get('database.host'),
+                        port: config.get('database.port'),
+                        username: config.get('database.username'),
+                        password: config.get('database.password'),
+                        database: config.get('database.database'),
+                        autoLoadEntities: true,
+                        synchronize: isDevelopment,
+                        logging: isDevelopment,
+                    };
+                },
             }),
         ],
     })
