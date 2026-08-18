@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { UserModule } from './modules/user/user.module';
 import { TokenModule } from './common/token/token.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { RedisModule } from './common/redis/redis.module';
 
 @Module({
   imports: [
@@ -18,13 +19,14 @@ import { AuthModule } from './modules/auth/auth.module';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      autoLoadEntities: true, // tự động nạp mọi entity đã forFeature() ở module con
-      synchronize: true, // chỉ bật ở môi trường DEV
+      autoLoadEntities: true, 
+      synchronize: true, 
       logging: true, 
     }),
     TokenModule,      
     UserModule,
     AuthModule,
+    RedisModule
   ],
   controllers: [AppController],
   providers: [AppService],

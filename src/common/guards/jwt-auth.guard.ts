@@ -1,16 +1,20 @@
 import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { Reflector } from '@nestjs/core';
 import { IS_PUBLIC_KEY } from '../decorators/public.decorator';
+import { RedisService } from '../redis/redis.service';
 
 @Injectable()
 export class JwtAuthGuard implements CanActivate {
   constructor(
     private readonly jwtService: JwtService,
     private readonly reflector: Reflector,
+    private readonly configService: ConfigService,
+    private readonly redisService: RedisService,
   ) {}
 
-  canActivate(context: ExecutionContext): boolean {
+  async canActivate(context: ExecutionContext): Promise<boolean> {
     const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_KEY, [
       context.getHandler(),
       context.getClass(),
@@ -22,12 +26,20 @@ export class JwtAuthGuard implements CanActivate {
     if (!authHeader) throw new UnauthorizedException('missing-token');
 
     const token = authHeader.split(/\s/)[1];
+
+    let payload: { userId: number; role: string; email: string };
     try {
-      const payload = this.jwtService.verify(token, { secret: process.env.JWT_SECRET_KEY });
-      request.user = payload; // { employeeId, role, email }
-      return true;
+      payload = this.jwtService.verify(token, { secret: this.configService.get<string>('jwt.secret') });
     } catch {
-      throw new UnauthorizedException('access-denied');
+      throw new UnauthorizedException('access-denied'); // chữ ký sai, hoặc JWT đã hết hạn tự nhiên
     }
+
+    const stored = await this.redisService.get(`access_token:${payload.userId}`);
+    if (stored !== token) {
+      throw new UnauthorizedException('token-revoked-or-replaced');
+    }
+
+    request.user = payload;
+    return true;
   }
 }

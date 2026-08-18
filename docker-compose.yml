@@ -1,0 +1,10 @@
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: erp-redis
+    ports:
+      - '6379:6379'
+    restart: unless-stopped
+    # Dữ liệu Redis trong dự án này chỉ là access token tạm thời (có TTL tự hết hạn),
+    # nên KHÔNG cần volume lưu trữ lâu dài — mất dữ liệu khi container restart cũng không sao,
+    # người dùng chỉ cần đăng nhập lại là có access token mới.

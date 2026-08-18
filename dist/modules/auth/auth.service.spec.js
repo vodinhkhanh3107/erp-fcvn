@@ -34,10 +34,12 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
+const config_1 = require("@nestjs/config");
 const jwt_1 = require("@nestjs/jwt");
 const typeorm_1 = require("@nestjs/typeorm");
 const testing_1 = require("@nestjs/testing");
 const bcrypt = __importStar(require("bcrypt"));
+const redis_service_1 = require("../../common/redis/redis.service");
 const role_enum_1 = require("../../common/constants/role.enum");
 const user_entity_1 = require("../user/entities/user.entity");
 const auth_service_1 = require("./auth.service");
@@ -45,7 +47,10 @@ jest.mock('bcrypt');
 describe('AuthService', () => {
     let service;
     let mockQueryBuilder;
+    let mockUserRepo;
     let mockJwtService;
+    let mockConfigService;
+    let mockRedisService;
     const fakeUser = {
         id: 1,
         fullName: 'Test User',
@@ -60,56 +65,103 @@ describe('AuthService', () => {
             where: jest.fn().mockReturnThis(),
             getOne: jest.fn(),
         };
-        const mockUserRepo = {
+        mockUserRepo = {
             createQueryBuilder: jest.fn(() => mockQueryBuilder),
+            update: jest.fn().mockResolvedValue(undefined),
+            findOne: jest.fn(),
         };
-        mockJwtService = {
-            sign: jest.fn().mockReturnValue('fake-jwt-token'),
+        mockJwtService = { sign: jest.fn(), verify: jest.fn() };
+        mockConfigService = {
+            get: jest.fn((key) => (key === 'JWT_EXPIRES_IN' ? '8h' : `fake-${key}`)),
+        };
+        mockRedisService = {
+            set: jest.fn().mockResolvedValue(undefined),
+            get: jest.fn(),
+            del: jest.fn().mockResolvedValue(undefined),
         };
         const module = await testing_1.Test.createTestingModule({
             providers: [
                 auth_service_1.AuthService,
-                {
-                    provide: (0, typeorm_1.getRepositoryToken)(user_entity_1.User),
-                    useValue: mockUserRepo,
-                },
-                {
-                    provide: jwt_1.JwtService,
-                    useValue: mockJwtService,
-                },
+                { provide: (0, typeorm_1.getRepositoryToken)(user_entity_1.User), useValue: mockUserRepo },
+                { provide: jwt_1.JwtService, useValue: mockJwtService },
+                { provide: config_1.ConfigService, useValue: mockConfigService },
+                { provide: redis_service_1.RedisService, useValue: mockRedisService },
             ],
         }).compile();
         service = module.get(auth_service_1.AuthService);
+        bcrypt.hash.mockResolvedValue('fake-refresh-token-hash');
     });
     afterEach(() => {
         jest.clearAllMocks();
     });
     describe('login()', () => {
-        it('không tìm thấy email → ném UnauthorizedException("email-or-password-incorrect")', async () => {
+        it('không tìm thấy email → ném UnauthorizedException', async () => {
             mockQueryBuilder.getOne.mockResolvedValue(null);
             await expect(service.login({ email: 'khongton@fcvn.local', password: '123456' })).rejects.toThrow(common_1.UnauthorizedException);
         });
-        it('tìm thấy nhưng sai password → ném UnauthorizedException("email-or-password-incorrect")', async () => {
+        it('sai password → ném UnauthorizedException', async () => {
             mockQueryBuilder.getOne.mockResolvedValue(fakeUser);
             bcrypt.compare.mockResolvedValue(false);
-            await expect(service.login({ email: fakeUser.email, password: 'sai-password' })).rejects.toThrow(common_1.UnauthorizedException);
+            await expect(service.login({ email: fakeUser.email, password: 'sai' })).rejects.toThrow(common_1.UnauthorizedException);
         });
-        it('đúng password nhưng tài khoản inactive → ném UnauthorizedException("account-inactive")', async () => {
+        it('tài khoản inactive → ném UnauthorizedException("account-inactive")', async () => {
             mockQueryBuilder.getOne.mockResolvedValue({ ...fakeUser, status: user_entity_1.UserStatus.INACTIVE });
             bcrypt.compare.mockResolvedValue(true);
-            await expect(service.login({ email: fakeUser.email, password: 'dung-password' })).rejects.toThrow('account-inactive');
+            await expect(service.login({ email: fakeUser.email, password: 'dung' })).rejects.toThrow('account-inactive');
         });
-        it('email + password đúng + tài khoản active → trả về accessToken', async () => {
+        it('đúng thông tin → trả về token, lưu refreshTokenHash vào DB, VÀ ghi accessToken vào Redis', async () => {
             mockQueryBuilder.getOne.mockResolvedValue(fakeUser);
             bcrypt.compare.mockResolvedValue(true);
-            const result = await service.login({ email: fakeUser.email, password: 'dung-password' });
-            expect(result.accessToken).toBe('fake-jwt-token');
-            expect(result.user.email).toBe(fakeUser.email);
-            expect(mockJwtService.sign).toHaveBeenCalledWith({
-                userId: fakeUser.id,
-                role: fakeUser.role,
-                email: fakeUser.email,
+            mockJwtService.sign
+                .mockReturnValueOnce('fake-access-token')
+                .mockReturnValueOnce('fake-refresh-token');
+            const result = await service.login({ email: fakeUser.email, password: 'dung' });
+            expect(result.accessToken).toBe('fake-access-token');
+            expect(mockUserRepo.update).toHaveBeenCalledWith(fakeUser.id, {
+                refreshTokenHash: 'fake-refresh-token-hash',
             });
+            expect(mockRedisService.set).toHaveBeenCalledWith('access_token:1', 'fake-access-token', 28800);
+        });
+    });
+    describe('refreshToken()', () => {
+        it('token sai chữ ký/hết hạn → ném UnauthorizedException', async () => {
+            mockJwtService.verify.mockImplementation(() => {
+                throw new Error('jwt expired');
+            });
+            await expect(service.refreshToken({ refreshToken: 'token-gia' })).rejects.toThrow('refresh-token-invalid-or-expired');
+        });
+        it('đã bị logout trước đó (refreshTokenHash = null) → ném UnauthorizedException', async () => {
+            mockJwtService.verify.mockReturnValue({ UserId: 1 });
+            mockQueryBuilder.getOne.mockResolvedValue({ ...fakeUser, refreshTokenHash: null });
+            await expect(service.refreshToken({ refreshToken: 'token' })).rejects.toThrow('refresh-token-revoked');
+        });
+        it('hợp lệ → trả về accessToken mới, VÀ ghi đè lại Redis với token mới', async () => {
+            mockJwtService.verify.mockReturnValue({ UserId: 1 });
+            mockQueryBuilder.getOne.mockResolvedValue({ ...fakeUser, refreshTokenHash: 'fake-refresh-token-hash' });
+            bcrypt.compare.mockResolvedValue(true);
+            mockJwtService.sign.mockReturnValue('fake-new-access-token');
+            const result = await service.refreshToken({ refreshToken: 'token-that' });
+            expect(result.accessToken).toBe('fake-new-access-token');
+            expect(mockRedisService.set).toHaveBeenCalledWith('access_token:1', 'fake-new-access-token', 28800);
+        });
+    });
+    describe('logout()', () => {
+        it('xóa refreshTokenHash trong DB VÀ xóa accessToken khỏi Redis', async () => {
+            const result = await service.logout(1);
+            expect(mockUserRepo.update).toHaveBeenCalledWith(1, { refreshTokenHash: null });
+            expect(mockRedisService.del).toHaveBeenCalledWith('access_token:1');
+            expect(result.message).toBe('Đăng xuất thành công');
+        });
+    });
+    describe('getProfile()', () => {
+        it('không tìm thấy nhân sự → ném NotFoundException', async () => {
+            mockUserRepo.findOne.mockResolvedValue(null);
+            await expect(service.getProfile(999)).rejects.toThrow(common_1.NotFoundException);
+        });
+        it('tìm thấy → trả về đúng thông tin nhân sự', async () => {
+            mockUserRepo.findOne.mockResolvedValue(fakeUser);
+            const result = await service.getProfile(1);
+            expect(result).toEqual(fakeUser);
         });
     });
 });

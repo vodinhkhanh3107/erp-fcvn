@@ -80,6 +80,10 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ name: 'refresh_token_hash', select: false, nullable: true }),
+    __metadata("design:type", String)
+], User.prototype, "refreshTokenHash", void 0);
+__decorate([
     (0, typeorm_1.Column)({ type: 'enum', enum: role_enum_1.Role, default: role_enum_1.Role.EMPLOYEE }),
     __metadata("design:type", String)
 ], User.prototype, "role", void 0);

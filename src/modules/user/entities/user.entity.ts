@@ -33,6 +33,9 @@ export class User {
   @Column({ select: false })
   password: string;
 
+  @Column({ name: 'refresh_token_hash', select: false, nullable: true })
+  refreshTokenHash?: string | null;
+
   @Column({ type: 'enum', enum: Role, default: Role.EMPLOYEE })
   role: Role;
 

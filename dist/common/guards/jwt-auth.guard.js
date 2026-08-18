@@ -11,15 +11,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.JwtAuthGuard = void 0;
 const common_1 = require("@nestjs/common");
+const config_1 = require("@nestjs/config");
 const jwt_1 = require("@nestjs/jwt");
 const core_1 = require("@nestjs/core");
 const public_decorator_1 = require("../decorators/public.decorator");
+const redis_service_1 = require("../redis/redis.service");
 let JwtAuthGuard = class JwtAuthGuard {
-    constructor(jwtService, reflector) {
+    constructor(jwtService, reflector, configService, redisService) {
         this.jwtService = jwtService;
         this.reflector = reflector;
+        this.configService = configService;
+        this.redisService = redisService;
     }
-    canActivate(context) {
+    async canActivate(context) {
         const isPublic = this.reflector.getAllAndOverride(public_decorator_1.IS_PUBLIC_KEY, [
             context.getHandler(),
             context.getClass(),
@@ -31,20 +35,27 @@ let JwtAuthGuard = class JwtAuthGuard {
         if (!authHeader)
             throw new common_1.UnauthorizedException('missing-token');
         const token = authHeader.split(/\s/)[1];
+        let payload;
         try {
-            const payload = this.jwtService.verify(token, { secret: process.env.JWT_SECRET_KEY });
-            request.user = payload;
-            return true;
+            payload = this.jwtService.verify(token, { secret: this.configService.get('jwt.secret') });
         }
         catch {
             throw new common_1.UnauthorizedException('access-denied');
         }
+        const stored = await this.redisService.get(`access_token:${payload.userId}`);
+        if (stored !== token) {
+            throw new common_1.UnauthorizedException('token-revoked-or-replaced');
+        }
+        request.user = payload;
+        return true;
     }
 };
 exports.JwtAuthGuard = JwtAuthGuard;
 exports.JwtAuthGuard = JwtAuthGuard = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [jwt_1.JwtService,
-        core_1.Reflector])
+        core_1.Reflector,
+        config_1.ConfigService,
+        redis_service_1.RedisService])
 ], JwtAuthGuard);
 //# sourceMappingURL=jwt-auth.guard.js.map

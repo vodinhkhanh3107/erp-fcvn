@@ -15,6 +15,7 @@ const app_service_1 = require("./app.service");
 const user_module_1 = require("./modules/user/user.module");
 const token_module_1 = require("./common/token/token.module");
 const auth_module_1 = require("./modules/auth/auth.module");
+const redis_module_1 = require("./common/redis/redis.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -36,6 +37,7 @@ exports.AppModule = AppModule = __decorate([
             token_module_1.TokenModule,
             user_module_1.UserModule,
             auth_module_1.AuthModule,
+            redis_module_1.RedisModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
