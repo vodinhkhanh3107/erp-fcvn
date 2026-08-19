@@ -3,8 +3,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import 'dotenv/config';
 import { AppLogger } from './common/logger/app-logger.service';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
+import { swaggerModule } from './swagger/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -20,19 +20,9 @@ async function bootstrap() {
     }),
   );
   
+  // swagger
 
-  // ===== Swagger =====
-  const swaggerConfig = new DocumentBuilder()
-    .setTitle('ERP FCVietnam API')
-    .setDescription('Tài liệu API — module Employee/Auth/Supplier/SupplierGroup')
-    .setVersion('1.0')
-    .addBearerAuth(
-      { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
-      'access-token',
-    )
-    .build();
-  const swaggerDocument = SwaggerModule.createDocument(app, swaggerConfig);
-  SwaggerModule.setup('api-docs', app, swaggerDocument); // truy cập tại http://localhost:3000/api-docs
+  swaggerModule(app);
 
   const port = process.env.PORT || 3000;
   await app.listen(port);

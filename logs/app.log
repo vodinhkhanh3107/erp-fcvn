@@ -4536,3 +4536,167 @@
 [2026-08-19T09:55:50.913Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
 [2026-08-19T09:55:50.912Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
 [2026-08-19T09:55:50.913Z] [LOG] [NestApplication] Nest application successfully started
+[2026-08-19T10:04:30.607Z] [LOG] [NestFactory] Starting Nest application...
+[2026-08-19T10:04:30.607Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T10:04:30.607Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-08-19T10:04:30.608Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-08-19T10:04:30.608Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-08-19T10:04:30.607Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-08-19T10:04:30.608Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T10:04:30.608Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-08-19T10:04:30.608Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-08-19T10:04:30.609Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T10:04:30.608Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T10:04:30.609Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T10:04:30.609Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-08-19T10:04:30.608Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T10:04:30.609Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-08-19T10:04:30.609Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-08-19T10:04:30.609Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-08-19T10:04:30.609Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-08-19T10:04:30.609Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-08-19T10:04:30.609Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-08-19T10:04:30.609Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-08-19T10:04:30.609Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-08-19T10:04:30.610Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-08-19T10:04:30.610Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-08-19T10:04:30.609Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-08-19T10:04:30.610Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-08-19T10:04:30.610Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-08-19T10:04:30.610Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-08-19T10:04:30.610Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-08-19T10:04:30.610Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-08-19T10:04:30.610Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-08-19T10:04:30.610Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-08-19T10:04:30.610Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-08-19T10:04:30.610Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-08-19T10:04:30.610Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-08-19T10:04:30.611Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-08-19T10:04:30.610Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-08-19T10:04:30.610Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-08-19T10:04:30.611Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-08-19T10:04:30.611Z] [LOG] [NestApplication] Nest application successfully started
+[2026-08-19T10:04:30.611Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-08-19T10:07:43.028Z] [LOG] [NestFactory] Starting Nest application...
+[2026-08-19T10:07:43.028Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T10:07:43.029Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-08-19T10:07:43.028Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-08-19T10:07:43.029Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T10:07:43.029Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T10:07:43.029Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-08-19T10:07:43.029Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-08-19T10:07:43.029Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T10:07:43.029Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-08-19T10:07:43.029Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T10:07:43.030Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-08-19T10:07:43.030Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T10:07:43.030Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-08-19T10:07:43.029Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-08-19T10:07:43.030Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-08-19T10:07:43.030Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-08-19T10:07:43.030Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-08-19T10:07:43.030Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-08-19T10:07:43.030Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-08-19T10:07:43.030Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-08-19T10:07:43.030Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-08-19T10:07:43.030Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-08-19T10:07:43.031Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-08-19T10:07:43.030Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-08-19T10:07:43.030Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-08-19T10:07:43.031Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-08-19T10:07:43.031Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-08-19T10:07:43.031Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-08-19T10:07:43.031Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-08-19T10:07:43.031Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-08-19T10:07:43.031Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-08-19T10:07:43.031Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-08-19T10:07:43.031Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-08-19T10:07:43.031Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-08-19T10:07:43.031Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-08-19T10:07:43.031Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-08-19T10:07:43.032Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-08-19T10:07:43.032Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-08-19T10:07:43.031Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-08-19T10:07:43.032Z] [LOG] [NestApplication] Nest application successfully started
+[2026-08-19T10:08:25.531Z] [LOG] [NestFactory] Starting Nest application...
+[2026-08-19T10:08:25.531Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T10:08:25.532Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-08-19T10:08:25.532Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-08-19T10:08:25.531Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-08-19T10:08:25.532Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T10:08:25.532Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-08-19T10:08:25.532Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T10:08:25.532Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-08-19T10:08:25.532Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T10:08:25.532Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T10:08:25.532Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-08-19T10:08:25.532Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T10:08:25.533Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-08-19T10:08:25.533Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-08-19T10:08:25.533Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-08-19T10:08:25.533Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-08-19T10:08:25.533Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-08-19T10:08:25.533Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-08-19T10:08:25.533Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-08-19T10:08:25.533Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-08-19T10:08:25.533Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-08-19T10:08:25.533Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-08-19T10:08:25.533Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-08-19T10:08:25.533Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-08-19T10:08:25.533Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-08-19T10:08:25.533Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-08-19T10:08:25.534Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-08-19T10:08:25.534Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-08-19T10:08:25.534Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-08-19T10:08:25.534Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-08-19T10:08:25.534Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-08-19T10:08:25.534Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-08-19T10:08:25.534Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-08-19T10:08:25.534Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-08-19T10:08:25.534Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-08-19T10:08:25.534Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-08-19T10:08:25.534Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-08-19T10:08:25.534Z] [LOG] [NestApplication] Nest application successfully started
+[2026-08-19T10:08:25.534Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-08-19T10:08:25.534Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-08-19T10:08:35.742Z] [LOG] [NestFactory] Starting Nest application...
+[2026-08-19T10:08:35.743Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-08-19T10:08:35.743Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T10:08:35.743Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-08-19T10:08:35.744Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T10:08:35.743Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-08-19T10:08:35.744Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-08-19T10:08:35.744Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T10:08:35.744Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T10:08:35.744Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-08-19T10:08:35.744Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T10:08:35.744Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T10:08:35.744Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-08-19T10:08:35.744Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-08-19T10:08:35.744Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-08-19T10:08:35.745Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-08-19T10:08:35.745Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-08-19T10:08:35.744Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-08-19T10:08:35.745Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-08-19T10:08:35.745Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-08-19T10:08:35.745Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-08-19T10:08:35.745Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-08-19T10:08:35.745Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-08-19T10:08:35.745Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-08-19T10:08:35.745Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-08-19T10:08:35.745Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-08-19T10:08:35.745Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-08-19T10:08:35.745Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-08-19T10:08:35.746Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-08-19T10:08:35.746Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-08-19T10:08:35.746Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-08-19T10:08:35.746Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-08-19T10:08:35.746Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-08-19T10:08:35.746Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-08-19T10:08:35.746Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-08-19T10:08:35.746Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-08-19T10:08:35.746Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-08-19T10:08:35.746Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-08-19T10:08:35.746Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-08-19T10:08:35.745Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-08-19T10:08:35.746Z] [LOG] [NestApplication] Nest application successfully started
