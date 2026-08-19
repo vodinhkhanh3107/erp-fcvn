@@ -23,6 +23,7 @@ const create_user_dto_1 = require("./dto/create-user.dto");
 const update_user_status_dto_1 = require("./dto/update-user-status.dto");
 const user_service_1 = require("./user.service");
 const current_user_decorator_1 = require("../../common/decorators/current-user.decorator");
+const swagger_1 = require("@nestjs/swagger");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
@@ -80,6 +81,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "updateStatus", null);
 exports.UserController = UserController = __decorate([
+    (0, swagger_1.ApiTags)('User'),
+    (0, swagger_1.ApiBearerAuth)('access-token'),
     (0, common_1.Controller)('users'),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     __metadata("design:paramtypes", [user_service_1.UserService])

@@ -22,6 +22,7 @@ const jwt_auth_guard_1 = require("../../common/guards/jwt-auth.guard");
 const roles_guard_1 = require("../../common/guards/roles.guard");
 const create_supplier_dto_1 = require("./dto/create-supplier.dto");
 const supplier_service_1 = require("./supplier.service");
+const swagger_1 = require("@nestjs/swagger");
 let SupplierController = class SupplierController {
     constructor(supplierService) {
         this.supplierService = supplierService;
@@ -63,6 +64,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], SupplierController.prototype, "findOne", null);
 exports.SupplierController = SupplierController = __decorate([
+    (0, swagger_1.ApiTags)('Supplier'),
+    (0, swagger_1.ApiBearerAuth)('access-token'),
     (0, common_1.Controller)('suppliers'),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     __metadata("design:paramtypes", [supplier_service_1.SupplierService])

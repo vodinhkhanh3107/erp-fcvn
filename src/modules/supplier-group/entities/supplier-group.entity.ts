@@ -44,4 +44,11 @@ export class SupplierGroup {
 
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
+
+  // @Column({ length: 100, nullable: true })
+  // notes?: string;
+
+  
+  @Column({ length: 100})
+  text?: string;
 }

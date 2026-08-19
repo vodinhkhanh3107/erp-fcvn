@@ -25,6 +25,7 @@ const create_supplier_group_dto_1 = require("./dto/create-supplier-group.dto");
 const update_supplier_group_dto_1 = require("./dto/update-supplier-group.dto");
 const update_supplier_group_status_dto_1 = require("./dto/update-supplier-group-status.dto");
 const supplier_group_service_1 = require("./supplier-group.service");
+const swagger_1 = require("@nestjs/swagger");
 let SupplierGroupController = class SupplierGroupController {
     constructor(supplierGroupService) {
         this.supplierGroupService = supplierGroupService;
@@ -103,6 +104,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], SupplierGroupController.prototype, "assignSuppliers", null);
 exports.SupplierGroupController = SupplierGroupController = __decorate([
+    (0, swagger_1.ApiTags)('Supplier Group'),
+    (0, swagger_1.ApiBearerAuth)('access-token'),
     (0, common_1.Controller)('supplier-groups'),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     __metadata("design:paramtypes", [supplier_group_service_1.SupplierGroupService])

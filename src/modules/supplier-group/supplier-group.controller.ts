@@ -10,7 +10,10 @@ import { CreateSupplierGroupDto } from './dto/create-supplier-group.dto';
 import { UpdateSupplierGroupDto } from './dto/update-supplier-group.dto';
 import { UpdateSupplierGroupStatusDto } from './dto/update-supplier-group-status.dto';
 import { SupplierGroupService } from './supplier-group.service';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Supplier Group')
+@ApiBearerAuth('access-token')
 @Controller('supplier-groups')
 @UseGuards(JwtAuthGuard, RolesGuard)
 export class SupplierGroupController {

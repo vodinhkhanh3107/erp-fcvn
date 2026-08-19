@@ -7,7 +7,10 @@ import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { CreateSupplierDto } from './dto/create-supplier.dto';
 import { SupplierService } from './supplier.service';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Supplier')
+@ApiBearerAuth('access-token')
 @Controller('suppliers')
 @UseGuards(JwtAuthGuard, RolesGuard)
 export class SupplierController {

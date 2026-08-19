@@ -60,6 +60,10 @@ __decorate([
     (0, typeorm_1.UpdateDateColumn)({ name: 'updated_at' }),
     __metadata("design:type", Date)
 ], SupplierGroup.prototype, "updatedAt", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ length: 100 }),
+    __metadata("design:type", String)
+], SupplierGroup.prototype, "text", void 0);
 exports.SupplierGroup = SupplierGroup = __decorate([
     (0, typeorm_1.Entity)('supplier_groups')
 ], SupplierGroup);

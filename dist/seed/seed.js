@@ -48,7 +48,7 @@ async function seed() {
         password: process.env.DB_PASSWORD,
         database: process.env.DB_DATABASE,
         entities: [user_entity_1.User],
-        synchronize: true,
+        synchronize: false,
     });
     await dataSource.initialize();
     console.log('Đã kết nối MySQL, bắt đầu seed dữ liệu mẫu...');

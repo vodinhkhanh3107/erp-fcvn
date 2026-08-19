@@ -15,7 +15,7 @@ async function seed() {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
     entities: [User],
-    synchronize: true,
+    synchronize: false,
   });
 
   await dataSource.initialize();
