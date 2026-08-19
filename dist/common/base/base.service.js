@@ -24,8 +24,9 @@ class BaseService {
     }
     async findOne(id) {
         const entity = await this.repository.findOne({ where: { id } });
-        if (!entity)
+        if (!entity) {
             throw new common_1.NotFoundException('item-not-found');
+        }
         return entity;
     }
     async create(dto) {

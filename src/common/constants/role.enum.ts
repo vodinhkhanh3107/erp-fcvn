@@ -9,5 +9,6 @@ export enum Role {
   MANAGER = 'manager',
   EMPLOYEE = 'employee',
   ACCOUNTANT = "accountant",
-  BOD = "bod"
+  BOD = "bod",
+  PURCHASING="purchasing"
 }

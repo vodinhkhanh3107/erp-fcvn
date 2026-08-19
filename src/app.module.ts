@@ -7,6 +7,8 @@ import { UserModule } from './modules/user/user.module';
 import { TokenModule } from './common/token/token.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { RedisModule } from './common/redis/redis.module';
+import { SupplierModule } from './modules/supplier/supplier-module';
+import { SupplierGroupModule } from './modules/supplier-group/supplier-group.module';
 
 @Module({
   imports: [
@@ -26,7 +28,9 @@ import { RedisModule } from './common/redis/redis.module';
     TokenModule,      
     UserModule,
     AuthModule,
-    RedisModule
+    RedisModule,
+    SupplierModule,
+    SupplierGroupModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -68,7 +68,7 @@ export class AuthService {
     let payload: { userId: number };
     try {
       payload = this.jwtService.verify(refreshToken, {
-        secret: this.configService.get<string>('jwt.refreshSecret'),
+        secret: this.configService.get<string>('JWT_REFRESH_SECRET_KEY'),
       });
     } catch {
       throw new UnauthorizedException('refresh-token-invalid-or-expired');

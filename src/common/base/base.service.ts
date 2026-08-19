@@ -30,7 +30,9 @@ export class BaseService<T extends { id: number }> {
 
   async findOne(id: number): Promise<T> {
     const entity = await this.repository.findOne({ where: { id } as FindOptionsWhere<T> });
-    if (!entity) throw new NotFoundException('item-not-found');
+    if (!entity){
+      throw new NotFoundException('item-not-found');
+    }
     return entity;
   }
 

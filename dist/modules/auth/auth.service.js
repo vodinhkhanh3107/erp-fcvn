@@ -102,7 +102,7 @@ let AuthService = class AuthService {
         let payload;
         try {
             payload = this.jwtService.verify(refreshToken, {
-                secret: this.configService.get('jwt.refreshSecret'),
+                secret: this.configService.get('JWT_REFRESH_SECRET_KEY'),
             });
         }
         catch {
