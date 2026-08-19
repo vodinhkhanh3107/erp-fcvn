@@ -21,7 +21,7 @@ import { SupplierGroupModule } from './modules/supplier-group/supplier-group.mod
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      autoLoadEntities: false, 
+      autoLoadEntities: true, 
       synchronize: false, 
       logging: true, 
     }),

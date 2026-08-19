@@ -3824,3 +3824,715 @@
 [2026-08-19T09:24:23.583Z] [LOG] [NestApplication] Nest application successfully started
 [2026-08-19T09:24:23.583Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
 [2026-08-19T09:24:23.583Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-08-19T09:31:53.834Z] [ERROR] [ExceptionsHandler] No metadata for "SupplierGroup" was found. — EntityMetadataNotFoundError: No metadata for "SupplierGroup" was found.
+    at DataSource.getMetadata (C:\ERP\erp-fcvn\node_modules\typeorm\data-source\src\data-source\DataSource.ts:451:30)
+    at Repository.get metadata (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:55:40)
+    at Repository.findOne (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:634:42)
+    at SupplierGroupService.findOne (C:\ERP\erp-fcvn\src\common\base\base.service.ts:32:42)
+    at SupplierGroupController.findOne (C:\ERP\erp-fcvn\src\modules\supplier-group\supplier-group.controller.ts:35:38)
+    at C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:38:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:46:28
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-proxy.js:9:17
+[2026-08-19T09:31:55.134Z] [ERROR] [ExceptionsHandler] No metadata for "SupplierGroup" was found. — EntityMetadataNotFoundError: No metadata for "SupplierGroup" was found.
+    at DataSource.getMetadata (C:\ERP\erp-fcvn\node_modules\typeorm\data-source\src\data-source\DataSource.ts:451:30)
+    at Repository.get metadata (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:55:40)
+    at Repository.findOne (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:634:42)
+    at SupplierGroupService.findOne (C:\ERP\erp-fcvn\src\common\base\base.service.ts:32:42)
+    at SupplierGroupController.findOne (C:\ERP\erp-fcvn\src\modules\supplier-group\supplier-group.controller.ts:35:38)
+    at C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:38:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:46:28
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-proxy.js:9:17
+[2026-08-19T09:32:07.581Z] [ERROR] [ExceptionsHandler] No metadata for "SupplierGroup" was found. — EntityMetadataNotFoundError: No metadata for "SupplierGroup" was found.
+    at DataSource.getMetadata (C:\ERP\erp-fcvn\node_modules\typeorm\data-source\src\data-source\DataSource.ts:451:30)
+    at Repository.get metadata (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:55:40)
+    at Repository.findOne (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:634:42)
+    at SupplierGroupService.findOne (C:\ERP\erp-fcvn\src\common\base\base.service.ts:32:42)
+    at SupplierGroupController.findOne (C:\ERP\erp-fcvn\src\modules\supplier-group\supplier-group.controller.ts:35:38)
+    at C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:38:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:46:28
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-proxy.js:9:17
+[2026-08-19T09:32:12.381Z] [ERROR] [ExceptionsHandler] No metadata for "SupplierGroup" was found. — EntityMetadataNotFoundError: No metadata for "SupplierGroup" was found.
+    at DataSource.getMetadata (C:\ERP\erp-fcvn\node_modules\typeorm\data-source\src\data-source\DataSource.ts:451:30)
+    at Repository.get metadata (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:55:40)
+    at Repository.findOne (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:634:42)
+    at SupplierGroupService.findOne (C:\ERP\erp-fcvn\src\common\base\base.service.ts:32:42)
+    at SupplierGroupController.findOne (C:\ERP\erp-fcvn\src\modules\supplier-group\supplier-group.controller.ts:35:38)
+    at C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:38:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:46:28
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-proxy.js:9:17
+[2026-08-19T09:32:29.350Z] [ERROR] [ExceptionsHandler] No metadata for "SupplierGroup" was found. — EntityMetadataNotFoundError: No metadata for "SupplierGroup" was found.
+    at DataSource.getMetadata (C:\ERP\erp-fcvn\node_modules\typeorm\data-source\src\data-source\DataSource.ts:451:30)
+    at Repository.get metadata (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:55:40)
+    at Repository.findOne (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:634:42)
+    at SupplierGroupService.findOne (C:\ERP\erp-fcvn\src\common\base\base.service.ts:32:42)
+    at SupplierGroupController.findOne (C:\ERP\erp-fcvn\src\modules\supplier-group\supplier-group.controller.ts:35:38)
+    at C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:38:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:46:28
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-proxy.js:9:17
+[2026-08-19T09:33:15.782Z] [LOG] [NestFactory] Starting Nest application...
+[2026-08-19T09:33:15.783Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:33:15.783Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-08-19T09:33:15.783Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T09:33:15.783Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-08-19T09:33:15.783Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T09:33:15.784Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-08-19T09:33:15.784Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-08-19T09:33:15.784Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-08-19T09:33:15.784Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:33:15.784Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:33:15.783Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-08-19T09:33:15.784Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-08-19T09:33:15.784Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:33:15.784Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-08-19T09:33:15.784Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-08-19T09:33:15.784Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-08-19T09:33:15.784Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-08-19T09:33:15.784Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-08-19T09:33:15.785Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-08-19T09:33:15.785Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-08-19T09:33:15.785Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-08-19T09:33:15.785Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-08-19T09:33:15.785Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-08-19T09:33:15.785Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-08-19T09:33:15.785Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-08-19T09:33:15.785Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-08-19T09:33:15.785Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-08-19T09:33:15.785Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-08-19T09:33:15.785Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-08-19T09:33:15.785Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-08-19T09:33:15.784Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-08-19T09:33:15.785Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-08-19T09:33:15.785Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-08-19T09:33:15.786Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-08-19T09:33:15.786Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-08-19T09:33:15.786Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-08-19T09:33:15.786Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-08-19T09:33:15.786Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-08-19T09:33:15.786Z] [LOG] [NestApplication] Nest application successfully started
+[2026-08-19T09:33:15.786Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-08-19T09:33:19.569Z] [ERROR] [ExceptionsHandler] No metadata for "SupplierGroup" was found. — EntityMetadataNotFoundError: No metadata for "SupplierGroup" was found.
+    at DataSource.getMetadata (C:\ERP\erp-fcvn\node_modules\typeorm\data-source\src\data-source\DataSource.ts:451:30)
+    at Repository.get metadata (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:55:40)
+    at Repository.findOne (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:634:42)
+    at SupplierGroupService.findOne (C:\ERP\erp-fcvn\src\common\base\base.service.ts:32:42)
+    at SupplierGroupController.findOne (C:\ERP\erp-fcvn\src\modules\supplier-group\supplier-group.controller.ts:35:38)
+    at C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:38:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:46:28
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-proxy.js:9:17
+[2026-08-19T09:33:20.477Z] [ERROR] [ExceptionsHandler] No metadata for "SupplierGroup" was found. — EntityMetadataNotFoundError: No metadata for "SupplierGroup" was found.
+    at DataSource.getMetadata (C:\ERP\erp-fcvn\node_modules\typeorm\data-source\src\data-source\DataSource.ts:451:30)
+    at Repository.get metadata (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:55:40)
+    at Repository.findOne (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:634:42)
+    at SupplierGroupService.findOne (C:\ERP\erp-fcvn\src\common\base\base.service.ts:32:42)
+    at SupplierGroupController.findOne (C:\ERP\erp-fcvn\src\modules\supplier-group\supplier-group.controller.ts:35:38)
+    at C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:38:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:46:28
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-proxy.js:9:17
+[2026-08-19T09:33:26.326Z] [ERROR] [ExceptionsHandler] No metadata for "SupplierGroup" was found. — EntityMetadataNotFoundError: No metadata for "SupplierGroup" was found.
+    at DataSource.getMetadata (C:\ERP\erp-fcvn\node_modules\typeorm\data-source\src\data-source\DataSource.ts:451:30)
+    at Repository.get metadata (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:55:40)
+    at Repository.findOne (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:634:42)
+    at SupplierGroupService.findOne (C:\ERP\erp-fcvn\src\common\base\base.service.ts:32:42)
+    at SupplierGroupController.findOne (C:\ERP\erp-fcvn\src\modules\supplier-group\supplier-group.controller.ts:35:38)
+    at C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:38:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:46:28
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-proxy.js:9:17
+[2026-08-19T09:33:30.580Z] [ERROR] [ExceptionsHandler] No metadata for "SupplierGroup" was found. — EntityMetadataNotFoundError: No metadata for "SupplierGroup" was found.
+    at DataSource.getMetadata (C:\ERP\erp-fcvn\node_modules\typeorm\data-source\src\data-source\DataSource.ts:451:30)
+    at Repository.get metadata (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:55:40)
+    at Repository.findOne (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:634:42)
+    at SupplierGroupService.findOne (C:\ERP\erp-fcvn\src\common\base\base.service.ts:32:42)
+    at SupplierGroupController.findOne (C:\ERP\erp-fcvn\src\modules\supplier-group\supplier-group.controller.ts:35:38)
+    at C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:38:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:46:28
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-proxy.js:9:17
+[2026-08-19T09:35:51.804Z] [ERROR] [ExceptionsHandler] No metadata for "User" was found. — EntityMetadataNotFoundError: No metadata for "User" was found.
+    at DataSource.getMetadata (C:\ERP\erp-fcvn\node_modules\typeorm\data-source\src\data-source\DataSource.ts:451:30)
+    at Repository.get metadata (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:55:40)
+    at Repository.findAndCount (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:601:47)
+    at UserService.findAll (C:\ERP\erp-fcvn\src\common\base\base.service.ts:21:50)
+    at UserService.list (C:\ERP\erp-fcvn\src\modules\user\user.service.ts:36:17)
+    at UserController.findAll (C:\ERP\erp-fcvn\src\modules\user\user.controller.ts:29:29)
+    at C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:38:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:46:28
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-proxy.js:9:17
+[2026-08-19T09:35:52.845Z] [ERROR] [ExceptionsHandler] No metadata for "User" was found. — EntityMetadataNotFoundError: No metadata for "User" was found.
+    at DataSource.getMetadata (C:\ERP\erp-fcvn\node_modules\typeorm\data-source\src\data-source\DataSource.ts:451:30)
+    at Repository.get metadata (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:55:40)
+    at Repository.findAndCount (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:601:47)
+    at UserService.findAll (C:\ERP\erp-fcvn\src\common\base\base.service.ts:21:50)
+    at UserService.list (C:\ERP\erp-fcvn\src\modules\user\user.service.ts:36:17)
+    at UserController.findAll (C:\ERP\erp-fcvn\src\modules\user\user.controller.ts:29:29)
+    at C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:38:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:46:28
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-proxy.js:9:17
+[2026-08-19T09:36:03.879Z] [LOG] [NestFactory] Starting Nest application...
+[2026-08-19T09:36:03.879Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:36:03.880Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-08-19T09:36:03.880Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-08-19T09:36:03.880Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-08-19T09:36:03.880Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T09:36:03.880Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T09:36:03.880Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-08-19T09:36:03.880Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:36:03.880Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-08-19T09:36:03.881Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:36:03.881Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-08-19T09:36:03.881Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:36:03.881Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-08-19T09:36:03.881Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-08-19T09:36:03.881Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-08-19T09:36:03.881Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-08-19T09:36:03.881Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-08-19T09:36:03.880Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-08-19T09:36:03.881Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-08-19T09:36:03.881Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-08-19T09:36:03.881Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-08-19T09:36:03.881Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-08-19T09:36:03.881Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-08-19T09:36:03.882Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-08-19T09:36:03.882Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-08-19T09:36:03.882Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-08-19T09:36:03.882Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-08-19T09:36:03.882Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-08-19T09:36:03.882Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-08-19T09:36:03.882Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-08-19T09:36:03.882Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-08-19T09:36:03.882Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-08-19T09:36:03.882Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-08-19T09:36:03.882Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-08-19T09:36:03.882Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-08-19T09:36:03.882Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-08-19T09:36:03.883Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-08-19T09:36:03.883Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-08-19T09:36:03.882Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-08-19T09:36:03.883Z] [LOG] [NestApplication] Nest application successfully started
+[2026-08-19T09:36:05.351Z] [ERROR] [ExceptionsHandler] No metadata for "User" was found. — EntityMetadataNotFoundError: No metadata for "User" was found.
+    at DataSource.getMetadata (C:\ERP\erp-fcvn\node_modules\typeorm\data-source\src\data-source\DataSource.ts:451:30)
+    at Repository.get metadata (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:55:40)
+    at Repository.findAndCount (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:601:47)
+    at UserService.findAll (C:\ERP\erp-fcvn\src\common\base\base.service.ts:21:50)
+    at UserService.list (C:\ERP\erp-fcvn\src\modules\user\user.service.ts:36:17)
+    at UserController.findAll (C:\ERP\erp-fcvn\src\modules\user\user.controller.ts:29:29)
+    at C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:38:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:46:28
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-proxy.js:9:17
+[2026-08-19T09:37:00.831Z] [LOG] [NestFactory] Starting Nest application...
+[2026-08-19T09:37:00.832Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:37:00.832Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-08-19T09:37:00.832Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-08-19T09:37:00.832Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-08-19T09:37:00.832Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T09:37:00.832Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-08-19T09:37:00.833Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-08-19T09:37:00.833Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:37:00.832Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-08-19T09:37:00.833Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:37:00.833Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-08-19T09:37:00.832Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T09:37:00.833Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:37:00.833Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-08-19T09:37:00.833Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-08-19T09:37:00.833Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-08-19T09:37:00.833Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-08-19T09:37:00.834Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-08-19T09:37:00.833Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-08-19T09:37:00.834Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-08-19T09:37:00.834Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-08-19T09:37:00.834Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-08-19T09:37:00.834Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-08-19T09:37:00.834Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-08-19T09:37:00.834Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-08-19T09:37:00.834Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-08-19T09:37:00.833Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-08-19T09:37:00.834Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-08-19T09:37:00.834Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-08-19T09:37:00.834Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-08-19T09:37:00.834Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-08-19T09:37:00.834Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-08-19T09:37:00.834Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-08-19T09:37:00.834Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-08-19T09:37:00.835Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-08-19T09:37:00.835Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-08-19T09:37:00.835Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-08-19T09:37:00.835Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-08-19T09:37:00.835Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-08-19T09:37:00.835Z] [LOG] [NestApplication] Nest application successfully started
+[2026-08-19T09:37:32.595Z] [ERROR] [ExceptionsHandler] No metadata for "User" was found. — EntityMetadataNotFoundError: No metadata for "User" was found.
+    at DataSource.getMetadata (C:\ERP\erp-fcvn\node_modules\typeorm\data-source\src\data-source\DataSource.ts:451:30)
+    at Repository.get metadata (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:55:40)
+    at Repository.findAndCount (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:601:47)
+    at UserService.findAll (C:\ERP\erp-fcvn\src\common\base\base.service.ts:21:50)
+    at UserService.list (C:\ERP\erp-fcvn\src\modules\user\user.service.ts:36:17)
+    at UserController.findAll (C:\ERP\erp-fcvn\src\modules\user\user.controller.ts:29:29)
+    at C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:38:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:46:28
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-proxy.js:9:17
+[2026-08-19T09:38:38.044Z] [LOG] [NestFactory] Starting Nest application...
+[2026-08-19T09:38:38.044Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:38:38.044Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-08-19T09:38:38.044Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-08-19T09:38:38.045Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T09:38:38.045Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-08-19T09:38:38.045Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T09:38:38.045Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-08-19T09:38:38.045Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-08-19T09:38:38.046Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:38:38.046Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:38:38.046Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:38:38.046Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-08-19T09:38:38.046Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-08-19T09:38:38.046Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-08-19T09:38:38.046Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-08-19T09:38:38.046Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-08-19T09:38:38.045Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-08-19T09:38:38.046Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-08-19T09:38:38.046Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-08-19T09:38:38.047Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-08-19T09:38:38.047Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-08-19T09:38:38.046Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-08-19T09:38:38.047Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-08-19T09:38:38.047Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-08-19T09:38:38.047Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-08-19T09:38:38.047Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-08-19T09:38:38.047Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-08-19T09:38:38.047Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-08-19T09:38:38.047Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-08-19T09:38:38.047Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-08-19T09:38:38.046Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-08-19T09:38:38.047Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-08-19T09:38:38.047Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-08-19T09:38:38.048Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-08-19T09:38:38.047Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-08-19T09:38:38.048Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-08-19T09:38:38.048Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-08-19T09:38:38.048Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-08-19T09:38:38.048Z] [LOG] [NestApplication] Nest application successfully started
+[2026-08-19T09:38:38.047Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-08-19T09:38:42.765Z] [ERROR] [ExceptionsHandler] No metadata for "User" was found. — EntityMetadataNotFoundError: No metadata for "User" was found.
+    at DataSource.getMetadata (C:\ERP\erp-fcvn\node_modules\typeorm\data-source\src\data-source\DataSource.ts:451:30)
+    at Repository.get metadata (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:55:40)
+    at Repository.findAndCount (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:601:47)
+    at UserService.findAll (C:\ERP\erp-fcvn\src\common\base\base.service.ts:21:50)
+    at UserService.list (C:\ERP\erp-fcvn\src\modules\user\user.service.ts:36:17)
+    at UserController.findAll (C:\ERP\erp-fcvn\src\modules\user\user.controller.ts:29:29)
+    at C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:38:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:46:28
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-proxy.js:9:17
+[2026-08-19T09:38:55.784Z] [LOG] [NestFactory] Starting Nest application...
+[2026-08-19T09:38:55.784Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:38:55.784Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-08-19T09:38:55.785Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T09:38:55.785Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T09:38:55.784Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-08-19T09:38:55.785Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-08-19T09:38:55.785Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-08-19T09:38:55.785Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-08-19T09:38:55.786Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:38:55.785Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-08-19T09:38:55.786Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:38:55.786Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-08-19T09:38:55.786Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:38:55.786Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-08-19T09:38:55.786Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-08-19T09:38:55.786Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-08-19T09:38:55.786Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-08-19T09:38:55.786Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-08-19T09:38:55.786Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-08-19T09:38:55.786Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-08-19T09:38:55.787Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-08-19T09:38:55.787Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-08-19T09:38:55.787Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-08-19T09:38:55.787Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-08-19T09:38:55.787Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-08-19T09:38:55.787Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-08-19T09:38:55.787Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-08-19T09:38:55.787Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-08-19T09:38:55.787Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-08-19T09:38:55.787Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-08-19T09:38:55.787Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-08-19T09:38:55.787Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-08-19T09:38:55.787Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-08-19T09:38:55.787Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-08-19T09:38:55.788Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-08-19T09:38:55.788Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-08-19T09:38:55.788Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-08-19T09:38:55.788Z] [LOG] [NestApplication] Nest application successfully started
+[2026-08-19T09:38:55.788Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-08-19T09:38:55.788Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-08-19T09:39:02.761Z] [ERROR] [ExceptionsHandler] No metadata for "User" was found. — EntityMetadataNotFoundError: No metadata for "User" was found.
+    at DataSource.getMetadata (C:\ERP\erp-fcvn\node_modules\typeorm\data-source\src\data-source\DataSource.ts:451:30)
+    at Repository.get metadata (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:55:40)
+    at Repository.findAndCount (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:601:47)
+    at UserService.findAll (C:\ERP\erp-fcvn\src\common\base\base.service.ts:21:50)
+    at UserService.list (C:\ERP\erp-fcvn\src\modules\user\user.service.ts:36:17)
+    at UserController.findAll (C:\ERP\erp-fcvn\src\modules\user\user.controller.ts:29:29)
+    at C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:38:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:46:28
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-proxy.js:9:17
+[2026-08-19T09:39:24.974Z] [LOG] [NestFactory] Starting Nest application...
+[2026-08-19T09:39:24.974Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:39:24.975Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-08-19T09:39:24.975Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-08-19T09:39:24.975Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-08-19T09:39:24.975Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-08-19T09:39:24.975Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T09:39:24.975Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-08-19T09:39:24.975Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T09:39:24.975Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-08-19T09:39:24.975Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:39:24.975Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:39:24.975Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:39:24.976Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-08-19T09:39:24.976Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-08-19T09:39:24.976Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-08-19T09:39:24.976Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-08-19T09:39:24.976Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-08-19T09:39:24.976Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-08-19T09:39:24.976Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-08-19T09:39:24.976Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-08-19T09:39:24.976Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-08-19T09:39:24.976Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-08-19T09:39:24.976Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-08-19T09:39:24.977Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-08-19T09:39:24.977Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-08-19T09:39:24.977Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-08-19T09:39:24.977Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-08-19T09:39:24.976Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-08-19T09:39:24.977Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-08-19T09:39:24.977Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-08-19T09:39:24.977Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-08-19T09:39:24.977Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-08-19T09:39:24.977Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-08-19T09:39:24.977Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-08-19T09:39:24.977Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-08-19T09:39:24.977Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-08-19T09:39:24.977Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-08-19T09:39:24.977Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-08-19T09:39:24.977Z] [LOG] [NestApplication] Nest application successfully started
+[2026-08-19T09:39:24.977Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-08-19T09:39:28.197Z] [ERROR] [ExceptionsHandler] No metadata for "User" was found. — EntityMetadataNotFoundError: No metadata for "User" was found.
+    at DataSource.getMetadata (C:\ERP\erp-fcvn\node_modules\typeorm\data-source\src\data-source\DataSource.ts:451:30)
+    at Repository.get metadata (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:55:40)
+    at Repository.findAndCount (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:601:47)
+    at UserService.findAll (C:\ERP\erp-fcvn\src\common\base\base.service.ts:21:50)
+    at UserService.list (C:\ERP\erp-fcvn\src\modules\user\user.service.ts:36:17)
+    at UserController.findAll (C:\ERP\erp-fcvn\src\modules\user\user.controller.ts:29:29)
+    at C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:38:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:46:28
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-proxy.js:9:17
+[2026-08-19T09:41:01.452Z] [LOG] [NestFactory] Starting Nest application...
+[2026-08-19T09:41:01.452Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:41:01.452Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-08-19T09:41:01.453Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-08-19T09:41:01.453Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-08-19T09:41:01.453Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-08-19T09:41:01.453Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-08-19T09:41:01.453Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T09:41:01.453Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-08-19T09:41:01.453Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:41:01.453Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:41:01.454Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-08-19T09:41:01.453Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T09:41:01.454Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:41:01.454Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-08-19T09:41:01.454Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-08-19T09:41:01.454Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-08-19T09:41:01.454Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-08-19T09:41:01.454Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-08-19T09:41:01.454Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-08-19T09:41:01.454Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-08-19T09:41:01.454Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-08-19T09:41:01.454Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-08-19T09:41:01.454Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-08-19T09:41:01.454Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-08-19T09:41:01.455Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-08-19T09:41:01.455Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-08-19T09:41:01.455Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-08-19T09:41:01.454Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-08-19T09:41:01.455Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-08-19T09:41:01.455Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-08-19T09:41:01.455Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-08-19T09:41:01.455Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-08-19T09:41:01.455Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-08-19T09:41:01.455Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-08-19T09:41:01.455Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-08-19T09:41:01.455Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-08-19T09:41:01.455Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-08-19T09:41:01.456Z] [LOG] [NestApplication] Nest application successfully started
+[2026-08-19T09:41:01.455Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-08-19T09:41:01.455Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-08-19T09:41:03.410Z] [LOG] [NestFactory] Starting Nest application...
+[2026-08-19T09:41:03.411Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:41:03.411Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-08-19T09:41:03.411Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-08-19T09:41:03.411Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-08-19T09:41:03.411Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T09:41:03.412Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-08-19T09:41:03.411Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T09:41:03.412Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-08-19T09:41:03.411Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-08-19T09:41:03.412Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:41:03.412Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:41:03.412Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-08-19T09:41:03.412Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-08-19T09:41:03.412Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:41:03.412Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-08-19T09:41:03.413Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-08-19T09:41:03.412Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-08-19T09:41:03.412Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-08-19T09:41:03.413Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-08-19T09:41:03.413Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-08-19T09:41:03.413Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-08-19T09:41:03.413Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-08-19T09:41:03.413Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-08-19T09:41:03.413Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-08-19T09:41:03.413Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-08-19T09:41:03.413Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-08-19T09:41:03.413Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-08-19T09:41:03.413Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-08-19T09:41:03.413Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-08-19T09:41:03.414Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-08-19T09:41:03.414Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-08-19T09:41:03.414Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-08-19T09:41:03.414Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-08-19T09:41:03.414Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-08-19T09:41:03.414Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-08-19T09:41:03.414Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-08-19T09:41:03.414Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-08-19T09:41:03.414Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-08-19T09:41:03.413Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-08-19T09:41:03.414Z] [LOG] [NestApplication] Nest application successfully started
+[2026-08-19T09:41:12.700Z] [ERROR] [ExceptionsHandler] No metadata for "User" was found. — EntityMetadataNotFoundError: No metadata for "User" was found.
+    at DataSource.getMetadata (C:\ERP\erp-fcvn\node_modules\typeorm\data-source\src\data-source\DataSource.ts:451:30)
+    at Repository.get metadata (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:55:40)
+    at Repository.findAndCount (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:601:47)
+    at UserService.findAll (C:\ERP\erp-fcvn\src\common\base\base.service.ts:21:50)
+    at UserService.list (C:\ERP\erp-fcvn\src\modules\user\user.service.ts:36:17)
+    at UserController.findAll (C:\ERP\erp-fcvn\src\modules\user\user.controller.ts:29:29)
+    at C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:38:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:46:28
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-proxy.js:9:17
+[2026-08-19T09:42:31.547Z] [ERROR] [ExceptionsHandler] No metadata for "User" was found. — EntityMetadataNotFoundError: No metadata for "User" was found.
+    at DataSource.getMetadata (C:\ERP\erp-fcvn\node_modules\typeorm\data-source\src\data-source\DataSource.ts:451:30)
+    at Repository.get metadata (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:55:40)
+    at Repository.findAndCount (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:601:47)
+    at UserService.findAll (C:\ERP\erp-fcvn\src\common\base\base.service.ts:21:50)
+    at UserService.list (C:\ERP\erp-fcvn\src\modules\user\user.service.ts:36:17)
+    at UserController.findAll (C:\ERP\erp-fcvn\src\modules\user\user.controller.ts:29:29)
+    at C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:38:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:46:28
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-proxy.js:9:17
+[2026-08-19T09:42:44.450Z] [LOG] [NestFactory] Starting Nest application...
+[2026-08-19T09:42:44.451Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:42:44.451Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-08-19T09:42:44.451Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-08-19T09:42:44.451Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-08-19T09:42:44.451Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T09:42:44.451Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T09:42:44.452Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-08-19T09:42:44.451Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-08-19T09:42:44.451Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-08-19T09:42:44.452Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:42:44.452Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-08-19T09:42:44.452Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:42:44.452Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-08-19T09:42:44.452Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:42:44.452Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-08-19T09:42:44.452Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-08-19T09:42:44.452Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-08-19T09:42:44.452Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-08-19T09:42:44.452Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-08-19T09:42:44.452Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-08-19T09:42:44.453Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-08-19T09:42:44.453Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-08-19T09:42:44.453Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-08-19T09:42:44.452Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-08-19T09:42:44.453Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-08-19T09:42:44.453Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-08-19T09:42:44.453Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-08-19T09:42:44.453Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-08-19T09:42:44.453Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-08-19T09:42:44.453Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-08-19T09:42:44.453Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-08-19T09:42:44.453Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-08-19T09:42:44.453Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-08-19T09:42:44.453Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-08-19T09:42:44.454Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-08-19T09:42:44.453Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-08-19T09:42:44.454Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-08-19T09:42:44.454Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-08-19T09:42:44.454Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-08-19T09:42:44.454Z] [LOG] [NestApplication] Nest application successfully started
+[2026-08-19T09:42:45.636Z] [ERROR] [ExceptionsHandler] No metadata for "User" was found. — EntityMetadataNotFoundError: No metadata for "User" was found.
+    at DataSource.getMetadata (C:\ERP\erp-fcvn\node_modules\typeorm\data-source\src\data-source\DataSource.ts:451:30)
+    at Repository.get metadata (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:55:40)
+    at Repository.findAndCount (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:601:47)
+    at UserService.findAll (C:\ERP\erp-fcvn\src\common\base\base.service.ts:21:50)
+    at UserService.list (C:\ERP\erp-fcvn\src\modules\user\user.service.ts:36:17)
+    at UserController.findAll (C:\ERP\erp-fcvn\src\modules\user\user.controller.ts:29:29)
+    at C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:38:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:46:28
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-proxy.js:9:17
+[2026-08-19T09:44:15.338Z] [LOG] [NestFactory] Starting Nest application...
+[2026-08-19T09:44:15.338Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:44:15.338Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-08-19T09:44:15.338Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-08-19T09:44:15.338Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-08-19T09:44:15.339Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T09:44:15.339Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-08-19T09:44:15.339Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T09:44:15.339Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-08-19T09:44:15.339Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-08-19T09:44:15.339Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:44:15.339Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:44:15.339Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:44:15.339Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-08-19T09:44:15.340Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-08-19T09:44:15.340Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-08-19T09:44:15.339Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-08-19T09:44:15.339Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-08-19T09:44:15.340Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-08-19T09:44:15.340Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-08-19T09:44:15.340Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-08-19T09:44:15.340Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-08-19T09:44:15.340Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-08-19T09:44:15.340Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-08-19T09:44:15.340Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-08-19T09:44:15.340Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-08-19T09:44:15.340Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-08-19T09:44:15.340Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-08-19T09:44:15.340Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-08-19T09:44:15.341Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-08-19T09:44:15.341Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-08-19T09:44:15.341Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-08-19T09:44:15.341Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-08-19T09:44:15.341Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-08-19T09:44:15.341Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-08-19T09:44:15.341Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-08-19T09:44:15.341Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-08-19T09:44:15.341Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-08-19T09:44:15.342Z] [LOG] [NestApplication] Nest application successfully started
+[2026-08-19T09:44:15.342Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-08-19T09:44:15.341Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-08-19T09:44:16.797Z] [ERROR] [ExceptionsHandler] No metadata for "User" was found. — EntityMetadataNotFoundError: No metadata for "User" was found.
+    at DataSource.getMetadata (C:\ERP\erp-fcvn\node_modules\typeorm\data-source\src\data-source\DataSource.ts:451:30)
+    at Repository.get metadata (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:55:40)
+    at Repository.createQueryBuilder (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:84:18)
+    at AuthService.login (C:\ERP\erp-fcvn\src\modules\auth\auth.service.ts:46:8)
+    at AuthController.login (C:\ERP\erp-fcvn\src\modules\auth\auth.controller.ts:20:29)
+    at C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:38:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:46:28
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-proxy.js:9:17
+[2026-08-19T09:52:07.977Z] [LOG] [NestFactory] Starting Nest application...
+[2026-08-19T09:52:07.977Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:52:07.978Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-08-19T09:52:07.978Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-08-19T09:52:07.978Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-08-19T09:52:07.978Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-08-19T09:52:07.978Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-08-19T09:52:07.978Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T09:52:07.978Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-08-19T09:52:07.978Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:52:07.978Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:52:07.979Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:52:07.978Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T09:52:07.979Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-08-19T09:52:07.979Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-08-19T09:52:07.979Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-08-19T09:52:07.979Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-08-19T09:52:07.979Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-08-19T09:52:07.979Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-08-19T09:52:07.979Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-08-19T09:52:07.979Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-08-19T09:52:07.979Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-08-19T09:52:07.979Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-08-19T09:52:07.979Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-08-19T09:52:07.980Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-08-19T09:52:07.980Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-08-19T09:52:07.980Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-08-19T09:52:07.980Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-08-19T09:52:07.980Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-08-19T09:52:07.979Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-08-19T09:52:07.980Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-08-19T09:52:07.980Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-08-19T09:52:07.980Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-08-19T09:52:07.980Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-08-19T09:52:07.980Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-08-19T09:52:07.980Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-08-19T09:52:07.980Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-08-19T09:52:07.980Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-08-19T09:52:07.981Z] [LOG] [NestApplication] Nest application successfully started
+[2026-08-19T09:52:07.980Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-08-19T09:52:07.980Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-08-19T09:52:18.289Z] [ERROR] [ExceptionsHandler] No metadata for "User" was found. — EntityMetadataNotFoundError: No metadata for "User" was found.
+    at DataSource.getMetadata (C:\ERP\erp-fcvn\node_modules\typeorm\data-source\src\data-source\DataSource.ts:451:30)
+    at Repository.get metadata (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:55:40)
+    at Repository.createQueryBuilder (C:\ERP\erp-fcvn\node_modules\typeorm\repository\src\repository\Repository.ts:84:18)
+    at AuthService.login (C:\ERP\erp-fcvn\src\modules\auth\auth.service.ts:46:8)
+    at AuthController.login (C:\ERP\erp-fcvn\src\modules\auth\auth.controller.ts:20:29)
+    at C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:38:29
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-execution-context.js:46:28
+    at async C:\ERP\erp-fcvn\node_modules\@nestjs\core\router\router-proxy.js:9:17
+[2026-08-19T09:55:50.909Z] [LOG] [NestFactory] Starting Nest application...
+[2026-08-19T09:55:50.909Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:55:50.909Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-08-19T09:55:50.910Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T09:55:50.910Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-08-19T09:55:50.910Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-08-19T09:55:50.910Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-08-19T09:55:50.909Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-08-19T09:55:50.910Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-08-19T09:55:50.910Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:55:50.910Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:55:50.911Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-08-19T09:55:50.910Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-08-19T09:55:50.911Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-08-19T09:55:50.911Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-08-19T09:55:50.911Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-08-19T09:55:50.910Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-08-19T09:55:50.911Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-08-19T09:55:50.911Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-08-19T09:55:50.911Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-08-19T09:55:50.911Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-08-19T09:55:50.911Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-08-19T09:55:50.911Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-08-19T09:55:50.912Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-08-19T09:55:50.911Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-08-19T09:55:50.912Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-08-19T09:55:50.912Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-08-19T09:55:50.912Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-08-19T09:55:50.911Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-08-19T09:55:50.912Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-08-19T09:55:50.912Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-08-19T09:55:50.912Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-08-19T09:55:50.912Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-08-19T09:55:50.912Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-08-19T09:55:50.912Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-08-19T09:55:50.912Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-08-19T09:55:50.913Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-08-19T09:55:50.912Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-08-19T09:55:50.913Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-08-19T09:55:50.912Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-08-19T09:55:50.913Z] [LOG] [NestApplication] Nest application successfully started
