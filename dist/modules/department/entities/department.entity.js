@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Department = exports.DepartmentStatus = void 0;
 const typeorm_1 = require("typeorm");
-const user_entity_1 = require("../../user/entities/user.entity");
 var DepartmentStatus;
 (function (DepartmentStatus) {
     DepartmentStatus["ACTIVE"] = "active";
@@ -44,10 +43,6 @@ __decorate([
     (0, typeorm_1.Column)({ name: 'updated_by', nullable: true }),
     __metadata("design:type", Number)
 ], Department.prototype, "updatedBy", void 0);
-__decorate([
-    (0, typeorm_1.OneToMany)(() => user_entity_1.User, (user) => user.department),
-    __metadata("design:type", Array)
-], Department.prototype, "users", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)({ name: 'created_at' }),
     __metadata("design:type", Date)

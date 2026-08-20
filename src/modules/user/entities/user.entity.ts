@@ -52,12 +52,12 @@ export class User {
   // @Column({ name: 'job_title', length: 255, nullable: true })
   // jobTitle?: string;
 
-  @Column({ name: 'department_id', nullable: true })
-  departmentId?: number;
+  // @Column({ name: 'department_id', nullable: true })
+  // departmentId?: number;
  
-  @ManyToOne(() => Department, (department) => department.users, { nullable: true })
-  @JoinColumn({ name: 'department_id' })
-  department?: Department;
+  // @ManyToOne(() => Department, (department) => department.users, { nullable: true })
+  // @JoinColumn({ name: 'department_id' })
+  // department?: Department;
  
   
   @CreateDateColumn({ name: 'created_at' })
