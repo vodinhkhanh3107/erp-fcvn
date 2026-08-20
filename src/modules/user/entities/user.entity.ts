@@ -12,6 +12,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Role } from '../../../common/constants/role.enum';
+import { Department } from 'src/modules/department/entities/department.entity';
 
 export enum UserStatus {
   ACTIVE = 'active',
@@ -43,6 +44,7 @@ export class User {
 
   @Column({ type: 'enum', enum: UserStatus, default: UserStatus.ACTIVE })
   status: UserStatus;
+  
 
   @Column({ name: "avatar", default: "" })
   avatar: string;
@@ -50,8 +52,12 @@ export class User {
   // @Column({ name: 'job_title', length: 255, nullable: true })
   // jobTitle?: string;
 
-  // @Column({ name: 'department_id', nullable: true })
-  // departmentId?: number;
+  @Column({ name: 'department_id', nullable: true })
+  departmentId?: number;
+ 
+  @ManyToOne(() => Department, (department) => department.users, { nullable: true })
+  @JoinColumn({ name: 'department_id' })
+  department?: Department;
  
   
   @CreateDateColumn({ name: 'created_at' })

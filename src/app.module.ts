@@ -10,6 +10,9 @@ import { RedisModule } from './common/redis/redis.module';
 import { SupplierModule } from './modules/supplier/supplier-module';
 import { SupplierGroupModule } from './modules/supplier-group/supplier-group.module';
 import { AttendanceModule } from './modules/attendence/attendence.module';
+import { DepartmentModule } from './modules/department/department.module';
+import { TaskModule } from './modules/task/task.module';
+import { KpiModule } from './modules/kpi/kpi.module';
 
 @Module({
   imports: [
@@ -32,7 +35,10 @@ import { AttendanceModule } from './modules/attendence/attendence.module';
     RedisModule,
     SupplierModule,
     SupplierGroupModule,
-    AttendanceModule
+    AttendanceModule,
+    DepartmentModule,
+    TaskModule,
+    KpiModule
   ],
   controllers: [AppController],
   providers: [AppService],

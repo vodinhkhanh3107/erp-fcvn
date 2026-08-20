@@ -19,6 +19,9 @@ const redis_module_1 = require("./common/redis/redis.module");
 const supplier_module_1 = require("./modules/supplier/supplier-module");
 const supplier_group_module_1 = require("./modules/supplier-group/supplier-group.module");
 const attendence_module_1 = require("./modules/attendence/attendence.module");
+const department_module_1 = require("./modules/department/department.module");
+const task_module_1 = require("./modules/task/task.module");
+const kpi_module_1 = require("./modules/kpi/kpi.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -43,7 +46,10 @@ exports.AppModule = AppModule = __decorate([
             redis_module_1.RedisModule,
             supplier_module_1.SupplierModule,
             supplier_group_module_1.SupplierGroupModule,
-            attendence_module_1.AttendanceModule
+            attendence_module_1.AttendanceModule,
+            department_module_1.DepartmentModule,
+            task_module_1.TaskModule,
+            kpi_module_1.KpiModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
