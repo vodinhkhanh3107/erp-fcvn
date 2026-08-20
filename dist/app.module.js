@@ -18,6 +18,7 @@ const auth_module_1 = require("./modules/auth/auth.module");
 const redis_module_1 = require("./common/redis/redis.module");
 const supplier_module_1 = require("./modules/supplier/supplier-module");
 const supplier_group_module_1 = require("./modules/supplier-group/supplier-group.module");
+const attendence_module_1 = require("./modules/attendence/attendence.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -41,7 +42,8 @@ exports.AppModule = AppModule = __decorate([
             auth_module_1.AuthModule,
             redis_module_1.RedisModule,
             supplier_module_1.SupplierModule,
-            supplier_group_module_1.SupplierGroupModule
+            supplier_group_module_1.SupplierGroupModule,
+            attendence_module_1.AttendanceModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

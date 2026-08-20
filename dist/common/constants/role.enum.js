@@ -10,5 +10,7 @@ var Role;
     Role["ACCOUNTANT"] = "accountant";
     Role["BOD"] = "bod";
     Role["PURCHASING"] = "purchasing";
+    Role["WAREHOUSE"] = "warehouse";
+    Role["EVENT_MANAGER"] = "Event Manager";
 })(Role || (exports.Role = Role = {}));
 //# sourceMappingURL=role.enum.js.map

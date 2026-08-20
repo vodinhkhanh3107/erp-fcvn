@@ -6,6 +6,8 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -48,6 +50,10 @@ export class User {
   // @Column({ name: 'job_title', length: 255, nullable: true })
   // jobTitle?: string;
 
+  // @Column({ name: 'department_id', nullable: true })
+  // departmentId?: number;
+ 
+  
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 

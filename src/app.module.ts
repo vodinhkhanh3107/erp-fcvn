@@ -9,6 +9,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { RedisModule } from './common/redis/redis.module';
 import { SupplierModule } from './modules/supplier/supplier-module';
 import { SupplierGroupModule } from './modules/supplier-group/supplier-group.module';
+import { AttendanceModule } from './modules/attendence/attendence.module';
 
 @Module({
   imports: [
@@ -30,7 +31,8 @@ import { SupplierGroupModule } from './modules/supplier-group/supplier-group.mod
     AuthModule,
     RedisModule,
     SupplierModule,
-    SupplierGroupModule
+    SupplierGroupModule,
+    AttendanceModule
   ],
   controllers: [AppController],
   providers: [AppService],
