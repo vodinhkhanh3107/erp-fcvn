@@ -16,11 +16,10 @@ export class UserService extends BaseService<User> {
     @InjectRepository(User)
     repo: Repository<User>,
   ) {
-    super(repo, ['fullName', 'email']); // 2 field cho phép tìm kiếm theo keyword — kế thừa từ BaseService
+    super(repo, ['fullName', 'email']);
     this.logger.setContext('UserService');
   }
 
-  // Ghi đè create() của BaseService để thêm check trùng email (nghiệp vụ riêng của User)
   async createUser(dto: CreateUserDto) {
     const existed = await this.repository.findOne({ where: { email: dto.email } });
     if (existed) throw new ConflictException('email-already-exists');
