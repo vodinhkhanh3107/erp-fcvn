@@ -13,6 +13,8 @@ import { AttendanceModule } from './modules/attendence/attendence.module';
 import { DepartmentModule } from './modules/department/department.module';
 import { TaskModule } from './modules/task/task.module';
 import { KpiModule } from './modules/kpi/kpi.module';
+import { PurchaseOrderModule } from './modules/purchase-order/purchase-order.module';
+import { PurchaseRequestModule } from './modules/puchase-request/purchase-request.module';
 
 @Module({
   imports: [
@@ -38,7 +40,9 @@ import { KpiModule } from './modules/kpi/kpi.module';
     AttendanceModule,
     DepartmentModule,
     TaskModule,
-    KpiModule
+    KpiModule,
+    PurchaseOrderModule,
+    PurchaseRequestModule
   ],
   controllers: [AppController],
   providers: [AppService],

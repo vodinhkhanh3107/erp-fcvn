@@ -9,16 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateKpiActualDto = void 0;
+exports.RejectPurchaseRequestDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
-class UpdateKpiActualDto {
+class RejectPurchaseRequestDto {
 }
-exports.UpdateKpiActualDto = UpdateKpiActualDto;
+exports.RejectPurchaseRequestDto = RejectPurchaseRequestDto;
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: 92 }),
-    (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.Min)(0),
-    __metadata("design:type", Number)
-], UpdateKpiActualDto.prototype, "actualValue", void 0);
-//# sourceMappingURL=update-kpi-dto.js.map
+    (0, swagger_1.ApiPropertyOptional)({ example: 'Vượt ngân sách quý' }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], RejectPurchaseRequestDto.prototype, "reason", void 0);
+//# sourceMappingURL=reject-purchase-request.dto.js.map

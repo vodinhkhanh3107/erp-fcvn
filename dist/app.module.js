@@ -22,6 +22,8 @@ const attendence_module_1 = require("./modules/attendence/attendence.module");
 const department_module_1 = require("./modules/department/department.module");
 const task_module_1 = require("./modules/task/task.module");
 const kpi_module_1 = require("./modules/kpi/kpi.module");
+const purchase_order_module_1 = require("./modules/purchase-order/purchase-order.module");
+const purchase_request_module_1 = require("./modules/puchase-request/purchase-request.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -49,7 +51,9 @@ exports.AppModule = AppModule = __decorate([
             attendence_module_1.AttendanceModule,
             department_module_1.DepartmentModule,
             task_module_1.TaskModule,
-            kpi_module_1.KpiModule
+            kpi_module_1.KpiModule,
+            purchase_order_module_1.PurchaseOrderModule,
+            purchase_request_module_1.PurchaseRequestModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

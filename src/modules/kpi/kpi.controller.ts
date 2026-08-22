@@ -10,7 +10,6 @@ import { ListKpiDto } from './dto/list-kpi.dto';
 import { UpdateKpiActualDto } from './dto/update-kpi-actual-dto';
 import { KpiService } from './kpi.service';
 
-// Actor(s) theo UC03: Manager · HR (giống Task, vì cùng chung UC03)
 @ApiTags('KPI')
 @ApiBearerAuth('access-token')
 @Controller('kpis')
