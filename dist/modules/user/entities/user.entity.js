@@ -42,15 +42,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = exports.UserStatus = void 0;
+exports.User = exports.ContractType = exports.UserStatus = void 0;
 const bcrypt = __importStar(require("bcrypt"));
 const typeorm_1 = require("typeorm");
 const role_enum_1 = require("../../../common/constants/role.enum");
+const department_entity_1 = require("../../department/entities/department.entity");
 var UserStatus;
 (function (UserStatus) {
     UserStatus["ACTIVE"] = "active";
     UserStatus["INACTIVE"] = "inactive";
 })(UserStatus || (exports.UserStatus = UserStatus = {}));
+var ContractType;
+(function (ContractType) {
+    ContractType["TRIAL"] = "trial";
+    ContractType["OFFICIAL"] = "official";
+    ContractType["PART_TIME"] = "part_time";
+})(ContractType || (exports.ContractType = ContractType = {}));
 let User = class User {
     async hashPasswordIfChanged() {
         if (this.password && !this.password.startsWith('$2b$')) {
@@ -95,6 +102,19 @@ __decorate([
     (0, typeorm_1.Column)({ name: "avatar", default: "" }),
     __metadata("design:type", String)
 ], User.prototype, "avatar", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'department_id', nullable: true }),
+    __metadata("design:type", Number)
+], User.prototype, "departmentId", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => department_entity_1.Department, (department) => department.users, { nullable: true }),
+    (0, typeorm_1.JoinColumn)({ name: 'department_id' }),
+    __metadata("design:type", department_entity_1.Department)
+], User.prototype, "department", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'contract_type', type: 'enum', enum: ContractType, default: ContractType.TRIAL }),
+    __metadata("design:type", String)
+], User.prototype, "contract_type", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)({ name: 'created_at' }),
     __metadata("design:type", Date)

@@ -12,10 +12,18 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Role } from '../../../common/constants/role.enum';
+import { Department } from 'src/modules/department/entities/department.entity';
 
 export enum UserStatus {
   ACTIVE = 'active',
   INACTIVE = 'inactive',
+}
+
+export enum ContractType {
+  TRIAL = 'trial',
+  OFFICIAL = 'official',
+  PART_TIME = 'part_time',
+
 }
 
 @Entity('users')
@@ -51,12 +59,14 @@ export class User {
   // @Column({ name: 'job_title', length: 255, nullable: true })
   // jobTitle?: string;
 
-  // @Column({ name: 'department_id', nullable: true })
-  // departmentId?: number;
+  @Column({ name: 'department_id', nullable: true })
+  departmentId?: number;
  
-  // @ManyToOne(() => Department, (department) => department.users, { nullable: true })
-  // @JoinColumn({ name: 'department_id' })
-  // department?: Department;
+  @ManyToOne(() => Department, (department) => department.users, { nullable: true })
+  @JoinColumn({ name: 'department_id' })
+  department?: Department;
+  @Column({ name: 'contract_type', type: 'enum', enum: ContractType, default: ContractType.TRIAL})
+  contract_type?: ContractType
  
   
   @CreateDateColumn({ name: 'created_at' })

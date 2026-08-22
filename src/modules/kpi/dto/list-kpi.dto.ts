@@ -1,6 +1,6 @@
 import { ApiPropertyOptional } from "@nestjs/swagger";
 import { Type } from "class-transformer";
-import { IsInt, IsOptional, IsString, Min } from "class-validator";
+import { IsDateString, IsInt, IsOptional, IsString, Min } from "class-validator";
 
 export class ListKpiDto {
   @ApiPropertyOptional({ default: 1 })
@@ -23,8 +23,8 @@ export class ListKpiDto {
   @IsInt()
   userId?: number;
 
-  @ApiPropertyOptional({ example: '2026-Q3' })
+  @ApiPropertyOptional({ example: '2026-08-30' })
   @IsOptional()
-  @IsString()
+  @IsDateString()
   period?: string;
 }

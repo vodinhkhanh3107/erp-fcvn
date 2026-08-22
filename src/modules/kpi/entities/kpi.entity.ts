@@ -18,8 +18,8 @@ export class Kpi {
   @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @Column({ length: 20 })
-  period: string; // "Month/Quarter/Year" — vd. "2026-Q3"
+  @Column({ type: 'date' })
+  period: string;
 
   @Column({ name: 'target_value', type: 'decimal', precision: 18, scale: 2 })
   targetValue: number;

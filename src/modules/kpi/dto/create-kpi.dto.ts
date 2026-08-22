@@ -1,14 +1,14 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsNotEmpty, IsNumber, IsString, Min } from "class-validator";
+import { IsDateString, IsInt, IsNotEmpty, IsNumber, Min } from "class-validator";
 
 export class CreateKpiDto {
   @ApiProperty({ example: 1 })
   @IsInt()
   userId: number;
 
-  @ApiProperty({ example: '2026-Q3', description: 'Kỳ báo cáo: Month/Quarter/Year' })
+  @ApiProperty({ example: '2026-08-23', description: 'Kỳ báo cáo: Month/Quarter/Year' })
   @IsNotEmpty()
-  @IsString()
+  @IsDateString()
   period: string;
 
   @ApiProperty({ example: 100 })

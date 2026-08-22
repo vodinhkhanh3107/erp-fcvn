@@ -34,7 +34,7 @@ __decorate([
     __metadata("design:type", user_entity_1.User)
 ], Kpi.prototype, "user", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 20 }),
+    (0, typeorm_1.Column)({ type: 'date' }),
     __metadata("design:type", String)
 ], Kpi.prototype, "period", void 0);
 __decorate([

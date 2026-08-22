@@ -44,9 +44,9 @@ __decorate([
     __metadata("design:type", Number)
 ], ListKpiDto.prototype, "userId", void 0);
 __decorate([
-    (0, swagger_1.ApiPropertyOptional)({ example: '2026-Q3' }),
+    (0, swagger_1.ApiPropertyOptional)({ example: '2026-08-30' }),
     (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsDateString)(),
     __metadata("design:type", String)
 ], ListKpiDto.prototype, "period", void 0);
 //# sourceMappingURL=list-kpi.dto.js.map
