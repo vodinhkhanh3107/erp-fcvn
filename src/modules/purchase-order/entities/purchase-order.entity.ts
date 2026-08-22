@@ -11,17 +11,19 @@ import {
 import { Supplier } from '../../supplier/entities/supplier.entity';
 import { PurchaseOrderItem } from './purchase-order-item.entity';
 
+// Đúng theo SRS §7.12: STATUS {Draft, Released}
 export enum PurchaseOrderStatus {
   DRAFT = 'Draft',
   RELEASED = 'Released',
 }
+
 
 @Entity('purchase_orders')
 export class PurchaseOrder {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: 'purchase_request_id' })
+  @Column({ name: 'purchase_request_id', unique: true })
   purchaseRequestId: number;
 
   @Column({ name: 'supplier_id' })

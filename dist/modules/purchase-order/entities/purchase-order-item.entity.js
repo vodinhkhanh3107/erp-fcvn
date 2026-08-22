@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PurchaseOrderItem = void 0;
 const typeorm_1 = require("typeorm");
-const purchase_order_entitty_1 = require("../../purchase-order/entities/purchase-order.entitty");
+const purchase_order_entity_1 = require("./purchase-order.entity");
 let PurchaseOrderItem = class PurchaseOrderItem {
 };
 exports.PurchaseOrderItem = PurchaseOrderItem;
@@ -24,9 +24,9 @@ __decorate([
     __metadata("design:type", Number)
 ], PurchaseOrderItem.prototype, "purchaseOrderId", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => purchase_order_entitty_1.PurchaseOrder, (po) => po.items, { onDelete: 'CASCADE' }),
+    (0, typeorm_1.ManyToOne)(() => purchase_order_entity_1.PurchaseOrder, (po) => po.items, { onDelete: 'CASCADE' }),
     (0, typeorm_1.JoinColumn)({ name: 'purchase_order_id' }),
-    __metadata("design:type", purchase_order_entitty_1.PurchaseOrder)
+    __metadata("design:type", purchase_order_entity_1.PurchaseOrder)
 ], PurchaseOrderItem.prototype, "purchaseOrder", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'item_name', length: 255 }),

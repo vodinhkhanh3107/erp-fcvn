@@ -19,6 +19,18 @@ class CreatePurchaseRequestDto {
 }
 exports.CreatePurchaseRequestDto = CreatePurchaseRequestDto;
 __decorate([
+    (0, swagger_1.ApiPropertyOptional)({
+        example: 'a1b2c3d4-e5f6-...',
+        description: 'Idempotency key do CLIENT tự sinh (khuyến nghị dùng UUID) — giữ NGUYÊN giá trị này ' +
+            'nếu phải gửi lại request do lỗi mạng/timeout, KHÔNG sinh key mới. Server dùng để ' +
+            'phát hiện và chặn tạo trùng khi cùng 1 lần submit bị gửi đi nhiều lần.',
+    }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MaxLength)(100),
+    __metadata("design:type", String)
+], CreatePurchaseRequestDto.prototype, "requestKey", void 0);
+__decorate([
     (0, swagger_1.ApiPropertyOptional)({ example: 1 }),
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsInt)(),

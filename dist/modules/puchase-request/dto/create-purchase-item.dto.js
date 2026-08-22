@@ -23,7 +23,8 @@ __decorate([
 ], CreatePrItemDto.prototype, "itemName", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ example: 2 }),
-    (0, class_validator_1.Min)(1, { message: 'quantity phải > 0 (BR-03)' }),
+    (0, class_validator_1.IsInt)(),
+    (0, class_validator_1.Min)(1, { message: 'quantity phải > 0' }),
     __metadata("design:type", Number)
 ], CreatePrItemDto.prototype, "quantity", void 0);
 //# sourceMappingURL=create-purchase-item.dto.js.map

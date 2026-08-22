@@ -30,7 +30,7 @@ let PurchaseRequestController = class PurchaseRequestController {
         this.purchaseRequestService = purchaseRequestService;
     }
     create(dto, user) {
-        return this.purchaseRequestService.create(dto, user.userId);
+        return this.purchaseRequestService.create(dto, user.employeeId);
     }
     findAll(query) {
         return this.purchaseRequestService.findAll(query);
@@ -39,10 +39,10 @@ let PurchaseRequestController = class PurchaseRequestController {
         return this.purchaseRequestService.findOne(id);
     }
     approve(id, dto, user) {
-        return this.purchaseRequestService.approveAndIssuePO(id, dto, user.userId);
+        return this.purchaseRequestService.approveAndIssuePO(id, dto, user.employeeId);
     }
     reject(id, dto, user) {
-        return this.purchaseRequestService.reject(id, dto, user.userId);
+        return this.purchaseRequestService.reject(id, dto, user.employeeId);
     }
 };
 exports.PurchaseRequestController = PurchaseRequestController;

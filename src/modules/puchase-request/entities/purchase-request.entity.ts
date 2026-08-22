@@ -9,9 +9,9 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Department } from '../../department/entities/department.entity';
-import { User } from '../../user/entities/user.entity';
 import { PurchaseRequestItem } from './purchase-request-item.entity';
-import { PurchaseRequestQuotation } from './purchase-request-quotation'
+import { PurchaseRequestQuotation } from './purchase-request-quotation.entity';
+import { User } from '../.././user/entities/user.entity';
 
 export enum PurchaseRequestStatus {
   DRAFT = 'Draft',
@@ -38,6 +38,9 @@ export class PurchaseRequest {
   @ManyToOne(() => User, { nullable: false })
   @JoinColumn({ name: 'requester_id' })
   requester: User;
+
+  @Column({ name: 'request_key', length: 100, unique: true, nullable: true })
+  requestKey?: string;
 
   @Column({ name: 'purpose_of_use', length: 500 })
   purposeOfUse: string;

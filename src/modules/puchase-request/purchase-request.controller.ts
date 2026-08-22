@@ -19,8 +19,8 @@ export class PurchaseRequestController {
   constructor(private readonly purchaseRequestService: PurchaseRequestService) {}
 
   @Post()
-  create(@Body() dto: CreatePurchaseRequestDto, @CurrentUser() user: { userId: number }) {
-    return this.purchaseRequestService.create(dto, user.userId);
+  create(@Body() dto: CreatePurchaseRequestDto, @CurrentUser() user: { employeeId: number }) {
+    return this.purchaseRequestService.create(dto, user.employeeId);
   }
 
   @Get()
@@ -39,9 +39,9 @@ export class PurchaseRequestController {
   approve(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: ApprovePurchaseRequestDto,
-    @CurrentUser() user: { userId: number },
+    @CurrentUser() user: { employeeId: number },
   ) {
-    return this.purchaseRequestService.approveAndIssuePO(id, dto, user.userId);
+    return this.purchaseRequestService.approveAndIssuePO(id, dto, user.employeeId);
   }
 
   @Put(':id/reject')
@@ -49,8 +49,8 @@ export class PurchaseRequestController {
   reject(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: RejectPurchaseRequestDto,
-    @CurrentUser() user: { userId: number },
+    @CurrentUser() user: { employeeId: number },
   ) {
-    return this.purchaseRequestService.reject(id, dto, user.userId);
+    return this.purchaseRequestService.reject(id, dto, user.employeeId);
   }
 }

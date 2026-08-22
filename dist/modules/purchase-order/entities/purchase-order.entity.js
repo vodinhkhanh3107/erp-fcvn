@@ -26,7 +26,7 @@ __decorate([
     __metadata("design:type", Number)
 ], PurchaseOrder.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'purchase_request_id' }),
+    (0, typeorm_1.Column)({ name: 'purchase_request_id', unique: true }),
     __metadata("design:type", Number)
 ], PurchaseOrder.prototype, "purchaseRequestId", void 0);
 __decorate([
@@ -69,4 +69,4 @@ __decorate([
 exports.PurchaseOrder = PurchaseOrder = __decorate([
     (0, typeorm_1.Entity)('purchase_orders')
 ], PurchaseOrder);
-//# sourceMappingURL=purchase-order.entitty.js.map
+//# sourceMappingURL=purchase-order.entity.js.map

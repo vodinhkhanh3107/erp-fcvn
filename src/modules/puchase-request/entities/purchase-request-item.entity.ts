@@ -17,5 +17,5 @@ export class PurchaseRequestItem {
   itemName: string;
 
   @Column({ type: 'int' })
-  quantity: number;
+  quantity: number; 
 }

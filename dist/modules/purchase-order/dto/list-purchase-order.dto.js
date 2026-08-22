@@ -13,7 +13,7 @@ exports.ListPurchaseOrderDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
-const purchase_order_entitty_1 = require("../entities/purchase-order.entitty");
+const purchase_order_entity_1 = require("../entities/purchase-order.entity");
 class ListPurchaseOrderDto {
     constructor() {
         this.page = 1;
@@ -45,9 +45,9 @@ __decorate([
     __metadata("design:type", Number)
 ], ListPurchaseOrderDto.prototype, "supplierId", void 0);
 __decorate([
-    (0, swagger_1.ApiPropertyOptional)({ enum: purchase_order_entitty_1.PurchaseOrderStatus }),
+    (0, swagger_1.ApiPropertyOptional)({ enum: purchase_order_entity_1.PurchaseOrderStatus }),
     (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsEnum)(purchase_order_entitty_1.PurchaseOrderStatus),
+    (0, class_validator_1.IsEnum)(purchase_order_entity_1.PurchaseOrderStatus),
     __metadata("design:type", String)
 ], ListPurchaseOrderDto.prototype, "status", void 0);
 //# sourceMappingURL=list-purchase-order.dto.js.map

@@ -12,7 +12,6 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Role } from '../../../common/constants/role.enum';
-import { Department } from 'src/modules/department/entities/department.entity';
 
 export enum UserStatus {
   ACTIVE = 'active',

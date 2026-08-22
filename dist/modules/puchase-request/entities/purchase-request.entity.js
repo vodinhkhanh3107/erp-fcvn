@@ -12,9 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PurchaseRequest = exports.PurchaseRequestStatus = void 0;
 const typeorm_1 = require("typeorm");
 const department_entity_1 = require("../../department/entities/department.entity");
-const user_entity_1 = require("../../user/entities/user.entity");
 const purchase_request_item_entity_1 = require("./purchase-request-item.entity");
-const purchase_request_quotation_1 = require("./purchase-request-quotation");
+const purchase_request_quotation_entity_1 = require("./purchase-request-quotation.entity");
+const user_entity_1 = require("../.././user/entities/user.entity");
 var PurchaseRequestStatus;
 (function (PurchaseRequestStatus) {
     PurchaseRequestStatus["DRAFT"] = "Draft";
@@ -48,6 +48,10 @@ __decorate([
     __metadata("design:type", user_entity_1.User)
 ], PurchaseRequest.prototype, "requester", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ name: 'request_key', length: 100, unique: true, nullable: true }),
+    __metadata("design:type", String)
+], PurchaseRequest.prototype, "requestKey", void 0);
+__decorate([
     (0, typeorm_1.Column)({ name: 'purpose_of_use', length: 500 }),
     __metadata("design:type", String)
 ], PurchaseRequest.prototype, "purposeOfUse", void 0);
@@ -64,7 +68,7 @@ __decorate([
     __metadata("design:type", Array)
 ], PurchaseRequest.prototype, "items", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => purchase_request_quotation_1.PurchaseRequestQuotation, (q) => q.purchaseRequest, { cascade: true }),
+    (0, typeorm_1.OneToMany)(() => purchase_request_quotation_entity_1.PurchaseRequestQuotation, (q) => q.purchaseRequest, { cascade: true }),
     __metadata("design:type", Array)
 ], PurchaseRequest.prototype, "quotations", void 0);
 __decorate([

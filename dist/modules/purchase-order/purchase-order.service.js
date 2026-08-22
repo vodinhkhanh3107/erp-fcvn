@@ -16,7 +16,7 @@ exports.PurchaseOrderService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
-const purchase_order_entitty_1 = require("./entities/purchase-order.entitty");
+const purchase_order_entity_1 = require("./entities/purchase-order.entity");
 let PurchaseOrderService = class PurchaseOrderService {
     constructor(repository) {
         this.repository = repository;
@@ -47,7 +47,7 @@ let PurchaseOrderService = class PurchaseOrderService {
 exports.PurchaseOrderService = PurchaseOrderService;
 exports.PurchaseOrderService = PurchaseOrderService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(purchase_order_entitty_1.PurchaseOrder)),
+    __param(0, (0, typeorm_1.InjectRepository)(purchase_order_entity_1.PurchaseOrder)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
 ], PurchaseOrderService);
 //# sourceMappingURL=purchase-order.service.js.map

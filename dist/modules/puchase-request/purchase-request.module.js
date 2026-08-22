@@ -12,7 +12,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const purchase_order_module_1 = require("../purchase-order/purchase-order.module");
 const purchase_request_entity_1 = require("./entities/purchase-request.entity");
 const purchase_request_item_entity_1 = require("./entities/purchase-request-item.entity");
-const purchase_request_quotation_1 = require("./entities/purchase-request-quotation");
+const purchase_request_quotation_entity_1 = require("./entities/purchase-request-quotation.entity");
 const purchase_request_controller_1 = require("./purchase-request.controller");
 const purchase_request_service_1 = require("./purchase-request.service");
 let PurchaseRequestModule = class PurchaseRequestModule {
@@ -21,7 +21,7 @@ exports.PurchaseRequestModule = PurchaseRequestModule;
 exports.PurchaseRequestModule = PurchaseRequestModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            typeorm_1.TypeOrmModule.forFeature([purchase_request_entity_1.PurchaseRequest, purchase_request_item_entity_1.PurchaseRequestItem, purchase_request_quotation_1.PurchaseRequestQuotation]),
+            typeorm_1.TypeOrmModule.forFeature([purchase_request_entity_1.PurchaseRequest, purchase_request_item_entity_1.PurchaseRequestItem, purchase_request_quotation_entity_1.PurchaseRequestQuotation]),
             purchase_order_module_1.PurchaseOrderModule,
         ],
         controllers: [purchase_request_controller_1.PurchaseRequestController],
