@@ -1,15 +1,18 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { CurrentUser } from '../../common/decorators/current-user.decorator';
-import { Roles } from '../../common/decorators/roles.decorator';
-import { Role } from '../../common/constants/role.enum';
-import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
-import { RolesGuard } from '../../common/guards/roles.guard';
-import { ApprovePurchaseRequestDto } from './dto/approve-purchase-request.dto';
-import { CreatePurchaseRequestDto } from './dto/create-purchase-request.dto';
-import { ListPurchaseRequestDto } from './dto/list-purchase-request.dto';
-import { RejectPurchaseRequestDto } from './dto/reject-purchase-request.dto';
-import { PurchaseRequestService } from './purchase-request.service';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards } from "@nestjs/common";
+import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
+import { Role } from "src/common/constants/role.enum";
+import { JwtAuthGuard } from "src/common/guards/jwt-auth.guard";
+import { RolesGuard } from "src/common/guards/roles.guard";
+import { PurchaseRequestService } from "./purchase-request.service";
+import { CreatePurchaseRequestDto } from "./dto/create-purchase-request.dto";
+import { CurrentUser } from "src/common/decorators/current-user.decorator";
+import { UpdatePurchaseRequestDto } from "./dto/update-purchase-request.dto";
+import { Roles } from "src/common/decorators/roles.decorator";
+import { RejectPurchaseRequestDto } from "./dto/reject-purchase-request.dto";
+import { ListPurchaseRequestDto } from "./dto/list-purchase-request.dto";
+import { IssuePoDto } from "./dto/issue-purchase-order.dto";
+
+type JwtUser = { userId: number; role: Role };
 
 @ApiTags('Purchase Request')
 @ApiBearerAuth('access-token')
@@ -18,15 +21,59 @@ import { PurchaseRequestService } from './purchase-request.service';
 export class PurchaseRequestController {
   constructor(private readonly purchaseRequestService: PurchaseRequestService) {}
 
+  // 1. Tạo nháp 
   @Post()
-  create(@Body() dto: CreatePurchaseRequestDto, @CurrentUser() user: { employeeId: number }) {
-    return this.purchaseRequestService.create(dto, user.employeeId);
+  create(@Body() dto: CreatePurchaseRequestDto, @CurrentUser() user: JwtUser) {
+    return this.purchaseRequestService.createDraft(dto, user.userId);
   }
 
+  // 2. Cập nhật — Service tự chặn "chỉ khi DRAFT" + "chỉ chủ sở hữu"
+  @Put(':id')
+  update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdatePurchaseRequestDto, @CurrentUser() user: JwtUser) {
+    return this.purchaseRequestService.update(id, dto, user.userId);
+  }
+
+  // 3. Gửi duyệt
+  @Put(':id/submit')
+  submit(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: JwtUser) {
+    return this.purchaseRequestService.submit(id, user.userId);
+  }
+
+  // 4. Phê duyệt — Service tự chặn "đúng Manager"; Controller chỉ chặn thô role Admin/Manager
+  @Put(':id/approve')
+  @Roles(Role.ADMIN, Role.MANAGER)
+  approve(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: JwtUser) {
+    return this.purchaseRequestService.approve(id, user.userId, user.role);
+  }
+
+  // 5. Từ chối — bắt buộc lý do (chặn ở DTO)
+  @Put(':id/reject')
+  @Roles(Role.ADMIN, Role.MANAGER)
+  reject(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() dto: RejectPurchaseRequestDto,
+    @CurrentUser() user: JwtUser,
+  ) {
+    return this.purchaseRequestService.reject(id, dto, user.userId, user.role);
+  }
+
+  // 6. Xem lịch sử
+  @Get(':id/history')
+  getHistory(@Param('id', ParseIntPipe) id: number) {
+    return this.purchaseRequestService.getHistory(id);
+  }
+
+  // 7. Tìm kiếm + phân trang (toàn bộ PR — Manager/Admin)
   @Get()
   @Roles(Role.ADMIN, Role.MANAGER)
   findAll(@Query() query: ListPurchaseRequestDto) {
     return this.purchaseRequestService.findAll(query);
+  }
+
+  // Nhân sự xem đúng PR của chính mình
+  @Get('me')
+  findMine(@Query() query: ListPurchaseRequestDto, @CurrentUser() user: JwtUser) {
+    return this.purchaseRequestService.findAll(query); 
   }
 
   @Get(':id')
@@ -34,23 +81,10 @@ export class PurchaseRequestController {
     return this.purchaseRequestService.findOne(id);
   }
 
-  @Put(':id/approve')
+  // Phát hành PO — TÁCH RIÊNG khỏi approve(), chỉ dùng được khi PR đã APPROVED
+  @Post(':id/issue-po')
   @Roles(Role.ADMIN, Role.MANAGER)
-  approve(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() dto: ApprovePurchaseRequestDto,
-    @CurrentUser() user: { employeeId: number },
-  ) {
-    return this.purchaseRequestService.approveAndIssuePO(id, dto, user.employeeId);
-  }
-
-  @Put(':id/reject')
-  @Roles(Role.ADMIN, Role.MANAGER)
-  reject(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() dto: RejectPurchaseRequestDto,
-    @CurrentUser() user: { employeeId: number },
-  ) {
-    return this.purchaseRequestService.reject(id, dto, user.employeeId);
+  issuePO(@Param('id', ParseIntPipe) id: number, @Body() dto: IssuePoDto, @CurrentUser() user: JwtUser) {
+    return this.purchaseRequestService.issuePO(id, dto, user.userId);
   }
 }

@@ -7,6 +7,7 @@ import { PaginationDto } from '../../common/dto/pagination.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserStatusDto } from './dto/update-user-status.dto';
 import { User } from './entities/user.entity';
+import { Department } from '../department/entities/department.entity';
 
 @Injectable()
 export class UserService extends BaseService<User> {
@@ -14,15 +15,26 @@ export class UserService extends BaseService<User> {
 
   constructor(
     @InjectRepository(User)
-    repo: Repository<User>,
+    repo: Repository<User>
+
+    // @InjectRepository(Department)
+    // repoDepartment: Repository<Department>,
+
   ) {
     super(repo, ['fullName', 'email']);
+    // super(repoDepartment, ['name']);
     this.logger.setContext('UserService');
   }
 
   async createUser(dto: CreateUserDto) {
     const existed = await this.repository.findOne({ where: { email: dto.email } });
     if (existed) throw new ConflictException('email-already-exists');
+
+    // if('departmentId' in this.repository){
+    //   const existedDepartment = this.repository.findOneBy({ id: dto.departmentId });
+    //   console.log(existedDepartment);
+
+    // }
 
     const saved = await this.create(dto); // dùng lại create() có sẵn từ BaseService
     this.logger.log(`Đã tạo nhân sự #${saved.id} (${saved.email})`);

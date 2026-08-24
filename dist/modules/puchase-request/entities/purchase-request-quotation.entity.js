@@ -21,14 +21,14 @@ __decorate([
     __metadata("design:type", Number)
 ], PurchaseRequestQuotation.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'purchase_request_id' }),
-    __metadata("design:type", Number)
-], PurchaseRequestQuotation.prototype, "purchaseRequestId", void 0);
-__decorate([
     (0, typeorm_1.ManyToOne)(() => purchase_request_entity_1.PurchaseRequest, (pr) => pr.quotations, { onDelete: 'CASCADE' }),
     (0, typeorm_1.JoinColumn)({ name: 'purchase_request_id' }),
     __metadata("design:type", purchase_request_entity_1.PurchaseRequest)
 ], PurchaseRequestQuotation.prototype, "purchaseRequest", void 0);
+__decorate([
+    (0, typeorm_1.RelationId)((q) => q.purchaseRequest),
+    __metadata("design:type", Number)
+], PurchaseRequestQuotation.prototype, "purchaseRequestId", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'supplier_id' }),
     __metadata("design:type", Number)

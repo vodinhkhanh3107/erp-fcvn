@@ -33,6 +33,7 @@ async function seed() {
       role: Role.ADMIN,
       status: UserStatus.ACTIVE,
       avatar: "",
+      departmentId: 1
     });
     await userRepo.save(admin);
     console.log('Đã tạo tài khoản Admin: admin@fcvn.local / Password@123');

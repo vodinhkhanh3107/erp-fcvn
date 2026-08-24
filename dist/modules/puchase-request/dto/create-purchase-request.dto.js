@@ -11,20 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreatePurchaseRequestDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
-const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
 const create_purchase_item_dto_1 = require("./create-purchase-item.dto");
+const class_transformer_1 = require("class-transformer");
 const create_purchase_quotation_dto_1 = require("./create-purchase-quotation.dto");
 class CreatePurchaseRequestDto {
 }
 exports.CreatePurchaseRequestDto = CreatePurchaseRequestDto;
 __decorate([
-    (0, swagger_1.ApiPropertyOptional)({
-        example: 'a1b2c3d4-e5f6-...',
-        description: 'Idempotency key do CLIENT tự sinh (khuyến nghị dùng UUID) — giữ NGUYÊN giá trị này ' +
-            'nếu phải gửi lại request do lỗi mạng/timeout, KHÔNG sinh key mới. Server dùng để ' +
-            'phát hiện và chặn tạo trùng khi cùng 1 lần submit bị gửi đi nhiều lần.',
-    }),
+    (0, swagger_1.ApiPropertyOptional)({ example: 'a1b2c3d4-e5f6-...', description: 'Idempotency key do client tự sinh' }),
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.MaxLength)(100),
@@ -37,21 +32,21 @@ __decorate([
     __metadata("design:type", Number)
 ], CreatePurchaseRequestDto.prototype, "departmentId", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: 'Mua laptop phục vụ nhân sự mới onboard' }),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, swagger_1.ApiPropertyOptional)({ example: 'Mua laptop phục vụ nhân sự mới onboard' }),
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreatePurchaseRequestDto.prototype, "purposeOfUse", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ type: [create_purchase_item_dto_1.CreatePrItemDto] }),
-    (0, class_validator_1.ArrayMinSize)(1, { message: 'PR phải có ít nhất 1 item (BR-01)' }),
+    (0, swagger_1.ApiPropertyOptional)({ type: [create_purchase_item_dto_1.CreatePrItemDto] }),
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.ValidateNested)({ each: true }),
     (0, class_transformer_1.Type)(() => create_purchase_item_dto_1.CreatePrItemDto),
     __metadata("design:type", Array)
 ], CreatePurchaseRequestDto.prototype, "items", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ type: [create_purchase_quotation_dto_1.CreatePrQuotationDto], minItems: 2 }),
-    (0, class_validator_1.ArrayMinSize)(2, { message: 'PR phải có tối thiểu 2 nhà cung cấp báo giá (BR-02)' }),
+    (0, swagger_1.ApiPropertyOptional)({ type: [create_purchase_quotation_dto_1.CreatePrQuotationDto] }),
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.ValidateNested)({ each: true }),
     (0, class_transformer_1.Type)(() => create_purchase_quotation_dto_1.CreatePrQuotationDto),
     __metadata("design:type", Array)

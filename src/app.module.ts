@@ -15,6 +15,7 @@ import { TaskModule } from './modules/task/task.module';
 import { KpiModule } from './modules/kpi/kpi.module';
 import { PurchaseOrderModule } from './modules/purchase-order/purchase-order.module';
 import { PurchaseRequestModule } from './modules/puchase-request/purchase-request.module';
+import { PurchaseRequestHistory } from './modules/puchase-request/entities/purchase-request-history.entity';
 
 @Module({
   imports: [
@@ -42,7 +43,7 @@ import { PurchaseRequestModule } from './modules/puchase-request/purchase-reques
     TaskModule,
     KpiModule,
     PurchaseOrderModule,
-    PurchaseRequestModule
+    PurchaseRequestModule,
   ],
   controllers: [AppController],
   providers: [AppService],

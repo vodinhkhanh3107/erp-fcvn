@@ -9,17 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RejectPurchaseRequestDto = void 0;
+exports.IssuePoDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
-class RejectPurchaseRequestDto {
+class IssuePoDto {
 }
-exports.RejectPurchaseRequestDto = RejectPurchaseRequestDto;
+exports.IssuePoDto = IssuePoDto;
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: 'Vượt ngân sách quý III' }),
-    (0, class_validator_1.IsNotEmpty)({ message: 'reason là bắt buộc khi từ chối yêu cầu mua hàng' }),
+    (0, swagger_1.ApiProperty)({ example: 1, description: 'ID nhà cung cấp được chọn (phải nằm trong danh sách đã báo giá)' }),
+    (0, class_validator_1.IsInt)(),
+    __metadata("design:type", Number)
+], IssuePoDto.prototype, "selectedSupplierId", void 0);
+__decorate([
+    (0, swagger_1.ApiPropertyOptional)({ example: 'NET30', description: 'Điều khoản thanh toán cho PO — bỏ trống nếu chưa xác định' }),
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
-    (0, class_validator_1.MaxLength)(500),
     __metadata("design:type", String)
-], RejectPurchaseRequestDto.prototype, "reason", void 0);
-//# sourceMappingURL=reject-purchase-request.dto.js.map
+], IssuePoDto.prototype, "paymentTerm", void 0);
+//# sourceMappingURL=issue-purchase-order.dto.js.map

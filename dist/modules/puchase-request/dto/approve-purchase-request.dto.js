@@ -16,14 +16,10 @@ class ApprovePurchaseRequestDto {
 }
 exports.ApprovePurchaseRequestDto = ApprovePurchaseRequestDto;
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: 1, description: 'ID nhà cung cấp được chọn (phải nằm trong danh sách đã báo giá)' }),
-    (0, class_validator_1.IsInt)(),
-    __metadata("design:type", Number)
-], ApprovePurchaseRequestDto.prototype, "selectedSupplierId", void 0);
-__decorate([
-    (0, swagger_1.ApiPropertyOptional)({ example: 'NET30', description: 'Điều khoản thanh toán cho PO — bỏ trống nếu chưa xác định' }),
+    (0, swagger_1.ApiPropertyOptional)({ example: 'Đã kiểm tra ngân sách, đồng ý duyệt' }),
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MaxLength)(500),
     __metadata("design:type", String)
-], ApprovePurchaseRequestDto.prototype, "paymentTerm", void 0);
+], ApprovePurchaseRequestDto.prototype, "note", void 0);
 //# sourceMappingURL=approve-purchase-request.dto.js.map

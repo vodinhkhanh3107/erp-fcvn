@@ -65,6 +65,8 @@ export class User {
   @ManyToOne(() => Department, (department) => department.users, { nullable: true })
   @JoinColumn({ name: 'department_id' })
   department?: Department;
+
+  
   @Column({ name: 'contract_type', type: 'enum', enum: ContractType, default: ContractType.TRIAL})
   contract_type?: ContractType
  

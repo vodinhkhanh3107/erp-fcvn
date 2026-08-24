@@ -43,4 +43,10 @@ __decorate([
     (0, class_validator_1.IsEnum)(purchase_request_entity_1.PurchaseRequestStatus),
     __metadata("design:type", String)
 ], ListPurchaseRequestDto.prototype, "status", void 0);
+__decorate([
+    (0, swagger_1.ApiPropertyOptional)({ example: 'laptop' }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ListPurchaseRequestDto.prototype, "keyword", void 0);
 //# sourceMappingURL=list-purchase-request.dto.js.map

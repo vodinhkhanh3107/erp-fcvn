@@ -1,17 +1,13 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { Type } from 'class-transformer';
-import { ArrayMinSize, IsInt, IsNotEmpty, IsOptional, IsString, MaxLength, ValidateNested } from 'class-validator';
-import { CreatePrItemDto } from './create-purchase-item.dto';
-import { CreatePrQuotationDto } from './create-purchase-quotation.dto';
+import { ApiPropertyOptional } from "@nestjs/swagger";
+import { IsInt, IsOptional, IsString, MaxLength, ValidateNested } from "class-validator";
+import { CreatePrItemDto } from "./create-purchase-item.dto";
+import { Type } from "class-transformer";
+import { CreatePrQuotationDto } from "./create-purchase-quotation.dto";
+import { PrimaryGeneratedColumn } from "typeorm";
 
 export class CreatePurchaseRequestDto {
-  @ApiPropertyOptional({
-    example: 'a1b2c3d4-e5f6-...',
-    description:
-      'Idempotency key do CLIENT tự sinh (khuyến nghị dùng UUID) — giữ NGUYÊN giá trị này ' +
-      'nếu phải gửi lại request do lỗi mạng/timeout, KHÔNG sinh key mới. Server dùng để ' +
-      'phát hiện và chặn tạo trùng khi cùng 1 lần submit bị gửi đi nhiều lần.',
-  })
+
+  @ApiPropertyOptional({ example: 'a1b2c3d4-e5f6-...', description: 'Idempotency key do client tự sinh' })
   @IsOptional()
   @IsString()
   @MaxLength(100)
@@ -22,20 +18,20 @@ export class CreatePurchaseRequestDto {
   @IsInt()
   departmentId?: number;
 
-  @ApiProperty({ example: 'Mua laptop phục vụ nhân sự mới onboard' })
-  @IsNotEmpty()
+  @ApiPropertyOptional({ example: 'Mua laptop phục vụ nhân sự mới onboard' })
+  @IsOptional()
   @IsString()
-  purposeOfUse: string;
+  purposeOfUse?: string;
 
-  @ApiProperty({ type: [CreatePrItemDto] })
-  @ArrayMinSize(1, { message: 'PR phải có ít nhất 1 item (BR-01)' })
+  @ApiPropertyOptional({ type: [CreatePrItemDto] })
+  @IsOptional()
   @ValidateNested({ each: true })
   @Type(() => CreatePrItemDto)
-  items: CreatePrItemDto[];
+  items?: CreatePrItemDto[];
 
-  @ApiProperty({ type: [CreatePrQuotationDto], minItems: 2 })
-  @ArrayMinSize(2, { message: 'PR phải có tối thiểu 2 nhà cung cấp báo giá (BR-02)' })
+  @ApiPropertyOptional({ type: [CreatePrQuotationDto] })
+  @IsOptional()
   @ValidateNested({ each: true })
   @Type(() => CreatePrQuotationDto)
-  quotations: CreatePrQuotationDto[];
+  quotations?: CreatePrQuotationDto[];
 }

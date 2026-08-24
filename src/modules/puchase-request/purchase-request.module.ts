@@ -6,10 +6,12 @@ import { PurchaseRequestItem } from './entities/purchase-request-item.entity';
 import { PurchaseRequestQuotation } from './entities/purchase-request-quotation.entity';
 import { PurchaseRequestController } from './purchase-request.controller';
 import { PurchaseRequestService } from './purchase-request.service';
+import { PurchaseRequestHistory } from './entities/purchase-request-history.entity';
+import { Department } from '../department/entities/department.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([PurchaseRequest, PurchaseRequestItem, PurchaseRequestQuotation]),
+    TypeOrmModule.forFeature([PurchaseRequest, PurchaseRequestHistory, Department, PurchaseRequestItem, PurchaseRequestQuotation]),
     PurchaseOrderModule,
   ],
   controllers: [PurchaseRequestController],

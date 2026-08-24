@@ -1,13 +1,10 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsInt, IsOptional, IsString } from 'class-validator';
+import { ApiPropertyOptional } from "@nestjs/swagger";
+import { IsOptional, IsString, MaxLength } from "class-validator";
 
 export class ApprovePurchaseRequestDto {
-  @ApiProperty({ example: 1, description: 'ID nhà cung cấp được chọn (phải nằm trong danh sách đã báo giá)' })
-  @IsInt()
-  selectedSupplierId: number;
-
-  @ApiPropertyOptional({ example: 'NET30', description: 'Điều khoản thanh toán cho PO — bỏ trống nếu chưa xác định' })
+  @ApiPropertyOptional({ example: 'Đã kiểm tra ngân sách, đồng ý duyệt' })
   @IsOptional()
   @IsString()
-  paymentTerm?: string;
+  @MaxLength(500)
+  note?: string;
 }

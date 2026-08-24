@@ -2,6 +2,8 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -41,4 +43,12 @@ export class Department {
 
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
+
+  @Column({ name: 'manager_id', nullable: true })
+  managerId?: number;
+ 
+  @ManyToOne(() => User, { nullable: true })
+  @JoinColumn({ name: 'manager_id' })
+  manager?: User;
 }
+

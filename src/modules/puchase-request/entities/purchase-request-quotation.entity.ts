@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, RelationId } from 'typeorm';
 import { Supplier } from '../../supplier/entities/supplier.entity';
 import { PurchaseRequest } from './purchase-request.entity';
 
@@ -7,12 +7,12 @@ export class PurchaseRequestQuotation {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: 'purchase_request_id' })
-  purchaseRequestId: number;
-
   @ManyToOne(() => PurchaseRequest, (pr) => pr.quotations, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'purchase_request_id' })
   purchaseRequest: PurchaseRequest;
+
+  @RelationId((q: PurchaseRequestQuotation) => q.purchaseRequest)
+  purchaseRequestId: number;
 
   @Column({ name: 'supplier_id' })
   supplierId: number;

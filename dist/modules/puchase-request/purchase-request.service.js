@@ -15,61 +15,211 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PurchaseRequestService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const typeorm_2 = require("typeorm");
 const app_logger_service_1 = require("../../common/logger/app-logger.service");
+const purchase_request_entity_1 = require("./entities/purchase-request.entity");
+const typeorm_2 = require("typeorm");
+const purchase_request_history_entity_1 = require("./entities/purchase-request-history.entity");
+const department_entity_1 = require("../department/entities/department.entity");
 const purchase_order_entity_1 = require("../purchase-order/entities/purchase-order.entity");
 const purchase_order_item_entity_1 = require("../purchase-order/entities/purchase-order-item.entity");
-const purchase_request_entity_1 = require("./entities/purchase-request.entity");
+const typeorm_3 = require("typeorm");
+const purchase_request_item_entity_1 = require("./entities/purchase-request-item.entity");
+const purchase_request_quotation_entity_1 = require("./entities/purchase-request-quotation.entity");
+const role_enum_1 = require("../../common/constants/role.enum");
 const MYSQL_DUPLICATE_ENTRY_ERROR_CODE = 'ER_DUP_ENTRY';
 let PurchaseRequestService = class PurchaseRequestService {
-    constructor(prRepository, poRepository, poItemRepository, dataSource) {
+    constructor(prRepository, historyRepository, departmentRepository, poRepository, poItemRepository, dataSource) {
         this.prRepository = prRepository;
+        this.historyRepository = historyRepository;
+        this.departmentRepository = departmentRepository;
         this.poRepository = poRepository;
         this.poItemRepository = poItemRepository;
         this.dataSource = dataSource;
         this.logger = new app_logger_service_1.AppLogger();
         this.logger.setContext('PurchaseRequestService');
     }
-    async create(dto, requesterId) {
+    async createDraft(dto, requesterId) {
         if (dto.requestKey) {
             const existed = await this.prRepository.findOne({ where: { requestKey: dto.requestKey } });
             if (existed) {
-                this.logger.log(`Phát hiện request trùng (requestKey="${dto.requestKey}") → trả lại PR #${existed.id} cũ`);
-                return { message: 'Yêu cầu mua hàng đã được ghi nhận trước đó (request trùng lặp)', result: existed };
+                this.logger.log(`Request trùng (requestKey="${dto.requestKey}") → trả lại PR #${existed.id} cũ`);
+                return { message: 'Yêu cầu đã được ghi nhận trước đó (request trùng lặp)', result: existed };
             }
         }
-        const entity = this.prRepository.create({
-            requestKey: dto.requestKey,
-            departmentId: dto.departmentId,
-            purposeOfUse: dto.purposeOfUse,
-            requesterId,
-            status: purchase_request_entity_1.PurchaseRequestStatus.PENDING,
-            items: dto.items.map((i) => ({ itemName: i.itemName, quantity: i.quantity })),
-            quotations: dto.quotations.map((q) => ({
-                supplierId: q.supplierId,
-                quotedAmount: q.quotedAmount,
-                quotationFileUrl: q.quotationFileUrl,
-            })),
-        });
         try {
-            const saved = await this.prRepository.save(entity);
-            this.logger.log(`Nhân sự #${requesterId} đã tạo PR #${saved.id} — chờ duyệt`);
-            return { message: 'Tạo yêu cầu mua hàng thành công, đang chờ duyệt', result: saved };
+            return await this.dataSource.transaction(async (manager) => {
+                let entity = manager.create(purchase_request_entity_1.PurchaseRequest, {
+                    requestKey: dto.requestKey,
+                    departmentId: dto.departmentId,
+                    purposeOfUse: dto.purposeOfUse ?? '',
+                    requesterId,
+                    status: purchase_request_entity_1.PurchaseRequestStatus.DRAFT,
+                    items: (dto.items ?? []).map((i) => ({ itemName: i.itemName, quantity: i.quantity })),
+                    quotations: (dto.quotations ?? []).map((q) => ({
+                        supplierId: q.supplierId,
+                        quotedAmount: q.quotedAmount,
+                        quotationFileUrl: q.quotationFileUrl,
+                    })),
+                });
+                const saved = await manager.save(entity);
+                await manager.save(manager.create(purchase_request_history_entity_1.PurchaseRequestHistory, {
+                    purchaseRequestId: Number(saved.id),
+                    fromStatus: null,
+                    toStatus: purchase_request_entity_1.PurchaseRequestStatus.DRAFT,
+                    actorId: requesterId,
+                }));
+                this.logger.log(`Nhân sự #${requesterId} đã tạo nháp PR #${saved.id}`);
+                return { message: 'Tạo nháp yêu cầu mua hàng thành công', result: saved };
+            });
         }
         catch (err) {
             if (err.code === MYSQL_DUPLICATE_ENTRY_ERROR_CODE && dto.requestKey) {
                 const existed = await this.prRepository.findOne({ where: { requestKey: dto.requestKey } });
                 if (existed)
-                    return { message: 'Yêu cầu mua hàng đã được ghi nhận trước đó (request trùng lặp)', result: existed };
+                    return { message: 'Yêu cầu đã được ghi nhận trước đó (request trùng lặp)', result: existed };
             }
             throw err;
         }
     }
+    async update(id, dto, actorId) {
+        const pr = await this.findOne(id);
+        if (pr.status !== purchase_request_entity_1.PurchaseRequestStatus.DRAFT) {
+            throw new common_1.BadRequestException('only-draft-purchase-request-can-be-updated');
+        }
+        if (pr.requesterId !== actorId) {
+            throw new common_1.ForbiddenException('only-the-requester-can-update-their-own-draft');
+        }
+        return this.dataSource.transaction(async (manager) => {
+            if (dto.departmentId !== undefined)
+                pr.departmentId = dto.departmentId;
+            if (dto.purposeOfUse !== undefined)
+                pr.purposeOfUse = dto.purposeOfUse;
+            if (dto.items !== undefined) {
+                await manager.delete(purchase_request_item_entity_1.PurchaseRequestItem, { purchaseRequest: { id }, purchaseRequestId: id });
+                pr.items = dto.items.map((i) => manager.create(purchase_request_item_entity_1.PurchaseRequestItem, { purchaseRequest: { id }, purchaseRequestId: id, itemName: i.itemName, quantity: i.quantity }));
+                await manager.save(pr.items);
+            }
+            if (dto.quotations !== undefined) {
+                await manager.delete(purchase_request_quotation_entity_1.PurchaseRequestQuotation, { purchaseRequest: { id }, purchaseRequestId: id });
+                pr.quotations = dto.quotations.map((q) => manager.create(purchase_request_quotation_entity_1.PurchaseRequestQuotation, {
+                    purchaseRequest: { id },
+                    purchaseRequestId: id,
+                    supplierId: q.supplierId,
+                    quotedAmount: q.quotedAmount,
+                    quotationFileUrl: q.quotationFileUrl,
+                }));
+                await manager.save(pr.quotations);
+            }
+            const saved = await manager.save(pr);
+            this.logger.log(`PR #${id} đã được cập nhật bởi #${actorId}`);
+            return { message: 'Cập nhật yêu cầu mua hàng thành công', result: saved };
+        });
+    }
+    async submit(id, actorId) {
+        const pr = await this.findOne(id);
+        if (pr.status !== purchase_request_entity_1.PurchaseRequestStatus.DRAFT) {
+            throw new common_1.BadRequestException('only-draft-purchase-request-can-be-submitted');
+        }
+        if (pr.requesterId !== actorId) {
+            throw new common_1.ForbiddenException('only-the-requester-can-submit-their-own-draft');
+        }
+        if (!pr.items || pr.items.length < 1) {
+            throw new common_1.BadRequestException('purchase-request-must-have-at-least-1-item');
+        }
+        if (!pr.quotations || pr.quotations.length < 2) {
+            throw new common_1.BadRequestException('purchase-request-must-have-at-least-2-supplier-quotations');
+        }
+        return this.dataSource.transaction(async (manager) => {
+            const fromStatus = pr.status;
+            pr.status = purchase_request_entity_1.PurchaseRequestStatus.PENDING;
+            const saved = await manager.save(pr);
+            await manager.save(manager.create(purchase_request_history_entity_1.PurchaseRequestHistory, {
+                purchaseRequest: { id },
+                purchaseRequestId: id,
+                fromStatus,
+                toStatus: purchase_request_entity_1.PurchaseRequestStatus.PENDING,
+                actorId,
+            }));
+            this.logger.log(`PR #${id} đã được gửi duyệt bởi #${actorId}`);
+            return { message: 'Gửi duyệt yêu cầu mua hàng thành công', result: saved };
+        });
+    }
+    async assertIsAuthorizedApprover(pr, actorId, actorRole) {
+        if (actorRole === role_enum_1.Role.ADMIN)
+            return;
+        if (!pr.departmentId) {
+            if (actorRole !== role_enum_1.Role.MANAGER)
+                throw new common_1.ForbiddenException('only-manager-or-admin-can-approve-or-reject');
+            return;
+        }
+        const department = await this.departmentRepository.findOne({ where: { id: pr.departmentId } });
+        if (department?.managerId && department.managerId !== actorId) {
+            throw new common_1.ForbiddenException('only-the-department-manager-or-admin-can-approve-or-reject-this-request');
+        }
+        if (!department?.managerId && actorRole !== role_enum_1.Role.MANAGER) {
+            throw new common_1.ForbiddenException('only-manager-or-admin-can-approve-or-reject');
+        }
+    }
+    async approve(id, actorId, actorRole) {
+        const pr = await this.findOne(id);
+        if (pr.status !== purchase_request_entity_1.PurchaseRequestStatus.PENDING) {
+            throw new common_1.BadRequestException('purchase-request-not-pending-approval');
+        }
+        await this.assertIsAuthorizedApprover(pr, actorId, actorRole);
+        return this.dataSource.transaction(async (manager) => {
+            const fromStatus = pr.status;
+            pr.status = purchase_request_entity_1.PurchaseRequestStatus.APPROVED;
+            pr.approvedBy = actorId;
+            const saved = await manager.save(pr);
+            await manager.save(manager.create(purchase_request_history_entity_1.PurchaseRequestHistory, {
+                purchaseRequest: { id },
+                purchaseRequestId: id,
+                fromStatus,
+                toStatus: purchase_request_entity_1.PurchaseRequestStatus.APPROVED,
+                actorId,
+            }));
+            this.logger.log(`PR #${id} đã được duyệt bởi #${actorId}`);
+            return { message: 'Phê duyệt yêu cầu mua hàng thành công', result: saved };
+        });
+    }
+    async reject(id, dto, actorId, actorRole) {
+        const pr = await this.findOne(id);
+        if (pr.status !== purchase_request_entity_1.PurchaseRequestStatus.PENDING) {
+            throw new common_1.BadRequestException('purchase-request-not-pending-approval');
+        }
+        await this.assertIsAuthorizedApprover(pr, actorId, actorRole);
+        return this.dataSource.transaction(async (manager) => {
+            const fromStatus = pr.status;
+            pr.status = purchase_request_entity_1.PurchaseRequestStatus.REJECTED;
+            pr.approvedBy = actorId;
+            pr.rejectReason = dto.reason;
+            const saved = await manager.save(pr);
+            await manager.save(manager.create(purchase_request_history_entity_1.PurchaseRequestHistory, {
+                purchaseRequest: { id },
+                purchaseRequestId: id,
+                fromStatus,
+                toStatus: purchase_request_entity_1.PurchaseRequestStatus.REJECTED,
+                actorId,
+                note: dto.reason,
+            }));
+            this.logger.log(`PR #${id} đã bị từ chối bởi #${actorId}: ${dto.reason}`);
+            return { message: 'Từ chối yêu cầu mua hàng thành công', result: saved };
+        });
+    }
+    async getHistory(id) {
+        await this.findOne(id);
+        return this.historyRepository.find({
+            where: { purchaseRequestId: id },
+            order: { createdAt: 'ASC' },
+        });
+    }
     async findAll(query) {
-        const { page, limit, status } = query;
+        const { page, limit, status, keyword } = query;
         const where = {};
         if (status)
             where.status = status;
+        if (keyword)
+            where.purposeOfUse = (0, typeorm_2.ILike)(`%${keyword}%`);
         const [items, total] = await this.prRepository.findAndCount({
             where,
             relations: { requester: true, department: true },
@@ -88,27 +238,25 @@ let PurchaseRequestService = class PurchaseRequestService {
             throw new common_1.NotFoundException('purchase-request-not-found');
         return pr;
     }
-    async approveAndIssuePO(id, dto, approverId) {
+    async issuePO(id, dto, actorId) {
         const pr = await this.findOne(id);
-        if (pr.status !== purchase_request_entity_1.PurchaseRequestStatus.PENDING) {
-            throw new common_1.BadRequestException('purchase-request-not-pending');
+        if (pr.status !== purchase_request_entity_1.PurchaseRequestStatus.APPROVED) {
+            throw new common_1.BadRequestException('purchase-request-not-approved-yet');
         }
         const selectedQuotation = pr.quotations.find((q) => q.supplierId === dto.selectedSupplierId);
         if (!selectedQuotation) {
             throw new common_1.BadRequestException('selected-supplier-did-not-submit-a-quotation-for-this-pr');
         }
         try {
-            const { updatedPr, savedPo, poItems } = await this.dataSource.transaction(async (manager) => {
-                pr.status = purchase_request_entity_1.PurchaseRequestStatus.APPROVED;
-                pr.approvedBy = approverId;
-                const updatedPr = await manager.save(pr);
+            const { savedPo, poItems } = await this.dataSource.transaction(async (manager) => {
                 const po = manager.create(purchase_order_entity_1.PurchaseOrder, {
+                    purchaseRequest: { id },
                     purchaseRequestId: pr.id,
                     supplierId: dto.selectedSupplierId,
                     totalAmount: 0,
                     paymentTerm: dto.paymentTerm,
                     status: purchase_order_entity_1.PurchaseOrderStatus.RELEASED,
-                    createdBy: approverId,
+                    createdBy: actorId,
                 });
                 const savedPo = await manager.save(po);
                 const poItemEntities = pr.items.map((item) => manager.create(purchase_order_item_entity_1.PurchaseOrderItem, {
@@ -119,12 +267,12 @@ let PurchaseRequestService = class PurchaseRequestService {
                 const poItems = await manager.save(poItemEntities);
                 await manager.update(purchase_order_entity_1.PurchaseOrder, savedPo.id, { totalAmount: selectedQuotation.quotedAmount });
                 savedPo.totalAmount = selectedQuotation.quotedAmount;
-                return { updatedPr, savedPo, poItems };
+                return { savedPo, poItems };
             });
-            this.logger.log(`PR #${id} đã được duyệt bởi #${approverId} → phát hành PO #${savedPo.id} cho NCC #${dto.selectedSupplierId}`);
+            this.logger.log(`PR #${id} (đã Approved) → phát hành PO #${savedPo.id}`);
             return {
-                message: 'Duyệt yêu cầu mua hàng và phát hành đơn mua hàng (PO) thành công',
-                result: { purchaseRequest: updatedPr, purchaseOrder: { ...savedPo, items: poItems } },
+                message: 'Phát hành đơn mua hàng (PO) thành công',
+                result: { ...savedPo, items: poItems },
             };
         }
         catch (err) {
@@ -134,28 +282,21 @@ let PurchaseRequestService = class PurchaseRequestService {
             throw err;
         }
     }
-    async reject(id, dto, approverId) {
-        const pr = await this.findOne(id);
-        if (pr.status !== purchase_request_entity_1.PurchaseRequestStatus.PENDING) {
-            throw new common_1.BadRequestException('purchase-request-not-pending');
-        }
-        pr.status = purchase_request_entity_1.PurchaseRequestStatus.REJECTED;
-        pr.approvedBy = approverId;
-        const saved = await this.prRepository.save(pr);
-        this.logger.log(`PR #${id} đã bị từ chối bởi #${approverId}${dto.reason ? `: ${dto.reason}` : ''}`);
-        return { message: 'Từ chối yêu cầu mua hàng thành công', result: saved };
-    }
 };
 exports.PurchaseRequestService = PurchaseRequestService;
 exports.PurchaseRequestService = PurchaseRequestService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(purchase_request_entity_1.PurchaseRequest)),
-    __param(1, (0, typeorm_1.InjectRepository)(purchase_order_entity_1.PurchaseOrder)),
-    __param(2, (0, typeorm_1.InjectRepository)(purchase_order_item_entity_1.PurchaseOrderItem)),
-    __param(3, (0, typeorm_1.InjectDataSource)()),
+    __param(1, (0, typeorm_1.InjectRepository)(purchase_request_history_entity_1.PurchaseRequestHistory)),
+    __param(2, (0, typeorm_1.InjectRepository)(department_entity_1.Department)),
+    __param(3, (0, typeorm_1.InjectRepository)(purchase_order_entity_1.PurchaseOrder)),
+    __param(4, (0, typeorm_1.InjectRepository)(purchase_order_item_entity_1.PurchaseOrderItem)),
+    __param(5, (0, typeorm_1.InjectDataSource)()),
     __metadata("design:paramtypes", [typeorm_2.Repository,
         typeorm_2.Repository,
         typeorm_2.Repository,
-        typeorm_2.DataSource])
+        typeorm_2.Repository,
+        typeorm_2.Repository,
+        typeorm_3.DataSource])
 ], PurchaseRequestService);
 //# sourceMappingURL=purchase-request.service.js.map

@@ -18,6 +18,7 @@ describe('UserService', () => {
         password: '$2b$10$hashedpassword',
         role: role_enum_1.Role.ADMIN,
         status: user_entity_1.UserStatus.ACTIVE,
+        departmentId: 1
     };
     beforeEach(async () => {
         mockQueryBuilder = {
@@ -42,7 +43,7 @@ describe('UserService', () => {
     describe('createUser()', () => {
         it('email đã tồn tại → ném ConflictException, KHÔNG được gọi save()', async () => {
             mockRepository.findOne.mockResolvedValue(fakeUser);
-            await expect(service.createUser({ fullName: 'B', email: fakeUser.email, password: '123456' })).rejects.toThrow(common_1.ConflictException);
+            await expect(service.createUser({ fullName: 'B', email: fakeUser.email, password: '123456', departmentId: fakeUser.departmentId })).rejects.toThrow(common_1.ConflictException);
             expect(mockRepository.save).not.toHaveBeenCalled();
         });
         it('email chưa tồn tại → tạo thành công, KHÔNG trả password ra ngoài', async () => {
@@ -53,6 +54,7 @@ describe('UserService', () => {
                 fullName: fakeUser.fullName,
                 email: fakeUser.email,
                 password: '123456',
+                departmentId: 1
             });
             expect(result.message).toBe('Tạo nhân sự thành công');
             expect(result.result).not.toHaveProperty('password');

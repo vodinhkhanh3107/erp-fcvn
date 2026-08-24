@@ -53,7 +53,7 @@ exports.AppModule = AppModule = __decorate([
             task_module_1.TaskModule,
             kpi_module_1.KpiModule,
             purchase_order_module_1.PurchaseOrderModule,
-            purchase_request_module_1.PurchaseRequestModule
+            purchase_request_module_1.PurchaseRequestModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

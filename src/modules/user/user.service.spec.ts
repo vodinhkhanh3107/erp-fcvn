@@ -20,6 +20,7 @@ describe('UserService', () => {
     password: '$2b$10$hashedpassword',
     role: Role.ADMIN,
     status: UserStatus.ACTIVE,
+    departmentId: 1
   };
 
   beforeEach(async () => {
@@ -52,7 +53,7 @@ describe('UserService', () => {
       mockRepository.findOne.mockResolvedValue(fakeUser); // giả lập: đã có người dùng email này
 
       await expect(
-        service.createUser({ fullName: 'B', email: fakeUser.email, password: '123456' }),
+        service.createUser({ fullName: 'B', email: fakeUser.email, password: '123456', departmentId: fakeUser.departmentId }),
       ).rejects.toThrow(ConflictException);
 
       expect(mockRepository.save).not.toHaveBeenCalled();
@@ -67,6 +68,8 @@ describe('UserService', () => {
         fullName: fakeUser.fullName,
         email: fakeUser.email,
         password: '123456',
+        departmentId: 1
+
       });
 
       expect(result.message).toBe('Tạo nhân sự thành công');
