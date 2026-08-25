@@ -283,13 +283,10 @@ export class PurchaseRequestService {
   }
 
   // ===================== 7. TÌM KIẾM (filter + paging) =====================
-  async findMine(query: ListPurchaseRequestDto, actorId: number) {
-
-
+  async faindAll(query: ListPurchaseRequestDto) {
     const { page, limit, status, keyword } = query;
 
     const where: Record<string, any> = {};
-    if(actorId) where.requesterId = actorId;
     if (status) where.status = status;
     if (keyword) where.purposeOfUse = ILike(`%${keyword}%`);
 

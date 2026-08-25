@@ -9,8 +9,8 @@ import { CurrentUser } from "src/common/decorators/current-user.decorator";
 import { UpdatePurchaseRequestDto } from "./dto/update-purchase-request.dto";
 import { Roles } from "src/common/decorators/roles.decorator";
 import { RejectPurchaseRequestDto } from "./dto/reject-purchase-request.dto";
-import { ListPurchaseRequestDto } from "./dto/list-purchase-request.dto";
 import { IssuePoDto } from "./dto/issue-purchase-order.dto";
+import { ListPurchaseRequestDto } from "./dto/list-purchase-request.dto";
 
 type JwtUser = { userId: number; role: Role };
 
@@ -71,9 +71,9 @@ export class PurchaseRequestController {
   // }
 
   // Nhân sự xem đúng PR của chính mình
-  @Get('me')
-  findMine(@Query() query: ListPurchaseRequestDto, @CurrentUser() user: JwtUser) {
-    return this.purchaseRequestService.findMine(query,user.userId); 
+  @Get()
+  faindAll(@Query() query: ListPurchaseRequestDto) {
+    return this.purchaseRequestService.faindAll(query); 
   }
 
   @Get(':id')

@@ -24,8 +24,8 @@ const current_user_decorator_1 = require("../../common/decorators/current-user.d
 const update_purchase_request_dto_1 = require("./dto/update-purchase-request.dto");
 const roles_decorator_1 = require("../../common/decorators/roles.decorator");
 const reject_purchase_request_dto_1 = require("./dto/reject-purchase-request.dto");
-const list_purchase_request_dto_1 = require("./dto/list-purchase-request.dto");
 const issue_purchase_order_dto_1 = require("./dto/issue-purchase-order.dto");
+const list_purchase_request_dto_1 = require("./dto/list-purchase-request.dto");
 let PurchaseRequestController = class PurchaseRequestController {
     constructor(purchaseRequestService) {
         this.purchaseRequestService = purchaseRequestService;
@@ -48,8 +48,8 @@ let PurchaseRequestController = class PurchaseRequestController {
     getHistory(id) {
         return this.purchaseRequestService.getHistory(id);
     }
-    findMine(query, user) {
-        return this.purchaseRequestService.findMine(query, user.userId);
+    faindAll(query) {
+        return this.purchaseRequestService.faindAll(query);
     }
     findOne(id) {
         return this.purchaseRequestService.findOne(id);
@@ -111,13 +111,12 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], PurchaseRequestController.prototype, "getHistory", null);
 __decorate([
-    (0, common_1.Get)('me'),
+    (0, common_1.Get)(),
     __param(0, (0, common_1.Query)()),
-    __param(1, (0, current_user_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [list_purchase_request_dto_1.ListPurchaseRequestDto, Object]),
+    __metadata("design:paramtypes", [list_purchase_request_dto_1.ListPurchaseRequestDto]),
     __metadata("design:returntype", void 0)
-], PurchaseRequestController.prototype, "findMine", null);
+], PurchaseRequestController.prototype, "faindAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),

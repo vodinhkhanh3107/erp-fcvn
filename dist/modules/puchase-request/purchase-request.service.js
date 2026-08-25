@@ -224,11 +224,9 @@ let PurchaseRequestService = class PurchaseRequestService {
             order: { createdAt: 'ASC' },
         });
     }
-    async findMine(query, actorId) {
+    async faindAll(query) {
         const { page, limit, status, keyword } = query;
         const where = {};
-        if (actorId)
-            where.requesterId = actorId;
         if (status)
             where.status = status;
         if (keyword)
