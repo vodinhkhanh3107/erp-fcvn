@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { PurchaseRequest, PurchaseRequestStatus } from './purchase-request.entity';
+import { User } from 'src/modules/user/entities/user.entity';
 
 @Entity('purchase_request_histories')
 export class PurchaseRequestHistory {
@@ -14,13 +15,17 @@ export class PurchaseRequestHistory {
   purchaseRequest: PurchaseRequest;
 
   @Column({ name: 'from_status', type: 'enum', enum: PurchaseRequestStatus, nullable: true })
-  fromStatus?: PurchaseRequestStatus;
+  fromStatus?: PurchaseRequestStatus; 
 
   @Column({ name: 'to_status', type: 'enum', enum: PurchaseRequestStatus })
   toStatus: PurchaseRequestStatus;
 
   @Column({ name: 'actor_id' })
   actorId: number;
+
+  @ManyToOne(() => User, { nullable: false })
+  @JoinColumn({ name: 'actor_id' })
+  actor: User;
 
   @Column({ length: 500, nullable: true })
   note?: string;

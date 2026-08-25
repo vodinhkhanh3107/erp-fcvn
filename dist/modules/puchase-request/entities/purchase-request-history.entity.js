@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PurchaseRequestHistory = void 0;
 const typeorm_1 = require("typeorm");
 const purchase_request_entity_1 = require("./purchase-request.entity");
+const user_entity_1 = require("../../user/entities/user.entity");
 let PurchaseRequestHistory = class PurchaseRequestHistory {
 };
 exports.PurchaseRequestHistory = PurchaseRequestHistory;
@@ -40,6 +41,11 @@ __decorate([
     (0, typeorm_1.Column)({ name: 'actor_id' }),
     __metadata("design:type", Number)
 ], PurchaseRequestHistory.prototype, "actorId", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => user_entity_1.User, { nullable: false }),
+    (0, typeorm_1.JoinColumn)({ name: 'actor_id' }),
+    __metadata("design:type", user_entity_1.User)
+], PurchaseRequestHistory.prototype, "actor", void 0);
 __decorate([
     (0, typeorm_1.Column)({ length: 500, nullable: true }),
     __metadata("design:type", String)

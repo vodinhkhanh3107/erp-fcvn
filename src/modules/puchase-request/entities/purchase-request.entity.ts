@@ -23,14 +23,14 @@ export class PurchaseRequest {
   @Column({ name: 'department_id', nullable: true })
   departmentId?: number;
 
-  @ManyToOne(() => Department, { nullable: true })
+  @ManyToOne(() => Department, (deparment) => deparment.id, { nullable: true })
   @JoinColumn({ name: 'department_id' })
   department?: Department;
 
   @Column({ name: 'requester_id' })
   requesterId: number;
 
-  @ManyToOne(() => User, { nullable: false })
+  @ManyToOne(() => User, (user) => user.id, { nullable: false })
   @JoinColumn({ name: 'requester_id' })
   requester: User;
 

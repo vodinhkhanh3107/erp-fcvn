@@ -16,6 +16,7 @@ import { Role } from "src/common/constants/role.enum";
 import { RejectPurchaseRequestDto } from "./dto/reject-purchase-request.dto";
 import { IssuePoDto } from "./dto/issue-purchase-order.dto";
 import { ListPurchaseRequestDto } from "./dto/list-purchase-request.dto";
+import { CurrentUser } from "src/common/decorators/current-user.decorator";
 
 const MYSQL_DUPLICATE_ENTRY_ERROR_CODE = 'ER_DUP_ENTRY';
 
@@ -50,23 +51,43 @@ export class PurchaseRequestService {
       }
     }
 
+    const existedDepartment = await this.departmentRepository.findOneBy({ id: dto.departmentId });
+    if (!existedDepartment) {
+      throw new NotFoundException("Not-found-deparment")
+    }
     try {
       return await this.dataSource.transaction(async (manager) => {
-        let entity = manager.create(PurchaseRequest, {
+        const pr = manager.create(PurchaseRequest, {
           requestKey: dto.requestKey,
           departmentId: dto.departmentId,
           purposeOfUse: dto.purposeOfUse ?? '',
           requesterId,
           status: PurchaseRequestStatus.DRAFT,
-          items: (dto.items ?? []).map((i) => ({ itemName: i.itemName, quantity: i.quantity })),
-          quotations: (dto.quotations ?? []).map((q) => ({
-            supplierId: q.supplierId,
-            quotedAmount: q.quotedAmount,
-            quotationFileUrl: q.quotationFileUrl,
-          })),
         });
+        const saved = await manager.save(pr);
 
-        const saved = await manager.save(entity);
+        if (dto.items?.length) {
+          const items = dto.items.map((i) =>
+            manager.create(PurchaseRequestItem, {
+              itemName: i.itemName,
+              quantity: i.quantity,
+              purchaseRequestId: saved.id, 
+            }),
+          );
+          await manager.save(items);
+        }
+
+        if (dto.quotations?.length) {
+          const quotations = dto.quotations.map((q) =>
+            manager.create(PurchaseRequestQuotation, {
+              supplierId: q.supplierId,
+              quotedAmount: q.quotedAmount,
+              quotationFileUrl: q.quotationFileUrl,
+              purchaseRequestId: saved.id, 
+            }),
+          );
+          await manager.save(quotations);
+        }
 
         await manager.save(
           manager.create(PurchaseRequestHistory, {
@@ -77,7 +98,6 @@ export class PurchaseRequestService {
           }),
         );
 
-        this.logger.log(`Nhân sự #${requesterId} đã tạo nháp PR #${saved.id}`);
         return { message: 'Tạo nháp yêu cầu mua hàng thành công', result: saved };
       });
     } catch (err: any) {
@@ -105,17 +125,17 @@ export class PurchaseRequestService {
       if (dto.purposeOfUse !== undefined) pr.purposeOfUse = dto.purposeOfUse;
 
       if (dto.items !== undefined) {
-        await manager.delete(PurchaseRequestItem, { purchaseRequest: { id } as PurchaseRequest, purchaseRequestId: id });
+        await manager.delete(PurchaseRequestItem, { purchaseRequestId: id });
         pr.items = dto.items.map((i) =>
-          manager.create(PurchaseRequestItem, { purchaseRequest: { id } as PurchaseRequest, purchaseRequestId: id , itemName: i.itemName, quantity: i.quantity }),
+          manager.create(PurchaseRequestItem, { purchaseRequestId: id, itemName: i.itemName, quantity: i.quantity }),
         );
         await manager.save(pr.items);
       }
       if (dto.quotations !== undefined) {
-        await manager.delete(PurchaseRequestQuotation, { purchaseRequest: { id } as PurchaseRequest, purchaseRequestId: id });
+        await manager.delete(PurchaseRequestQuotation, { purchaseRequestId: id });
         pr.quotations = dto.quotations.map((q) =>
           manager.create(PurchaseRequestQuotation, {
-            purchaseRequest: { id } as PurchaseRequest,
+           
             purchaseRequestId: id,
             supplierId: q.supplierId,
             quotedAmount: q.quotedAmount,
@@ -153,9 +173,11 @@ export class PurchaseRequestService {
       pr.status = PurchaseRequestStatus.PENDING;
       const saved = await manager.save(pr);
 
+      // cập nhật lại status trong bảng purchase request
+      manager.update(PurchaseRequest, { id }, { status: PurchaseRequestStatus.PENDING });
+
       await manager.save(
         manager.create(PurchaseRequestHistory, {
-           purchaseRequest: { id } as PurchaseRequest,
           purchaseRequestId: id,
           fromStatus,
           toStatus: PurchaseRequestStatus.PENDING,
@@ -170,7 +192,7 @@ export class PurchaseRequestService {
 
   // ===== Dùng chung cho Duyệt & Từ chối: kiểm tra "ĐÚNG Manager" của đúng phòng ban PR đó =====
   private async assertIsAuthorizedApprover(pr: PurchaseRequest, actorId: number, actorRole: Role) {
-    if (actorRole === Role.ADMIN) return; // Admin luôn được override
+    if (actorRole === Role.ADMIN) return;
 
     if (!pr.departmentId) {
       if (actorRole !== Role.MANAGER) throw new ForbiddenException('only-manager-or-admin-can-approve-or-reject');
@@ -204,7 +226,7 @@ export class PurchaseRequestService {
 
       await manager.save(
         manager.create(PurchaseRequestHistory, {
-           purchaseRequest: { id } as PurchaseRequest,
+         
           purchaseRequestId: id,
           fromStatus,
           toStatus: PurchaseRequestStatus.APPROVED,
@@ -237,7 +259,7 @@ export class PurchaseRequestService {
       await manager.save(
 
         manager.create(PurchaseRequestHistory, {
-         purchaseRequest: { id } as PurchaseRequest,
+         
           purchaseRequestId: id,
           fromStatus,
           toStatus: PurchaseRequestStatus.REJECTED,
@@ -261,10 +283,13 @@ export class PurchaseRequestService {
   }
 
   // ===================== 7. TÌM KIẾM (filter + paging) =====================
-  async findAll(query: ListPurchaseRequestDto) {
+  async findMine(query: ListPurchaseRequestDto, actorId: number) {
+
+
     const { page, limit, status, keyword } = query;
 
     const where: Record<string, any> = {};
+    if(actorId) where.requesterId = actorId;
     if (status) where.status = status;
     if (keyword) where.purposeOfUse = ILike(`%${keyword}%`);
 
@@ -291,6 +316,7 @@ export class PurchaseRequestService {
   // ===================== (Giữ lại riêng) PHÁT HÀNH PO — tách khỏi hành động Duyệt =====================
   async issuePO(id: number, dto: IssuePoDto, actorId: number) {
     const pr = await this.findOne(id);
+    console.log(pr)
 
     if (pr.status !== PurchaseRequestStatus.APPROVED) {
       throw new BadRequestException('purchase-request-not-approved-yet');
@@ -304,8 +330,6 @@ export class PurchaseRequestService {
     try {
       const { savedPo, poItems } = await this.dataSource.transaction(async (manager) => {
         const po = manager.create(PurchaseOrder, {
-           purchaseRequest: { id } as PurchaseRequest,
-
           purchaseRequestId: pr.id,
           supplierId: dto.selectedSupplierId,
           totalAmount: 0,

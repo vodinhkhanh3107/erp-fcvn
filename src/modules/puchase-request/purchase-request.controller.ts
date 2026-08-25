@@ -64,16 +64,16 @@ export class PurchaseRequestController {
   }
 
   // 7. Tìm kiếm + phân trang (toàn bộ PR — Manager/Admin)
-  @Get()
-  @Roles(Role.ADMIN, Role.MANAGER)
-  findAll(@Query() query: ListPurchaseRequestDto) {
-    return this.purchaseRequestService.findAll(query);
-  }
+  // @Get()
+  // @Roles(Role.ADMIN, Role.MANAGER)
+  // findAll(@Query() query: ListPurchaseRequestDto) {
+  //   return this.purchaseRequestService.findAll(query);
+  // }
 
   // Nhân sự xem đúng PR của chính mình
   @Get('me')
   findMine(@Query() query: ListPurchaseRequestDto, @CurrentUser() user: JwtUser) {
-    return this.purchaseRequestService.findAll(query); 
+    return this.purchaseRequestService.findMine(query,user.userId); 
   }
 
   @Get(':id')

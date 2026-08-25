@@ -6,12 +6,12 @@ export class PurchaseRequestItem {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({ name: 'purchase_request_id' })
+  purchaseRequestId: number;
+
   @ManyToOne(() => PurchaseRequest, (pr) => pr.items, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'purchase_request_id' })
   purchaseRequest: PurchaseRequest;
-
-  @RelationId((item: PurchaseRequestItem) => item.purchaseRequest)
-  purchaseRequestId: number;
 
   @Column({ name: 'item_name', length: 255 })
   itemName: string;

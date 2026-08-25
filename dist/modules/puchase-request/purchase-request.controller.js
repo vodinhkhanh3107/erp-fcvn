@@ -48,11 +48,8 @@ let PurchaseRequestController = class PurchaseRequestController {
     getHistory(id) {
         return this.purchaseRequestService.getHistory(id);
     }
-    findAll(query) {
-        return this.purchaseRequestService.findAll(query);
-    }
     findMine(query, user) {
-        return this.purchaseRequestService.findAll(query);
+        return this.purchaseRequestService.findMine(query, user.userId);
     }
     findOne(id) {
         return this.purchaseRequestService.findOne(id);
@@ -113,14 +110,6 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], PurchaseRequestController.prototype, "getHistory", null);
-__decorate([
-    (0, common_1.Get)(),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN, role_enum_1.Role.MANAGER),
-    __param(0, (0, common_1.Query)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [list_purchase_request_dto_1.ListPurchaseRequestDto]),
-    __metadata("design:returntype", void 0)
-], PurchaseRequestController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)('me'),
     __param(0, (0, common_1.Query)()),

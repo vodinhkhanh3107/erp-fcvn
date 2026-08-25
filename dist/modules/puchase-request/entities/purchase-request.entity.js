@@ -38,7 +38,7 @@ __decorate([
     __metadata("design:type", Number)
 ], PurchaseRequest.prototype, "departmentId", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => department_entity_1.Department, { nullable: true }),
+    (0, typeorm_1.ManyToOne)(() => department_entity_1.Department, (deparment) => deparment.id, { nullable: true }),
     (0, typeorm_1.JoinColumn)({ name: 'department_id' }),
     __metadata("design:type", department_entity_1.Department)
 ], PurchaseRequest.prototype, "department", void 0);
@@ -47,7 +47,7 @@ __decorate([
     __metadata("design:type", Number)
 ], PurchaseRequest.prototype, "requesterId", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => user_entity_1.User, { nullable: false }),
+    (0, typeorm_1.ManyToOne)(() => user_entity_1.User, (user) => user.id, { nullable: false }),
     (0, typeorm_1.JoinColumn)({ name: 'requester_id' }),
     __metadata("design:type", user_entity_1.User)
 ], PurchaseRequest.prototype, "requester", void 0);

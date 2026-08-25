@@ -7,12 +7,12 @@ export class PurchaseRequestQuotation {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({ name: 'purchase_request_id' })
+  purchaseRequestId: number;
+
   @ManyToOne(() => PurchaseRequest, (pr) => pr.quotations, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'purchase_request_id' })
   purchaseRequest: PurchaseRequest;
-
-  @RelationId((q: PurchaseRequestQuotation) => q.purchaseRequest)
-  purchaseRequestId: number;
 
   @Column({ name: 'supplier_id' })
   supplierId: number;

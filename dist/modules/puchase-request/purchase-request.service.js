@@ -46,29 +46,43 @@ let PurchaseRequestService = class PurchaseRequestService {
                 return { message: 'Yêu cầu đã được ghi nhận trước đó (request trùng lặp)', result: existed };
             }
         }
+        const existedDepartment = await this.departmentRepository.findOneBy({ id: dto.departmentId });
+        if (!existedDepartment) {
+            throw new common_1.NotFoundException("Not-found-deparment");
+        }
         try {
             return await this.dataSource.transaction(async (manager) => {
-                let entity = manager.create(purchase_request_entity_1.PurchaseRequest, {
+                const pr = manager.create(purchase_request_entity_1.PurchaseRequest, {
                     requestKey: dto.requestKey,
                     departmentId: dto.departmentId,
                     purposeOfUse: dto.purposeOfUse ?? '',
                     requesterId,
                     status: purchase_request_entity_1.PurchaseRequestStatus.DRAFT,
-                    items: (dto.items ?? []).map((i) => ({ itemName: i.itemName, quantity: i.quantity })),
-                    quotations: (dto.quotations ?? []).map((q) => ({
+                });
+                const saved = await manager.save(pr);
+                if (dto.items?.length) {
+                    const items = dto.items.map((i) => manager.create(purchase_request_item_entity_1.PurchaseRequestItem, {
+                        itemName: i.itemName,
+                        quantity: i.quantity,
+                        purchaseRequestId: saved.id,
+                    }));
+                    await manager.save(items);
+                }
+                if (dto.quotations?.length) {
+                    const quotations = dto.quotations.map((q) => manager.create(purchase_request_quotation_entity_1.PurchaseRequestQuotation, {
                         supplierId: q.supplierId,
                         quotedAmount: q.quotedAmount,
                         quotationFileUrl: q.quotationFileUrl,
-                    })),
-                });
-                const saved = await manager.save(entity);
+                        purchaseRequestId: saved.id,
+                    }));
+                    await manager.save(quotations);
+                }
                 await manager.save(manager.create(purchase_request_history_entity_1.PurchaseRequestHistory, {
                     purchaseRequestId: Number(saved.id),
                     fromStatus: null,
                     toStatus: purchase_request_entity_1.PurchaseRequestStatus.DRAFT,
                     actorId: requesterId,
                 }));
-                this.logger.log(`Nhân sự #${requesterId} đã tạo nháp PR #${saved.id}`);
                 return { message: 'Tạo nháp yêu cầu mua hàng thành công', result: saved };
             });
         }
@@ -95,14 +109,13 @@ let PurchaseRequestService = class PurchaseRequestService {
             if (dto.purposeOfUse !== undefined)
                 pr.purposeOfUse = dto.purposeOfUse;
             if (dto.items !== undefined) {
-                await manager.delete(purchase_request_item_entity_1.PurchaseRequestItem, { purchaseRequest: { id }, purchaseRequestId: id });
-                pr.items = dto.items.map((i) => manager.create(purchase_request_item_entity_1.PurchaseRequestItem, { purchaseRequest: { id }, purchaseRequestId: id, itemName: i.itemName, quantity: i.quantity }));
+                await manager.delete(purchase_request_item_entity_1.PurchaseRequestItem, { purchaseRequestId: id });
+                pr.items = dto.items.map((i) => manager.create(purchase_request_item_entity_1.PurchaseRequestItem, { purchaseRequestId: id, itemName: i.itemName, quantity: i.quantity }));
                 await manager.save(pr.items);
             }
             if (dto.quotations !== undefined) {
-                await manager.delete(purchase_request_quotation_entity_1.PurchaseRequestQuotation, { purchaseRequest: { id }, purchaseRequestId: id });
+                await manager.delete(purchase_request_quotation_entity_1.PurchaseRequestQuotation, { purchaseRequestId: id });
                 pr.quotations = dto.quotations.map((q) => manager.create(purchase_request_quotation_entity_1.PurchaseRequestQuotation, {
-                    purchaseRequest: { id },
                     purchaseRequestId: id,
                     supplierId: q.supplierId,
                     quotedAmount: q.quotedAmount,
@@ -133,8 +146,8 @@ let PurchaseRequestService = class PurchaseRequestService {
             const fromStatus = pr.status;
             pr.status = purchase_request_entity_1.PurchaseRequestStatus.PENDING;
             const saved = await manager.save(pr);
+            manager.update(purchase_request_entity_1.PurchaseRequest, { id }, { status: purchase_request_entity_1.PurchaseRequestStatus.PENDING });
             await manager.save(manager.create(purchase_request_history_entity_1.PurchaseRequestHistory, {
-                purchaseRequest: { id },
                 purchaseRequestId: id,
                 fromStatus,
                 toStatus: purchase_request_entity_1.PurchaseRequestStatus.PENDING,
@@ -172,7 +185,6 @@ let PurchaseRequestService = class PurchaseRequestService {
             pr.approvedBy = actorId;
             const saved = await manager.save(pr);
             await manager.save(manager.create(purchase_request_history_entity_1.PurchaseRequestHistory, {
-                purchaseRequest: { id },
                 purchaseRequestId: id,
                 fromStatus,
                 toStatus: purchase_request_entity_1.PurchaseRequestStatus.APPROVED,
@@ -195,7 +207,6 @@ let PurchaseRequestService = class PurchaseRequestService {
             pr.rejectReason = dto.reason;
             const saved = await manager.save(pr);
             await manager.save(manager.create(purchase_request_history_entity_1.PurchaseRequestHistory, {
-                purchaseRequest: { id },
                 purchaseRequestId: id,
                 fromStatus,
                 toStatus: purchase_request_entity_1.PurchaseRequestStatus.REJECTED,
@@ -213,9 +224,11 @@ let PurchaseRequestService = class PurchaseRequestService {
             order: { createdAt: 'ASC' },
         });
     }
-    async findAll(query) {
+    async findMine(query, actorId) {
         const { page, limit, status, keyword } = query;
         const where = {};
+        if (actorId)
+            where.requesterId = actorId;
         if (status)
             where.status = status;
         if (keyword)
@@ -240,6 +253,7 @@ let PurchaseRequestService = class PurchaseRequestService {
     }
     async issuePO(id, dto, actorId) {
         const pr = await this.findOne(id);
+        console.log(pr);
         if (pr.status !== purchase_request_entity_1.PurchaseRequestStatus.APPROVED) {
             throw new common_1.BadRequestException('purchase-request-not-approved-yet');
         }
@@ -250,7 +264,6 @@ let PurchaseRequestService = class PurchaseRequestService {
         try {
             const { savedPo, poItems } = await this.dataSource.transaction(async (manager) => {
                 const po = manager.create(purchase_order_entity_1.PurchaseOrder, {
-                    purchaseRequest: { id },
                     purchaseRequestId: pr.id,
                     supplierId: dto.selectedSupplierId,
                     totalAmount: 0,
