@@ -30,7 +30,7 @@ __decorate([
     __metadata("design:type", Number)
 ], PurchaseRequest.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'request_key', length: 100, unique: true, nullable: true }),
+    (0, typeorm_1.Column)({ name: 'request_key', length: 100, unique: true }),
     __metadata("design:type", String)
 ], PurchaseRequest.prototype, "requestKey", void 0);
 __decorate([

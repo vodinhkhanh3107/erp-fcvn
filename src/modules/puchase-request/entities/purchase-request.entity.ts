@@ -17,7 +17,7 @@ export class PurchaseRequest {
   id: number;
 
   // Idempotency key — chống tạo trùng khi client gửi lại request (giữ nguyên từ trước)
-  @Column({ name: 'request_key', length: 100, unique: true, nullable: true })
+  @Column({ name: 'request_key', length: 100, unique: true})
   requestKey?: string;
 
   @Column({ name: 'department_id', nullable: true })
