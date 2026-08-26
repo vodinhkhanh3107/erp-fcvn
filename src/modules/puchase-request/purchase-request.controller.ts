@@ -73,7 +73,7 @@ export class PurchaseRequestController {
   // Nhân sự xem đúng PR của chính mình
   @Get()
   faindAll(@Query() query: ListPurchaseRequestDto) {
-    return this.purchaseRequestService.faindAll(query); 
+    return this.purchaseRequestService.findAll(query); 
   }
 
   @Get(':id')

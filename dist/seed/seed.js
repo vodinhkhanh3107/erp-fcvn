@@ -63,7 +63,7 @@ async function seed() {
             role: role_enum_1.Role.ADMIN,
             status: user_entity_1.UserStatus.ACTIVE,
             avatar: "",
-            departmentId: 1
+            contract_type: user_entity_1.ContractType.TRIAL
         });
         await userRepo.save(admin);
         console.log('Đã tạo tài khoản Admin: admin@fcvn.local / Password@123');

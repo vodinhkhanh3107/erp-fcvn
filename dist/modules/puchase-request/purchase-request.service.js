@@ -224,7 +224,7 @@ let PurchaseRequestService = class PurchaseRequestService {
             order: { createdAt: 'ASC' },
         });
     }
-    async faindAll(query) {
+    async findAll(query) {
         const { page, limit, status, keyword } = query;
         const where = {};
         if (status)

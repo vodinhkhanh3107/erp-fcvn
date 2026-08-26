@@ -22,7 +22,6 @@ __decorate([
 ], CreateKpiDto.prototype, "userId", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ example: '2026-08-23', description: 'Kỳ báo cáo: Month/Quarter/Year' }),
-    (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsDateString)(),
     __metadata("design:type", String)
 ], CreateKpiDto.prototype, "period", void 0);

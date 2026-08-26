@@ -19,7 +19,7 @@ export class AppLogger extends ConsoleLogger {
 
   private writeToFile(level: string, message: string, context?: string) {
     const line = `[${new Date().toISOString()}] [${level}]${context ? ` [${context}]` : ''} ${message}\n`;
-    fs.appendFile(this.logFilePath, line, () => {}); // ghi bất đồng bộ, không chặn request
+    fs.appendFile(this.logFilePath, line, () => {}); 
   }
 
   log(message: string, context?: string) {

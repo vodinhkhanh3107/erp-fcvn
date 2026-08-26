@@ -47,8 +47,5 @@ export class SupplierGroup {
 
   // @Column({ length: 100, nullable: true })
   // notes?: string;
-
   
-  @Column({ length: 100})
-  text?: string;
 }

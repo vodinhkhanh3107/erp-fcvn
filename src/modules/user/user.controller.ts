@@ -24,12 +24,13 @@ export class UserController {
   }
 
   @Get()
-  @Roles(Role.ADMIN,Role.MANAGER,Role.ACCOUNTANT,Role.BOD,)
+  @Roles(Role.ADMIN,Role.MANAGER,Role.HR,Role.BOD)
   findAll(@Query() query: PaginationDto) {
     return this.userService.list(query);
   }
 
   @Get(':id')
+  @Roles(Role.ADMIN,Role.MANAGER,Role.HR,Role.BOD)
   findOne(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: { userId: number; role: Role }) {
     const isPrivileged = (user.role === Role.ADMIN || user.role === Role.HR || user.role === Role.MANAGER || user.role === Role.ACCOUNTANT || user.role === Role.BOD);
     const isOwnProfile = user.userId === id;

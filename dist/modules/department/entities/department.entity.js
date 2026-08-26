@@ -45,10 +45,6 @@ __decorate([
     __metadata("design:type", Number)
 ], Department.prototype, "updatedBy", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => user_entity_1.User, (user) => user.department),
-    __metadata("design:type", Array)
-], Department.prototype, "users", void 0);
-__decorate([
     (0, typeorm_1.CreateDateColumn)({ name: 'created_at' }),
     __metadata("design:type", Date)
 ], Department.prototype, "createdAt", void 0);

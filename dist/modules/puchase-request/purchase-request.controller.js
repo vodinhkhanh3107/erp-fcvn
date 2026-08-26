@@ -49,7 +49,7 @@ let PurchaseRequestController = class PurchaseRequestController {
         return this.purchaseRequestService.getHistory(id);
     }
     faindAll(query) {
-        return this.purchaseRequestService.faindAll(query);
+        return this.purchaseRequestService.findAll(query);
     }
     findOne(id) {
         return this.purchaseRequestService.findOne(id);

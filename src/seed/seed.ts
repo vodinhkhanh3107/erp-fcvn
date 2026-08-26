@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import * as dotenv from 'dotenv';
 import { DataSource } from 'typeorm';
 import { Role } from '../common/constants/role.enum';
-import { User, UserStatus } from '../modules/user/entities/user.entity';
+import { ContractType, User, UserStatus } from '../modules/user/entities/user.entity';
 
 dotenv.config();
 
@@ -33,7 +33,7 @@ async function seed() {
       role: Role.ADMIN,
       status: UserStatus.ACTIVE,
       avatar: "",
-      departmentId: 1
+      contract_type: ContractType.TRIAL
     });
     await userRepo.save(admin);
     console.log('Đã tạo tài khoản Admin: admin@fcvn.local / Password@123');

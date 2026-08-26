@@ -1,9 +1,8 @@
 import { ApiPropertyOptional } from "@nestjs/swagger";
-import { IsInt, IsOptional, IsString, MaxLength, ValidateNested } from "class-validator";
+import { IsInt, IsNotEmpty, IsOptional, IsString, Length, MaxLength, MinLength, ValidateNested } from "class-validator";
 import { CreatePrItemDto } from "./create-purchase-item.dto";
-import { Expose, Type } from "class-transformer";
+import { Type } from "class-transformer";
 import { CreatePrQuotationDto } from "./create-purchase-quotation.dto";
-import { PrimaryGeneratedColumn } from "typeorm";
 
 export class CreatePurchaseRequestDto {
 
@@ -24,13 +23,13 @@ export class CreatePurchaseRequestDto {
   purposeOfUse?: string;
 
   @ApiPropertyOptional({ type: [CreatePrItemDto] })
-  @IsOptional()
+  @IsNotEmpty({ message: 'must have least 1 item ' })
   @ValidateNested({ each: true })
   @Type(() => CreatePrItemDto)
   items?: CreatePrItemDto[];
 
   @ApiPropertyOptional({ type: [CreatePrQuotationDto] })
-  @IsOptional()
+  @IsNotEmpty({ message: 'must have least 1 quotation ' })
   @ValidateNested({ each: true })
   @Type(() => CreatePrQuotationDto)
   quotations?: CreatePrQuotationDto[];

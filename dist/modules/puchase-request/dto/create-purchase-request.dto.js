@@ -39,14 +39,14 @@ __decorate([
 ], CreatePurchaseRequestDto.prototype, "purposeOfUse", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)({ type: [create_purchase_item_dto_1.CreatePrItemDto] }),
-    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsNotEmpty)({ message: 'must have least 1 item ' }),
     (0, class_validator_1.ValidateNested)({ each: true }),
     (0, class_transformer_1.Type)(() => create_purchase_item_dto_1.CreatePrItemDto),
     __metadata("design:type", Array)
 ], CreatePurchaseRequestDto.prototype, "items", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)({ type: [create_purchase_quotation_dto_1.CreatePrQuotationDto] }),
-    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsNotEmpty)({ message: 'must have least 1 quotation ' }),
     (0, class_validator_1.ValidateNested)({ each: true }),
     (0, class_transformer_1.Type)(() => create_purchase_quotation_dto_1.CreatePrQuotationDto),
     __metadata("design:type", Array)

@@ -35,8 +35,8 @@ export class Department {
   @Column({ name: 'updated_by', nullable: true })
   updatedBy?: number;
 
-  @OneToMany(() => User, (user) => user.department)
-  users?: User[];
+  // @OneToMany(() => User, (user) => user.department)
+  // users?: User[];
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

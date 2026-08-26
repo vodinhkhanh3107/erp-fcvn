@@ -7,7 +7,6 @@ export class CreateKpiDto {
   userId: number;
 
   @ApiProperty({ example: '2026-08-23', description: 'Kỳ báo cáo: Month/Quarter/Year' })
-  @IsNotEmpty()
   @IsDateString()
   period: string;
 

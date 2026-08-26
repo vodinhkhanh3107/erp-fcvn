@@ -16,7 +16,6 @@ import { Role } from "src/common/constants/role.enum";
 import { RejectPurchaseRequestDto } from "./dto/reject-purchase-request.dto";
 import { IssuePoDto } from "./dto/issue-purchase-order.dto";
 import { ListPurchaseRequestDto } from "./dto/list-purchase-request.dto";
-import { CurrentUser } from "src/common/decorators/current-user.decorator";
 
 const MYSQL_DUPLICATE_ENTRY_ERROR_CODE = 'ER_DUP_ENTRY';
 
@@ -283,7 +282,7 @@ export class PurchaseRequestService {
   }
 
   // ===================== 7. TÌM KIẾM (filter + paging) =====================
-  async faindAll(query: ListPurchaseRequestDto) {
+  async findAll(query: ListPurchaseRequestDto) {
     const { page, limit, status, keyword } = query;
 
     const where: Record<string, any> = {};

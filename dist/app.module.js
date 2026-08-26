@@ -24,6 +24,7 @@ const task_module_1 = require("./modules/task/task.module");
 const kpi_module_1 = require("./modules/kpi/kpi.module");
 const purchase_order_module_1 = require("./modules/purchase-order/purchase-order.module");
 const purchase_request_module_1 = require("./modules/puchase-request/purchase-request.module");
+const audit_log_module_1 = require("./modules/audit-log/audit-log.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -46,6 +47,7 @@ exports.AppModule = AppModule = __decorate([
             user_module_1.UserModule,
             auth_module_1.AuthModule,
             redis_module_1.RedisModule,
+            audit_log_module_1.AuditLogModule,
             supplier_module_1.SupplierModule,
             supplier_group_module_1.SupplierGroupModule,
             attendence_module_1.AttendanceModule,
