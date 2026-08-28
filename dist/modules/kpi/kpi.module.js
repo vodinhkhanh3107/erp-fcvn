@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.KpiModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const kpi_entity_1 = require("./entities/kpi.entity");
+const kpi_entity_1 = require("../../models/kpi.entity");
 const kpi_controller_1 = require("./kpi.controller");
 const kpi_service_1 = require("./kpi.service");
 let KpiModule = class KpiModule {

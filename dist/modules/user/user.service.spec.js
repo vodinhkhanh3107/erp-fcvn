@@ -3,8 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const testing_1 = require("@nestjs/testing");
-const role_enum_1 = require("../../common/constants/role.enum");
-const user_entity_1 = require("./entities/user.entity");
+const user_entity_1 = require("../../models/user.entity");
 const user_service_1 = require("./user.service");
 jest.mock('bcrypt');
 describe('UserService', () => {
@@ -16,7 +15,7 @@ describe('UserService', () => {
         fullName: 'Nguyễn Văn A',
         email: 'a@fcvn.local',
         password: '$2b$10$hashedpassword',
-        role: role_enum_1.Role.ADMIN,
+        roleId: 1,
         status: user_entity_1.UserStatus.ACTIVE,
         departmentId: 1
     };
@@ -43,7 +42,7 @@ describe('UserService', () => {
     describe('createUser()', () => {
         it('email đã tồn tại → ném ConflictException, KHÔNG được gọi save()', async () => {
             mockRepository.findOne.mockResolvedValue(fakeUser);
-            await expect(service.createUser({ fullName: 'B', email: fakeUser.email, password: '123456', departmentId: fakeUser.departmentId })).rejects.toThrow(common_1.ConflictException);
+            await expect(service.createUser({ fullName: 'B', email: fakeUser.email, password: '123456', departmentId: fakeUser.departmentId, roleId: fakeUser.roleId })).rejects.toThrow(common_1.ConflictException);
             expect(mockRepository.save).not.toHaveBeenCalled();
         });
         it('email chưa tồn tại → tạo thành công, KHÔNG trả password ra ngoài', async () => {

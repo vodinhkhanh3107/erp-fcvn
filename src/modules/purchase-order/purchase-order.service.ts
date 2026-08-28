@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ListPurchaseOrderDto } from './dto/list-purchase-order.dto';
-import { PurchaseOrder } from './entities/purchase-order.entity';
+import { PurchaseOrder } from '../../models/purchase-order.entity';
 
 @Injectable()
 export class PurchaseOrderService {

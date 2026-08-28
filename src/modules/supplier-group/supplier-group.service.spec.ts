@@ -1,8 +1,8 @@
 import { BadRequestException, ConflictException } from '@nestjs/common';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Test, TestingModule } from '@nestjs/testing';
-import { Supplier } from '../supplier/entities/supplier.entity';
-import { SupplierGroup, SupplierGroupStatus } from './entities/supplier-group.entity';
+import { Supplier } from '../../models/supplier.entity';
+import { SupplierGroup, SupplierGroupStatus } from '../../models/supplier-group.entity';
 import { SupplierGroupService } from './supplier-group.service';
 
 describe('SupplierGroupService', () => {

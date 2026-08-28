@@ -6,6 +6,7 @@ import { RefreshTokenDto } from './dto/refresh-token.dto';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { PermissionGuard } from 'src/common/guards/permission.guard';
 
 @ApiTags('Auth')
 @ApiBearerAuth('access-token')

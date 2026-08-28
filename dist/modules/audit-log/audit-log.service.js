@@ -16,7 +16,7 @@ exports.AuditLogService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
-const audit_log_entity_1 = require("./entities/audit-log.entity");
+const audit_log_entity_1 = require("../../models/audit-log.entity");
 const app_logger_service_1 = require("../../common/logger/app-logger.service");
 let AuditLogService = class AuditLogService {
     constructor(repository) {

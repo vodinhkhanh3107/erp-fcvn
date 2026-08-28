@@ -40,7 +40,7 @@ let SupplierController = class SupplierController {
 exports.SupplierController = SupplierController;
 __decorate([
     (0, common_1.Post)(),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN, role_enum_1.Role.ACCOUNTANT, role_enum_1.Role.PURCHASING),
+    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.ACCOUNTANT, role_enum_1.ROLES.PURCHASING),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, current_user_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),
@@ -49,7 +49,7 @@ __decorate([
 ], SupplierController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN, role_enum_1.Role.ACCOUNTANT, role_enum_1.Role.PURCHASING, role_enum_1.Role.MANAGER),
+    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.ACCOUNTANT, role_enum_1.ROLES.PURCHASING, role_enum_1.ROLES.MANAGER),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [pagination_dto_1.PaginationDto]),
@@ -57,7 +57,7 @@ __decorate([
 ], SupplierController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN, role_enum_1.Role.ACCOUNTANT, role_enum_1.Role.PURCHASING, role_enum_1.Role.MANAGER),
+    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.ACCOUNTANT, role_enum_1.ROLES.PURCHASING, role_enum_1.ROLES.MANAGER),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),

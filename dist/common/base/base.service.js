@@ -24,7 +24,6 @@ class BaseService {
     }
     async findOne(id) {
         const entity = await this.repository.findOne({ where: { id } });
-        console.log(entity);
         if (!entity) {
             throw new common_1.NotFoundException('item-not-found');
         }

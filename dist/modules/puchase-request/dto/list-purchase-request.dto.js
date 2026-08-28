@@ -13,7 +13,7 @@ exports.ListPurchaseRequestDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
-const purchase_request_entity_1 = require("../entities/purchase-request.entity");
+const purchase_request_entity_1 = require("../../../models/purchase-request.entity");
 class ListPurchaseRequestDto {
     constructor() {
         this.page = 1;

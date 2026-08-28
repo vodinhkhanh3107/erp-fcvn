@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards } from "@nestjs/common";
 import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
-import { Role } from "src/common/constants/role.enum";
+import { ROLES } from "src/common/constants/role.enum";
 import { JwtAuthGuard } from "src/common/guards/jwt-auth.guard";
 import { RolesGuard } from "src/common/guards/roles.guard";
 import { PurchaseRequestService } from "./purchase-request.service";
@@ -12,7 +12,7 @@ import { RejectPurchaseRequestDto } from "./dto/reject-purchase-request.dto";
 import { IssuePoDto } from "./dto/issue-purchase-order.dto";
 import { ListPurchaseRequestDto } from "./dto/list-purchase-request.dto";
 
-type JwtUser = { userId: number; role: Role };
+type JwtUser = { userId: number; role: ROLES };
 
 @ApiTags('Purchase Request')
 @ApiBearerAuth('access-token')
@@ -41,14 +41,14 @@ export class PurchaseRequestController {
 
   // 4. Phê duyệt — Service tự chặn "đúng Manager"; Controller chỉ chặn thô role Admin/Manager
   @Put(':id/approve')
-  @Roles(Role.ADMIN, Role.MANAGER)
+  @Roles(ROLES.ADMIN, ROLES.MANAGER)
   approve(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: JwtUser) {
     return this.purchaseRequestService.approve(id, user.userId, user.role);
   }
 
   // 5. Từ chối — bắt buộc lý do (chặn ở DTO)
   @Put(':id/reject')
-  @Roles(Role.ADMIN, Role.MANAGER)
+  @Roles(ROLES.ADMIN, ROLES.MANAGER)
   reject(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: RejectPurchaseRequestDto,
@@ -65,7 +65,7 @@ export class PurchaseRequestController {
 
   // 7. Tìm kiếm + phân trang (toàn bộ PR — Manager/Admin)
   // @Get()
-  // @Roles(Role.ADMIN, Role.MANAGER)
+  // @Roles(ROLES.ADMIN, ROLES.MANAGER)
   // findAll(@Query() query: ListPurchaseRequestDto) {
   //   return this.purchaseRequestService.findAll(query);
   // }
@@ -83,7 +83,7 @@ export class PurchaseRequestController {
 
   // Phát hành PO — TÁCH RIÊNG khỏi approve(), chỉ dùng được khi PR đã APPROVED
   @Post(':id/issue-po')
-  @Roles(Role.ADMIN, Role.MANAGER)
+  @Roles(ROLES.ADMIN, ROLES.MANAGER)
   issuePO(@Param('id', ParseIntPipe) id: number, @Body() dto: IssuePoDto, @CurrentUser() user: JwtUser) {
     return this.purchaseRequestService.issuePO(id, dto, user.userId);
   }

@@ -17,7 +17,7 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const app_logger_service_1 = require("../../common/logger/app-logger.service");
-const attendence_entity_1 = require("./entities/attendence.entity");
+const attendence_entity_1 = require("../../models/attendence.entity");
 let AttendanceService = class AttendanceService {
     constructor(repository) {
         this.repository = repository;

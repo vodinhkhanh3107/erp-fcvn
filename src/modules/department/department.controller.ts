@@ -3,7 +3,7 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { Roles } from '../../common/decorators/roles.decorator';
 import { PaginationDto } from '../../common/dto/pagination.dto';
-import { Role } from '../../common/constants/role.enum';
+import { ROLES } from '../../common/constants/role.enum';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { CreateDepartmentDto } from './dto/create-department.dto';
@@ -19,7 +19,7 @@ export class DepartmentController {
   constructor(private readonly departmentService: DepartmentService) {}
 
   @Post()
-  @Roles(Role.ADMIN, Role.HR)
+  @Roles(ROLES.ADMIN, ROLES.HR)
   create(@Body() dto: CreateDepartmentDto, @CurrentUser() user: { userId: number }) {
     return this.departmentService.createDepartment(dto, user.userId);
   }
@@ -35,7 +35,7 @@ export class DepartmentController {
   }
 
   @Put(':id')
-  @Roles(Role.ADMIN, Role.HR)
+  @Roles(ROLES.ADMIN, ROLES.HR)
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateDepartmentDto,
@@ -45,7 +45,7 @@ export class DepartmentController {
   }
 
   @Put(':id/status')
-  @Roles(Role.ADMIN, Role.HR)
+  @Roles(ROLES.ADMIN, ROLES.HR)
   updateStatus(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateDepartmentStatusDto,

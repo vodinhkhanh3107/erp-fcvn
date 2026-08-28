@@ -3,7 +3,7 @@
  * để mọi module (Employee, Task, Department, KPI... sau này) đều import từ
  * đúng 1 nguồn duy nhất, tránh mỗi module tự định nghĩa 1 kiểu Role khác nhau.
  */
-export enum Role {
+export enum ROLES {
   ADMIN = 'admin',
   HR = 'hr',
   MANAGER = 'manager',
@@ -12,5 +12,5 @@ export enum Role {
   BOD = "bod",
   PURCHASING="purchasing",
   WAREHOUSE='warehouse',
-  EVENT_MANAGER='Event Manager'
+  EVENT_MANAGER='event_manager'
 }

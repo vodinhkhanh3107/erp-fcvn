@@ -9,8 +9,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SupplierGroupModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const supplier_entity_1 = require("../supplier/entities/supplier.entity");
-const supplier_group_entity_1 = require("./entities/supplier-group.entity");
+const supplier_entity_1 = require("../../models/supplier.entity");
+const supplier_group_entity_1 = require("../../models/supplier-group.entity");
 const supplier_group_controller_1 = require("./supplier-group.controller");
 const supplier_group_service_1 = require("./supplier-group.service");
 let SupplierGroupModule = class SupplierGroupModule {

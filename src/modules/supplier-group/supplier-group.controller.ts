@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { Roles } from '../../common/decorators/roles.decorator';
 import { PaginationDto } from '../../common/dto/pagination.dto';
-import { Role } from '../../common/constants/role.enum';
+import { ROLES } from '../../common/constants/role.enum';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { AssignSuppliersDto } from './dto/assign-suppliers.dto';
@@ -20,7 +20,7 @@ export class SupplierGroupController {
   constructor(private readonly supplierGroupService: SupplierGroupService) {}
 
   @Post()
-  @Roles(Role.ADMIN, Role.ACCOUNTANT,Role.PURCHASING)
+  @Roles(ROLES.ADMIN, ROLES.ACCOUNTANT,ROLES.PURCHASING)
   create(@Body() dto: CreateSupplierGroupDto, @CurrentUser() user: { userId: number }) {
     return this.supplierGroupService.createGroup(dto, user.userId);
   }
@@ -36,7 +36,7 @@ export class SupplierGroupController {
   }
 
   @Put(':id')
-  @Roles(Role.ADMIN, Role.MANAGER)
+  @Roles(ROLES.ADMIN, ROLES.MANAGER)
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateSupplierGroupDto,
@@ -46,7 +46,7 @@ export class SupplierGroupController {
   }
 
   @Put(':id/status')
-  @Roles(Role.ADMIN, Role.MANAGER)
+  @Roles(ROLES.ADMIN, ROLES.MANAGER)
   updateStatus(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateSupplierGroupStatusDto,
@@ -57,7 +57,7 @@ export class SupplierGroupController {
 
 //  gán nhà cung cấp vào nhóm nhà cung cấp
   @Post(':id/assign-suppliers')
-  @Roles(Role.ADMIN, Role.MANAGER)
+  @Roles(ROLES.ADMIN, ROLES.MANAGER)
   assignSuppliers(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: AssignSuppliersDto,

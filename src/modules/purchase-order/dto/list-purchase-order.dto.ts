@@ -1,7 +1,7 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsEnum, IsInt, IsOptional, Min } from 'class-validator';
-import { PurchaseOrderStatus } from '../entities/purchase-order.entity';
+import { PurchaseOrderStatus } from '../../../models/purchase-order.entity';
 
 export class ListPurchaseOrderDto {
   @ApiPropertyOptional({ default: 1 })

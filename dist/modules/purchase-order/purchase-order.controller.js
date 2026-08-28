@@ -52,7 +52,7 @@ exports.PurchaseOrderController = PurchaseOrderController = __decorate([
     (0, swagger_1.ApiBearerAuth)('access-token'),
     (0, common_1.Controller)('purchase-orders'),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN, role_enum_1.Role.MANAGER),
+    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.MANAGER),
     __metadata("design:paramtypes", [purchase_order_service_1.PurchaseOrderService])
 ], PurchaseOrderController);
 //# sourceMappingURL=purchase-order.controller.js.map

@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TaskModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const task_entity_1 = require("./entities/task.entity");
+const task_entity_1 = require("../../models/task.entity");
 const task_controller_1 = require("./task.controller");
 const task_service_1 = require("./task.service");
 let TaskModule = class TaskModule {

@@ -8,12 +8,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuditInterceptor = void 0;
 const common_1 = require("@nestjs/common");
 const operators_1 = require("rxjs/operators");
 const audit_log_service_1 = require("../audit-log.service");
-const audit_log_entity_1 = require("../entities/audit-log.entity");
+const audit_log_entity_1 = require("../../../models/audit-log.entity");
+const typeorm_1 = require("@nestjs/typeorm");
+const role_entity_1 = require("../../../models/role.entity");
+const typeorm_2 = require("typeorm");
 const SENSITIVE_FIELDS = ['password', 'currentPassword', 'newPassword', 'refreshToken', 'accessToken'];
 function sanitizeBody(body) {
     if (!body || typeof body !== 'object')
@@ -48,21 +54,23 @@ function extractEntityId(path) {
     return Number.isInteger(id) ? id : undefined;
 }
 let AuditInterceptor = class AuditInterceptor {
-    constructor(auditLogService) {
+    constructor(auditLogService, roleRepository) {
         this.auditLogService = auditLogService;
+        this.roleRepository = roleRepository;
     }
-    intercept(context, next) {
+    async intercept(context, next) {
         const request = context.switchToHttp().getRequest();
         const { method, originalUrl, body, user } = request;
         const action = methodToAction(method);
         if (!action || !user) {
             return next.handle();
         }
+        const role = await this.roleRepository.findOne({ where: { id: user.roleId } });
         return next.handle().pipe((0, operators_1.tap)({
             next: () => {
                 void this.auditLogService.record({
                     actorId: user.userId,
-                    actorRole: user.role,
+                    actorRole: role.name,
                     action,
                     entityType: extractEntityType(originalUrl),
                     entityId: extractEntityId(originalUrl),
@@ -76,7 +84,7 @@ let AuditInterceptor = class AuditInterceptor {
             error: (err) => {
                 void this.auditLogService.record({
                     actorId: user.userId,
-                    actorRole: user.role,
+                    actorRole: role.name,
                     action,
                     entityType: extractEntityType(originalUrl),
                     entityId: extractEntityId(originalUrl),
@@ -94,6 +102,8 @@ let AuditInterceptor = class AuditInterceptor {
 exports.AuditInterceptor = AuditInterceptor;
 exports.AuditInterceptor = AuditInterceptor = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [audit_log_service_1.AuditLogService])
+    __param(1, (0, typeorm_1.InjectRepository)(role_entity_1.Role)),
+    __metadata("design:paramtypes", [audit_log_service_1.AuditLogService,
+        typeorm_2.Repository])
 ], AuditInterceptor);
 //# sourceMappingURL=audit.interceptor.js.map

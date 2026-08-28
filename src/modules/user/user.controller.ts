@@ -2,37 +2,41 @@ import { Body, Controller, ForbiddenException, Get, Param, ParseIntPipe, Post, P
 import { PaginationDto } from '../../common/dto/pagination.dto';
 import { Roles } from '../../common/decorators/roles.decorator';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
-import { RolesGuard } from '../../common/guards/roles.guard';
-import { Role } from '../../common/constants/role.enum';
+// import { RolesGuard } from '../../common/guards/roles.guard';
+import { ROLES } from '../../common/constants/role.enum';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserStatusDto } from './dto/update-user-status.dto';
 import { UserService } from './user.service';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { RequirePermission } from 'src/common/decorators/permission.decorator';
+import { PERMISSIONS } from 'src/common/constants/permission.constants';
 
 @ApiTags('User')
 @ApiBearerAuth('access-token')
 @Controller('users')
-@UseGuards(JwtAuthGuard, RolesGuard)
-export class UserController {
-  constructor(private readonly userService: UserService) {}
+@UseGuards(JwtAuthGuard)
+export class UserController {   
+  constructor(private readonly userService: UserService,
+  ) {}
 
   @Post()
-  @Roles(Role.ADMIN, Role.HR)
+  @RequirePermission(PERMISSIONS.USER_CREATE)
   create(@Body() dto: CreateUserDto) {
     return this.userService.createUser(dto);
   }
 
   @Get()
-  @Roles(Role.ADMIN,Role.MANAGER,Role.HR,Role.BOD)
+  @RequirePermission(PERMISSIONS.USER_READ)
+  @Roles(ROLES.ADMIN,ROLES.MANAGER,ROLES.HR,ROLES.BOD)
   findAll(@Query() query: PaginationDto) {
     return this.userService.list(query);
   }
 
   @Get(':id')
-  @Roles(Role.ADMIN,Role.MANAGER,Role.HR,Role.BOD)
-  findOne(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: { userId: number; role: Role }) {
-    const isPrivileged = (user.role === Role.ADMIN || user.role === Role.HR || user.role === Role.MANAGER || user.role === Role.ACCOUNTANT || user.role === Role.BOD);
+  @Roles(ROLES.ADMIN,ROLES.MANAGER,ROLES.HR,ROLES.BOD)
+  findOne(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: { userId: number; role: ROLES }) {
+    const isPrivileged = (user.role === ROLES.ADMIN || user.role === ROLES.HR || user.role === ROLES.MANAGER || user.role === ROLES.ACCOUNTANT || user.role === ROLES.BOD);
     const isOwnProfile = user.userId === id;
 
     if (isOwnProfile || (!isOwnProfile && isPrivileged)){
@@ -43,8 +47,8 @@ export class UserController {
  
   }
 
-  @Put(':id/status')
-  @Roles(Role.ADMIN, Role.HR)
+  @Put(':id/status')  
+  @RequirePermission(PERMISSIONS.USER_UPDATE)
   updateStatus(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateUserStatusDto) {
     return this.userService.updateStatus(id, dto);
   }

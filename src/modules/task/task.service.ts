@@ -5,7 +5,7 @@ import { AppLogger } from '../../common/logger/app-logger.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { ListTaskDto } from './dto/list-task.dto';
 import { UpdateTaskStatusDto } from './dto/update-task-status.dto';
-import { Task } from './entities/task.entity';
+import { Task } from '../../models/task.entity';
 
 @Injectable()
 export class TaskService {

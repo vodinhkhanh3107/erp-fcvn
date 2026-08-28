@@ -17,7 +17,7 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const base_service_1 = require("../../common/base/base.service");
-const supplier_entity_1 = require("./entities/supplier.entity");
+const supplier_entity_1 = require("../../models/supplier.entity");
 let SupplierService = class SupplierService extends base_service_1.BaseService {
     constructor(repo) {
         super(repo, ['name', 'taxCode']);
@@ -26,6 +26,9 @@ let SupplierService = class SupplierService extends base_service_1.BaseService {
         const existed = await this.repository.findOne({ where: { taxCode: dto.taxCode } });
         if (existed)
             throw new common_1.ConflictException('tax-code-already-exists');
+        const existedEmail = await this.repository.findOne({ where: { contactEmail: dto.contactEmail } });
+        if (existedEmail)
+            throw new common_1.ConflictException('email-name-already-exists');
         const saved = await this.create({ ...dto, createdBy: actorId, updatedBy: actorId });
         return { message: 'Tạo nhà cung cấp thành công', result: saved };
     }

@@ -54,7 +54,7 @@ const bcrypt = __importStar(require("bcrypt"));
 const typeorm_2 = require("typeorm");
 const redis_service_1 = require("../../common/redis/redis.service");
 const parse_duration_1 = require("../../common/utils/parse-duration");
-const user_entity_1 = require("../user/entities/user.entity");
+const user_entity_1 = require("../../models/user.entity");
 let AuthService = class AuthService {
     constructor(userRepo, jwtService, configService, redisService) {
         this.userRepo = userRepo;
@@ -67,7 +67,7 @@ let AuthService = class AuthService {
         await this.redisService.set(`access_token:${userId}`, accessToken, ttlSeconds);
     }
     async issueTokens(user) {
-        const payload = { userId: user.id, role: user.role, email: user.email };
+        const payload = { userId: user.id, roleId: user.roleId, email: user.email };
         const accessToken = this.jwtService.sign(payload);
         const refreshToken = this.jwtService.sign(payload, {
             secret: this.configService.get('JWT_REFRESH_SECRET_KEY'),
@@ -95,7 +95,7 @@ let AuthService = class AuthService {
         return {
             accessToken,
             refreshToken,
-            user: { id: user.id, fullName: user.fullName, email: user.email, role: user.role },
+            user: { id: user.id, fullName: user.fullName, email: user.email, roleId: user.roleId },
         };
     }
     async refreshToken({ refreshToken }) {
@@ -119,7 +119,7 @@ let AuthService = class AuthService {
         const isMatch = await bcrypt.compare(refreshToken, user.refreshTokenHash);
         if (!isMatch)
             throw new common_1.UnauthorizedException('refresh-token-revoked');
-        const newPayload = { userId: user.id, role: user.role, email: user.email };
+        const newPayload = { userId: user.id, roleId: user.roleId, email: user.email };
         const accessToken = this.jwtService.sign(newPayload);
         await this.whitelistAccessToken(user.id, accessToken);
         return { accessToken };

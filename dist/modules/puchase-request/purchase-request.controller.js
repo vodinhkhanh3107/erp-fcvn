@@ -86,7 +86,7 @@ __decorate([
 ], PurchaseRequestController.prototype, "submit", null);
 __decorate([
     (0, common_1.Put)(':id/approve'),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN, role_enum_1.Role.MANAGER),
+    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.MANAGER),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, current_user_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),
@@ -95,7 +95,7 @@ __decorate([
 ], PurchaseRequestController.prototype, "approve", null);
 __decorate([
     (0, common_1.Put)(':id/reject'),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN, role_enum_1.Role.MANAGER),
+    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.MANAGER),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __param(2, (0, current_user_decorator_1.CurrentUser)()),
@@ -126,7 +126,7 @@ __decorate([
 ], PurchaseRequestController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Post)(':id/issue-po'),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN, role_enum_1.Role.MANAGER),
+    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.MANAGER),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __param(2, (0, current_user_decorator_1.CurrentUser)()),

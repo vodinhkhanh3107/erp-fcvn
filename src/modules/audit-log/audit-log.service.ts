@@ -2,7 +2,7 @@ import { Injectable, LoggerService } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ListAuditLogDto } from './dto/list-audit-log.dto';
-import { AuditAction, AuditLog } from './entities/audit-log.entity';
+import { AuditAction, AuditLog } from '../../models/audit-log.entity';
 import { AppLogger } from 'src/common/logger/app-logger.service';
 
 export interface RecordAuditLogInput {

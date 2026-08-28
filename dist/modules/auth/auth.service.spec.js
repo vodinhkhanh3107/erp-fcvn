@@ -41,7 +41,7 @@ const testing_1 = require("@nestjs/testing");
 const bcrypt = __importStar(require("bcrypt"));
 const redis_service_1 = require("../../common/redis/redis.service");
 const role_enum_1 = require("../../common/constants/role.enum");
-const user_entity_1 = require("../user/entities/user.entity");
+const user_entity_1 = require("../../models/user.entity");
 const auth_service_1 = require("./auth.service");
 jest.mock('bcrypt');
 describe('AuthService', () => {
@@ -56,7 +56,7 @@ describe('AuthService', () => {
         fullName: 'Test User',
         email: 'test@fcvn.local',
         password: '$2b$10$hashedpasswordexample',
-        role: role_enum_1.Role.ADMIN,
+        role: role_enum_1.ROLES.ADMIN,
         status: user_entity_1.UserStatus.ACTIVE,
     };
     beforeEach(async () => {

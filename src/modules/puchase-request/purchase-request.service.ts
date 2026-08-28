@@ -1,18 +1,18 @@
 import { BadRequestException, ConflictException, ForbiddenException, Injectable, InternalServerErrorException, NotFoundException } from "@nestjs/common";
 import { InjectDataSource, InjectRepository } from "@nestjs/typeorm";
-import { AppLogger } from "src/common/logger/app-logger.service";
-import { PurchaseRequest, PurchaseRequestStatus } from "./entities/purchase-request.entity";
+import { AppLogger } from "../../common/logger/app-logger.service";
+import { PurchaseRequest, PurchaseRequestStatus } from "../../models/purchase-request.entity";
 import { EntityManager, ILike, Repository } from "typeorm";
-import { PurchaseRequestHistory } from "./entities/purchase-request-history.entity";
-import { Department } from "../department/entities/department.entity";
-import { PurchaseOrder, PurchaseOrderStatus } from "../purchase-order/entities/purchase-order.entity";
-import { PurchaseOrderItem } from "../purchase-order/entities/purchase-order-item.entity";
+import { PurchaseRequestHistory } from "../../models/purchase-request-history.entity";
+import { Department } from "../../models/department.entity";
+import { PurchaseOrder, PurchaseOrderStatus } from "../../models/purchase-order.entity";
+import { PurchaseOrderItem } from "../../models/purchase-order-item.entity";
 import { DataSource } from "typeorm";
 import { CreatePurchaseRequestDto } from "./dto/create-purchase-request.dto";
 import { UpdatePurchaseRequestDto } from "./dto/update-purchase-request.dto";
-import { PurchaseRequestItem } from "./entities/purchase-request-item.entity";
-import { PurchaseRequestQuotation } from "./entities/purchase-request-quotation.entity";
-import { Role } from "src/common/constants/role.enum";
+import { PurchaseRequestItem } from "../../models/purchase-request-item.entity";
+import { PurchaseRequestQuotation } from "../../models/purchase-request-quotation.entity";
+import { ROLES } from "../../common/constants/role.enum";
 import { RejectPurchaseRequestDto } from "./dto/reject-purchase-request.dto";
 import { IssuePoDto } from "./dto/issue-purchase-order.dto";
 import { ListPurchaseRequestDto } from "./dto/list-purchase-request.dto";
@@ -219,11 +219,11 @@ export class PurchaseRequestService {
   }
 
   // ===== Dùng chung cho Duyệt & Từ chối: kiểm tra "ĐÚNG Manager" của đúng phòng ban PR đó =====
-  private async assertIsAuthorizedApprover(pr: PurchaseRequest, actorId: number, actorRole: Role) {
-    if (actorRole === Role.ADMIN) return;
+  private async assertIsAuthorizedApprover(pr: PurchaseRequest, actorId: number, actorRole: ROLES) {
+    if (actorRole === ROLES.ADMIN) return;
 
     if (!pr.departmentId) {
-      if (actorRole !== Role.MANAGER) throw new ForbiddenException('only-manager-or-admin-can-approve-or-reject');
+      if (actorRole !== ROLES.MANAGER) throw new ForbiddenException('only-manager-or-admin-can-approve-or-reject');
       return;
     }
 
@@ -231,13 +231,13 @@ export class PurchaseRequestService {
     if (department?.managerId && department.managerId !== actorId) {
       throw new ForbiddenException('only-the-department-manager-or-admin-can-approve-or-reject-this-request');
     }
-    if (!department?.managerId && actorRole !== Role.MANAGER) {
+    if (!department?.managerId && actorRole !== ROLES.MANAGER) {
       throw new ForbiddenException('only-manager-or-admin-can-approve-or-reject');
     }
   }
 
   // ===================== 4. PHÊ DUYỆT — PENDING -> APPROVED =====================
-  async approve(id: number, actorId: number, actorRole: Role) {
+  async approve(id: number, actorId: number, actorRole: ROLES) {
     const pr = await this.findOne(id);
 
     if (pr.status !== PurchaseRequestStatus.PENDING) {
@@ -269,7 +269,7 @@ export class PurchaseRequestService {
   }
 
   // ===================== 5. TỪ CHỐI — PENDING -> REJECTED (bắt buộc lý do) =====================
-  async reject(id: number, dto: RejectPurchaseRequestDto, actorId: number, actorRole: Role) {
+  async reject(id: number, dto: RejectPurchaseRequestDto, actorId: number, actorRole: ROLES) {
     const pr = await this.findOne(id);
 
     if (pr.status !== PurchaseRequestStatus.PENDING) {

@@ -17,7 +17,7 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const base_service_1 = require("../../common/base/base.service");
-const department_entity_1 = require("./entities/department.entity");
+const department_entity_1 = require("../../models/department.entity");
 let DepartmentService = class DepartmentService extends base_service_1.BaseService {
     constructor(repo) {
         super(repo, ['name']);

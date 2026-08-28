@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateSupplierGroupStatusDto = void 0;
 const class_validator_1 = require("class-validator");
-const supplier_group_entity_1 = require("../entities/supplier-group.entity");
+const supplier_group_entity_1 = require("../../../models/supplier-group.entity");
 class UpdateSupplierGroupStatusDto {
 }
 exports.UpdateSupplierGroupStatusDto = UpdateSupplierGroupStatusDto;

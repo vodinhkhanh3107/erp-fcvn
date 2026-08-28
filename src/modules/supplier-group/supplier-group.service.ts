@@ -2,12 +2,12 @@ import { BadRequestException, ConflictException, Injectable } from '@nestjs/comm
 import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository } from 'typeorm';
 import { BaseService } from '../../common/base/base.service';
-import { Supplier } from '../supplier/entities/supplier.entity';
+import { Supplier } from '../../models/supplier.entity';
 import { AssignSuppliersDto } from './dto/assign-suppliers.dto';
 import { CreateSupplierGroupDto } from './dto/create-supplier-group.dto';
 import { UpdateSupplierGroupDto } from './dto/update-supplier-group.dto';
 import { UpdateSupplierGroupStatusDto } from './dto/update-supplier-group-status.dto';
-import { SupplierGroup, SupplierGroupStatus } from './entities/supplier-group.entity';
+import { SupplierGroup, SupplierGroupStatus } from '../../models/supplier-group.entity';
 
 @Injectable()
 export class SupplierGroupService extends BaseService<SupplierGroup> {

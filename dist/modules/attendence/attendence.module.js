@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AttendanceModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const attendence_entity_1 = require("./entities/attendence.entity");
+const attendence_entity_1 = require("../../models/attendence.entity");
 const attendence_controller_1 = require("./attendence.controller");
 const attendence_service_1 = require("./attendence.service");
 let AttendanceModule = class AttendanceModule {

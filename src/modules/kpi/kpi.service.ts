@@ -5,7 +5,7 @@ import { AppLogger } from '../../common/logger/app-logger.service';
 import { CreateKpiDto } from './dto/create-kpi.dto';
 import { ListKpiDto } from './dto/list-kpi.dto';
 import { UpdateKpiActualDto } from './dto/update-kpi-actual-dto';
-import { Kpi, KpiStatus } from './entities/kpi.entity';
+import { Kpi, KpiStatus } from '../../models/kpi.entity';
 
 @Injectable()
 export class KpiService {
@@ -18,7 +18,6 @@ export class KpiService {
     this.logger.setContext('KpiService');
   }
 
-  // ⚠️ TỰ THIẾT KẾ (SRS không định nghĩa công thức) — quy tắc: actual >= target => On-track
   private calculateStatus(targetValue: number, actualValue: number): KpiStatus {
     return actualValue >= targetValue ? KpiStatus.ON_TRACK : KpiStatus.OFF_TRACK;
   }

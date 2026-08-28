@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, ParseIntPipe, Post, Query, UseGuards } fr
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { Roles } from '../../common/decorators/roles.decorator';
-import { Role } from '../../common/constants/role.enum';
+import { ROLES } from '../../common/constants/role.enum';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { AttendanceService } from './attendence.service';
@@ -17,7 +17,7 @@ export class AttendanceController {
   constructor(private readonly attendanceService: AttendanceService) {}
 
   @Post()
-  @Roles(Role.ADMIN, Role.HR)
+  @Roles(ROLES.ADMIN, ROLES.HR)
   create(@Body() dto: CreateAttendanceDto, @CurrentUser() user: { userId: number }) {
     return this.attendanceService.create(dto, user.userId);
   }

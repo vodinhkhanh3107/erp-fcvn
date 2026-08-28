@@ -52,7 +52,7 @@ let SupplierGroupController = class SupplierGroupController {
 exports.SupplierGroupController = SupplierGroupController;
 __decorate([
     (0, common_1.Post)(),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN, role_enum_1.Role.ACCOUNTANT, role_enum_1.Role.PURCHASING),
+    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.ACCOUNTANT, role_enum_1.ROLES.PURCHASING),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, current_user_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),
@@ -75,7 +75,7 @@ __decorate([
 ], SupplierGroupController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Put)(':id'),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN, role_enum_1.Role.MANAGER),
+    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.MANAGER),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __param(2, (0, current_user_decorator_1.CurrentUser)()),
@@ -85,7 +85,7 @@ __decorate([
 ], SupplierGroupController.prototype, "update", null);
 __decorate([
     (0, common_1.Put)(':id/status'),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN, role_enum_1.Role.MANAGER),
+    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.MANAGER),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __param(2, (0, current_user_decorator_1.CurrentUser)()),
@@ -95,7 +95,7 @@ __decorate([
 ], SupplierGroupController.prototype, "updateStatus", null);
 __decorate([
     (0, common_1.Post)(':id/assign-suppliers'),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN, role_enum_1.Role.MANAGER),
+    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.MANAGER),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __param(2, (0, current_user_decorator_1.CurrentUser)()),

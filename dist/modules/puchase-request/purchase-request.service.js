@@ -49,15 +49,15 @@ exports.PurchaseRequestService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const app_logger_service_1 = require("../../common/logger/app-logger.service");
-const purchase_request_entity_1 = require("./entities/purchase-request.entity");
+const purchase_request_entity_1 = require("../../models/purchase-request.entity");
 const typeorm_2 = require("typeorm");
-const purchase_request_history_entity_1 = require("./entities/purchase-request-history.entity");
-const department_entity_1 = require("../department/entities/department.entity");
-const purchase_order_entity_1 = require("../purchase-order/entities/purchase-order.entity");
-const purchase_order_item_entity_1 = require("../purchase-order/entities/purchase-order-item.entity");
+const purchase_request_history_entity_1 = require("../../models/purchase-request-history.entity");
+const department_entity_1 = require("../../models/department.entity");
+const purchase_order_entity_1 = require("../../models/purchase-order.entity");
+const purchase_order_item_entity_1 = require("../../models/purchase-order-item.entity");
 const typeorm_3 = require("typeorm");
-const purchase_request_item_entity_1 = require("./entities/purchase-request-item.entity");
-const purchase_request_quotation_entity_1 = require("./entities/purchase-request-quotation.entity");
+const purchase_request_item_entity_1 = require("../../models/purchase-request-item.entity");
+const purchase_request_quotation_entity_1 = require("../../models/purchase-request-quotation.entity");
 const role_enum_1 = require("../../common/constants/role.enum");
 const crypto = __importStar(require("crypto"));
 const MYSQL_DUPLICATE_ENTRY_ERROR_CODE = 'ER_DUP_ENTRY';
@@ -212,10 +212,10 @@ let PurchaseRequestService = class PurchaseRequestService {
         return { message: 'Gửi duyệt yêu cầu mua hàng thành công', result: saved };
     }
     async assertIsAuthorizedApprover(pr, actorId, actorRole) {
-        if (actorRole === role_enum_1.Role.ADMIN)
+        if (actorRole === role_enum_1.ROLES.ADMIN)
             return;
         if (!pr.departmentId) {
-            if (actorRole !== role_enum_1.Role.MANAGER)
+            if (actorRole !== role_enum_1.ROLES.MANAGER)
                 throw new common_1.ForbiddenException('only-manager-or-admin-can-approve-or-reject');
             return;
         }
@@ -223,7 +223,7 @@ let PurchaseRequestService = class PurchaseRequestService {
         if (department?.managerId && department.managerId !== actorId) {
             throw new common_1.ForbiddenException('only-the-department-manager-or-admin-can-approve-or-reject-this-request');
         }
-        if (!department?.managerId && actorRole !== role_enum_1.Role.MANAGER) {
+        if (!department?.managerId && actorRole !== role_enum_1.ROLES.MANAGER) {
             throw new common_1.ForbiddenException('only-manager-or-admin-can-approve-or-reject');
         }
     }

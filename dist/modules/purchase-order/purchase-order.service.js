@@ -16,7 +16,7 @@ exports.PurchaseOrderService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
-const purchase_order_entity_1 = require("./entities/purchase-order.entity");
+const purchase_order_entity_1 = require("../../models/purchase-order.entity");
 let PurchaseOrderService = class PurchaseOrderService {
     constructor(repository) {
         this.repository = repository;

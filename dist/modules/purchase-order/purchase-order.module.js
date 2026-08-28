@@ -9,8 +9,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PurchaseOrderModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const purchase_order_entity_1 = require("./entities/purchase-order.entity");
-const purchase_order_item_entity_1 = require("./entities/purchase-order-item.entity");
+const purchase_order_entity_1 = require("../../models/purchase-order.entity");
+const purchase_order_item_entity_1 = require("../../models/purchase-order-item.entity");
 const purchase_order_controller_1 = require("./purchase-order.controller");
 const purchase_order_service_1 = require("./purchase-order.service");
 let PurchaseOrderModule = class PurchaseOrderModule {

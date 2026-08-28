@@ -2,8 +2,8 @@ import { BadRequestException, ConflictException, UnauthorizedException } from '@
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Test, TestingModule } from '@nestjs/testing';
 import * as bcrypt from 'bcrypt';
-import { Role } from '../../common/constants/role.enum';
-import { User, UserStatus } from './entities/user.entity';
+import { ROLES } from '../../common/constants/role.enum';
+import { User, UserStatus } from '../../models/user.entity';
 import { UserService } from './user.service';
 
 jest.mock('bcrypt');
@@ -18,7 +18,7 @@ describe('UserService', () => {
     fullName: 'Nguyễn Văn A',
     email: 'a@fcvn.local',
     password: '$2b$10$hashedpassword',
-    role: Role.ADMIN,
+    roleId: 1,
     status: UserStatus.ACTIVE,
     departmentId: 1
   };
@@ -53,7 +53,7 @@ describe('UserService', () => {
       mockRepository.findOne.mockResolvedValue(fakeUser); // giả lập: đã có người dùng email này
 
       await expect(
-        service.createUser({ fullName: 'B', email: fakeUser.email, password: '123456', departmentId: fakeUser.departmentId }),
+        service.createUser({ fullName: 'B', email: fakeUser.email, password: '123456', departmentId: fakeUser.departmentId, roleId: fakeUser.roleId }),
       ).rejects.toThrow(ConflictException);
 
       expect(mockRepository.save).not.toHaveBeenCalled();

@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { Roles } from '../../common/decorators/roles.decorator';
-import { Role } from '../../common/constants/role.enum';
+import { ROLES } from '../../common/constants/role.enum';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { CreateTaskDto } from './dto/create-task.dto';
@@ -18,7 +18,7 @@ export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
   @Post()
-  @Roles(Role.ADMIN, Role.MANAGER, Role.HR)
+  @Roles(ROLES.ADMIN, ROLES.MANAGER, ROLES.HR)
   create(@Body() dto: CreateTaskDto, @CurrentUser() user: { userId: number }) {
     return this.taskService.create(dto, user.userId);
   }

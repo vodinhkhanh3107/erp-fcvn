@@ -5,8 +5,8 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { Test, TestingModule } from '@nestjs/testing';
 import * as bcrypt from 'bcrypt';
 import { RedisService } from '../../common/redis/redis.service';
-import { Role } from '../../common/constants/role.enum';
-import { User, UserStatus } from '../user/entities/user.entity';
+import { ROLES } from '../../common/constants/role.enum';
+import { User, UserStatus } from '../../models/user.entity';
 import { AuthService } from './auth.service';
 
 jest.mock('bcrypt');
@@ -24,7 +24,7 @@ describe('AuthService', () => {
     fullName: 'Test User',
     email: 'test@fcvn.local',
     password: '$2b$10$hashedpasswordexample',
-    role: Role.ADMIN,
+    role: ROLES.ADMIN,
     status: UserStatus.ACTIVE,
   };
 

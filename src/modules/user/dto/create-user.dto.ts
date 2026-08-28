@@ -1,5 +1,5 @@
 import { IsEmail, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, Matches, MinLength } from 'class-validator';
-import { Role } from '../../../common/constants/role.enum';
+
 import { Transform } from 'class-transformer';
 
 export class CreateUserDto {
@@ -23,9 +23,8 @@ export class CreateUserDto {
   @MinLength(6)
   password: string;
 
-  @IsOptional()
-  @IsEnum(Role)
-  role?: Role;
+  @IsNumber()
+  roleId?: number;
 
   @IsOptional()
   @IsString()

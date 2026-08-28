@@ -1,7 +1,7 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsEnum, IsInt, IsOptional, IsString, Min } from 'class-validator';
-import { AuditAction } from '../entities/audit-log.entity';
+import { AuditAction } from '../../../models/audit-log.entity';
 
 export class ListAuditLogDto {
   @ApiPropertyOptional({ default: 1 })

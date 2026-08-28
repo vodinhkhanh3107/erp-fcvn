@@ -6,7 +6,7 @@ import { PaginationDto } from '../../common/dto/pagination.dto';
 import { CreateDepartmentDto } from './dto/create-department.dto';
 import { UpdateDepartmentDto } from './dto/update-department.dto';
 import { UpdateDepartmentStatusDto } from './dto/update-department-status.dto';
-import { Department } from './entities/department.entity';
+import { Department } from '../../models/department.entity';
 
 @Injectable()
 export class DepartmentService extends BaseService<Department> {

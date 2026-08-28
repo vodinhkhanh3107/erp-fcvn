@@ -1,7 +1,7 @@
 import { Controller, Get, Param, ParseIntPipe, Query, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Roles } from '../../common/decorators/roles.decorator';
-import { Role } from '../../common/constants/role.enum';
+import { ROLES } from '../../common/constants/role.enum';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { ListPurchaseOrderDto } from './dto/list-purchase-order.dto';
@@ -11,7 +11,7 @@ import { PurchaseOrderService } from './purchase-order.service';
 @ApiBearerAuth('access-token')
 @Controller('purchase-orders')
 @UseGuards(JwtAuthGuard, RolesGuard)
-@Roles(Role.ADMIN, Role.MANAGER)
+@Roles(ROLES.ADMIN, ROLES.MANAGER)
 export class PurchaseOrderController {
   constructor(private readonly purchaseOrderService: PurchaseOrderService) {}
 

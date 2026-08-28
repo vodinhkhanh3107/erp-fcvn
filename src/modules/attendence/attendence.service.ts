@@ -4,7 +4,7 @@ import { Between, Repository } from 'typeorm';
 import { AppLogger } from '../../common/logger/app-logger.service';
 import { CreateAttendanceDto } from './dto/create-attendence.dto';
 import { ListAttendanceDto } from './dto/list-attendence.dto';
-import { Attendance } from './entities/attendence.entity';
+import { Attendance } from '../../models/attendence.entity';
 
 @Injectable()
 export class AttendanceService {

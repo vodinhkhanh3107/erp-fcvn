@@ -2,7 +2,10 @@ import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nes
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { AuditLogService } from '../audit-log.service';
-import { AuditAction } from '../entities/audit-log.entity';
+import { AuditAction } from '../../../models/audit-log.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Role } from 'src/models/role.entity';
+import { Repository } from 'typeorm';
 
 const SENSITIVE_FIELDS = ['password', 'currentPassword', 'newPassword', 'refreshToken', 'accessToken'];
 
@@ -42,9 +45,13 @@ function extractEntityId(path: string): number | undefined {
 
 @Injectable()
 export class AuditInterceptor implements NestInterceptor {
-  constructor(private readonly auditLogService: AuditLogService) {}
+  constructor(private readonly auditLogService: AuditLogService,
+    @InjectRepository(Role)
+    private readonly roleRepository: Repository<Role>,
+  ) {}
 
-  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+  
+  async intercept(context: ExecutionContext, next: CallHandler): Promise<Observable<any>> {
     const request = context.switchToHttp().getRequest();
     const { method, originalUrl, body, user } = request;
 
@@ -54,12 +61,15 @@ export class AuditInterceptor implements NestInterceptor {
       return next.handle();
     }
 
+    const role = await this.roleRepository.findOne({ where: { id: user.roleId } });
+
+
     return next.handle().pipe(
       tap({
         next: () => {
           void this.auditLogService.record({
             actorId: user.userId,
-            actorRole: user.role,
+            actorRole: role.name,
             action,
             entityType: extractEntityType(originalUrl),
             entityId: extractEntityId(originalUrl),
@@ -73,7 +83,7 @@ export class AuditInterceptor implements NestInterceptor {
         error: (err) => {
           void this.auditLogService.record({
             actorId: user.userId,
-            actorRole: user.role,
+            actorRole: role.name,
             action,
             entityType: extractEntityType(originalUrl),
             entityId: extractEntityId(originalUrl),

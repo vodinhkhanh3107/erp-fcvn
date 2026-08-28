@@ -40,7 +40,7 @@ let AttendanceController = class AttendanceController {
 exports.AttendanceController = AttendanceController;
 __decorate([
     (0, common_1.Post)(),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN, role_enum_1.Role.HR),
+    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.HR),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, current_user_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),

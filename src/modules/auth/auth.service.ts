@@ -6,7 +6,7 @@ import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
 import { RedisService } from '../../common/redis/redis.service';
 import { parseDurationToSeconds } from '../../common/utils/parse-duration';
-import { User } from '../user/entities/user.entity';
+import { User } from '../../models/user.entity';
 import { LoginDto } from './dto/login.dto';
 import { RefreshTokenDto } from './dto/refresh-token.dto';
 
@@ -25,8 +25,8 @@ export class AuthService {
     await this.redisService.set(`access_token:${userId}`, accessToken, ttlSeconds);
   }
 
-  private async issueTokens(user: Pick<User, 'id' | 'role' | 'email'>) {
-    const payload = { userId: user.id, role: user.role, email: user.email };
+  private async issueTokens(user: Pick<User, 'id' | 'roleId' | 'email'>) {
+    const payload = { userId: user.id, roleId: user.roleId, email: user.email };
 
     const accessToken = this.jwtService.sign(payload);
     const refreshToken = this.jwtService.sign(payload, {
@@ -60,7 +60,7 @@ export class AuthService {
     return {
       accessToken,
       refreshToken,
-      user: { id: user.id, fullName: user.fullName, email: user.email, role: user.role },
+      user: { id: user.id, fullName: user.fullName, email: user.email, roleId: user.roleId },
     };
   }
 
@@ -87,7 +87,7 @@ export class AuthService {
     const isMatch = await bcrypt.compare(refreshToken, user.refreshTokenHash);
     if (!isMatch) throw new UnauthorizedException('refresh-token-revoked');
 
-    const newPayload = { userId: user.id, role: user.role, email: user.email };
+    const newPayload = { userId: user.id, roleId: user.roleId, email: user.email };
     const accessToken = this.jwtService.sign(newPayload);
 
     await this.whitelistAccessToken(user.id, accessToken); // <-- MỚI: đăng ký lại token mới vào Redis

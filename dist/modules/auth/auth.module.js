@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const user_entity_1 = require("../user/entities/user.entity");
+const user_entity_1 = require("../../models/user.entity");
 const auth_controller_1 = require("./auth.controller");
 const auth_service_1 = require("./auth.service");
 let AuthModule = class AuthModule {
