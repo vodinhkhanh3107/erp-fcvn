@@ -16,15 +16,16 @@ exports.DepartmentController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
 const current_user_decorator_1 = require("../../common/decorators/current-user.decorator");
-const roles_decorator_1 = require("../../common/decorators/roles.decorator");
 const pagination_dto_1 = require("../../common/dto/pagination.dto");
-const role_enum_1 = require("../../common/constants/role.enum");
 const jwt_auth_guard_1 = require("../../common/guards/jwt-auth.guard");
 const roles_guard_1 = require("../../common/guards/roles.guard");
 const create_department_dto_1 = require("./dto/create-department.dto");
 const update_department_status_dto_1 = require("./dto/update-department-status.dto");
 const update_department_dto_1 = require("./dto/update-department.dto");
 const department_service_1 = require("./department.service");
+const permission_guard_1 = require("../../common/guards/permission.guard");
+const permission_decorator_1 = require("../../common/decorators/permission.decorator");
+const permission_constants_1 = require("../../common/constants/permission.constants");
 let DepartmentController = class DepartmentController {
     constructor(departmentService) {
         this.departmentService = departmentService;
@@ -48,7 +49,7 @@ let DepartmentController = class DepartmentController {
 exports.DepartmentController = DepartmentController;
 __decorate([
     (0, common_1.Post)(),
-    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.HR),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.DEPARTMENT_CREATE),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, current_user_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),
@@ -57,6 +58,7 @@ __decorate([
 ], DepartmentController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.DEPARTMENT_READ),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [pagination_dto_1.PaginationDto]),
@@ -64,6 +66,7 @@ __decorate([
 ], DepartmentController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.DEPARTMENT_READ),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -71,7 +74,7 @@ __decorate([
 ], DepartmentController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Put)(':id'),
-    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.HR),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.DEPARTMENT_UPDATE),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __param(2, (0, current_user_decorator_1.CurrentUser)()),
@@ -81,7 +84,7 @@ __decorate([
 ], DepartmentController.prototype, "update", null);
 __decorate([
     (0, common_1.Put)(':id/status'),
-    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.HR),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.DEPARTMENT_UPDATE),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __param(2, (0, current_user_decorator_1.CurrentUser)()),
@@ -93,7 +96,7 @@ exports.DepartmentController = DepartmentController = __decorate([
     (0, swagger_1.ApiTags)('Department'),
     (0, swagger_1.ApiBearerAuth)('access-token'),
     (0, common_1.Controller)('departments'),
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard, permission_guard_1.PermissionGuard),
     __metadata("design:paramtypes", [department_service_1.DepartmentService])
 ], DepartmentController);
 //# sourceMappingURL=department.controller.js.map

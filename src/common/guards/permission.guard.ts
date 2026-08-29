@@ -28,7 +28,7 @@ export class PermissionGuard implements CanActivate {
  
     const request = context.switchToHttp().getRequest();
     const user = request.user;
-    if (!user?.roleId) throw new ForbiddenException('access-denied');
+    if (!user?.roleId) throw new ForbiddenException('not-have-role-for-user');
  
     const permissionCodes = await this.getRolePermissionCodes(user.roleId);
  
@@ -37,7 +37,7 @@ export class PermissionGuard implements CanActivate {
       return permissionCodes.has(required) || permissionCodes.has(`${resource}.manage`);
     });
  
-    if (!hasPermission) throw new ForbiddenException('access-denied');
+    if (!hasPermission) throw new ForbiddenException('not-have-permission');
     return true;
   }
  

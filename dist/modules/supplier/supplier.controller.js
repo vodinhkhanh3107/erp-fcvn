@@ -15,14 +15,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SupplierController = void 0;
 const common_1 = require("@nestjs/common");
 const current_user_decorator_1 = require("../../common/decorators/current-user.decorator");
-const roles_decorator_1 = require("../../common/decorators/roles.decorator");
 const pagination_dto_1 = require("../../common/dto/pagination.dto");
-const role_enum_1 = require("../../common/constants/role.enum");
 const jwt_auth_guard_1 = require("../../common/guards/jwt-auth.guard");
 const roles_guard_1 = require("../../common/guards/roles.guard");
 const create_supplier_dto_1 = require("./dto/create-supplier.dto");
 const supplier_service_1 = require("./supplier.service");
 const swagger_1 = require("@nestjs/swagger");
+const permission_guard_1 = require("../../common/guards/permission.guard");
+const permission_decorator_1 = require("../../common/decorators/permission.decorator");
+const permission_constants_1 = require("../../common/constants/permission.constants");
 let SupplierController = class SupplierController {
     constructor(supplierService) {
         this.supplierService = supplierService;
@@ -40,7 +41,6 @@ let SupplierController = class SupplierController {
 exports.SupplierController = SupplierController;
 __decorate([
     (0, common_1.Post)(),
-    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.ACCOUNTANT, role_enum_1.ROLES.PURCHASING),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, current_user_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),
@@ -49,7 +49,7 @@ __decorate([
 ], SupplierController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
-    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.ACCOUNTANT, role_enum_1.ROLES.PURCHASING, role_enum_1.ROLES.MANAGER),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.SUPPLIER_CREATE),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [pagination_dto_1.PaginationDto]),
@@ -57,7 +57,7 @@ __decorate([
 ], SupplierController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
-    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.ACCOUNTANT, role_enum_1.ROLES.PURCHASING, role_enum_1.ROLES.MANAGER),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.SUPPLIER_CREATE),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -67,7 +67,7 @@ exports.SupplierController = SupplierController = __decorate([
     (0, swagger_1.ApiTags)('Supplier'),
     (0, swagger_1.ApiBearerAuth)('access-token'),
     (0, common_1.Controller)('suppliers'),
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard, permission_guard_1.PermissionGuard),
     __metadata("design:paramtypes", [supplier_service_1.SupplierService])
 ], SupplierController);
 //# sourceMappingURL=supplier.controller.js.map

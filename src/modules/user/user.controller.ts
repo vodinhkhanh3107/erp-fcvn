@@ -11,11 +11,13 @@ import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { RequirePermission } from 'src/common/decorators/permission.decorator';
 import { PERMISSIONS } from 'src/common/constants/permission.constants';
+import { PermissionGuard } from 'src/common/guards/permission.guard';
+import { RolesGuard } from 'src/common/guards/roles.guard';
 
 @ApiTags('User')
 @ApiBearerAuth('access-token')
 @Controller('users')
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard,RolesGuard,PermissionGuard)
 export class UserController {   
   constructor(private readonly userService: UserService,
   ) {}
@@ -28,13 +30,13 @@ export class UserController {
 
   @Get()
   @RequirePermission(PERMISSIONS.USER_READ)
-  @Roles(ROLES.ADMIN,ROLES.MANAGER,ROLES.HR,ROLES.BOD)
   findAll(@Query() query: PaginationDto) {
     return this.userService.list(query);
   }
 
   @Get(':id')
-  @Roles(ROLES.ADMIN,ROLES.MANAGER,ROLES.HR,ROLES.BOD)
+  @RequirePermission(PERMISSIONS.USER_READ)
+
   findOne(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: { userId: number; role: ROLES }) {
     const isPrivileged = (user.role === ROLES.ADMIN || user.role === ROLES.HR || user.role === ROLES.MANAGER || user.role === ROLES.ACCOUNTANT || user.role === ROLES.BOD);
     const isOwnProfile = user.userId === id;

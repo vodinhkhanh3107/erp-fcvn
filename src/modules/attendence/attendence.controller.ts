@@ -8,26 +8,33 @@ import { RolesGuard } from '../../common/guards/roles.guard';
 import { AttendanceService } from './attendence.service';
 import { CreateAttendanceDto } from './dto/create-attendence.dto';
 import { ListAttendanceDto } from './dto/list-attendence.dto';
+import { RequirePermission } from 'src/common/decorators/permission.decorator';
+import { PERMISSIONS } from 'src/common/constants/permission.constants';
+import { PermissionGuard } from 'src/common/guards/permission.guard';
 
 @ApiTags('Attendance')
 @ApiBearerAuth('access-token')
 @Controller('attendances')
-@UseGuards(JwtAuthGuard, RolesGuard)
+@UseGuards(JwtAuthGuard, RolesGuard, PermissionGuard)
 export class AttendanceController {
   constructor(private readonly attendanceService: AttendanceService) {}
 
   @Post()
-  @Roles(ROLES.ADMIN, ROLES.HR)
+  @RequirePermission(PERMISSIONS.ATTENDANCE_CREATE)
   create(@Body() dto: CreateAttendanceDto, @CurrentUser() user: { userId: number }) {
     return this.attendanceService.create(dto, user.userId);
   }
 
   @Get()
+  @RequirePermission(PERMISSIONS.ATTENDANCE_READ)
+
   findAll(@Query() query: ListAttendanceDto) {
     return this.attendanceService.findAll(query);
   }
 
   @Get(':id')
+  @RequirePermission(PERMISSIONS.ATTENDANCE_READ)
+
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.attendanceService.findOne(id);
   }

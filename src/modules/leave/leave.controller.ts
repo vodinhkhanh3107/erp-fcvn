@@ -9,34 +9,44 @@ import { CreateLeaveDto } from './dto/create-leave.dto';
 import { ListLeaveDto } from './dto/list-leave.dto';
 import { ReviewLeaveDto } from './dto/review-leave.dto';
 import { LeaveService } from './leave.service';
+import { PermissionGuard } from 'src/common/guards/permission.guard';
+import { RequirePermission } from 'src/common/decorators/permission.decorator';
+import { PERMISSIONS } from 'src/common/constants/permission.constants';
 
 @ApiTags('Leave')
 @ApiBearerAuth('access-token')
 @Controller('leaves')
-@UseGuards(JwtAuthGuard, RolesGuard)
+@UseGuards(JwtAuthGuard, RolesGuard, PermissionGuard)
 export class LeaveController {
   constructor(private readonly leaveService: LeaveService) {}
 
   // Employee tự gửi yêu cầu — mọi role đăng nhập đều gọi được, không giới hạn @Roles()
   @Post()
+  // @RequirePermission(PERMISSIONS.LEA)
+  
   create(@Body() dto: CreateLeaveDto, @CurrentUser() user: { userId: number }) {
     return this.leaveService.createLeaveRequest(user.userId, dto);
   }
 
   // Manager/HR/Admin xem TOÀN BỘ danh sách (để duyệt); user thường nên gọi /leaves/me thay vì đây
   @Get()
-  @Roles(ROLES.ADMIN, ROLES.MANAGER, ROLES.HR)
+  @RequirePermission(PERMISSIONS.LEAVE_READ)
+  
   findAll(@Query() query: ListLeaveDto) {
     return this.leaveService.findAll(query);
   }
 
   // user xem đúng danh sách nghỉ phép của CHÍNH MÌNH
   @Get('me')
+  @RequirePermission(PERMISSIONS.LEAVE_READ)
+  
   findMine(@Query() query: ListLeaveDto, @CurrentUser() user: { userId: number }) {
     return this.leaveService.findAll({ ...query, userId: user.userId });
   }
 
   @Get(':id')
+    @RequirePermission(PERMISSIONS.LEAVE_READ)
+  
   findOne(
     @Param('id', ParseIntPipe) id: number,
     @CurrentUser() user: { userId: number; role: ROLES },
@@ -47,7 +57,8 @@ export class LeaveController {
 
   // Duyệt/từ chối — CHỈ Manager/HR/Admin
   @Put(':id/review')
-  @Roles(ROLES.ADMIN, ROLES.MANAGER, ROLES.HR)
+    // @RequirePermission(PERMISSIONS.LEAVE_UPDA)
+  
   review(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: ReviewLeaveDto,

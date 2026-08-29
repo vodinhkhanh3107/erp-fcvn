@@ -16,7 +16,6 @@ exports.LeaveController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
 const current_user_decorator_1 = require("../../common/decorators/current-user.decorator");
-const roles_decorator_1 = require("../../common/decorators/roles.decorator");
 const role_enum_1 = require("../../common/constants/role.enum");
 const jwt_auth_guard_1 = require("../../common/guards/jwt-auth.guard");
 const roles_guard_1 = require("../../common/guards/roles.guard");
@@ -24,6 +23,9 @@ const create_leave_dto_1 = require("./dto/create-leave.dto");
 const list_leave_dto_1 = require("./dto/list-leave.dto");
 const review_leave_dto_1 = require("./dto/review-leave.dto");
 const leave_service_1 = require("./leave.service");
+const permission_guard_1 = require("../../common/guards/permission.guard");
+const permission_decorator_1 = require("../../common/decorators/permission.decorator");
+const permission_constants_1 = require("../../common/constants/permission.constants");
 let LeaveController = class LeaveController {
     constructor(leaveService) {
         this.leaveService = leaveService;
@@ -56,7 +58,7 @@ __decorate([
 ], LeaveController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
-    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.MANAGER, role_enum_1.ROLES.HR),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.LEAVE_READ),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [list_leave_dto_1.ListLeaveDto]),
@@ -64,6 +66,7 @@ __decorate([
 ], LeaveController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)('me'),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.LEAVE_READ),
     __param(0, (0, common_1.Query)()),
     __param(1, (0, current_user_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),
@@ -72,6 +75,7 @@ __decorate([
 ], LeaveController.prototype, "findMine", null);
 __decorate([
     (0, common_1.Get)(':id'),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.LEAVE_READ),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, current_user_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),
@@ -80,7 +84,6 @@ __decorate([
 ], LeaveController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Put)(':id/review'),
-    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.MANAGER, role_enum_1.ROLES.HR),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __param(2, (0, current_user_decorator_1.CurrentUser)()),
@@ -92,7 +95,7 @@ exports.LeaveController = LeaveController = __decorate([
     (0, swagger_1.ApiTags)('Leave'),
     (0, swagger_1.ApiBearerAuth)('access-token'),
     (0, common_1.Controller)('leaves'),
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard, permission_guard_1.PermissionGuard),
     __metadata("design:paramtypes", [leave_service_1.LeaveService])
 ], LeaveController);
 //# sourceMappingURL=leave.controller.js.map

@@ -26,6 +26,9 @@ const roles_decorator_1 = require("../../common/decorators/roles.decorator");
 const reject_purchase_request_dto_1 = require("./dto/reject-purchase-request.dto");
 const issue_purchase_order_dto_1 = require("./dto/issue-purchase-order.dto");
 const list_purchase_request_dto_1 = require("./dto/list-purchase-request.dto");
+const permission_guard_1 = require("../../common/guards/permission.guard");
+const permission_decorator_1 = require("../../common/decorators/permission.decorator");
+const permission_constants_1 = require("../../common/constants/permission.constants");
 let PurchaseRequestController = class PurchaseRequestController {
     constructor(purchaseRequestService) {
         this.purchaseRequestService = purchaseRequestService;
@@ -61,6 +64,7 @@ let PurchaseRequestController = class PurchaseRequestController {
 exports.PurchaseRequestController = PurchaseRequestController;
 __decorate([
     (0, common_1.Post)(),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.PURCHASE_REQUEST_CREATE),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, current_user_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),
@@ -69,6 +73,7 @@ __decorate([
 ], PurchaseRequestController.prototype, "create", null);
 __decorate([
     (0, common_1.Put)(':id'),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.PURCHASE_REQUEST_UPDATE),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __param(2, (0, current_user_decorator_1.CurrentUser)()),
@@ -78,6 +83,7 @@ __decorate([
 ], PurchaseRequestController.prototype, "update", null);
 __decorate([
     (0, common_1.Put)(':id/submit'),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.PURCHASE_REQUEST_SUBMIT),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, current_user_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),
@@ -87,6 +93,7 @@ __decorate([
 __decorate([
     (0, common_1.Put)(':id/approve'),
     (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.MANAGER),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.PURCHASE_REQUEST_APPROVE),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, current_user_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),
@@ -96,6 +103,7 @@ __decorate([
 __decorate([
     (0, common_1.Put)(':id/reject'),
     (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.MANAGER),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.PURCHASE_REQUEST_REJECT),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __param(2, (0, current_user_decorator_1.CurrentUser)()),
@@ -112,6 +120,7 @@ __decorate([
 ], PurchaseRequestController.prototype, "getHistory", null);
 __decorate([
     (0, common_1.Get)(),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.PURCHASE_REQUEST_READ),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [list_purchase_request_dto_1.ListPurchaseRequestDto]),
@@ -119,6 +128,7 @@ __decorate([
 ], PurchaseRequestController.prototype, "faindAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.PURCHASE_REQUEST_READ),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -126,7 +136,6 @@ __decorate([
 ], PurchaseRequestController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Post)(':id/issue-po'),
-    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.MANAGER),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __param(2, (0, current_user_decorator_1.CurrentUser)()),
@@ -138,7 +147,7 @@ exports.PurchaseRequestController = PurchaseRequestController = __decorate([
     (0, swagger_1.ApiTags)('Purchase Request'),
     (0, swagger_1.ApiBearerAuth)('access-token'),
     (0, common_1.Controller)('purchase-requests'),
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard, permission_guard_1.PermissionGuard),
     __metadata("design:paramtypes", [purchase_request_service_1.PurchaseRequestService])
 ], PurchaseRequestController);
 //# sourceMappingURL=purchase-request.controller.js.map

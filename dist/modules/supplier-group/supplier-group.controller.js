@@ -15,9 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SupplierGroupController = void 0;
 const common_1 = require("@nestjs/common");
 const current_user_decorator_1 = require("../../common/decorators/current-user.decorator");
-const roles_decorator_1 = require("../../common/decorators/roles.decorator");
 const pagination_dto_1 = require("../../common/dto/pagination.dto");
-const role_enum_1 = require("../../common/constants/role.enum");
 const jwt_auth_guard_1 = require("../../common/guards/jwt-auth.guard");
 const roles_guard_1 = require("../../common/guards/roles.guard");
 const assign_suppliers_dto_1 = require("./dto/assign-suppliers.dto");
@@ -26,6 +24,7 @@ const update_supplier_group_dto_1 = require("./dto/update-supplier-group.dto");
 const update_supplier_group_status_dto_1 = require("./dto/update-supplier-group-status.dto");
 const supplier_group_service_1 = require("./supplier-group.service");
 const swagger_1 = require("@nestjs/swagger");
+const permission_guard_1 = require("../../common/guards/permission.guard");
 let SupplierGroupController = class SupplierGroupController {
     constructor(supplierGroupService) {
         this.supplierGroupService = supplierGroupService;
@@ -52,7 +51,6 @@ let SupplierGroupController = class SupplierGroupController {
 exports.SupplierGroupController = SupplierGroupController;
 __decorate([
     (0, common_1.Post)(),
-    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.ACCOUNTANT, role_enum_1.ROLES.PURCHASING),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, current_user_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),
@@ -75,7 +73,6 @@ __decorate([
 ], SupplierGroupController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Put)(':id'),
-    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.MANAGER),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __param(2, (0, current_user_decorator_1.CurrentUser)()),
@@ -85,7 +82,6 @@ __decorate([
 ], SupplierGroupController.prototype, "update", null);
 __decorate([
     (0, common_1.Put)(':id/status'),
-    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.MANAGER),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __param(2, (0, current_user_decorator_1.CurrentUser)()),
@@ -95,7 +91,6 @@ __decorate([
 ], SupplierGroupController.prototype, "updateStatus", null);
 __decorate([
     (0, common_1.Post)(':id/assign-suppliers'),
-    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.MANAGER),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __param(2, (0, current_user_decorator_1.CurrentUser)()),
@@ -107,7 +102,7 @@ exports.SupplierGroupController = SupplierGroupController = __decorate([
     (0, swagger_1.ApiTags)('Supplier Group'),
     (0, swagger_1.ApiBearerAuth)('access-token'),
     (0, common_1.Controller)('supplier-groups'),
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard, permission_guard_1.PermissionGuard),
     __metadata("design:paramtypes", [supplier_group_service_1.SupplierGroupService])
 ], SupplierGroupController);
 //# sourceMappingURL=supplier-group.controller.js.map

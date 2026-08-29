@@ -15,12 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PurchaseOrderController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
-const roles_decorator_1 = require("../../common/decorators/roles.decorator");
-const role_enum_1 = require("../../common/constants/role.enum");
 const jwt_auth_guard_1 = require("../../common/guards/jwt-auth.guard");
 const roles_guard_1 = require("../../common/guards/roles.guard");
 const list_purchase_order_dto_1 = require("./dto/list-purchase-order.dto");
 const purchase_order_service_1 = require("./purchase-order.service");
+const permission_guard_1 = require("../../common/guards/permission.guard");
+const permission_decorator_1 = require("../../common/decorators/permission.decorator");
+const permission_constants_1 = require("../../common/constants/permission.constants");
 let PurchaseOrderController = class PurchaseOrderController {
     constructor(purchaseOrderService) {
         this.purchaseOrderService = purchaseOrderService;
@@ -35,6 +36,7 @@ let PurchaseOrderController = class PurchaseOrderController {
 exports.PurchaseOrderController = PurchaseOrderController;
 __decorate([
     (0, common_1.Get)(),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.PURCHASE_ORDER_READ),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [list_purchase_order_dto_1.ListPurchaseOrderDto]),
@@ -42,6 +44,7 @@ __decorate([
 ], PurchaseOrderController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.PURCHASE_ORDER_READ),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -51,8 +54,7 @@ exports.PurchaseOrderController = PurchaseOrderController = __decorate([
     (0, swagger_1.ApiTags)('Purchase Order'),
     (0, swagger_1.ApiBearerAuth)('access-token'),
     (0, common_1.Controller)('purchase-orders'),
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.MANAGER),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard, permission_guard_1.PermissionGuard),
     __metadata("design:paramtypes", [purchase_order_service_1.PurchaseOrderService])
 ], PurchaseOrderController);
 //# sourceMappingURL=purchase-order.controller.js.map

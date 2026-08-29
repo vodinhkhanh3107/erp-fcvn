@@ -8,28 +8,34 @@ import { RolesGuard } from '../../common/guards/roles.guard';
 import { CreateSupplierDto } from './dto/create-supplier.dto';
 import { SupplierService } from './supplier.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { PermissionGuard } from 'src/common/guards/permission.guard';
+import { RequirePermission } from 'src/common/decorators/permission.decorator';
+import { PERMISSIONS } from 'src/common/constants/permission.constants';
 
 @ApiTags('Supplier')
 @ApiBearerAuth('access-token')
 @Controller('suppliers')
-@UseGuards(JwtAuthGuard, RolesGuard)
+@UseGuards(JwtAuthGuard, RolesGuard, PermissionGuard)
 export class SupplierController {
-  constructor(private readonly supplierService: SupplierService) {}
+  constructor(private readonly supplierService: SupplierService) { }
 
   @Post()
-  @Roles(ROLES.ADMIN, ROLES.ACCOUNTANT,ROLES.PURCHASING)
+  // @RequirePermission(PERMISSIONS.PURCHASE_ORDER_cre)
+
   create(@Body() dto: CreateSupplierDto, @CurrentUser() user: { userId: number }) {
     return this.supplierService.createSupplier(dto, user.userId);
   }
 
   @Get()
-  @Roles(ROLES.ADMIN, ROLES.ACCOUNTANT,ROLES.PURCHASING,ROLES.MANAGER)
+  @RequirePermission(PERMISSIONS.SUPPLIER_CREATE)
+
   findAll(@Query() query: PaginationDto) {
     return this.supplierService.findAll(query);
   }
 
   @Get(':id')
-  @Roles(ROLES.ADMIN, ROLES.ACCOUNTANT,ROLES.PURCHASING,ROLES.MANAGER)
+  @RequirePermission(PERMISSIONS.SUPPLIER_CREATE)
+
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.supplierService.findOne(id);
   }

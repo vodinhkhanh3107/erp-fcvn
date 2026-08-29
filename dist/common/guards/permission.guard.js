@@ -38,14 +38,14 @@ let PermissionGuard = class PermissionGuard {
         const request = context.switchToHttp().getRequest();
         const user = request.user;
         if (!user?.roleId)
-            throw new common_1.ForbiddenException('access-denied');
+            throw new common_1.ForbiddenException('not-have-role-for-user');
         const permissionCodes = await this.getRolePermissionCodes(user.roleId);
         const hasPermission = requiredPermissions.some((required) => {
             const resource = required.split('.')[0];
             return permissionCodes.has(required) || permissionCodes.has(`${resource}.manage`);
         });
         if (!hasPermission)
-            throw new common_1.ForbiddenException('access-denied');
+            throw new common_1.ForbiddenException('not-have-permission');
         return true;
     }
     async getRolePermissionCodes(roleId) {
