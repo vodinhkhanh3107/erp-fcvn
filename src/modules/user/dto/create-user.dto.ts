@@ -30,6 +30,7 @@ export class CreateUserDto {
   @IsString()
   avatar?: string;
 
+  @IsOptional()
   @IsNumber()
   departmentId: number
   // @IsOptional()
