@@ -19,6 +19,7 @@ import { AuditLogModule } from './modules/audit-log/audit-log.module';
 import { LeaveModule } from './modules/leave/leave.module';
 import { PermissionsModule } from './modules/permission/permission.module';
 import { RoleModule } from './modules/role/role.module';
+import { PermissionRoleModule } from './modules/permission-role/permission-role.module';
 
 @Module({
   imports: [
@@ -40,8 +41,9 @@ import { RoleModule } from './modules/role/role.module';
     AuthModule,
     RedisModule,
     AuditLogModule,
-    PermissionsModule,
-    RoleModule,
+    // PermissionsModule,
+    // RoleModule,
+    PermissionRoleModule,
 
     SupplierModule,
     SupplierGroupModule,

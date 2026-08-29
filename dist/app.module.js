@@ -26,8 +26,7 @@ const purchase_order_module_1 = require("./modules/purchase-order/purchase-order
 const purchase_request_module_1 = require("./modules/puchase-request/purchase-request.module");
 const audit_log_module_1 = require("./modules/audit-log/audit-log.module");
 const leave_module_1 = require("./modules/leave/leave.module");
-const permission_module_1 = require("./modules/permission/permission.module");
-const role_module_1 = require("./modules/role/role.module");
+const permission_role_module_1 = require("./modules/permission-role/permission-role.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -51,8 +50,7 @@ exports.AppModule = AppModule = __decorate([
             auth_module_1.AuthModule,
             redis_module_1.RedisModule,
             audit_log_module_1.AuditLogModule,
-            permission_module_1.PermissionsModule,
-            role_module_1.RoleModule,
+            permission_role_module_1.PermissionRoleModule,
             supplier_module_1.SupplierModule,
             supplier_group_module_1.SupplierGroupModule,
             attendence_module_1.AttendanceModule,
