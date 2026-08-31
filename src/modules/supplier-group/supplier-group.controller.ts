@@ -23,28 +23,28 @@ export class SupplierGroupController {
   constructor(private readonly supplierGroupService: SupplierGroupService) { }
 
   @Post()
-  // @RequirePermission(PERMISSIONS.SUPPLIER_READ)
+  @RequirePermission(PERMISSIONS.SUPPLIER_CREATE)
 
   create(@Body() dto: CreateSupplierGroupDto, @CurrentUser() user: { userId: number }) {
     return this.supplierGroupService.createGroup(dto, user.userId);
   }
 
   @Get()
-  // @RequirePermission(PERMISSIONS.SUPPLIER_GROUP_READ)
+  @RequirePermission(PERMISSIONS.SUPPLIER_GROUP_READ)
 
   findAll(@Query() query: PaginationDto) {
     return this.supplierGroupService.findAll(query);
   }
 
   @Get(':id')
-  // @RequirePermission(PERMISSIONS.SUPPLIER_GROUP_READ)
+  @RequirePermission(PERMISSIONS.SUPPLIER_GROUP_READ)
 
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.supplierGroupService.findOne(id);
   }
 
   @Put(':id')
-  // @RequirePermission(PERMISSIONS.SUPPLIER_GROUP_UPDATE)
+  @RequirePermission(PERMISSIONS.SUPPLIER_GROUP_UPDATE)
 
   update(
     @Param('id', ParseIntPipe) id: number,
@@ -55,7 +55,7 @@ export class SupplierGroupController {
   }
 
   @Put(':id/status')
-  // @RequirePermission(PERMISSIONS.SUPPLIER_GROUP_UPDATE)
+  @RequirePermission(PERMISSIONS.SUPPLIER_GROUP_UPDATE_STATUS)
 
   updateStatus(
     @Param('id', ParseIntPipe) id: number,
@@ -67,7 +67,7 @@ export class SupplierGroupController {
 
   //  gán nhà cung cấp vào nhóm nhà cung cấp
   @Post(':id/assign-suppliers')
-  // @RequirePermission(PERMISSIONS.SUPPLIER_GROUP_UPDATE)
+  @RequirePermission(PERMISSIONS.SUPPLIER_GROUP_ASSIGN)
 
   assignSuppliers(
     @Param('id', ParseIntPipe) id: number,

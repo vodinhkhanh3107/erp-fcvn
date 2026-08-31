@@ -17,6 +17,8 @@ const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
 const jwt_auth_guard_1 = require("../../common/guards/jwt-auth.guard");
 const permission_guard_1 = require("../../common/guards/permission.guard");
+const permission_decorator_1 = require("../../common/decorators/permission.decorator");
+const permission_constants_1 = require("../../common/constants/permission.constants");
 const role_service_1 = require("./role.service");
 const create_role_dto_1 = require("./dto/create-role.dto");
 const update_role_dto_1 = require("./dto/update-role.dto");
@@ -44,6 +46,7 @@ let RoleController = class RoleController {
 exports.RoleController = RoleController;
 __decorate([
     (0, common_1.Post)(),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.PERMISSION_CREATE),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_role_dto_1.CreateRoleDto]),
@@ -51,12 +54,14 @@ __decorate([
 ], RoleController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.PERMISSION_READ),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], RoleController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.PERMISSION_READ),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -64,6 +69,7 @@ __decorate([
 ], RoleController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Put)(':id'),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.PERMISSION_UPDATE),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -72,6 +78,7 @@ __decorate([
 ], RoleController.prototype, "update", null);
 __decorate([
     (0, common_1.Put)(':id/permissions'),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.PERMISSION_ASSIGN),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),

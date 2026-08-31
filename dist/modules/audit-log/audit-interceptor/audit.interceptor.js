@@ -65,7 +65,7 @@ let AuditInterceptor = class AuditInterceptor {
         if (!action || !user) {
             return next.handle();
         }
-        const role = await this.roleRepository.findOne({ where: { id: user.roleId } });
+        const role = await this.roleRepository.findOneBy({ id: user.roleId });
         return next.handle().pipe((0, operators_1.tap)({
             next: () => {
                 void this.auditLogService.record({

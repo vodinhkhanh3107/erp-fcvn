@@ -25,6 +25,8 @@ const update_supplier_group_status_dto_1 = require("./dto/update-supplier-group-
 const supplier_group_service_1 = require("./supplier-group.service");
 const swagger_1 = require("@nestjs/swagger");
 const permission_guard_1 = require("../../common/guards/permission.guard");
+const permission_constants_1 = require("../../common/constants/permission.constants");
+const permission_decorator_1 = require("../../common/decorators/permission.decorator");
 let SupplierGroupController = class SupplierGroupController {
     constructor(supplierGroupService) {
         this.supplierGroupService = supplierGroupService;
@@ -51,6 +53,7 @@ let SupplierGroupController = class SupplierGroupController {
 exports.SupplierGroupController = SupplierGroupController;
 __decorate([
     (0, common_1.Post)(),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.SUPPLIER_CREATE),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, current_user_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),
@@ -59,6 +62,7 @@ __decorate([
 ], SupplierGroupController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.SUPPLIER_GROUP_READ),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [pagination_dto_1.PaginationDto]),
@@ -66,6 +70,7 @@ __decorate([
 ], SupplierGroupController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.SUPPLIER_GROUP_READ),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -73,6 +78,7 @@ __decorate([
 ], SupplierGroupController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Put)(':id'),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.SUPPLIER_GROUP_UPDATE),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __param(2, (0, current_user_decorator_1.CurrentUser)()),
@@ -82,6 +88,7 @@ __decorate([
 ], SupplierGroupController.prototype, "update", null);
 __decorate([
     (0, common_1.Put)(':id/status'),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.SUPPLIER_GROUP_UPDATE_STATUS),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __param(2, (0, current_user_decorator_1.CurrentUser)()),
@@ -91,6 +98,7 @@ __decorate([
 ], SupplierGroupController.prototype, "updateStatus", null);
 __decorate([
     (0, common_1.Post)(':id/assign-suppliers'),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.SUPPLIER_GROUP_ASSIGN),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __param(2, (0, current_user_decorator_1.CurrentUser)()),

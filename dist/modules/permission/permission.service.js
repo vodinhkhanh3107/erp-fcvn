@@ -26,10 +26,11 @@ let PermissionService = class PermissionService {
     }
     async create(dto) {
         const existed = await this.repository.findOne({ where: { code: dto.code } });
-        if (existed)
-            throw new common_1.ConflictException('permission-code-already-exists');
-        const saved = await this.repository.save(this.repository.create(dto));
-        return { message: 'Tạo permission thành công', result: saved };
+        if (!existed) {
+            const saved = await this.repository.save(this.repository.create(dto));
+            return { message: 'Tạo permission thành công', result: saved };
+        }
+        throw new common_1.ConflictException('permission-code-already-exists');
     }
 };
 exports.PermissionService = PermissionService;

@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class SetUpTablesInDatabase1787968374820 implements MigrationInterface {
-    name = 'SetUpTablesInDatabase1787968374820'
+export class FixManToManyRelationship1788168062147 implements MigrationInterface {
+    name = 'FixManToManyRelationship1788168062147'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE \`permissions\` (\`id\` int NOT NULL AUTO_INCREMENT, \`code\` varchar(100) NOT NULL, \`description\` varchar(255) NULL, \`created_at\` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), UNIQUE INDEX \`IDX_8dad765629e83229da6feda1c1\` (\`code\`), PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
@@ -9,9 +9,9 @@ export class SetUpTablesInDatabase1787968374820 implements MigrationInterface {
         await queryRunner.query(`CREATE TABLE \`departments\` (\`id\` int NOT NULL AUTO_INCREMENT, \`name\` varchar(255) NOT NULL, \`description\` varchar(500) NULL, \`status\` enum ('active', 'inactive') NOT NULL DEFAULT 'active', \`created_by\` int NULL, \`updated_by\` int NULL, \`created_at\` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), \`updated_at\` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6), \`manager_id\` int NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`users\` (\`id\` int NOT NULL AUTO_INCREMENT, \`full_name\` varchar(255) NOT NULL, \`email\` varchar(255) NOT NULL, \`phone\` varchar(15) NULL, \`password\` varchar(255) NOT NULL, \`refresh_token_hash\` varchar(255) NULL, \`role_id\` int NOT NULL, \`status\` enum ('active', 'inactive') NOT NULL DEFAULT 'active', \`avatar\` varchar(255) NOT NULL DEFAULT '', \`department_id\` int NOT NULL, \`contract_type\` enum ('trial', 'official', 'part_time') NOT NULL DEFAULT 'trial', \`created_at\` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), \`updated_at\` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6), \`deleted_at\` datetime(6) NULL, UNIQUE INDEX \`IDX_97672ac88f789774dd47f7c8be\` (\`email\`), UNIQUE INDEX \`IDX_a000cca60bcf04454e72769949\` (\`phone\`), PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`tasks\` (\`id\` int NOT NULL AUTO_INCREMENT, \`task_name\` varchar(255) NOT NULL, \`task_type\` varchar(100) NOT NULL, \`priority\` enum ('High', 'Medium', 'Low') NOT NULL, \`deadline\` date NOT NULL, \`assigned_to\` int NOT NULL, \`status\` enum ('New', 'In Progress', 'Done') NOT NULL DEFAULT 'New', \`created_by\` int NULL, \`updated_by\` int NULL, \`created_at\` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), \`updated_at\` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6), \`deleted_at\` datetime(6) NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
-        await queryRunner.query(`CREATE TABLE \`purchase_request_items\` (\`id\` int NOT NULL AUTO_INCREMENT, \`purchase_request_id\` int NOT NULL, \`item_name\` varchar(255) NOT NULL, \`quantity\` int NOT NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
-        await queryRunner.query(`CREATE TABLE \`supplier_groups\` (\`id\` int NOT NULL AUTO_INCREMENT, \`code\` varchar(50) NOT NULL, \`name\` varchar(255) NOT NULL, \`description\` varchar(500) NULL, \`status\` enum ('active', 'inactive') NOT NULL DEFAULT 'active', \`created_by\` int NULL, \`updated_by\` int NULL, \`created_at\` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), \`updated_at\` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6), UNIQUE INDEX \`IDX_ddd28b2e81762818846a99ea40\` (\`code\`), PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`suppliers\` (\`id\` int NOT NULL AUTO_INCREMENT, \`name\` varchar(255) NOT NULL, \`tax_code\` varchar(50) NOT NULL, \`contact_name\` varchar(100) NULL, \`contact_email\` varchar(100) NULL, \`contact_phone\` varchar(20) NULL, \`payment_term\` varchar(20) NULL, \`status\` enum ('active', 'inactive') NOT NULL DEFAULT 'active', \`group_id\` int NULL, \`created_by\` int NULL, \`updated_by\` int NULL, \`created_at\` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), \`updated_at\` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6), \`deleted_at\` datetime(6) NULL, UNIQUE INDEX \`IDX_8278dbe9decb563689d76be5d2\` (\`tax_code\`), PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
+        await queryRunner.query(`CREATE TABLE \`supplier_groups\` (\`id\` int NOT NULL AUTO_INCREMENT, \`code\` varchar(50) NOT NULL, \`name\` varchar(255) NOT NULL, \`description\` varchar(500) NULL, \`status\` enum ('active', 'inactive') NOT NULL DEFAULT 'active', \`created_by\` int NULL, \`updated_by\` int NULL, \`created_at\` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), \`updated_at\` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6), UNIQUE INDEX \`IDX_ddd28b2e81762818846a99ea40\` (\`code\`), PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
+        await queryRunner.query(`CREATE TABLE \`purchase_request_items\` (\`id\` int NOT NULL AUTO_INCREMENT, \`purchase_request_id\` int NOT NULL, \`item_name\` varchar(255) NOT NULL, \`quantity\` int NOT NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`purchase_request_quotations\` (\`id\` int NOT NULL AUTO_INCREMENT, \`purchase_request_id\` int NOT NULL, \`supplier_id\` int NOT NULL, \`quoted_amount\` decimal(18,2) NOT NULL, \`quotation_file_url\` varchar(500) NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`purchase_requests\` (\`id\` int NOT NULL AUTO_INCREMENT, \`request_key\` varchar(100) NOT NULL, \`department_id\` int NULL, \`requester_id\` int NOT NULL, \`purpose_of_use\` varchar(500) NOT NULL, \`status\` enum ('DRAFT', 'PENDING', 'APPROVED', 'REJECTED') NOT NULL DEFAULT 'DRAFT', \`approved_by\` int NULL, \`reject_reason\` varchar(500) NULL, \`created_at\` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), \`updated_at\` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6), UNIQUE INDEX \`IDX_a98681cc83a5245014e710ffc5\` (\`request_key\`), PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`purchase_request_histories\` (\`id\` int NOT NULL AUTO_INCREMENT, \`purchase_request_id\` int NOT NULL, \`from_status\` enum ('DRAFT', 'PENDING', 'APPROVED', 'REJECTED') NULL, \`to_status\` enum ('DRAFT', 'PENDING', 'APPROVED', 'REJECTED') NOT NULL, \`actor_id\` int NOT NULL, \`note\` varchar(500) NULL, \`created_at\` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
@@ -26,8 +26,8 @@ export class SetUpTablesInDatabase1787968374820 implements MigrationInterface {
         await queryRunner.query(`ALTER TABLE \`users\` ADD CONSTRAINT \`FK_a2cecd1a3531c0b041e29ba46e1\` FOREIGN KEY (\`role_id\`) REFERENCES \`roles\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE \`users\` ADD CONSTRAINT \`FK_0921d1972cf861d568f5271cd85\` FOREIGN KEY (\`department_id\`) REFERENCES \`departments\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE \`tasks\` ADD CONSTRAINT \`FK_5770b28d72ca90c43b1381bf787\` FOREIGN KEY (\`assigned_to\`) REFERENCES \`users\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
-        await queryRunner.query(`ALTER TABLE \`purchase_request_items\` ADD CONSTRAINT \`FK_548d16709a88eece700ce66620e\` FOREIGN KEY (\`purchase_request_id\`) REFERENCES \`purchase_requests\`(\`id\`) ON DELETE CASCADE ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE \`suppliers\` ADD CONSTRAINT \`FK_0867a763d6f99afc1f5e18e55f8\` FOREIGN KEY (\`group_id\`) REFERENCES \`supplier_groups\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(`ALTER TABLE \`purchase_request_items\` ADD CONSTRAINT \`FK_548d16709a88eece700ce66620e\` FOREIGN KEY (\`purchase_request_id\`) REFERENCES \`purchase_requests\`(\`id\`) ON DELETE CASCADE ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE \`purchase_request_quotations\` ADD CONSTRAINT \`FK_c1df96a55c4e500d8a202c36f8c\` FOREIGN KEY (\`purchase_request_id\`) REFERENCES \`purchase_requests\`(\`id\`) ON DELETE CASCADE ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE \`purchase_request_quotations\` ADD CONSTRAINT \`FK_96bab38a07606eccfdf95032586\` FOREIGN KEY (\`supplier_id\`) REFERENCES \`suppliers\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE \`purchase_requests\` ADD CONSTRAINT \`FK_3ee8e94c75dcdbe9029954d0f87\` FOREIGN KEY (\`department_id\`) REFERENCES \`departments\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
@@ -57,8 +57,8 @@ export class SetUpTablesInDatabase1787968374820 implements MigrationInterface {
         await queryRunner.query(`ALTER TABLE \`purchase_requests\` DROP FOREIGN KEY \`FK_3ee8e94c75dcdbe9029954d0f87\``);
         await queryRunner.query(`ALTER TABLE \`purchase_request_quotations\` DROP FOREIGN KEY \`FK_96bab38a07606eccfdf95032586\``);
         await queryRunner.query(`ALTER TABLE \`purchase_request_quotations\` DROP FOREIGN KEY \`FK_c1df96a55c4e500d8a202c36f8c\``);
-        await queryRunner.query(`ALTER TABLE \`suppliers\` DROP FOREIGN KEY \`FK_0867a763d6f99afc1f5e18e55f8\``);
         await queryRunner.query(`ALTER TABLE \`purchase_request_items\` DROP FOREIGN KEY \`FK_548d16709a88eece700ce66620e\``);
+        await queryRunner.query(`ALTER TABLE \`suppliers\` DROP FOREIGN KEY \`FK_0867a763d6f99afc1f5e18e55f8\``);
         await queryRunner.query(`ALTER TABLE \`tasks\` DROP FOREIGN KEY \`FK_5770b28d72ca90c43b1381bf787\``);
         await queryRunner.query(`ALTER TABLE \`users\` DROP FOREIGN KEY \`FK_0921d1972cf861d568f5271cd85\``);
         await queryRunner.query(`ALTER TABLE \`users\` DROP FOREIGN KEY \`FK_a2cecd1a3531c0b041e29ba46e1\``);
@@ -81,11 +81,11 @@ export class SetUpTablesInDatabase1787968374820 implements MigrationInterface {
         await queryRunner.query(`DROP INDEX \`IDX_a98681cc83a5245014e710ffc5\` ON \`purchase_requests\``);
         await queryRunner.query(`DROP TABLE \`purchase_requests\``);
         await queryRunner.query(`DROP TABLE \`purchase_request_quotations\``);
-        await queryRunner.query(`DROP INDEX \`IDX_8278dbe9decb563689d76be5d2\` ON \`suppliers\``);
-        await queryRunner.query(`DROP TABLE \`suppliers\``);
+        await queryRunner.query(`DROP TABLE \`purchase_request_items\``);
         await queryRunner.query(`DROP INDEX \`IDX_ddd28b2e81762818846a99ea40\` ON \`supplier_groups\``);
         await queryRunner.query(`DROP TABLE \`supplier_groups\``);
-        await queryRunner.query(`DROP TABLE \`purchase_request_items\``);
+        await queryRunner.query(`DROP INDEX \`IDX_8278dbe9decb563689d76be5d2\` ON \`suppliers\``);
+        await queryRunner.query(`DROP TABLE \`suppliers\``);
         await queryRunner.query(`DROP TABLE \`tasks\``);
         await queryRunner.query(`DROP INDEX \`IDX_a000cca60bcf04454e72769949\` ON \`users\``);
         await queryRunner.query(`DROP INDEX \`IDX_97672ac88f789774dd47f7c8be\` ON \`users\``);

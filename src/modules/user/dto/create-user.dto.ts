@@ -32,7 +32,7 @@ export class CreateUserDto {
 
   @IsOptional()
   @IsNumber()
-  departmentId: number
+  departmentId?: number
   // @IsOptional()
   // @IsString()
   // jobTitle?: string;

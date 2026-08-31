@@ -61,7 +61,7 @@ export class AuditInterceptor implements NestInterceptor {
       return next.handle();
     }
 
-    const role = await this.roleRepository.findOne({ where: { id: user.roleId } });
+    const role = await this.roleRepository.findOneBy({ id: user.roleId });
 
 
     return next.handle().pipe(

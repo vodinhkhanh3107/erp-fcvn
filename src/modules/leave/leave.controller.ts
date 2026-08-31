@@ -18,20 +18,18 @@ import { PERMISSIONS } from 'src/common/constants/permission.constants';
 @Controller('leaves')
 @UseGuards(JwtAuthGuard, RolesGuard, PermissionGuard)
 export class LeaveController {
-  constructor(private readonly leaveService: LeaveService) {}
+  constructor(private readonly leaveService: LeaveService) { }
 
-  // Employee tự gửi yêu cầu — mọi role đăng nhập đều gọi được, không giới hạn @Roles()
   @Post()
-  // @RequirePermission(PERMISSIONS.LEA)
-  
+  @RequirePermission(PERMISSIONS.LEAVE_CREATE)
+
   create(@Body() dto: CreateLeaveDto, @CurrentUser() user: { userId: number }) {
     return this.leaveService.createLeaveRequest(user.userId, dto);
   }
 
-  // Manager/HR/Admin xem TOÀN BỘ danh sách (để duyệt); user thường nên gọi /leaves/me thay vì đây
   @Get()
   @RequirePermission(PERMISSIONS.LEAVE_READ)
-  
+
   findAll(@Query() query: ListLeaveDto) {
     return this.leaveService.findAll(query);
   }
@@ -39,14 +37,14 @@ export class LeaveController {
   // user xem đúng danh sách nghỉ phép của CHÍNH MÌNH
   @Get('me')
   @RequirePermission(PERMISSIONS.LEAVE_READ)
-  
+
   findMine(@Query() query: ListLeaveDto, @CurrentUser() user: { userId: number }) {
     return this.leaveService.findAll({ ...query, userId: user.userId });
   }
 
   @Get(':id')
-    @RequirePermission(PERMISSIONS.LEAVE_READ)
-  
+  @RequirePermission(PERMISSIONS.LEAVE_READ)
+
   findOne(
     @Param('id', ParseIntPipe) id: number,
     @CurrentUser() user: { userId: number; role: ROLES },
@@ -57,8 +55,8 @@ export class LeaveController {
 
   // Duyệt/từ chối — CHỈ Manager/HR/Admin
   @Put(':id/review')
-    // @RequirePermission(PERMISSIONS.LEAVE_UPDA)
-  
+  @RequirePermission(PERMISSIONS.LEAVE_APPROVE,PERMISSIONS.LEAVE_REJECT)
+
   review(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: ReviewLeaveDto,

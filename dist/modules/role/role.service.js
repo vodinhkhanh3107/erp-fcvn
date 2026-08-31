@@ -51,6 +51,8 @@ let RoleService = class RoleService {
     async assignPermissions(id, dto) {
         const role = await this.findOne(id);
         const permissions = await this.permissionRepository.findBy({ code: (0, typeorm_2.In)(dto.permissionCodes) });
+        if (!permissions)
+            throw new common_1.NotFoundException("not-found-permission");
         if (permissions.length !== dto.permissionCodes.length) {
             const foundCodes = new Set(permissions.map((p) => p.code));
             const missing = dto.permissionCodes.filter((c) => !foundCodes.has(c));

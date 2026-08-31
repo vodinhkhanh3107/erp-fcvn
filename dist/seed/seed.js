@@ -35,40 +35,13 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 const permission_constants_1 = require("../common/constants/permission.constants");
 const role_enum_1 = require("../common/constants/role.enum");
-const department_entity_1 = require("../models/department.entity");
 const permission_entity_1 = require("../models/permission.entity");
 const role_entity_1 = require("../models/role.entity");
 const user_entity_1 = require("../models/user.entity");
 const typeorm_1 = require("typeorm");
 const dotenv = __importStar(require("dotenv"));
+const department_entity_1 = require("../models/department.entity");
 dotenv.config();
-const DEFAULT_ROLE_PERMISSIONS = {
-    [role_enum_1.ROLES.ADMIN]: permission_constants_1.ALL_PERMISSION_CODES,
-    [role_enum_1.ROLES.HR]: [
-        permission_constants_1.PERMISSIONS.USER_MANAGE,
-        permission_constants_1.PERMISSIONS.DEPARTMENT_MANAGE,
-        permission_constants_1.PERMISSIONS.TASK_MANAGE,
-        permission_constants_1.PERMISSIONS.KPI_MANAGE,
-        permission_constants_1.PERMISSIONS.ATTENDANCE_MANAGE,
-        permission_constants_1.PERMISSIONS.LEAVE_MANAGE,
-    ],
-    [role_enum_1.ROLES.MANAGER]: [
-        permission_constants_1.PERMISSIONS.SUPPLIER_MANAGE,
-        permission_constants_1.PERMISSIONS.SUPPLIER_GROUP_MANAGE,
-        permission_constants_1.PERMISSIONS.TASK_MANAGE,
-        permission_constants_1.PERMISSIONS.KPI_MANAGE,
-        permission_constants_1.PERMISSIONS.LEAVE_MANAGE,
-        permission_constants_1.PERMISSIONS.PURCHASE_REQUEST_MANAGE,
-        permission_constants_1.PERMISSIONS.PURCHASE_ORDER_MANAGE,
-    ],
-    [role_enum_1.ROLES.PURCHASING]: [
-        permission_constants_1.PERMISSIONS.SUPPLIER_MANAGE,
-        permission_constants_1.PERMISSIONS.SUPPLIER_GROUP_MANAGE,
-        permission_constants_1.PERMISSIONS.PURCHASE_REQUEST_MANAGE,
-        permission_constants_1.PERMISSIONS.PURCHASE_ORDER_MANAGE,
-    ],
-    [role_enum_1.ROLES.EMPLOYEE]: [],
-};
 async function seed() {
     const dataSource = new typeorm_1.DataSource({
         type: 'mysql',
@@ -77,14 +50,18 @@ async function seed() {
         username: process.env.DB_USERNAME,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_DATABASE,
-        entities: [user_entity_1.User, department_entity_1.Department, role_entity_1.Role, permission_entity_1.Permission],
+        entities: [user_entity_1.User, role_entity_1.Role, permission_entity_1.Permission, department_entity_1.Department],
         synchronize: false,
     });
     await dataSource.initialize();
     console.log('Đã kết nối MySQL, bắt đầu seed dữ liệu RBAC...');
+    const roleNames = {
+        [role_enum_1.ROLES.ADMIN]: 'Quản trị viên'
+    };
     const permissionRepo = dataSource.getRepository(permission_entity_1.Permission);
     const roleRepo = dataSource.getRepository(role_entity_1.Role);
     const userRepo = dataSource.getRepository(user_entity_1.User);
+    const departmentRepo = dataSource.getRepository(department_entity_1.Department);
     const permissionMap = new Map();
     for (const code of permission_constants_1.ALL_PERMISSION_CODES) {
         let permission = await permissionRepo.findOne({ where: { code } });
@@ -92,21 +69,13 @@ async function seed() {
             permission = await permissionRepo.save(permissionRepo.create({ code }));
             console.log(`Tạo permission mới: ${code}`);
         }
+        else {
+            console.log(`Quyền ${code} đã tồn tại`);
+        }
         permissionMap.set(code, permission);
     }
-    const roleNames = {
-        [role_enum_1.ROLES.ADMIN]: 'Quản trị viên',
-        [role_enum_1.ROLES.HR]: 'Nhân sự',
-        [role_enum_1.ROLES.MANAGER]: 'Quản lý',
-        [role_enum_1.ROLES.PURCHASING]: 'Mua hàng',
-        [role_enum_1.ROLES.ACCOUNTANT]: 'Kế toán',
-        [role_enum_1.ROLES.EMPLOYEE]: 'Nhân viên',
-        [role_enum_1.ROLES.BOD]: 'Giám đốc',
-        [role_enum_1.ROLES.WAREHOUSE]: 'Nhân viên kho',
-        [role_enum_1.ROLES.EVENT_MANAGER]: 'Quản lý sự kiện',
-    };
     const roleMap = new Map();
-    for (const [code, permissionCodes] of Object.entries(DEFAULT_ROLE_PERMISSIONS)) {
+    for (const [code, permissionCodes] of Object.entries({ [role_enum_1.ROLES.ADMIN]: permission_constants_1.ALL_PERMISSION_CODES })) {
         let role = await roleRepo.findOne({ where: { code }, relations: { permissions: true } });
         const permissions = permissionCodes.map((c) => permissionMap.get(c));
         if (!role) {
@@ -116,20 +85,26 @@ async function seed() {
         else {
             role.permissions = permissions;
             await roleRepo.save(role);
-            console.log(`  … Role "${code}" đã tồn tại — đồng bộ lại quyền mặc định`);
+            console.log(`Role "${code}" đã tồn tại — đồng bộ lại quyền mặc định`);
         }
         roleMap.set(code, role);
     }
-    const existedAdmin = await userRepo.findOne({ where: { email: 'khanh123@fcvn.local' } });
+    const newDepartment = departmentRepo.create({
+        name: "Admin",
+        status: department_entity_1.DepartmentStatus.ACTIVE
+    });
+    const saveDepartment = await departmentRepo.save(newDepartment);
+    const existedAdmin = await userRepo.findOne({ where: { email: `${process.env.EMAIL_USER}@fcvn.local` } });
     if (!existedAdmin) {
         const adminRole = roleMap.get(role_enum_1.ROLES.ADMIN);
         const admin = userRepo.create({
             fullName: 'khanh',
-            email: 'khanh123@fcvn.local',
+            email: `${process.env.EMAIL_USER}@fcvn.local`,
             phone: '0865836663',
-            password: 'Password@123',
+            password: process.env.PASSWORD_USER,
             roleId: adminRole.id,
             status: user_entity_1.UserStatus.ACTIVE,
+            departmentId: saveDepartment.id
         });
         const saved = await userRepo.save(admin);
         const verify = await dataSource.query('SELECT LENGTH(password) as len FROM users WHERE id = ?', [saved.id]);
@@ -138,7 +113,7 @@ async function seed() {
         console.log('Tài khoản Admin đã tồn tại, bỏ qua.');
     }
     await dataSource.destroy();
-    console.log('Seed RBAC xong.');
+    console.log('Seed xong.');
 }
 seed().catch((err) => {
     console.error('Seed lỗi:', err);

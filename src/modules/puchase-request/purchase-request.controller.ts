@@ -72,6 +72,7 @@ export class PurchaseRequestController {
 
   // 6. Xem lịch sử
   @Get(':id/history')
+  @RequirePermission(PERMISSIONS.PURCHASE_REQUEST_HISTORY)
 
   getHistory(@Param('id', ParseIntPipe) id: number) {
     return this.purchaseRequestService.getHistory(id);
@@ -101,7 +102,7 @@ export class PurchaseRequestController {
 
   // Phát hành PO — TÁCH RIÊNG khỏi approve(), chỉ dùng được khi PR đã APPROVED
   @Post(':id/issue-po')
-  // @RequirePermission(PERMISSIONS.PURCHASE_REQUEST_CREATE)
+  @RequirePermission(PERMISSIONS.PURCHASE_REQUEST_ISSUE)
 
   issuePO(@Param('id', ParseIntPipe) id: number, @Body() dto: IssuePoDto, @CurrentUser() user: JwtUser) {
     return this.purchaseRequestService.issuePO(id, dto, user.userId);

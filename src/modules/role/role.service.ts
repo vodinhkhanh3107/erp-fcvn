@@ -48,6 +48,9 @@ export class RoleService {
     const role = await this.findOne(id);
 
     const permissions = await this.permissionRepository.findBy({ code: In(dto.permissionCodes) });
+
+    if(!permissions) throw new NotFoundException("not-found-permission");
+
     if (permissions.length !== dto.permissionCodes.length) {
       const foundCodes = new Set(permissions.map((p) => p.code));
       const missing = dto.permissionCodes.filter((c) => !foundCodes.has(c));

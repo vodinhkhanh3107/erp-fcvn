@@ -17,8 +17,6 @@ import { PurchaseOrderModule } from './modules/purchase-order/purchase-order.mod
 import { PurchaseRequestModule } from './modules/puchase-request/purchase-request.module';
 import { AuditLogModule } from './modules/audit-log/audit-log.module';
 import { LeaveModule } from './modules/leave/leave.module';
-import { PermissionsModule } from './modules/permission/permission.module';
-import { RoleModule } from './modules/role/role.module';
 import { PermissionRoleModule } from './modules/permission-role/permission-role.module';
 
 @Module({
@@ -41,8 +39,6 @@ import { PermissionRoleModule } from './modules/permission-role/permission-role.
     AuthModule,
     RedisModule,
     AuditLogModule,
-    // PermissionsModule,
-    // RoleModule,
     PermissionRoleModule,
 
     SupplierModule,

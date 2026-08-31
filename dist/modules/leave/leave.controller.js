@@ -50,6 +50,7 @@ let LeaveController = class LeaveController {
 exports.LeaveController = LeaveController;
 __decorate([
     (0, common_1.Post)(),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.LEAVE_CREATE),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, current_user_decorator_1.CurrentUser)()),
     __metadata("design:type", Function),
@@ -84,6 +85,7 @@ __decorate([
 ], LeaveController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Put)(':id/review'),
+    (0, permission_decorator_1.RequirePermission)(permission_constants_1.PERMISSIONS.LEAVE_APPROVE, permission_constants_1.PERMISSIONS.LEAVE_REJECT),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __param(2, (0, current_user_decorator_1.CurrentUser)()),

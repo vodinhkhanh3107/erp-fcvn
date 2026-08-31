@@ -20,7 +20,7 @@ export class SupplierController {
   constructor(private readonly supplierService: SupplierService) { }
 
   @Post()
-  // @RequirePermission(PERMISSIONS.PURCHASE_ORDER_cre)
+  @RequirePermission(PERMISSIONS.PURCHASE_ORDER_CREATE)
 
   create(@Body() dto: CreateSupplierDto, @CurrentUser() user: { userId: number }) {
     return this.supplierService.createSupplier(dto, user.userId);

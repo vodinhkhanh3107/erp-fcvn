@@ -1,10 +1,11 @@
-import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Between, Repository } from 'typeorm';
+import { BadRequestException, ConflictException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
+import { Between, EntityManager, Repository } from 'typeorm';
 import { AppLogger } from '../../common/logger/app-logger.service';
 import { CreateAttendanceDto } from './dto/create-attendence.dto';
 import { ListAttendanceDto } from './dto/list-attendence.dto';
 import { Attendance } from '../../models/attendence.entity';
+import { DataSource } from 'typeorm/browser';
 
 @Injectable()
 export class AttendanceService {
@@ -13,9 +14,30 @@ export class AttendanceService {
   constructor(
     @InjectRepository(Attendance)
     private readonly repository: Repository<Attendance>,
+
+    // @InjectDataSource()
+    // private readonly dataSource: DataSource,
   ) {
     this.logger.setContext('AttendanceService');
   }
+
+  // private async runInTransaction<T>(work: (manager: EntityManager) => Promise<T>): Promise<T> {
+  //   const queryRunner = this.dataSource.createQueryRunner();
+
+  //   await queryRunner.connect();
+  //   await queryRunner.startTransaction();
+
+  //   try {
+  //     const result = await work(queryRunner.manager);
+  //     await queryRunner.commitTransaction();
+  //     return result;
+  //   } catch (err) {
+  //     await queryRunner.rollbackTransaction();
+  //     throw new InternalServerErrorException('Transaction failed, rolled back');
+  //   } finally {
+  //     await queryRunner.release();
+  //   }
+  // }
 
   private calculateTotalHours(checkIn: string, checkOut: string): number {
     const [inH, inM] = checkIn.split(':').map(Number);

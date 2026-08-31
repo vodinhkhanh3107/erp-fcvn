@@ -13,11 +13,14 @@ export class PermissionController {
   constructor(private readonly permissionService: PermissionService) {}
 
   @Get()
+  @RequirePermission(PERMISSIONS.PERMISSION_READ)
   findAll() {
     return this.permissionService.findAll();
   }
 
   @Post()
+  @RequirePermission(PERMISSIONS.PERMISSION_CREATE)
+
   create(@Body() dto: CreatePermissionDto) {
     return this.permissionService.create(dto);
   }
