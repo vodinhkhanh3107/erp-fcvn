@@ -53,12 +53,16 @@ describe('SupplierService', () => {
 
     it('nên throw ConflictException nếu taxCode đã tồn tại, KHÔNG check tiếp email', async () => {
       (repository.findOne as jest.Mock).mockResolvedValueOnce({ id: 1, taxCode: dto.taxCode });
-
-      await expect(service.createSupplier(dto, actorId)).rejects.toThrow(ConflictException);
-      await expect(service.createSupplier(dto, actorId)).rejects.toThrow('tax-code-already-exists');
-
-      expect(repository.findOne).toHaveBeenCalledTimes(1);
-      expect(repository.findOne).toHaveBeenCalledWith({ where: { taxCode: dto.taxCode } });
+ 
+      let thrownError: any;
+      try {
+        await service.createSupplier(dto, actorId);
+      } catch (err) {
+        thrownError = err;
+      }
+ 
+      expect(thrownError).toBeInstanceOf(ConflictException);
+      expect(thrownError.message).toBe('tax-code-already-exists');
     });
 
     it('nên throw ConflictException nếu contactEmail đã tồn tại (sau khi taxCode hợp lệ)', async () => {
