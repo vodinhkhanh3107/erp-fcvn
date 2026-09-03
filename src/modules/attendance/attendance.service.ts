@@ -2,8 +2,8 @@ import { BadRequestException, ConflictException, Injectable, InternalServerError
 import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
 import { Between, EntityManager, Repository } from 'typeorm';
 import { AppLogger } from '../../common/logger/app-logger.service';
-import { CreateAttendanceDto } from './dto/create-attendence.dto';
-import { ListAttendanceDto } from './dto/list-attendence.dto';
+import { CreateAttendanceDto } from './dto/create-attendance.dto';
+import { ListAttendanceDto } from './dto/list-attendance.dto';
 import { Attendance } from '../../models/attendence.entity';
 import { DataSource } from 'typeorm/browser';
 

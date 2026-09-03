@@ -18,7 +18,7 @@ const auth_module_1 = require("./modules/auth/auth.module");
 const redis_module_1 = require("./common/redis/redis.module");
 const supplier_module_1 = require("./modules/supplier/supplier-module");
 const supplier_group_module_1 = require("./modules/supplier-group/supplier-group.module");
-const attendence_module_1 = require("./modules/attendence/attendence.module");
+const attendance_module_1 = require("./modules/attendance/attendance.module");
 const department_module_1 = require("./modules/department/department.module");
 const task_module_1 = require("./modules/task/task.module");
 const kpi_module_1 = require("./modules/kpi/kpi.module");
@@ -53,7 +53,7 @@ exports.AppModule = AppModule = __decorate([
             permission_role_module_1.PermissionRoleModule,
             supplier_module_1.SupplierModule,
             supplier_group_module_1.SupplierGroupModule,
-            attendence_module_1.AttendanceModule,
+            attendance_module_1.AttendanceModule,
             department_module_1.DepartmentModule,
             task_module_1.TaskModule,
             kpi_module_1.KpiModule,

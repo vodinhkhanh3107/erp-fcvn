@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Attendance } from '../../models/attendence.entity';
-import { AttendanceController } from './attendence.controller';
-import { AttendanceService } from './attendence.service';
+import { AttendanceController } from './attendance.controller';
+import { AttendanceService } from './attendance.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Attendance])],

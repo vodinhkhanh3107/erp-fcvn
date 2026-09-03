@@ -9,7 +9,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { RedisModule } from './common/redis/redis.module';
 import { SupplierModule } from './modules/supplier/supplier-module';
 import { SupplierGroupModule } from './modules/supplier-group/supplier-group.module';
-import { AttendanceModule } from './modules/attendence/attendence.module';
+import { AttendanceModule } from './modules/attendance/attendance.module';
 import { DepartmentModule } from './modules/department/department.module';
 import { TaskModule } from './modules/task/task.module';
 import { KpiModule } from './modules/kpi/kpi.module';
