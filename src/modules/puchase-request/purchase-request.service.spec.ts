@@ -138,7 +138,12 @@ describe('PurchaseRequestService', () => {
       mockManager.create.mockImplementation((_entity, data) => data);
       mockManager.save.mockImplementation(async (data) => {
         // Lần save đầu tiên (PurchaseRequest) cần trả về id để các bước sau dùng
-        if (!Array.isArray(data) && data && !('purchaseRequestId' in data) && !('itemName' in data)) {
+        if (
+          !Array.isArray(data) &&
+          data &&
+          !('purchaseRequestId' in data) &&
+          !('itemName' in data)
+        ) {
           return savedPr;
         }
         return data;
@@ -304,7 +309,7 @@ describe('PurchaseRequestService', () => {
       await expect(service.submit(1, actorId)).rejects.toThrow(ForbiddenException);
     });
 
-    it('nên throw BadRequestException (BR-01) nếu PR không có item nào', async () => {
+    it('nên throw BadRequestException nếu PR không có item nào', async () => {
       jest.spyOn(service, 'findOne').mockResolvedValue({
         id: 1,
         status: PurchaseRequestStatus.DRAFT,
@@ -318,7 +323,7 @@ describe('PurchaseRequestService', () => {
       );
     });
 
-    it('nên throw BadRequestException (BR-02) nếu PR có ít hơn 2 báo giá', async () => {
+    it('nên throw BadRequestException nếu PR có ít hơn 2 báo giá', async () => {
       jest.spyOn(service, 'findOne').mockResolvedValue({
         id: 1,
         status: PurchaseRequestStatus.DRAFT,
@@ -401,7 +406,7 @@ describe('PurchaseRequestService', () => {
       } as any);
       (departmentRepository.findOne as jest.Mock).mockResolvedValue({
         id: 1,
-        managerId: 5, 
+        managerId: 5,
       });
 
       await expect(service.approve(1, 7, ROLES.MANAGER)).rejects.toThrow(ForbiddenException);
@@ -478,7 +483,9 @@ describe('PurchaseRequestService', () => {
   // ===================== getHistory =====================
   describe('getHistory', () => {
     it('nên throw NotFoundException nếu PR không tồn tại (uỷ quyền qua findOne)', async () => {
-      jest.spyOn(service, 'findOne').mockRejectedValue(new NotFoundException('purchase-request-not-found'));
+      jest
+        .spyOn(service, 'findOne')
+        .mockRejectedValue(new NotFoundException('purchase-request-not-found'));
 
       await expect(service.getHistory(999)).rejects.toThrow(NotFoundException);
       expect(historyRepository.find).not.toHaveBeenCalled();
@@ -486,7 +493,10 @@ describe('PurchaseRequestService', () => {
 
     it('nên trả về lịch sử sắp xếp theo createdAt tăng dần', async () => {
       jest.spyOn(service, 'findOne').mockResolvedValue({ id: 1 } as any);
-      const history = [{ id: 1, toStatus: 'DRAFT' }, { id: 2, toStatus: 'PENDING' }];
+      const history = [
+        { id: 1, toStatus: 'DRAFT' },
+        { id: 2, toStatus: 'PENDING' },
+      ];
       (historyRepository.find as jest.Mock).mockResolvedValue(history);
 
       const result = await service.getHistory(1);
@@ -502,7 +512,12 @@ describe('PurchaseRequestService', () => {
   // ===================== findAll =====================
   describe('findAll', () => {
     it('nên áp dụng filter status và keyword (ILike trên purposeOfUse) khi có', async () => {
-      const query = { page: 1, limit: 10, status: PurchaseRequestStatus.PENDING, keyword: 'laptop' } as any;
+      const query = {
+        page: 1,
+        limit: 10,
+        status: PurchaseRequestStatus.PENDING,
+        keyword: 'laptop',
+      } as any;
 
       (prRepository.findAndCount as jest.Mock).mockResolvedValue([[], 0]);
 
@@ -551,7 +566,12 @@ describe('PurchaseRequestService', () => {
 
       expect(prRepository.findOne).toHaveBeenCalledWith({
         where: { id: 1 },
-        relations: { requester: true, department: true, items: true, quotations: { supplier: true } },
+        relations: {
+          requester: true,
+          department: true,
+          items: true,
+          quotations: { supplier: true },
+        },
       });
       expect(result).toEqual(pr);
     });
@@ -590,7 +610,7 @@ describe('PurchaseRequestService', () => {
       } as any);
       (poRepository.findOneBy as jest.Mock).mockResolvedValue(null);
 
-      const dto = { selectedSupplierId: 999 } as any; 
+      const dto = { selectedSupplierId: 999 } as any;
 
       await expect(service.issuePO(1, dto, actorId)).rejects.toThrow(
         'selected-supplier-did-not-submit-a-quotation-for-this-pr',
@@ -614,9 +634,7 @@ describe('PurchaseRequestService', () => {
 
       const dto = { selectedSupplierId: 1, paymentTerm: 'NET30' } as any;
 
-      await expect(service.issuePO(1, dto, actorId)).rejects.toThrow(
-        InternalServerErrorException,
-      );
+      await expect(service.issuePO(1, dto, actorId)).rejects.toThrow(InternalServerErrorException);
 
       expect(mockQueryRunner.rollbackTransaction).toHaveBeenCalledTimes(1);
       expect(mockQueryRunner.commitTransaction).not.toHaveBeenCalled();
@@ -651,9 +669,7 @@ describe('PurchaseRequestService', () => {
         totalAmount: 1200, // đúng quotedAmount của supplier #2
       });
       expect(result.message).toBe('Phát hành đơn mua hàng (PO) thành công');
-      expect(result.result).toEqual(
-        expect.objectContaining({ totalAmount: 1200 }),
-      );
+      expect(result.result).toEqual(expect.objectContaining({ totalAmount: 1200 }));
     });
   });
 });
