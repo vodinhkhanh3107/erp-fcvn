@@ -91,7 +91,8 @@ async function seed() {
     );
     console.log(verify);
   } else {
-    console.log('Tài khoản Admin đã tồn tại, bỏ qua.');
+    // thêm commient test merge branch
+    console.log('Tài khoản Admin đã tồn tại, bỏ qua');
   }
 
   await dataSource.destroy();
