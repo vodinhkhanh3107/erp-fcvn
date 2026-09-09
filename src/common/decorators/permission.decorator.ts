@@ -3,6 +3,7 @@ import { PERMISSIONS } from '../constants/permission.constants';
 
 export const PERMISSION_KEY = 'permission';
 
-type PermissionCode = (typeof PERMISSIONS)[keyof typeof PERMISSIONS]
+type PermissionCode = (typeof PERMISSIONS)[keyof typeof PERMISSIONS];
 
-export const RequirePermission = (...permissions: PermissionCode[]) => SetMetadata(PERMISSION_KEY, permissions);
+export const RequirePermission = (...permissions: PermissionCode[]) =>
+  SetMetadata(PERMISSION_KEY, permissions);

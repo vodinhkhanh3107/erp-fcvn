@@ -23,7 +23,8 @@ exports.AuditLogModule = AuditLogModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([audit_log_entity_1.AuditLog, role_entity_1.Role])],
         controllers: [audit_log_controller_1.AuditLogController],
-        providers: [audit_log_service_1.AuditLogService,
+        providers: [
+            audit_log_service_1.AuditLogService,
             {
                 provide: core_1.APP_INTERCEPTOR,
                 useClass: audit_interceptor_1.AuditInterceptor,

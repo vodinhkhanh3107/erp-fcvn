@@ -1,8 +1,16 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
-import { Roles } from '../../common/decorators/roles.decorator';
-import { ROLES } from '../../common/constants/role.enum';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { CreateKpiDto } from './dto/create-kpi.dto';
@@ -17,7 +25,6 @@ import { PERMISSIONS } from 'src/common/constants/permission.constants';
 @ApiBearerAuth('access-token')
 @Controller('kpis')
 @UseGuards(JwtAuthGuard, RolesGuard, PermissionGuard)
-
 export class KpiController {
   constructor(private readonly kpiService: KpiService) {}
 
@@ -29,21 +36,18 @@ export class KpiController {
 
   @Get()
   @RequirePermission(PERMISSIONS.KPI_READ)
-
   findAll(@Query() query: ListKpiDto) {
     return this.kpiService.findAll(query);
   }
 
   @Get(':id')
   @RequirePermission(PERMISSIONS.KPI_READ)
-
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.kpiService.findOne(id);
   }
 
   @Put(':id/actual')
   @RequirePermission(PERMISSIONS.KPI_UPDATE)
-
   updateActual(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateKpiActualDto,

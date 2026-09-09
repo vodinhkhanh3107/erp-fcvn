@@ -1,5 +1,5 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsNumber, Min } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNumber, Min } from 'class-validator';
 
 export class UpdateKpiActualDto {
   @ApiProperty({ example: 92 })

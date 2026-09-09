@@ -1,4 +1,9 @@
-import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  ForbiddenException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { LessThanOrEqual, MoreThanOrEqual, Repository } from 'typeorm';
 import { AppLogger } from '../../common/logger/app-logger.service';
@@ -28,7 +33,7 @@ export class LeaveService {
     if (dto.startDate < tomorrow) {
       throw new BadRequestException('leave-must-be-requested-at-least-1-day-in-advance');
     }
-    void today; 
+    void today;
     // Alternative Flow tự bổ sung: chặn trùng lịch nghỉ đã duyệt cùng khoảng ngày
     const overlapping = await this.repository.findOne({
       where: {
@@ -91,7 +96,9 @@ export class LeaveService {
     leave.approvedBy = approverId;
     const saved = await this.repository.save(leave);
 
-    this.logger.log(`Yêu cầu nghỉ phép #${id} đã được ${approverId === leave.userId ? 'tự' : ''} duyệt: ${dto.status}`);
+    this.logger.log(
+      `Yêu cầu nghỉ phép #${id} đã được ${approverId === leave.userId ? 'tự' : ''} duyệt: ${dto.status}`,
+    );
     return { message: 'Duyệt yêu cầu nghỉ phép thành công', result: saved };
   }
 }

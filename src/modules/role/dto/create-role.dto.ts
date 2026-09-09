@@ -1,8 +1,11 @@
-import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
-import { IsNotEmpty, IsOptional, IsString, Matches } from "class-validator";
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { IsNotEmpty, IsOptional, IsString, Matches } from 'class-validator';
 
 export class CreateRoleDto {
-  @ApiProperty({ example: 'marketing', description: 'Mã role — chữ thường, không dấu, dùng trong code' })
+  @ApiProperty({
+    example: 'marketing',
+    description: 'Mã role — chữ thường, không dấu, dùng trong code',
+  })
   @IsNotEmpty()
   @IsString()
   @Matches(/^[a-z0-9-]+$/, { message: 'code chỉ gồm chữ thường, số, dấu gạch ngang' })

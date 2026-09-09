@@ -25,9 +25,16 @@ export class KpiService {
   async create(dto: CreateKpiDto, actorId: number) {
     const kpiStatus = this.calculateStatus(dto.targetValue, dto.actualValue);
 
-    const entity = this.repository.create({ ...dto, kpiStatus, createdBy: actorId, updatedBy: actorId });
+    const entity = this.repository.create({
+      ...dto,
+      kpiStatus,
+      createdBy: actorId,
+      updatedBy: actorId,
+    });
     const saved = await this.repository.save(entity);
-    this.logger.log(`Đã tạo KPI #${saved.id} cho nhân sự #${dto.userId}, kỳ ${dto.period} → ${kpiStatus}`);
+    this.logger.log(
+      `Đã tạo KPI #${saved.id} cho nhân sự #${dto.userId}, kỳ ${dto.period} → ${kpiStatus}`,
+    );
 
     return { message: 'Tạo KPI thành công', result: saved };
   }

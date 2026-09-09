@@ -17,7 +17,6 @@ export enum PurchaseOrderStatus {
   RELEASED = 'Released',
 }
 
-
 @Entity('purchase_orders')
 export class PurchaseOrder {
   @PrimaryGeneratedColumn()

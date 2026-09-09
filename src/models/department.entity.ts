@@ -46,9 +46,8 @@ export class Department {
 
   @Column({ name: 'manager_id', nullable: true })
   managerId?: number;
- 
+
   @ManyToOne(() => User, { nullable: true })
   @JoinColumn({ name: 'manager_id' })
   manager?: User;
 }
-

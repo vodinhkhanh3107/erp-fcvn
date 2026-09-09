@@ -20,7 +20,7 @@ export class RolesGuard implements CanActivate {
     if (!user || !requiredRoles.includes(user.role)) {
       throw new ForbiddenException('access-denied');
     }
-    
+
     return true;
   }
 }

@@ -1,9 +1,17 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
-import { Roles } from '../../common/decorators/roles.decorator';
 import { PaginationDto } from '../../common/dto/pagination.dto';
-import { ROLES } from '../../common/constants/role.enum';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { CreateDepartmentDto } from './dto/create-department.dto';
@@ -29,21 +37,18 @@ export class DepartmentController {
 
   @Get()
   @RequirePermission(PERMISSIONS.DEPARTMENT_READ)
-
   findAll(@Query() query: PaginationDto) {
     return this.departmentService.list(query);
   }
 
   @Get(':id')
   @RequirePermission(PERMISSIONS.DEPARTMENT_READ)
-
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.departmentService.findOne(id);
   }
 
   @Put(':id')
   @RequirePermission(PERMISSIONS.DEPARTMENT_UPDATE)
-
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateDepartmentDto,
@@ -54,7 +59,6 @@ export class DepartmentController {
 
   @Put(':id/status')
   @RequirePermission(PERMISSIONS.DEPARTMENT_UPDATE)
-  
   updateStatus(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateDepartmentStatusDto,

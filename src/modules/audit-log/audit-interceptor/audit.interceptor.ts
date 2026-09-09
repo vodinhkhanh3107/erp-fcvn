@@ -7,7 +7,13 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Role } from 'src/models/role.entity';
 import { Repository } from 'typeorm';
 
-const SENSITIVE_FIELDS = ['password', 'currentPassword', 'newPassword', 'refreshToken', 'accessToken'];
+const SENSITIVE_FIELDS = [
+  'password',
+  'currentPassword',
+  'newPassword',
+  'refreshToken',
+  'accessToken',
+];
 
 function sanitizeBody(body: unknown): unknown {
   if (!body || typeof body !== 'object') return body;
@@ -45,12 +51,12 @@ function extractEntityId(path: string): number | undefined {
 
 @Injectable()
 export class AuditInterceptor implements NestInterceptor {
-  constructor(private readonly auditLogService: AuditLogService,
+  constructor(
+    private readonly auditLogService: AuditLogService,
     @InjectRepository(Role)
     private readonly roleRepository: Repository<Role>,
   ) {}
 
-  
   async intercept(context: ExecutionContext, next: CallHandler): Promise<Observable<any>> {
     const request = context.switchToHttp().getRequest();
     const { method, originalUrl, body, user } = request;
@@ -62,7 +68,6 @@ export class AuditInterceptor implements NestInterceptor {
     }
 
     const role = await this.roleRepository.findOneBy({ id: user.roleId });
-
 
     return next.handle().pipe(
       tap({

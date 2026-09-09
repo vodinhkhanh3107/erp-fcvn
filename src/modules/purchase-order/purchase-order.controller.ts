@@ -1,7 +1,5 @@
 import { Controller, Get, Param, ParseIntPipe, Query, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { Roles } from '../../common/decorators/roles.decorator';
-import { ROLES } from '../../common/constants/role.enum';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { ListPurchaseOrderDto } from './dto/list-purchase-order.dto';
@@ -25,7 +23,6 @@ export class PurchaseOrderController {
 
   @Get(':id')
   @RequirePermission(PERMISSIONS.PURCHASE_ORDER_READ)
-
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.purchaseOrderService.findOne(id);
   }

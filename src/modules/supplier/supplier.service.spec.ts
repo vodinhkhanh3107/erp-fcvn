@@ -53,14 +53,14 @@ describe('SupplierService', () => {
 
     it('nên throw ConflictException nếu taxCode đã tồn tại, KHÔNG check tiếp email', async () => {
       (repository.findOne as jest.Mock).mockResolvedValueOnce({ id: 1, taxCode: dto.taxCode });
- 
+
       let thrownError: any;
       try {
         await service.createSupplier(dto, actorId);
       } catch (err) {
         thrownError = err;
       }
- 
+
       expect(thrownError).toBeInstanceOf(ConflictException);
       expect(thrownError.message).toBe('tax-code-already-exists');
     });
@@ -79,9 +79,7 @@ describe('SupplierService', () => {
     });
 
     it('nên tạo supplier thành công khi taxCode và contactEmail đều chưa tồn tại', async () => {
-      (repository.findOne as jest.Mock)
-        .mockResolvedValueOnce(null)
-        .mockResolvedValueOnce(null);
+      (repository.findOne as jest.Mock).mockResolvedValueOnce(null).mockResolvedValueOnce(null);
 
       const savedSupplier = { id: 10, ...dto, createdBy: actorId, updatedBy: actorId };
       const createSpy = jest.spyOn(service, 'create').mockResolvedValue(savedSupplier as any);

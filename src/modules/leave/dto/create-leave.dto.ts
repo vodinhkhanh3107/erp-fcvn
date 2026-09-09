@@ -1,5 +1,5 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsDateString, IsNotEmpty, IsString } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsDateString, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateLeaveDto {
   @ApiProperty({ example: '2026-09-10' })

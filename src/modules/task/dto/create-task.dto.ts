@@ -1,7 +1,7 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { Transform } from "class-transformer";
-import { IsDateString, IsEnum, IsInt, IsNotEmpty, IsString, Matches } from "class-validator";
-import { TaskPriority } from "../../../models/task.entity";
+import { ApiProperty } from '@nestjs/swagger';
+import { Transform } from 'class-transformer';
+import { IsDateString, IsEnum, IsInt, IsNotEmpty, IsString, Matches } from 'class-validator';
+import { TaskPriority } from '../../../models/task.entity';
 
 export class CreateTaskDto {
   @ApiProperty({ example: 'Chuẩn bị báo cáo Q3' })

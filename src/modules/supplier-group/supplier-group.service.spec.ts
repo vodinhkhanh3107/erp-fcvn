@@ -45,7 +45,9 @@ describe('SupplierGroupService', () => {
     it('code đã tồn tại → ném ConflictException', async () => {
       mockGroupRepo.findOne.mockResolvedValue(fakeGroup);
 
-      await expect(service.createGroup({ code: 'SUP-001', name: 'B' }, 1)).rejects.toThrow(ConflictException);
+      await expect(service.createGroup({ code: 'SUP-001', name: 'B' }, 1)).rejects.toThrow(
+        ConflictException,
+      );
     });
 
     it('code chưa tồn tại → tạo thành công, lưu đúng createdBy/updatedBy', async () => {
@@ -66,9 +68,9 @@ describe('SupplierGroupService', () => {
     it('trạng thái mới GIỐNG trạng thái cũ → ném BadRequestException', async () => {
       mockGroupRepo.findOne.mockResolvedValue({ ...fakeGroup });
 
-      await expect(service.updateStatus(1, { status: SupplierGroupStatus.ACTIVE }, 1)).rejects.toThrow(
-        BadRequestException,
-      );
+      await expect(
+        service.updateStatus(1, { status: SupplierGroupStatus.ACTIVE }, 1),
+      ).rejects.toThrow(BadRequestException);
     });
 
     it('trạng thái mới KHÁC → đổi thành công', async () => {
@@ -89,9 +91,14 @@ describe('SupplierGroupService', () => {
     });
 
     it('nhóm đang INACTIVE → ném BadRequestException, KHÔNG được gán', async () => {
-      mockGroupRepo.findOne.mockResolvedValue({ ...fakeGroup, status: SupplierGroupStatus.INACTIVE });
+      mockGroupRepo.findOne.mockResolvedValue({
+        ...fakeGroup,
+        status: SupplierGroupStatus.INACTIVE,
+      });
 
-      await expect(service.assignSuppliers(1, { supplierIds: [1, 2] }, 1)).rejects.toThrow(BadRequestException);
+      await expect(service.assignSuppliers(1, { supplierIds: [1, 2] }, 1)).rejects.toThrow(
+        BadRequestException,
+      );
       expect(mockSupplierRepo.update).not.toHaveBeenCalled();
     });
 
@@ -99,7 +106,9 @@ describe('SupplierGroupService', () => {
       mockGroupRepo.findOne.mockResolvedValue({ ...fakeGroup });
       mockSupplierRepo.findBy.mockResolvedValue([{ id: 1 }]); // chỉ tìm thấy 1/2 id yêu cầu
 
-      await expect(service.assignSuppliers(1, { supplierIds: [1, 2] }, 1)).rejects.toThrow(BadRequestException);
+      await expect(service.assignSuppliers(1, { supplierIds: [1, 2] }, 1)).rejects.toThrow(
+        BadRequestException,
+      );
       expect(mockSupplierRepo.update).not.toHaveBeenCalled();
     });
 

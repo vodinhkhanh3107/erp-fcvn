@@ -1,6 +1,16 @@
-import { Body, Controller, ForbiddenException, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  ForbiddenException,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { PaginationDto } from '../../common/dto/pagination.dto';
-import { Roles } from '../../common/decorators/roles.decorator';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 // import { RolesGuard } from '../../common/guards/roles.guard';
 import { ROLES } from '../../common/constants/role.enum';
@@ -17,10 +27,9 @@ import { RolesGuard } from 'src/common/guards/roles.guard';
 @ApiTags('User')
 @ApiBearerAuth('access-token')
 @Controller('users')
-@UseGuards(JwtAuthGuard,RolesGuard,PermissionGuard)
-export class UserController {   
-  constructor(private readonly userService: UserService,
-  ) {}
+@UseGuards(JwtAuthGuard, RolesGuard, PermissionGuard)
+export class UserController {
+  constructor(private readonly userService: UserService) {}
 
   @Post()
   @RequirePermission(PERMISSIONS.USER_CREATE)
@@ -36,24 +45,27 @@ export class UserController {
 
   @Get(':id')
   @RequirePermission(PERMISSIONS.USER_READ)
-
-  findOne(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: { userId: number; role: ROLES }) {
-    const isPrivileged = (user.role === ROLES.ADMIN || user.role === ROLES.HR || user.role === ROLES.MANAGER || user.role === ROLES.ACCOUNTANT || user.role === ROLES.BOD);
+  findOne(
+    @Param('id', ParseIntPipe) id: number,
+    @CurrentUser() user: { userId: number; role: ROLES },
+  ) {
+    const isPrivileged =
+      user.role === ROLES.ADMIN ||
+      user.role === ROLES.HR ||
+      user.role === ROLES.MANAGER ||
+      user.role === ROLES.ACCOUNTANT ||
+      user.role === ROLES.BOD;
     const isOwnProfile = user.userId === id;
 
-    if (isOwnProfile || (!isOwnProfile && isPrivileged)){
+    if (isOwnProfile || (!isOwnProfile && isPrivileged)) {
       return this.userService.findOne(id);
-      
     }
     throw new ForbiddenException('access-denied: Bạn không có quyền xem hồ sơ của người khác');
- 
   }
 
-  @Put(':id/status')  
+  @Put(':id/status')
   @RequirePermission(PERMISSIONS.USER_UPDATE)
   updateStatus(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateUserStatusDto) {
     return this.userService.updateStatus(id, dto);
   }
-
-
 }

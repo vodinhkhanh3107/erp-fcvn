@@ -8,9 +8,9 @@ export enum ROLES {
   HR = 'hr',
   MANAGER = 'manager',
   EMPLOYEE = 'employee',
-  ACCOUNTANT = "accountant",
-  BOD = "bod",
-  PURCHASING="purchasing",
-  WAREHOUSE='warehouse',
-  EVENT_MANAGER='event_manager'
+  ACCOUNTANT = 'accountant',
+  BOD = 'bod',
+  PURCHASING = 'purchasing',
+  WAREHOUSE = 'warehouse',
+  EVENT_MANAGER = 'event_manager',
 }

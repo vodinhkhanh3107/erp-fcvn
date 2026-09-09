@@ -104,7 +104,7 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "status", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: "avatar", default: "" }),
+    (0, typeorm_1.Column)({ name: 'avatar', default: '' }),
     __metadata("design:type", String)
 ], User.prototype, "avatar", void 0);
 __decorate([

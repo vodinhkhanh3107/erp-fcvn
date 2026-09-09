@@ -1,23 +1,30 @@
-import { BadRequestException, ConflictException, ForbiddenException, Injectable, InternalServerErrorException, NotFoundException } from "@nestjs/common";
-import { InjectDataSource, InjectRepository } from "@nestjs/typeorm";
-import { AppLogger } from "../../common/logger/app-logger.service";
-import { PurchaseRequest, PurchaseRequestStatus } from "../../models/purchase-request.entity";
-import { EntityManager, ILike, Repository } from "typeorm";
-import { PurchaseRequestHistory } from "../../models/purchase-request-history.entity";
-import { Department } from "../../models/department.entity";
-import { PurchaseOrder, PurchaseOrderStatus } from "../../models/purchase-order.entity";
-import { PurchaseOrderItem } from "../../models/purchase-order-item.entity";
-import { DataSource } from "typeorm";
-import { CreatePurchaseRequestDto } from "./dto/create-purchase-request.dto";
-import { UpdatePurchaseRequestDto } from "./dto/update-purchase-request.dto";
-import { PurchaseRequestItem } from "../../models/purchase-request-item.entity";
-import { PurchaseRequestQuotation } from "../../models/purchase-request-quotation.entity";
-import { ROLES } from "../../common/constants/role.enum";
-import { RejectPurchaseRequestDto } from "./dto/reject-purchase-request.dto";
-import { IssuePoDto } from "./dto/issue-purchase-order.dto";
-import { ListPurchaseRequestDto } from "./dto/list-purchase-request.dto";
+import {
+  BadRequestException,
+  ConflictException,
+  ForbiddenException,
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
+import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
+import { AppLogger } from '../../common/logger/app-logger.service';
+import { PurchaseRequest, PurchaseRequestStatus } from '../../models/purchase-request.entity';
+import { EntityManager, ILike, Repository } from 'typeorm';
+import { PurchaseRequestHistory } from '../../models/purchase-request-history.entity';
+import { Department } from '../../models/department.entity';
+import { PurchaseOrder, PurchaseOrderStatus } from '../../models/purchase-order.entity';
+import { PurchaseOrderItem } from '../../models/purchase-order-item.entity';
+import { DataSource } from 'typeorm';
+import { CreatePurchaseRequestDto } from './dto/create-purchase-request.dto';
+import { UpdatePurchaseRequestDto } from './dto/update-purchase-request.dto';
+import { PurchaseRequestItem } from '../../models/purchase-request-item.entity';
+import { PurchaseRequestQuotation } from '../../models/purchase-request-quotation.entity';
+import { ROLES } from '../../common/constants/role.enum';
+import { RejectPurchaseRequestDto } from './dto/reject-purchase-request.dto';
+import { IssuePoDto } from './dto/issue-purchase-order.dto';
+import { ListPurchaseRequestDto } from './dto/list-purchase-request.dto';
 
-import * as crypto from 'crypto'
+import * as crypto from 'crypto';
 
 const MYSQL_DUPLICATE_ENTRY_ERROR_CODE = 'ER_DUP_ENTRY';
 
@@ -71,21 +78,26 @@ export class PurchaseRequestService {
     }
   }
 
-
   // ===================== 1. TẠO NHÁP (Draft) =====================
   async createDraft(dto: CreatePurchaseRequestDto, requesterId: number) {
-
     const effectiveRequestKey = dto.requestKey ?? this.generateContentHash(dto, requesterId);
 
-    const existedRequestKey = await this.prRepository.findOneBy({ requestKey: effectiveRequestKey });
+    const existedRequestKey = await this.prRepository.findOneBy({
+      requestKey: effectiveRequestKey,
+    });
     if (existedRequestKey) {
-      this.logger.error(`Request trùng (requestKey="${dto.requestKey}") → trả lại PR #${existedRequestKey.id} cũ`);
-      return { message: 'Yêu cầu đã được ghi nhận trước đó (request trùng lặp)', result: existedRequestKey };
+      this.logger.error(
+        `Request trùng (requestKey="${dto.requestKey}") → trả lại PR #${existedRequestKey.id} cũ`,
+      );
+      return {
+        message: 'Yêu cầu đã được ghi nhận trước đó (request trùng lặp)',
+        result: existedRequestKey,
+      };
     }
 
     const existedDepartment = await this.departmentRepository.findOneBy({ id: dto.departmentId });
     if (!existedDepartment) {
-      throw new NotFoundException("Not-found-deparment")
+      throw new NotFoundException('Not-found-deparment');
     }
 
     const saved = await this.runInTransaction(async (manager) => {
@@ -132,7 +144,7 @@ export class PurchaseRequestService {
 
       return saved;
     });
-    this.logger.log( 'Tạo nháp yêu cầu mua hàng thành công');
+    this.logger.log('Tạo nháp yêu cầu mua hàng thành công');
     return { message: 'Tạo nháp yêu cầu mua hàng thành công', result: saved };
   }
 
@@ -154,7 +166,11 @@ export class PurchaseRequestService {
       if (dto.items !== undefined) {
         await manager.delete(PurchaseRequestItem, { purchaseRequestId: id });
         pr.items = dto.items.map((i) =>
-          manager.create(PurchaseRequestItem, { purchaseRequestId: id, itemName: i.itemName, quantity: i.quantity }),
+          manager.create(PurchaseRequestItem, {
+            purchaseRequestId: id,
+            itemName: i.itemName,
+            quantity: i.quantity,
+          }),
         );
         await manager.save(pr.items);
       }
@@ -195,7 +211,7 @@ export class PurchaseRequestService {
       throw new BadRequestException('purchase-request-must-have-at-least-2-supplier-quotations'); // BR-02
     }
 
-    const saved = await this.runInTransaction((async (manager) => {
+    const saved = await this.runInTransaction(async (manager) => {
       const fromStatus = pr.status;
       pr.status = PurchaseRequestStatus.PENDING;
       const saved = await manager.save(pr);
@@ -213,7 +229,7 @@ export class PurchaseRequestService {
       );
 
       return saved;
-    }));
+    });
     this.logger.log(`PR #${id} đã được gửi duyệt bởi #${actorId}`);
     return { message: 'Gửi duyệt yêu cầu mua hàng thành công', result: saved };
   }
@@ -223,13 +239,16 @@ export class PurchaseRequestService {
     if (actorRole === ROLES.ADMIN) return;
 
     if (!pr.departmentId) {
-      if (actorRole !== ROLES.MANAGER) throw new ForbiddenException('only-manager-or-admin-can-approve-or-reject');
+      if (actorRole !== ROLES.MANAGER)
+        throw new ForbiddenException('only-manager-or-admin-can-approve-or-reject');
       return;
     }
 
     const department = await this.departmentRepository.findOne({ where: { id: pr.departmentId } });
     if (department?.managerId && department.managerId !== actorId) {
-      throw new ForbiddenException('only-the-department-manager-or-admin-can-approve-or-reject-this-request');
+      throw new ForbiddenException(
+        'only-the-department-manager-or-admin-can-approve-or-reject-this-request',
+      );
     }
     if (!department?.managerId && actorRole !== ROLES.MANAGER) {
       throw new ForbiddenException('only-manager-or-admin-can-approve-or-reject');
@@ -262,7 +281,6 @@ export class PurchaseRequestService {
       );
 
       return saved;
-
     });
     this.logger.log(`PR #${id} đã được duyệt bởi #${actorId}`);
     return { message: 'Phê duyệt yêu cầu mua hàng thành công', result: saved };
@@ -278,7 +296,7 @@ export class PurchaseRequestService {
 
     await this.assertIsAuthorizedApprover(pr, actorId, actorRole);
 
-    const saved = await this.runInTransaction((async (manager) => {
+    const saved = await this.runInTransaction(async (manager) => {
       const fromStatus = pr.status;
       pr.status = PurchaseRequestStatus.REJECTED;
       pr.approvedBy = actorId;
@@ -296,7 +314,7 @@ export class PurchaseRequestService {
       );
 
       return saved;
-    }));
+    });
 
     this.logger.log(`PR #${id} đã bị từ chối bởi #${actorId}: ${dto.reason}`);
     return { message: 'Từ chối yêu cầu mua hàng thành công', result: saved };
@@ -343,7 +361,7 @@ export class PurchaseRequestService {
   async issuePO(id: number, dto: IssuePoDto, actorId: number) {
     const pr = await this.findOne(id);
 
-    const existedPurchaseRequestId = await this.poRepository.findOneBy({ purchaseRequestId: id })
+    const existedPurchaseRequestId = await this.poRepository.findOneBy({ purchaseRequestId: id });
     if (existedPurchaseRequestId) {
       throw new ConflictException('purchase-order-already-issued-for-this-request');
     }
@@ -379,7 +397,9 @@ export class PurchaseRequestService {
       const poItems = await manager.save(poItemEntities);
 
       // Bước "cập nhật tổng tiền" tách riêng — nếu lỗi, toàn bộ transaction rollback
-      await manager.update(PurchaseOrder, savedPo.id, { totalAmount: selectedQuotation.quotedAmount });
+      await manager.update(PurchaseOrder, savedPo.id, {
+        totalAmount: selectedQuotation.quotedAmount,
+      });
       savedPo.totalAmount = selectedQuotation.quotedAmount;
 
       return { savedPo, poItems };

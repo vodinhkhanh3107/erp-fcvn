@@ -1,8 +1,17 @@
-import { Department } from "./department.entity";
-import { User } from "./user.entity";
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { PurchaseRequestItem } from "./purchase-request-item.entity";
-import { PurchaseRequestQuotation } from "./purchase-request-quotation.entity";
+import { Department } from './department.entity';
+import { User } from './user.entity';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { PurchaseRequestItem } from './purchase-request-item.entity';
+import { PurchaseRequestQuotation } from './purchase-request-quotation.entity';
 
 export enum PurchaseRequestStatus {
   DRAFT = 'DRAFT',
@@ -17,7 +26,7 @@ export class PurchaseRequest {
   id: number;
 
   // Idempotency key — chống tạo trùng khi client gửi lại request (giữ nguyên từ trước)
-  @Column({ name: 'request_key', length: 100, unique: true})
+  @Column({ name: 'request_key', length: 100, unique: true })
   requestKey: string;
 
   @Column({ name: 'department_id', nullable: true })

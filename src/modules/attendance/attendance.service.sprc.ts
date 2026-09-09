@@ -26,7 +26,10 @@ describe('AttendanceService', () => {
     };
 
     const module: TestingModule = await Test.createTestingModule({
-      providers: [AttendanceService, { provide: getRepositoryToken(Attendance), useValue: mockRepository }],
+      providers: [
+        AttendanceService,
+        { provide: getRepositoryToken(Attendance), useValue: mockRepository },
+      ],
     }).compile();
 
     service = module.get<AttendanceService>(AttendanceService);
@@ -39,7 +42,10 @@ describe('AttendanceService', () => {
       mockRepository.findOne.mockResolvedValue(null);
 
       await expect(
-        service.create({ userId: 1, date: '2026-08-20', checkIn: '17:00', checkOut: '08:00' } as any, 99),
+        service.create(
+          { userId: 1, date: '2026-08-20', checkIn: '17:00', checkOut: '08:00' } as any,
+          99,
+        ),
       ).rejects.toThrow(BadRequestException);
 
       expect(mockRepository.save).not.toHaveBeenCalled();
@@ -49,7 +55,10 @@ describe('AttendanceService', () => {
       mockRepository.findOne.mockResolvedValue(fakeAttendance);
 
       await expect(
-        service.create({ userId: 1, date: '2026-08-20', checkIn: '08:00', checkOut: '17:30' } as any, 99),
+        service.create(
+          { userId: 1, date: '2026-08-20', checkIn: '08:00', checkOut: '17:30' } as any,
+          99,
+        ),
       ).rejects.toThrow(ConflictException);
 
       expect(mockRepository.save).not.toHaveBeenCalled();
@@ -58,7 +67,9 @@ describe('AttendanceService', () => {
     it('hợp lệ → tính đúng totalHours, lưu kèm createdBy/updatedBy', async () => {
       mockRepository.findOne.mockResolvedValue(null);
       mockRepository.create.mockImplementation((data: any) => data);
-      mockRepository.save.mockImplementation((entity: any) => Promise.resolve({ id: 1, ...entity }));
+      mockRepository.save.mockImplementation((entity: any) =>
+        Promise.resolve({ id: 1, ...entity }),
+      );
 
       const result = await service.create(
         { userId: 1, date: '2026-08-20', checkIn: '08:00', checkOut: '17:30' } as any,

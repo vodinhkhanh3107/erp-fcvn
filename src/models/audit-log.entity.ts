@@ -31,7 +31,7 @@ export class AuditLog {
   entityId?: number;
 
   @Column({ length: 10 })
-  method: string; 
+  method: string;
 
   @Column({ length: 500 })
   path: string;

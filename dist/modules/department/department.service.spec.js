@@ -32,9 +32,7 @@ describe('DepartmentService', () => {
             const dto = { name: 'Phòng Kỹ thuật' };
             const actorId = 5;
             const savedDepartment = { id: 1, ...dto, createdBy: actorId, updatedBy: actorId };
-            const createSpy = jest
-                .spyOn(service, 'create')
-                .mockResolvedValue(savedDepartment);
+            const createSpy = jest.spyOn(service, 'create').mockResolvedValue(savedDepartment);
             const result = await service.createDepartment(dto, actorId);
             expect(createSpy).toHaveBeenCalledWith({
                 ...dto,
@@ -53,9 +51,7 @@ describe('DepartmentService', () => {
             const dto = { name: 'Phòng Kỹ thuật (đổi tên)' };
             const actorId = 7;
             const updatedDepartment = { id, ...dto, updatedBy: actorId };
-            const updateSpy = jest
-                .spyOn(service, 'update')
-                .mockResolvedValue(updatedDepartment);
+            const updateSpy = jest.spyOn(service, 'update').mockResolvedValue(updatedDepartment);
             const result = await service.updateDepartment(id, dto, actorId);
             expect(updateSpy).toHaveBeenCalledWith(id, { ...dto, updatedBy: actorId });
             expect(result).toEqual({
@@ -80,9 +76,7 @@ describe('DepartmentService', () => {
             const existingDepartment = { id, status: 'active' };
             const updatedDepartment = { id, status: 'inactive', updatedBy: actorId };
             jest.spyOn(service, 'findOne').mockResolvedValue(existingDepartment);
-            const updateSpy = jest
-                .spyOn(service, 'update')
-                .mockResolvedValue(updatedDepartment);
+            const updateSpy = jest.spyOn(service, 'update').mockResolvedValue(updatedDepartment);
             const dto = { status: 'inactive' };
             const result = await service.updateStatus(id, dto, actorId);
             expect(updateSpy).toHaveBeenCalledWith(id, {
@@ -102,9 +96,7 @@ describe('DepartmentService', () => {
                 items: [{ id: 1, name: 'Phòng Kỹ thuật' }],
                 meta: { page: 1, limit: 10, total: 1, totalPages: 1 },
             };
-            const findAllSpy = jest
-                .spyOn(service, 'findAll')
-                .mockResolvedValue(expectedResult);
+            const findAllSpy = jest.spyOn(service, 'findAll').mockResolvedValue(expectedResult);
             const result = await service.list(query);
             expect(findAllSpy).toHaveBeenCalledWith(query);
             expect(result).toEqual(expectedResult);

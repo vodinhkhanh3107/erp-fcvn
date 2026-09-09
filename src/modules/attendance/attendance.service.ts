@@ -1,11 +1,15 @@
-import { BadRequestException, ConflictException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
-import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
-import { Between, EntityManager, Repository } from 'typeorm';
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Between, Repository } from 'typeorm';
 import { AppLogger } from '../../common/logger/app-logger.service';
 import { CreateAttendanceDto } from './dto/create-attendance.dto';
 import { ListAttendanceDto } from './dto/list-attendance.dto';
 import { Attendance } from '../../models/attendence.entity';
-import { DataSource } from 'typeorm/browser';
 
 @Injectable()
 export class AttendanceService {
@@ -68,7 +72,9 @@ export class AttendanceService {
       updatedBy: actorId,
     });
     const saved = await this.repository.save(entity);
-    this.logger.log(`Đã ghi nhận chấm công #${saved.id} cho nhân sự #${dto.userId} ngày ${dto.date}`);
+    this.logger.log(
+      `Đã ghi nhận chấm công #${saved.id} cho nhân sự #${dto.userId} ngày ${dto.date}`,
+    );
 
     return { message: 'Ghi nhận chấm công thành công', result: saved };
   }

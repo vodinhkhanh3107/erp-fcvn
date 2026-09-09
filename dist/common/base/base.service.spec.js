@@ -13,7 +13,9 @@ describe('BaseService', () => {
             save: jest.fn(),
             softDelete: jest.fn(),
         };
-        service = new base_service_1.BaseService(mockRepository, ['name']);
+        service = new base_service_1.BaseService(mockRepository, [
+            'name',
+        ]);
     });
     describe('findAll()', () => {
         it('không có keyword → gọi findAndCount với where = undefined', async () => {

@@ -181,9 +181,9 @@ describe('KpiService', () => {
     it('nên throw NotFoundException nếu KPI không tồn tại', async () => {
       (repository.findOne as jest.Mock).mockResolvedValue(null);
 
-      await expect(
-        service.updateActual(999, { actualValue: 50 } as any, 1),
-      ).rejects.toThrow(NotFoundException);
+      await expect(service.updateActual(999, { actualValue: 50 } as any, 1)).rejects.toThrow(
+        NotFoundException,
+      );
     });
 
     it('nên cập nhật actualValue, tính lại kpiStatus, và gán updatedBy', async () => {

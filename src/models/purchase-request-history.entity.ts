@@ -1,4 +1,11 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { PurchaseRequest, PurchaseRequestStatus } from './purchase-request.entity';
 import { User } from './user.entity';
 
@@ -15,7 +22,7 @@ export class PurchaseRequestHistory {
   purchaseRequest: PurchaseRequest;
 
   @Column({ name: 'from_status', type: 'enum', enum: PurchaseRequestStatus, nullable: true })
-  fromStatus?: PurchaseRequestStatus; 
+  fromStatus?: PurchaseRequestStatus;
 
   @Column({ name: 'to_status', type: 'enum', enum: PurchaseRequestStatus })
   toStatus: PurchaseRequestStatus;

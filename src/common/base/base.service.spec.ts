@@ -2,7 +2,6 @@ import { NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { BaseService } from './base.service';
 
-
 interface FakeEntity {
   id: number;
   name: string;
@@ -26,7 +25,9 @@ describe('BaseService', () => {
 
     // "as unknown as Repository<FakeEntity>" — ép kiểu để TypeScript chấp nhận mock này
     // đóng vai trò 1 Repository thật (mock chỉ cần đủ method mà BaseService THỰC SỰ gọi tới).
-    service = new BaseService<FakeEntity>(mockRepository as unknown as Repository<FakeEntity>, ['name']);
+    service = new BaseService<FakeEntity>(mockRepository as unknown as Repository<FakeEntity>, [
+      'name',
+    ]);
   });
 
   describe('findAll()', () => {
@@ -118,7 +119,3 @@ describe('BaseService', () => {
     });
   });
 });
-
-
-
-

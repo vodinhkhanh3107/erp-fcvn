@@ -18,7 +18,7 @@ describe('LeaveService', () => {
   let service: LeaveService;
   let repository: MockRepository<Leave>;
 
-  const FIXED_TODAY = new Date('2026-08-27T08:00:00.000Z'); 
+  const FIXED_TODAY = new Date('2026-08-27T08:00:00.000Z');
 
   beforeEach(async () => {
     jest.useFakeTimers().setSystemTime(FIXED_TODAY);
@@ -78,7 +78,7 @@ describe('LeaveService', () => {
     it('nên cho phép startDate đúng bằng tomorrow (biên hợp lệ)', async () => {
       const dto = { startDate: '2026-08-28', endDate: '2026-08-30' } as any;
 
-      (repository.findOne as jest.Mock).mockResolvedValue(null); 
+      (repository.findOne as jest.Mock).mockResolvedValue(null);
       const createdEntity = { ...dto, userId, status: LeaveStatus.PENDING };
       const savedEntity = { id: 1, ...createdEntity };
       (repository.create as jest.Mock).mockReturnValue(createdEntity);
@@ -146,9 +146,7 @@ describe('LeaveService', () => {
 
       const result = await service.createLeaveRequest(userId, dto);
 
-      expect(result.result).toEqual(
-        expect.objectContaining({ status: LeaveStatus.PENDING }),
-      );
+      expect(result.result).toEqual(expect.objectContaining({ status: LeaveStatus.PENDING }));
     });
   });
 

@@ -9,9 +9,10 @@ import { Role } from 'src/models/role.entity';
 
 @Global()
 @Module({
-  imports: [TypeOrmModule.forFeature([AuditLog,Role])],
+  imports: [TypeOrmModule.forFeature([AuditLog, Role])],
   controllers: [AuditLogController],
-  providers: [AuditLogService,
+  providers: [
+    AuditLogService,
     {
       provide: APP_INTERCEPTOR,
       useClass: AuditInterceptor,

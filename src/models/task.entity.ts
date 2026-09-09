@@ -45,7 +45,7 @@ export class Task {
   @ManyToOne(() => User, { nullable: false })
   @JoinColumn({ name: 'assigned_to' })
   assignee: User;
- 
+
   @Column({ type: 'enum', enum: TaskStatus, default: TaskStatus.NEW })
   status: TaskStatus;
 

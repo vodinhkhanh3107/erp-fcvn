@@ -77,7 +77,7 @@ describe('PurchaseOrderService', () => {
         where: { supplierId: 3, status: PurchaseOrderStatus.RELEASED },
         relations: { supplier: true, items: true },
         order: { id: 'DESC' },
-        skip: 5, 
+        skip: 5,
         take: 5,
       });
     });

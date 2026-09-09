@@ -101,14 +101,19 @@ let PurchaseRequestService = class PurchaseRequestService {
     }
     async createDraft(dto, requesterId) {
         const effectiveRequestKey = dto.requestKey ?? this.generateContentHash(dto, requesterId);
-        const existedRequestKey = await this.prRepository.findOneBy({ requestKey: effectiveRequestKey });
+        const existedRequestKey = await this.prRepository.findOneBy({
+            requestKey: effectiveRequestKey,
+        });
         if (existedRequestKey) {
             this.logger.error(`Request trùng (requestKey="${dto.requestKey}") → trả lại PR #${existedRequestKey.id} cũ`);
-            return { message: 'Yêu cầu đã được ghi nhận trước đó (request trùng lặp)', result: existedRequestKey };
+            return {
+                message: 'Yêu cầu đã được ghi nhận trước đó (request trùng lặp)',
+                result: existedRequestKey,
+            };
         }
         const existedDepartment = await this.departmentRepository.findOneBy({ id: dto.departmentId });
         if (!existedDepartment) {
-            throw new common_1.NotFoundException("Not-found-deparment");
+            throw new common_1.NotFoundException('Not-found-deparment');
         }
         const saved = await this.runInTransaction(async (manager) => {
             const pr = manager.create(purchase_request_entity_1.PurchaseRequest, {
@@ -162,7 +167,11 @@ let PurchaseRequestService = class PurchaseRequestService {
                 pr.purposeOfUse = dto.purposeOfUse;
             if (dto.items !== undefined) {
                 await manager.delete(purchase_request_item_entity_1.PurchaseRequestItem, { purchaseRequestId: id });
-                pr.items = dto.items.map((i) => manager.create(purchase_request_item_entity_1.PurchaseRequestItem, { purchaseRequestId: id, itemName: i.itemName, quantity: i.quantity }));
+                pr.items = dto.items.map((i) => manager.create(purchase_request_item_entity_1.PurchaseRequestItem, {
+                    purchaseRequestId: id,
+                    itemName: i.itemName,
+                    quantity: i.quantity,
+                }));
                 await manager.save(pr.items);
             }
             if (dto.quotations !== undefined) {
@@ -195,7 +204,7 @@ let PurchaseRequestService = class PurchaseRequestService {
         if (!pr.quotations || pr.quotations.length < 2) {
             throw new common_1.BadRequestException('purchase-request-must-have-at-least-2-supplier-quotations');
         }
-        const saved = await this.runInTransaction((async (manager) => {
+        const saved = await this.runInTransaction(async (manager) => {
             const fromStatus = pr.status;
             pr.status = purchase_request_entity_1.PurchaseRequestStatus.PENDING;
             const saved = await manager.save(pr);
@@ -207,7 +216,7 @@ let PurchaseRequestService = class PurchaseRequestService {
                 actorId,
             }));
             return saved;
-        }));
+        });
         this.logger.log(`PR #${id} đã được gửi duyệt bởi #${actorId}`);
         return { message: 'Gửi duyệt yêu cầu mua hàng thành công', result: saved };
     }
@@ -255,7 +264,7 @@ let PurchaseRequestService = class PurchaseRequestService {
             throw new common_1.BadRequestException('purchase-request-not-pending-approval');
         }
         await this.assertIsAuthorizedApprover(pr, actorId, actorRole);
-        const saved = await this.runInTransaction((async (manager) => {
+        const saved = await this.runInTransaction(async (manager) => {
             const fromStatus = pr.status;
             pr.status = purchase_request_entity_1.PurchaseRequestStatus.REJECTED;
             pr.approvedBy = actorId;
@@ -269,7 +278,7 @@ let PurchaseRequestService = class PurchaseRequestService {
                 note: dto.reason,
             }));
             return saved;
-        }));
+        });
         this.logger.log(`PR #${id} đã bị từ chối bởi #${actorId}: ${dto.reason}`);
         return { message: 'Từ chối yêu cầu mua hàng thành công', result: saved };
     }
@@ -334,7 +343,9 @@ let PurchaseRequestService = class PurchaseRequestService {
                 quantity: item.quantity,
             }));
             const poItems = await manager.save(poItemEntities);
-            await manager.update(purchase_order_entity_1.PurchaseOrder, savedPo.id, { totalAmount: selectedQuotation.quotedAmount });
+            await manager.update(purchase_order_entity_1.PurchaseOrder, savedPo.id, {
+                totalAmount: selectedQuotation.quotedAmount,
+            });
             savedPo.totalAmount = selectedQuotation.quotedAmount;
             return { savedPo, poItems };
         });

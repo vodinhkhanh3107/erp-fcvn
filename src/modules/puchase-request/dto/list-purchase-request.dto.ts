@@ -1,7 +1,7 @@
-import { ApiPropertyOptional } from "@nestjs/swagger";
-import { Type } from "class-transformer";
-import { IsEnum, IsInt, IsOptional, IsString, Min } from "class-validator";
-import { PurchaseRequestStatus } from "../../../models/purchase-request.entity";
+import { ApiPropertyOptional } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
+import { IsEnum, IsInt, IsOptional, IsString, Min } from 'class-validator';
+import { PurchaseRequestStatus } from '../../../models/purchase-request.entity';
 
 export class ListPurchaseRequestDto {
   @ApiPropertyOptional({ default: 1 })

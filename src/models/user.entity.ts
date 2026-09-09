@@ -24,7 +24,6 @@ export enum ContractType {
   TRIAL = 'trial',
   OFFICIAL = 'official',
   PART_TIME = 'part_time',
-
 }
 
 @Entity('users')
@@ -50,32 +49,29 @@ export class User {
   @Column({ name: 'role_id' })
   roleId: number;
 
-  @ManyToOne(() => Role, (role) => role.users, { nullable: false, eager: true }) 
+  @ManyToOne(() => Role, (role) => role.users, { nullable: false, eager: true })
   @JoinColumn({ name: 'role_id' })
   role: Role;
 
   @Column({ type: 'enum', enum: UserStatus, default: UserStatus.ACTIVE })
   status: UserStatus;
-  
 
-  @Column({ name: "avatar", default: "" })
+  @Column({ name: 'avatar', default: '' })
   avatar: string;
 
   // @Column({ name: 'job_title', length: 255, nullable: true })
   // jobTitle?: string;
 
-  @Column({ name: 'department_id'})
+  @Column({ name: 'department_id' })
   departmentId?: number;
- 
+
   @ManyToOne(() => Department, (department) => department.users)
   @JoinColumn({ name: 'department_id' })
   department?: Department;
 
-  
-  @Column({ name: 'contract_type', type: 'enum', enum: ContractType, default: ContractType.TRIAL})
-  contractType?: ContractType
- 
-  
+  @Column({ name: 'contract_type', type: 'enum', enum: ContractType, default: ContractType.TRIAL })
+  contractType?: ContractType;
+
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 

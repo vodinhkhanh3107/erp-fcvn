@@ -15,11 +15,10 @@ export class UserService extends BaseService<User> {
 
   constructor(
     @InjectRepository(User)
-    repo: Repository<User>
+    repo: Repository<User>,
 
     // @InjectRepository(Department)
     // repoDepartment: Repository<Department>,
-
   ) {
     super(repo, ['fullName', 'email']);
     // super(repoDepartment, ['name']);
@@ -30,28 +29,26 @@ export class UserService extends BaseService<User> {
     const existed = await this.repository.findOne({ where: { email: dto.email } });
     if (existed) throw new ConflictException('email-already-exists');
 
-    const saved = await this.create(dto); 
+    const saved = await this.create(dto);
     this.logger.log(`Đã tạo nhân sự #${saved.id} (${saved.email})`);
 
-    const { password, ...result } = saved;
-    return { message: 'Tạo nhân sự thành công', result };
+    return { message: 'Tạo nhân sự thành công', saved };
   }
 
   async list(query: PaginationDto) {
-    return this.findAll(query); 
+    return this.findAll(query);
   }
 
   async updateStatus(id: number, dto: UpdateUserStatusDto) {
-    const employee = await this.findOne(id); 
+    const employee = await this.findOne(id);
 
     if (employee.status === dto.status) {
       throw new BadRequestException('status-not-changed');
     }
 
-    const saved = await this.update(id, { status: dto.status }); 
+    const saved = await this.update(id, { status: dto.status });
     this.logger.log(`Đã đổi trạng thái nhân sự #${id} → ${dto.status}`);
 
-    const { password, ...result } = saved;
-    return { message: 'Cập nhật trạng thái thành công', result };
+    return { message: 'Cập nhật trạng thái thành công', saved };
   }
 }

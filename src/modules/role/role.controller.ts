@@ -19,35 +19,30 @@ export class RoleController {
 
   @Post()
   @RequirePermission(PERMISSIONS.PERMISSION_CREATE)
-
   create(@Body() dto: CreateRoleDto) {
     return this.roleService.create(dto);
   }
 
   @Get()
   @RequirePermission(PERMISSIONS.PERMISSION_READ)
-
   findAll() {
     return this.roleService.findAll();
   }
 
   @Get(':id')
   @RequirePermission(PERMISSIONS.PERMISSION_READ)
-
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.roleService.findOne(id);
   }
 
   @Put(':id')
   @RequirePermission(PERMISSIONS.PERMISSION_UPDATE)
-
   update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateRoleDto) {
     return this.roleService.update(id, dto);
   }
 
   @Put(':id/permissions')
   @RequirePermission(PERMISSIONS.PERMISSION_ASSIGN)
-
   assignPermissions(@Param('id', ParseIntPipe) id: number, @Body() dto: AssignPermissionsDto) {
     return this.roleService.assignPermissions(id, dto);
   }

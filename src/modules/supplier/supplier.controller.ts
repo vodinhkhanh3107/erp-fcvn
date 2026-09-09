@@ -1,8 +1,6 @@
 import { Body, Controller, Get, Param, ParseIntPipe, Post, Query, UseGuards } from '@nestjs/common';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
-import { Roles } from '../../common/decorators/roles.decorator';
 import { PaginationDto } from '../../common/dto/pagination.dto';
-import { ROLES } from '../../common/constants/role.enum';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { CreateSupplierDto } from './dto/create-supplier.dto';
@@ -17,25 +15,22 @@ import { PERMISSIONS } from 'src/common/constants/permission.constants';
 @Controller('suppliers')
 @UseGuards(JwtAuthGuard, RolesGuard, PermissionGuard)
 export class SupplierController {
-  constructor(private readonly supplierService: SupplierService) { }
+  constructor(private readonly supplierService: SupplierService) {}
 
   @Post()
   @RequirePermission(PERMISSIONS.PURCHASE_ORDER_CREATE)
-
   create(@Body() dto: CreateSupplierDto, @CurrentUser() user: { userId: number }) {
     return this.supplierService.createSupplier(dto, user.userId);
   }
 
   @Get()
   @RequirePermission(PERMISSIONS.SUPPLIER_CREATE)
-
   findAll(@Query() query: PaginationDto) {
     return this.supplierService.findAll(query);
   }
 
   @Get(':id')
   @RequirePermission(PERMISSIONS.SUPPLIER_CREATE)
-
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.supplierService.findOne(id);
   }

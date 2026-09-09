@@ -68,7 +68,10 @@ describe('SupplierGroupService', () => {
             await expect(service.assignSuppliers(999, { supplierIds: [1, 2] }, 1)).rejects.toThrow();
         });
         it('nhóm đang INACTIVE → ném BadRequestException, KHÔNG được gán', async () => {
-            mockGroupRepo.findOne.mockResolvedValue({ ...fakeGroup, status: supplier_group_entity_1.SupplierGroupStatus.INACTIVE });
+            mockGroupRepo.findOne.mockResolvedValue({
+                ...fakeGroup,
+                status: supplier_group_entity_1.SupplierGroupStatus.INACTIVE,
+            });
             await expect(service.assignSuppliers(1, { supplierIds: [1, 2] }, 1)).rejects.toThrow(common_1.BadRequestException);
             expect(mockSupplierRepo.update).not.toHaveBeenCalled();
         });

@@ -1,8 +1,16 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
-import { Roles } from '../../common/decorators/roles.decorator';
 import { PaginationDto } from '../../common/dto/pagination.dto';
-import { ROLES } from '../../common/constants/role.enum';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { AssignSuppliersDto } from './dto/assign-suppliers.dto';
@@ -20,32 +28,28 @@ import { RequirePermission } from 'src/common/decorators/permission.decorator';
 @Controller('supplier-groups')
 @UseGuards(JwtAuthGuard, RolesGuard, PermissionGuard)
 export class SupplierGroupController {
-  constructor(private readonly supplierGroupService: SupplierGroupService) { }
+  constructor(private readonly supplierGroupService: SupplierGroupService) {}
 
   @Post()
   @RequirePermission(PERMISSIONS.SUPPLIER_CREATE)
-
   create(@Body() dto: CreateSupplierGroupDto, @CurrentUser() user: { userId: number }) {
     return this.supplierGroupService.createGroup(dto, user.userId);
   }
 
   @Get()
   @RequirePermission(PERMISSIONS.SUPPLIER_GROUP_READ)
-
   findAll(@Query() query: PaginationDto) {
     return this.supplierGroupService.findAll(query);
   }
 
   @Get(':id')
   @RequirePermission(PERMISSIONS.SUPPLIER_GROUP_READ)
-
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.supplierGroupService.findOne(id);
   }
 
   @Put(':id')
   @RequirePermission(PERMISSIONS.SUPPLIER_GROUP_UPDATE)
-
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateSupplierGroupDto,
@@ -56,7 +60,6 @@ export class SupplierGroupController {
 
   @Put(':id/status')
   @RequirePermission(PERMISSIONS.SUPPLIER_GROUP_UPDATE_STATUS)
-
   updateStatus(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateSupplierGroupStatusDto,
@@ -68,7 +71,6 @@ export class SupplierGroupController {
   //  gán nhà cung cấp vào nhóm nhà cung cấp
   @Post(':id/assign-suppliers')
   @RequirePermission(PERMISSIONS.SUPPLIER_GROUP_ASSIGN)
-
   assignSuppliers(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: AssignSuppliersDto,

@@ -17,7 +17,7 @@ describe('UserService', () => {
         password: '$2b$10$hashedpassword',
         roleId: 1,
         status: user_entity_1.UserStatus.ACTIVE,
-        departmentId: 1
+        departmentId: 1,
     };
     beforeEach(async () => {
         mockQueryBuilder = {
@@ -42,7 +42,13 @@ describe('UserService', () => {
     describe('createUser()', () => {
         it('email đã tồn tại → ném ConflictException, KHÔNG được gọi save()', async () => {
             mockRepository.findOne.mockResolvedValue(fakeUser);
-            await expect(service.createUser({ fullName: 'B', email: fakeUser.email, password: '123456', departmentId: fakeUser.departmentId, roleId: fakeUser.roleId })).rejects.toThrow(common_1.ConflictException);
+            await expect(service.createUser({
+                fullName: 'B',
+                email: fakeUser.email,
+                password: '123456',
+                departmentId: fakeUser.departmentId,
+                roleId: fakeUser.roleId,
+            })).rejects.toThrow(common_1.ConflictException);
             expect(mockRepository.save).not.toHaveBeenCalled();
         });
         it('email chưa tồn tại → tạo thành công, KHÔNG trả password ra ngoài', async () => {
@@ -53,11 +59,11 @@ describe('UserService', () => {
                 fullName: fakeUser.fullName,
                 email: fakeUser.email,
                 password: '123456',
-                departmentId: 1
+                departmentId: 1,
             });
             expect(result.message).toBe('Tạo nhân sự thành công');
-            expect(result.result).not.toHaveProperty('password');
-            expect(result.result.email).toBe(fakeUser.email);
+            expect(result).not.toHaveProperty('password');
+            expect(result.saved.email).toBe(fakeUser.email);
         });
     });
     describe('updateStatus()', () => {
@@ -70,7 +76,7 @@ describe('UserService', () => {
             mockRepository.save.mockImplementation((entity) => Promise.resolve(entity));
             const result = await service.updateStatus(1, { status: user_entity_1.UserStatus.INACTIVE });
             expect(result.message).toBe('Cập nhật trạng thái thành công');
-            expect(result.result.status).toBe(user_entity_1.UserStatus.INACTIVE);
+            expect(result.saved.status).toBe(user_entity_1.UserStatus.INACTIVE);
         });
     });
 });

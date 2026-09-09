@@ -6,14 +6,12 @@ export const PERMISSIONS = {
   PERMISSION_DELETE: 'permission.delete',
   PERMISSION_ASSIGN: 'permission.assign',
 
-
   USER_MANAGE: 'user.manage',
   USER_READ: 'user.read',
   USER_READ_DEPARTMENT: 'user.readDepartment',
   USER_CREATE: 'user.create',
   USER_UPDATE: 'user.update',
   USER_DELETE: 'user.delete',
-
 
   ROLE_MANAGE: 'role.manage',
   ROLE_READ: 'role.read',
@@ -24,7 +22,6 @@ export const PERMISSIONS = {
   DEPARTMENT_READ: 'department.read',
   DEPARTMENT_CREATE: 'department.create',
   DEPARTMENT_UPDATE: 'department.update',
-
 
   SUPPLIER_MANAGE: 'supplier.manage',
   SUPPLIER_READ: 'supplier.read',
@@ -51,19 +48,15 @@ export const PERMISSIONS = {
   TASK_DELETE: 'task.delete',
   TASK_DELETE_OWN: 'task.deleteOwn',
 
-
-
   KPI_MANAGE: 'kpi.manage',
   KPI_READ: 'kpi.read',
   KPI_CREATE: 'kpi.create',
   KPI_UPDATE: 'kpi.update',
 
-
   ATTENDANCE_MANAGE: 'attendance.manage',
   ATTENDANCE_READ: 'attendance.read',
   ATTENDANCE_CREATE: 'attendance.create',
   ATTENDANCE_UPDATE: 'attendance.update',
-
 
   PURCHASE_REQUEST_MANAGE: 'purchase-request.manage',
   PURCHASE_REQUEST_READ: 'purchase-request.read',
@@ -75,13 +68,9 @@ export const PERMISSIONS = {
   PURCHASE_REQUEST_HISTORY: 'purchase-request.history',
   PURCHASE_REQUEST_ISSUE: 'purchase-request.issue',
 
-
-
   PURCHASE_ORDER_MANAGE: 'purchase-order.manage',
   PURCHASE_ORDER_READ: 'purchase-order.read',
   PURCHASE_ORDER_CREATE: 'purchase-order.create',
-
-  
 
   AUDIT_LOG_READ: 'audit-log.read',
 

@@ -37,7 +37,9 @@ let JwtAuthGuard = class JwtAuthGuard {
         const token = authHeader.split(/\s/)[1];
         let payload;
         try {
-            payload = this.jwtService.verify(token, { secret: this.configService.get('JWT_SECRET_KEY') });
+            payload = this.jwtService.verify(token, {
+                secret: this.configService.get('JWT_SECRET_KEY'),
+            });
         }
         catch {
             throw new common_1.UnauthorizedException('access-denied');

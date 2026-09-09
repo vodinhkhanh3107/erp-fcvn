@@ -20,7 +20,13 @@ const audit_log_entity_1 = require("../../../models/audit-log.entity");
 const typeorm_1 = require("@nestjs/typeorm");
 const role_entity_1 = require("../../../models/role.entity");
 const typeorm_2 = require("typeorm");
-const SENSITIVE_FIELDS = ['password', 'currentPassword', 'newPassword', 'refreshToken', 'accessToken'];
+const SENSITIVE_FIELDS = [
+    'password',
+    'currentPassword',
+    'newPassword',
+    'refreshToken',
+    'accessToken',
+];
 function sanitizeBody(body) {
     if (!body || typeof body !== 'object')
         return body;

@@ -29,9 +29,11 @@ export class JwtAuthGuard implements CanActivate {
 
     let payload: { userId: number; roleId: number; email: string };
     try {
-      payload = this.jwtService.verify(token, { secret: this.configService.get<string>('JWT_SECRET_KEY') });
+      payload = this.jwtService.verify(token, {
+        secret: this.configService.get<string>('JWT_SECRET_KEY'),
+      });
     } catch {
-      throw new UnauthorizedException('access-denied'); 
+      throw new UnauthorizedException('access-denied');
     }
 
     const stored = await this.redisService.get(`access_token:${payload.userId}`);

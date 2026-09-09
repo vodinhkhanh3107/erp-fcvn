@@ -17,7 +17,7 @@ export class SupplierGroupService extends BaseService<SupplierGroup> {
     @InjectRepository(Supplier)
     private readonly supplierRepo: Repository<Supplier>,
   ) {
-    super(repo, ['code', 'name']); 
+    super(repo, ['code', 'name']);
   }
 
   async createGroup(dto: CreateSupplierGroupDto, actorId: number) {
@@ -45,10 +45,9 @@ export class SupplierGroupService extends BaseService<SupplierGroup> {
   }
 
   async assignSuppliers(groupId: number, dto: AssignSuppliersDto, actorId: number) {
-    if(!groupId) throw new BadRequestException('supplier-group is not exist');
+    if (!groupId) throw new BadRequestException('supplier-group is not exist');
 
-
-    const group = await this.findOne(groupId); 
+    const group = await this.findOne(groupId);
     if (group.status !== SupplierGroupStatus.ACTIVE) {
       throw new BadRequestException('cannot-assign-suppliers-to-inactive-group');
     }

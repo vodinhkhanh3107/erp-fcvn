@@ -19,7 +19,10 @@ class CreatePurchaseRequestDto {
 }
 exports.CreatePurchaseRequestDto = CreatePurchaseRequestDto;
 __decorate([
-    (0, swagger_1.ApiPropertyOptional)({ example: 'a1b2c3d4-e5f6-...', description: 'Idempotency key do client tự sinh' }),
+    (0, swagger_1.ApiPropertyOptional)({
+        example: 'a1b2c3d4-e5f6-...',
+        description: 'Idempotency key do client tự sinh',
+    }),
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.MaxLength)(100),

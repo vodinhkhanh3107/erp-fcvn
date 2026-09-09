@@ -30,7 +30,10 @@ export class PurchaseOrderService {
   }
 
   async findOne(id: number) {
-    const po = await this.repository.findOne({ where: { id }, relations: { supplier: true, items: true } });
+    const po = await this.repository.findOne({
+      where: { id },
+      relations: { supplier: true, items: true },
+    });
     if (!po) throw new NotFoundException('purchase-order-not-found');
     return po;
   }

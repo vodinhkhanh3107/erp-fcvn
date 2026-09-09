@@ -11,7 +11,13 @@ import { Department } from '../../models/department.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([PurchaseRequest, PurchaseRequestHistory, Department, PurchaseRequestItem, PurchaseRequestQuotation]),
+    TypeOrmModule.forFeature([
+      PurchaseRequest,
+      PurchaseRequestHistory,
+      Department,
+      PurchaseRequestItem,
+      PurchaseRequestQuotation,
+    ]),
     PurchaseOrderModule,
   ],
   controllers: [PurchaseRequestController],

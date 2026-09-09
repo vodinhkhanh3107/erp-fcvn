@@ -1,7 +1,15 @@
-import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { Permission } from "./permission.entity";
-import { User } from "./user.entity";
-import { permission } from "process";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { Permission } from './permission.entity';
+import { User } from './user.entity';
 
 @Entity('roles')
 export class Role {
@@ -9,10 +17,10 @@ export class Role {
   id: number;
 
   @Column({ length: 50, unique: true })
-  code: string; 
+  code: string;
 
   @Column({ length: 100 })
-  name: string; 
+  name: string;
 
   @Column({ length: 255, nullable: true })
   description?: string;

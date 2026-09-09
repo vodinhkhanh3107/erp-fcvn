@@ -26,7 +26,9 @@ let SupplierService = class SupplierService extends base_service_1.BaseService {
         const existed = await this.repository.findOne({ where: { taxCode: dto.taxCode } });
         if (existed)
             throw new common_1.ConflictException('tax-code-already-exists');
-        const existedEmail = await this.repository.findOne({ where: { contactEmail: dto.contactEmail } });
+        const existedEmail = await this.repository.findOne({
+            where: { contactEmail: dto.contactEmail },
+        });
         if (existedEmail)
             throw new common_1.ConflictException('email-name-already-exists');
         const saved = await this.create({ ...dto, createdBy: actorId, updatedBy: actorId });

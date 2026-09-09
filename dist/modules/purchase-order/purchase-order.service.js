@@ -38,7 +38,10 @@ let PurchaseOrderService = class PurchaseOrderService {
         return { items, meta: { page, limit, total, totalPages: Math.ceil(total / limit) } };
     }
     async findOne(id) {
-        const po = await this.repository.findOne({ where: { id }, relations: { supplier: true, items: true } });
+        const po = await this.repository.findOne({
+            where: { id },
+            relations: { supplier: true, items: true },
+        });
         if (!po)
             throw new common_1.NotFoundException('purchase-order-not-found');
         return po;

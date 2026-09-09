@@ -41,7 +41,9 @@ let LeaveController = class LeaveController {
     }
     findOne(id, user) {
         const isPrivileged = [role_enum_1.ROLES.ADMIN, role_enum_1.ROLES.MANAGER, role_enum_1.ROLES.HR].includes(user.role);
-        return isPrivileged ? this.leaveService.findOne(id) : this.leaveService.findOneForSelf(id, user.userId);
+        return isPrivileged
+            ? this.leaveService.findOne(id)
+            : this.leaveService.findOneForSelf(id, user.userId);
     }
     review(id, dto, user) {
         return this.leaveService.review(id, dto, user.userId);

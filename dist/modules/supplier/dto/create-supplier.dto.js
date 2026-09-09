@@ -39,7 +39,9 @@ __decorate([
 ], CreateSupplierDto.prototype, "contactEmail", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.Matches)(/^(0|\+84)[0-9]{9,10}$/, { message: 'contactPhone phải là số điện thoại Việt Nam hợp lệ' }),
+    (0, class_validator_1.Matches)(/^(0|\+84)[0-9]{9,10}$/, {
+        message: 'contactPhone phải là số điện thoại Việt Nam hợp lệ',
+    }),
     __metadata("design:type", String)
 ], CreateSupplierDto.prototype, "contactPhone", void 0);
 __decorate([

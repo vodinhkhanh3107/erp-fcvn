@@ -76,9 +76,9 @@ describe('AuthService', () => {
     it('không tìm thấy email → ném UnauthorizedException', async () => {
       mockQueryBuilder.getOne.mockResolvedValue(null);
 
-      await expect(service.login({ email: 'khongton@fcvn.local', password: '123456' })).rejects.toThrow(
-        UnauthorizedException,
-      );
+      await expect(
+        service.login({ email: 'khongton@fcvn.local', password: '123456' }),
+      ).rejects.toThrow(UnauthorizedException);
     });
 
     it('sai password → ném UnauthorizedException', async () => {
@@ -113,7 +113,11 @@ describe('AuthService', () => {
         refreshTokenHash: 'fake-refresh-token-hash',
       });
       // Xác nhận đúng key + đúng token + TTL = 8h quy đổi ra giây (8 * 3600 = 28800)
-      expect(mockRedisService.set).toHaveBeenCalledWith('access_token:1', 'fake-access-token', 28800);
+      expect(mockRedisService.set).toHaveBeenCalledWith(
+        'access_token:1',
+        'fake-access-token',
+        28800,
+      );
     });
   });
 
@@ -132,19 +136,28 @@ describe('AuthService', () => {
       (mockJwtService.verify as jest.Mock).mockReturnValue({ UserId: 1 });
       mockQueryBuilder.getOne.mockResolvedValue({ ...fakeUser, refreshTokenHash: null });
 
-      await expect(service.refreshToken({ refreshToken: 'token' })).rejects.toThrow('refresh-token-revoked');
+      await expect(service.refreshToken({ refreshToken: 'token' })).rejects.toThrow(
+        'refresh-token-revoked',
+      );
     });
 
     it('hợp lệ → trả về accessToken mới, VÀ ghi đè lại Redis với token mới', async () => {
       (mockJwtService.verify as jest.Mock).mockReturnValue({ UserId: 1 });
-      mockQueryBuilder.getOne.mockResolvedValue({ ...fakeUser, refreshTokenHash: 'fake-refresh-token-hash' });
+      mockQueryBuilder.getOne.mockResolvedValue({
+        ...fakeUser,
+        refreshTokenHash: 'fake-refresh-token-hash',
+      });
       (bcrypt.compare as jest.Mock).mockResolvedValue(true);
       (mockJwtService.sign as jest.Mock).mockReturnValue('fake-new-access-token');
 
       const result = await service.refreshToken({ refreshToken: 'token-that' });
 
       expect(result.accessToken).toBe('fake-new-access-token');
-      expect(mockRedisService.set).toHaveBeenCalledWith('access_token:1', 'fake-new-access-token', 28800);
+      expect(mockRedisService.set).toHaveBeenCalledWith(
+        'access_token:1',
+        'fake-new-access-token',
+        28800,
+      );
     });
   });
 

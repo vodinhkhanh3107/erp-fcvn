@@ -1,4 +1,9 @@
-import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository } from 'typeorm';
 import { getRolePermissionsCacheKey } from '../../common/utils/permission-cache';
@@ -24,7 +29,10 @@ export class RoleService {
   }
 
   async findOne(id: number) {
-    const role = await this.roleRepository.findOne({ where: { id }, relations: { permissions: true } });
+    const role = await this.roleRepository.findOne({
+      where: { id },
+      relations: { permissions: true },
+    });
     if (!role) throw new NotFoundException('role-not-found');
     return role;
   }
@@ -33,7 +41,9 @@ export class RoleService {
     const existed = await this.roleRepository.findOne({ where: { code: dto.code } });
     if (existed) throw new ConflictException('role-code-already-exists');
 
-    const saved = await this.roleRepository.save(this.roleRepository.create({ ...dto, permissions: [] }));
+    const saved = await this.roleRepository.save(
+      this.roleRepository.create({ ...dto, permissions: [] }),
+    );
     return { message: 'Tạo role thành công', result: saved };
   }
 
@@ -49,7 +59,7 @@ export class RoleService {
 
     const permissions = await this.permissionRepository.findBy({ code: In(dto.permissionCodes) });
 
-    if(!permissions) throw new NotFoundException("not-found-permission");
+    if (!permissions) throw new NotFoundException('not-found-permission');
 
     if (permissions.length !== dto.permissionCodes.length) {
       const foundCodes = new Set(permissions.map((p) => p.code));

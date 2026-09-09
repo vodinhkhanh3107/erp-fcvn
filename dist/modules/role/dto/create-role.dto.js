@@ -16,7 +16,10 @@ class CreateRoleDto {
 }
 exports.CreateRoleDto = CreateRoleDto;
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: 'marketing', description: 'Mã role — chữ thường, không dấu, dùng trong code' }),
+    (0, swagger_1.ApiProperty)({
+        example: 'marketing',
+        description: 'Mã role — chữ thường, không dấu, dùng trong code',
+    }),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.Matches)(/^[a-z0-9-]+$/, { message: 'code chỉ gồm chữ thường, số, dấu gạch ngang' }),

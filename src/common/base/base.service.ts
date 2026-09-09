@@ -13,7 +13,9 @@ export class BaseService<T extends { id: number }> {
 
     const where: FindOptionsWhere<T>[] =
       keyword && this.searchableFields.length > 0
-        ? this.searchableFields.map((field) => ({ [field]: ILike(`%${keyword}%`) }) as FindOptionsWhere<T>)
+        ? this.searchableFields.map(
+            (field) => ({ [field]: ILike(`%${keyword}%`) }) as FindOptionsWhere<T>,
+          )
         : [];
 
     const order = { id: 'DESC' } as FindOptionsOrder<T>;
@@ -30,7 +32,7 @@ export class BaseService<T extends { id: number }> {
 
   async findOne(id: number): Promise<T> {
     const entity = await this.repository.findOne({ where: { id } as FindOptionsWhere<T> });
-    if (!entity){
+    if (!entity) {
       throw new NotFoundException('item-not-found');
     }
     return entity;

@@ -52,12 +52,14 @@ describe('TaskService', () => {
     it('nên throw BadRequestException nếu deadline nằm trong quá khứ', async () => {
       const dto = {
         taskName: 'Task test',
-        deadline: '2026-08-01', 
+        deadline: '2026-08-01',
         assignedTo: 1,
       } as any;
 
       await expect(service.create(dto, actorId)).rejects.toThrow(BadRequestException);
-      await expect(service.create(dto, actorId)).rejects.toThrow('deadline-must-not-be-in-the-past');
+      await expect(service.create(dto, actorId)).rejects.toThrow(
+        'deadline-must-not-be-in-the-past',
+      );
 
       expect(repository.create).not.toHaveBeenCalled();
       expect(repository.save).not.toHaveBeenCalled();
@@ -66,7 +68,7 @@ describe('TaskService', () => {
     it('nên tạo task thành công khi deadline hợp lệ (hôm nay hoặc tương lai)', async () => {
       const dto = {
         taskName: 'Task test',
-        deadline: '2026-08-27', 
+        deadline: '2026-08-27',
         assignedTo: 1,
       } as any;
 
@@ -142,7 +144,7 @@ describe('TaskService', () => {
         where: { assignedTo: 3, status: 'IN_PROGRESS' },
         relations: { assignee: true },
         order: { deadline: 'ASC' },
-        skip: 5, 
+        skip: 5,
         take: 5,
       });
     });
@@ -184,9 +186,9 @@ describe('TaskService', () => {
     it('nên throw NotFoundException nếu task không tồn tại', async () => {
       (repository.findOne as jest.Mock).mockResolvedValue(null);
 
-      await expect(
-        service.updateStatus(999, { status: 'DONE' } as any, 10),
-      ).rejects.toThrow(NotFoundException);
+      await expect(service.updateStatus(999, { status: 'DONE' } as any, 10)).rejects.toThrow(
+        NotFoundException,
+      );
     });
 
     it('nên cập nhật status và updatedBy, rồi lưu lại', async () => {

@@ -31,8 +31,7 @@ let UserService = class UserService extends base_service_1.BaseService {
             throw new common_1.ConflictException('email-already-exists');
         const saved = await this.create(dto);
         this.logger.log(`Đã tạo nhân sự #${saved.id} (${saved.email})`);
-        const { password, ...result } = saved;
-        return { message: 'Tạo nhân sự thành công', result };
+        return { message: 'Tạo nhân sự thành công', saved };
     }
     async list(query) {
         return this.findAll(query);
@@ -44,8 +43,7 @@ let UserService = class UserService extends base_service_1.BaseService {
         }
         const saved = await this.update(id, { status: dto.status });
         this.logger.log(`Đã đổi trạng thái nhân sự #${id} → ${dto.status}`);
-        const { password, ...result } = saved;
-        return { message: 'Cập nhật trạng thái thành công', result };
+        return { message: 'Cập nhật trạng thái thành công', saved };
     }
 };
 exports.UserService = UserService;

@@ -10,7 +10,7 @@ export class CreateSupplierDto {
 
   @IsNotEmpty()
   @IsString()
-  taxCode: string; 
+  taxCode: string;
 
   @IsOptional()
   @IsString()
@@ -21,7 +21,9 @@ export class CreateSupplierDto {
   contactEmail?: string;
 
   @IsOptional()
-  @Matches(/^(0|\+84)[0-9]{9,10}$/, { message: 'contactPhone phải là số điện thoại Việt Nam hợp lệ' })
+  @Matches(/^(0|\+84)[0-9]{9,10}$/, {
+    message: 'contactPhone phải là số điện thoại Việt Nam hợp lệ',
+  })
   contactPhone?: string;
 
   @IsOptional()

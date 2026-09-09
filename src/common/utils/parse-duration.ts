@@ -1,7 +1,9 @@
 export function parseDurationToSeconds(duration: string): number {
   const match = /^(\d+)(s|m|h|d)$/.exec(duration.trim());
   if (!match) {
-    throw new Error(`Định dạng thời hạn không hợp lệ: "${duration}" — chỉ hỗ trợ vd. "30s", "15m", "8h", "7d"`);
+    throw new Error(
+      `Định dạng thời hạn không hợp lệ: "${duration}" — chỉ hỗ trợ vd. "30s", "15m", "8h", "7d"`,
+    );
   }
 
   const value = parseInt(match[1], 10);

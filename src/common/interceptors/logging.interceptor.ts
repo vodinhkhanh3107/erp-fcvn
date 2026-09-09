@@ -8,7 +8,6 @@ export class LoggingInterceptor implements NestInterceptor {
   private readonly logger = new AppLogger();
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    
     const request = context.switchToHttp().getRequest();
     const { method, originalUrl } = request;
     const start = Date.now();
@@ -18,11 +17,18 @@ export class LoggingInterceptor implements NestInterceptor {
         next: () => {
           const response = context.switchToHttp().getResponse();
           const duration = Date.now() - start;
-          this.logger.log(`${method} ${originalUrl} ${response.statusCode} — ${duration}ms`, 'HTTP');
+          this.logger.log(
+            `${method} ${originalUrl} ${response.statusCode} — ${duration}ms`,
+            'HTTP',
+          );
         },
         error: (err) => {
           const duration = Date.now() - start;
-          this.logger.error(`${method} ${originalUrl} FAILED — ${duration}ms — ${err.message}`, err.stack, 'HTTP');
+          this.logger.error(
+            `${method} ${originalUrl} FAILED — ${duration}ms — ${err.message}`,
+            err.stack,
+            'HTTP',
+          );
         },
       }),
     );

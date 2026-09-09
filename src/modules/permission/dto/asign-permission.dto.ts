@@ -1,5 +1,5 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { ArrayNotEmpty, IsString } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { ArrayNotEmpty, IsString } from 'class-validator';
 
 export class AssignPermissionsDto {
   @ApiProperty({ type: [String], example: ['user.manage', 'task.manage'] })

@@ -1,8 +1,6 @@
-import { BadRequestException, ConflictException, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, ConflictException } from '@nestjs/common';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Test, TestingModule } from '@nestjs/testing';
-import * as bcrypt from 'bcrypt';
-import { ROLES } from '../../common/constants/role.enum';
 import { User, UserStatus } from '../../models/user.entity';
 import { UserService } from './user.service';
 
@@ -20,7 +18,7 @@ describe('UserService', () => {
     password: '$2b$10$hashedpassword',
     roleId: 1,
     status: UserStatus.ACTIVE,
-    departmentId: 1
+    departmentId: 1,
   };
 
   beforeEach(async () => {
@@ -53,7 +51,13 @@ describe('UserService', () => {
       mockRepository.findOne.mockResolvedValue(fakeUser); // giả lập: đã có người dùng email này
 
       await expect(
-        service.createUser({ fullName: 'B', email: fakeUser.email, password: '123456', departmentId: fakeUser.departmentId, roleId: fakeUser.roleId }),
+        service.createUser({
+          fullName: 'B',
+          email: fakeUser.email,
+          password: '123456',
+          departmentId: fakeUser.departmentId,
+          roleId: fakeUser.roleId,
+        }),
       ).rejects.toThrow(ConflictException);
 
       expect(mockRepository.save).not.toHaveBeenCalled();
@@ -68,13 +72,12 @@ describe('UserService', () => {
         fullName: fakeUser.fullName,
         email: fakeUser.email,
         password: '123456',
-        departmentId: 1
-
+        departmentId: 1,
       });
 
       expect(result.message).toBe('Tạo nhân sự thành công');
-      expect(result.result).not.toHaveProperty('password'); // xác nhận password đã bị loại bỏ khỏi response
-      expect(result.result.email).toBe(fakeUser.email);
+      expect(result).not.toHaveProperty('password'); // xác nhận password đã bị loại bỏ khỏi response
+      expect(result.saved.email).toBe(fakeUser.email);
     });
   });
 
@@ -82,7 +85,9 @@ describe('UserService', () => {
     it('trạng thái mới GIỐNG trạng thái cũ → ném BadRequestException', async () => {
       mockRepository.findOne.mockResolvedValue(fakeUser); // status hiện tại: ACTIVE
 
-      await expect(service.updateStatus(1, { status: UserStatus.ACTIVE })).rejects.toThrow(BadRequestException);
+      await expect(service.updateStatus(1, { status: UserStatus.ACTIVE })).rejects.toThrow(
+        BadRequestException,
+      );
     });
 
     it('trạng thái mới KHÁC trạng thái cũ → cập nhật thành công', async () => {
@@ -92,34 +97,34 @@ describe('UserService', () => {
       const result = await service.updateStatus(1, { status: UserStatus.INACTIVE });
 
       expect(result.message).toBe('Cập nhật trạng thái thành công');
-      expect(result.result.status).toBe(UserStatus.INACTIVE);
+      expect(result.saved.status).toBe(UserStatus.INACTIVE);
     });
   });
 
-//   describe('changePassword()', () => {
-//     it('sai mật khẩu hiện tại → ném UnauthorizedException, KHÔNG được gọi save()', async () => {
-//       mockQueryBuilder.getOne.mockResolvedValue(fakeUser);
-//       (bcrypt.compare as jest.Mock).mockResolvedValue(false); // giả lập currentPassword sai
+  //   describe('changePassword()', () => {
+  //     it('sai mật khẩu hiện tại → ném UnauthorizedException, KHÔNG được gọi save()', async () => {
+  //       mockQueryBuilder.getOne.mockResolvedValue(fakeUser);
+  //       (bcrypt.compare as jest.Mock).mockResolvedValue(false); // giả lập currentPassword sai
 
-//       await expect(
-//         service.changePassword(1, { currentPassword: 'sai', newPassword: 'MatKhauMoi123' }),
-//       ).rejects.toThrow(UnauthorizedException);
+  //       await expect(
+  //         service.changePassword(1, { currentPassword: 'sai', newPassword: 'MatKhauMoi123' }),
+  //       ).rejects.toThrow(UnauthorizedException);
 
-//       expect(mockRepository.save).not.toHaveBeenCalled();
-//     });
+  //       expect(mockRepository.save).not.toHaveBeenCalled();
+  //     });
 
-//     it('đúng mật khẩu hiện tại → đổi thành công', async () => {
-//       mockQueryBuilder.getOne.mockResolvedValue({ ...fakeUser });
-//       (bcrypt.compare as jest.Mock).mockResolvedValue(true);
-//       mockRepository.save.mockResolvedValue(fakeUser);
+  //     it('đúng mật khẩu hiện tại → đổi thành công', async () => {
+  //       mockQueryBuilder.getOne.mockResolvedValue({ ...fakeUser });
+  //       (bcrypt.compare as jest.Mock).mockResolvedValue(true);
+  //       mockRepository.save.mockResolvedValue(fakeUser);
 
-//       const result = await service.changePassword(1, {
-//         currentPassword: 'dung-password',
-//         newPassword: 'MatKhauMoi123',
-//       });
+  //       const result = await service.changePassword(1, {
+  //         currentPassword: 'dung-password',
+  //         newPassword: 'MatKhauMoi123',
+  //       });
 
-//       expect(result.message).toBe('Đổi mật khẩu thành công');
-//       expect(mockRepository.save).toHaveBeenCalled();
-//     });
-//   });
+  //       expect(result.message).toBe('Đổi mật khẩu thành công');
+  //       expect(mockRepository.save).toHaveBeenCalled();
+  //     });
+  //   });
 });

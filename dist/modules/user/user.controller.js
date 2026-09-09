@@ -37,7 +37,11 @@ let UserController = class UserController {
         return this.userService.list(query);
     }
     findOne(id, user) {
-        const isPrivileged = (user.role === role_enum_1.ROLES.ADMIN || user.role === role_enum_1.ROLES.HR || user.role === role_enum_1.ROLES.MANAGER || user.role === role_enum_1.ROLES.ACCOUNTANT || user.role === role_enum_1.ROLES.BOD);
+        const isPrivileged = user.role === role_enum_1.ROLES.ADMIN ||
+            user.role === role_enum_1.ROLES.HR ||
+            user.role === role_enum_1.ROLES.MANAGER ||
+            user.role === role_enum_1.ROLES.ACCOUNTANT ||
+            user.role === role_enum_1.ROLES.BOD;
         const isOwnProfile = user.userId === id;
         if (isOwnProfile || (!isOwnProfile && isPrivileged)) {
             return this.userService.findOne(id);

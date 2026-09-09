@@ -39,9 +39,7 @@ describe('DepartmentService', () => {
       const actorId = 5;
       const savedDepartment = { id: 1, ...dto, createdBy: actorId, updatedBy: actorId };
 
-      const createSpy = jest
-        .spyOn(service, 'create')
-        .mockResolvedValue(savedDepartment as any);
+      const createSpy = jest.spyOn(service, 'create').mockResolvedValue(savedDepartment as any);
 
       const result = await service.createDepartment(dto, actorId);
 
@@ -64,9 +62,7 @@ describe('DepartmentService', () => {
       const actorId = 7;
       const updatedDepartment = { id, ...dto, updatedBy: actorId };
 
-      const updateSpy = jest
-        .spyOn(service, 'update')
-        .mockResolvedValue(updatedDepartment as any);
+      const updateSpy = jest.spyOn(service, 'update').mockResolvedValue(updatedDepartment as any);
 
       const result = await service.updateDepartment(id, dto, actorId);
 
@@ -89,12 +85,8 @@ describe('DepartmentService', () => {
 
       const dto = { status: 'active' } as any;
 
-      await expect(service.updateStatus(id, dto, actorId)).rejects.toThrow(
-        BadRequestException,
-      );
-      await expect(service.updateStatus(id, dto, actorId)).rejects.toThrow(
-        'status-not-changed',
-      );
+      await expect(service.updateStatus(id, dto, actorId)).rejects.toThrow(BadRequestException);
+      await expect(service.updateStatus(id, dto, actorId)).rejects.toThrow('status-not-changed');
 
       expect(updateSpy).not.toHaveBeenCalled();
     });
@@ -104,9 +96,7 @@ describe('DepartmentService', () => {
       const updatedDepartment = { id, status: 'inactive', updatedBy: actorId };
 
       jest.spyOn(service, 'findOne').mockResolvedValue(existingDepartment);
-      const updateSpy = jest
-        .spyOn(service, 'update')
-        .mockResolvedValue(updatedDepartment as any);
+      const updateSpy = jest.spyOn(service, 'update').mockResolvedValue(updatedDepartment as any);
 
       const dto = { status: 'inactive' } as any;
 
@@ -131,9 +121,7 @@ describe('DepartmentService', () => {
         meta: { page: 1, limit: 10, total: 1, totalPages: 1 },
       };
 
-      const findAllSpy = jest
-        .spyOn(service, 'findAll')
-        .mockResolvedValue(expectedResult as any);
+      const findAllSpy = jest.spyOn(service, 'findAll').mockResolvedValue(expectedResult as any);
 
       const result = await service.list(query);
 

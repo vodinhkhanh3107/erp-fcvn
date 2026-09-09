@@ -1,5 +1,5 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsDateString, IsInt, IsNotEmpty, IsNumber, Min } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsDateString, IsInt, IsNumber, Min } from 'class-validator';
 
 export class CreateKpiDto {
   @ApiProperty({ example: 1 })

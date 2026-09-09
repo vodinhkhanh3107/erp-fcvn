@@ -56,7 +56,7 @@ async function seed() {
     await dataSource.initialize();
     console.log('Đã kết nối MySQL, bắt đầu seed dữ liệu RBAC...');
     const roleNames = {
-        [role_enum_1.ROLES.ADMIN]: 'Quản trị viên'
+        [role_enum_1.ROLES.ADMIN]: 'Quản trị viên',
     };
     const permissionRepo = dataSource.getRepository(permission_entity_1.Permission);
     const roleRepo = dataSource.getRepository(role_entity_1.Role);
@@ -90,11 +90,13 @@ async function seed() {
         roleMap.set(code, role);
     }
     const newDepartment = departmentRepo.create({
-        name: "Admin",
-        status: department_entity_1.DepartmentStatus.ACTIVE
+        name: 'Admin',
+        status: department_entity_1.DepartmentStatus.ACTIVE,
     });
     const saveDepartment = await departmentRepo.save(newDepartment);
-    const existedAdmin = await userRepo.findOne({ where: { email: `${process.env.EMAIL_USER}@fcvn.local` } });
+    const existedAdmin = await userRepo.findOne({
+        where: { email: `${process.env.EMAIL_USER}@fcvn.local` },
+    });
     if (!existedAdmin) {
         const adminRole = roleMap.get(role_enum_1.ROLES.ADMIN);
         const admin = userRepo.create({
@@ -104,10 +106,11 @@ async function seed() {
             password: process.env.PASSWORD_USER,
             roleId: adminRole.id,
             status: user_entity_1.UserStatus.ACTIVE,
-            departmentId: saveDepartment.id
+            departmentId: saveDepartment.id,
         });
         const saved = await userRepo.save(admin);
         const verify = await dataSource.query('SELECT LENGTH(password) as len FROM users WHERE id = ?', [saved.id]);
+        console.log(verify);
     }
     else {
         console.log('Tài khoản Admin đã tồn tại, bỏ qua.');

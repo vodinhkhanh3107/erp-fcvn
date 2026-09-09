@@ -137,7 +137,10 @@ describe('AuthService', () => {
         });
         it('hợp lệ → trả về accessToken mới, VÀ ghi đè lại Redis với token mới', async () => {
             mockJwtService.verify.mockReturnValue({ UserId: 1 });
-            mockQueryBuilder.getOne.mockResolvedValue({ ...fakeUser, refreshTokenHash: 'fake-refresh-token-hash' });
+            mockQueryBuilder.getOne.mockResolvedValue({
+                ...fakeUser,
+                refreshTokenHash: 'fake-refresh-token-hash',
+            });
             bcrypt.compare.mockResolvedValue(true);
             mockJwtService.sign.mockReturnValue('fake-new-access-token');
             const result = await service.refreshToken({ refreshToken: 'token-that' });

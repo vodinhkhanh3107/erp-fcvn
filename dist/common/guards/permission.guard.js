@@ -53,7 +53,10 @@ let PermissionGuard = class PermissionGuard {
         const cached = await this.redisService.get(cacheKey);
         if (cached)
             return new Set(JSON.parse(cached));
-        const role = await this.roleRepository.findOne({ where: { id: roleId }, relations: { permissions: true } });
+        const role = await this.roleRepository.findOne({
+            where: { id: roleId },
+            relations: { permissions: true },
+        });
         const codes = (role?.permissions ?? []).map((p) => p.code);
         await this.redisService.set(cacheKey, JSON.stringify(codes), ROLE_PERMISSIONS_CACHE_TTL_SECONDS);
         return new Set(codes);

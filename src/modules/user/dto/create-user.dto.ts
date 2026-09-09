@@ -1,4 +1,12 @@
-import { IsEmail, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, Matches, MinLength } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+  Matches,
+  MinLength,
+} from 'class-validator';
 
 import { Transform } from 'class-transformer';
 
@@ -32,7 +40,7 @@ export class CreateUserDto {
 
   @IsOptional()
   @IsNumber()
-  departmentId?: number
+  departmentId?: number;
   // @IsOptional()
   // @IsString()
   // jobTitle?: string;
