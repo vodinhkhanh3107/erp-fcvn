@@ -87,7 +87,7 @@ export class PurchaseRequestService {
     });
     if (existedRequestKey) {
       this.logger.error(
-        `Request trùng (requestKey="${dto.requestKey}") → trả lại PR #${existedRequestKey.id} cũ`,
+        `Request trùng (requestKey="${existedRequestKey.requestKey}") → trả lại PR #${existedRequestKey.id} cũ`,
       );
       return {
         message: 'Yêu cầu đã được ghi nhận trước đó (request trùng lặp)',

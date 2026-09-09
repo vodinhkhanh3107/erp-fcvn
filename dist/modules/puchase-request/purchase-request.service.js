@@ -105,7 +105,7 @@ let PurchaseRequestService = class PurchaseRequestService {
             requestKey: effectiveRequestKey,
         });
         if (existedRequestKey) {
-            this.logger.error(`Request trùng (requestKey="${dto.requestKey}") → trả lại PR #${existedRequestKey.id} cũ`);
+            this.logger.error(`Request trùng (requestKey="${existedRequestKey.requestKey}") → trả lại PR #${existedRequestKey.id} cũ`);
             return {
                 message: 'Yêu cầu đã được ghi nhận trước đó (request trùng lặp)',
                 result: existedRequestKey,
