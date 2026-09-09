@@ -86,7 +86,7 @@ export class PurchaseRequestService {
       requestKey: effectiveRequestKey,
     });
     if (existedRequestKey) {
-      this.logger.error(
+      this.logger.warn(
         `Request trùng (requestKey="${existedRequestKey.requestKey}") → trả lại PR #${existedRequestKey.id} cũ`,
       );
       return {
@@ -94,9 +94,8 @@ export class PurchaseRequestService {
         result: existedRequestKey,
       };
     }
-
-    const existedDepartment = await this.departmentRepository.findOneBy({ id: dto.departmentId });
-    if (!existedDepartment) {
+    const department = await this.departmentRepository.findOneBy({ id: dto.departmentId });
+    if (!department) {
       throw new NotFoundException('Not-found-deparment');
     }
 
