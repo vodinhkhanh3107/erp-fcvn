@@ -64,12 +64,10 @@ jobs:
       - run: npm ci
 
       - name: npm audit
-      
-          
-                  # TODO: co 10 loi high + cac loi lien quan @nestjs/core v10->v12 (breaking change),
-              # can len ke hoach nang cap rieng. Tam thoi chi chan khi co critical,
-              # loai bo dev-only deps (webpack/nestjs-cli/angular-devkit) khoi pham vi kiem tra.
-              run: npm audit --omit=dev --audit-level=critical
+        # TODO: co 10 loi high + cac loi lien quan @nestjs/core v10->v12 (breaking change),
+        # can len ke hoach nang cap rieng. Tam thoi chi chan khi co critical,
+        # loai bo dev-only deps (webpack/nestjs-cli/angular-devkit) khoi pham vi kiem tra.
+        run: npm audit --omit=dev --audit-level=critical
     #     run: npm audit --audit-level=high
 
     #   - name: Initialize CodeQL
