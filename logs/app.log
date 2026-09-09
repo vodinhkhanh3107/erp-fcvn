@@ -64045,3 +64045,45 @@
 [2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #10
 [2026-08-27T08:00:00.000Z] [LOG] Yêu cầu nghỉ phép #1 đã được  duyệt: Rejected
 [2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #1
+[2026-09-09T07:25:11.340Z] [LOG] Đã tạo KPI #1 cho nhân sự #10, kỳ 2026-08 → On-track
+[2026-09-09T07:25:11.344Z] [LOG] Đã tạo KPI #2 cho nhân sự #10, kỳ 2026-08 → On-track
+[2026-09-09T07:25:11.347Z] [LOG] Đã tạo KPI #3 cho nhân sự #10, kỳ 2026-08 → Off-track
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #1
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #5
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #10
+[2026-08-27T08:00:00.000Z] [LOG] Yêu cầu nghỉ phép #1 đã được  duyệt: Approved
+[2026-08-27T08:00:00.000Z] [LOG] Yêu cầu nghỉ phép #1 đã được  duyệt: Rejected
+[2026-09-09T07:25:11.405Z] [LOG] Đã tạo nhân sự #1 (a@fcvn.local)
+[2026-09-09T07:25:11.410Z] [LOG] Đã đổi trạng thái nhân sự #1 → inactive
+[2026-08-27T00:00:00.000Z] [LOG] Đã tạo công việc #1: "Task test"
+[2026-08-27T00:00:00.000Z] [LOG] Đã tạo công việc #2: "Task tương lai"
+[2026-09-09T07:25:11.363Z] [WARN] Request trùng (requestKey="hash-abc") → trả lại PR #99 cũ
+[2026-09-09T07:25:11.390Z] [LOG] Tạo nháp yêu cầu mua hàng thành công
+[2026-09-09T07:25:11.408Z] [LOG] PR #1 đã được cập nhật bởi #1
+[2026-09-09T07:25:11.405Z] [LOG] PR #1 đã được cập nhật bởi #1
+[2026-09-09T07:25:11.419Z] [LOG] PR #1 đã được gửi duyệt bởi #1
+[2026-09-09T07:25:11.431Z] [LOG] PR #1 đã bị từ chối bởi #5: Ngân sách không đủ
+[2026-09-09T07:25:11.424Z] [LOG] PR #1 đã được duyệt bởi #999
+[2026-09-09T07:25:11.453Z] [LOG] PR #1 (đã Approved) → phát hành PO #50
+[2026-09-09T07:25:11.427Z] [LOG] PR #1 đã được duyệt bởi #5
+[2026-09-09T07:27:02.584Z] [LOG] Đã tạo nhân sự #1 (a@fcvn.local)
+[2026-09-09T07:27:02.590Z] [LOG] Đã đổi trạng thái nhân sự #1 → inactive
+[2026-08-27T00:00:00.000Z] [LOG] Đã tạo công việc #1: "Task test"
+[2026-08-27T00:00:00.000Z] [LOG] Đã tạo công việc #2: "Task tương lai"
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #1
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #5
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #10
+[2026-08-27T08:00:00.000Z] [LOG] Yêu cầu nghỉ phép #1 đã được  duyệt: Approved
+[2026-08-27T08:00:00.000Z] [LOG] Yêu cầu nghỉ phép #1 đã được  duyệt: Rejected
+[2026-09-09T07:27:02.738Z] [LOG] Đã tạo KPI #1 cho nhân sự #10, kỳ 2026-08 → On-track
+[2026-09-09T07:27:02.742Z] [LOG] Đã tạo KPI #3 cho nhân sự #10, kỳ 2026-08 → Off-track
+[2026-09-09T07:27:02.740Z] [LOG] Đã tạo KPI #2 cho nhân sự #10, kỳ 2026-08 → On-track
+[2026-09-09T07:27:02.782Z] [WARN] Request trùng (requestKey="hash-abc") → trả lại PR #99 cũ
+[2026-09-09T07:27:02.799Z] [LOG] Tạo nháp yêu cầu mua hàng thành công
+[2026-09-09T07:27:02.808Z] [LOG] PR #1 đã được cập nhật bởi #1
+[2026-09-09T07:27:02.810Z] [LOG] PR #1 đã được cập nhật bởi #1
+[2026-09-09T07:27:02.816Z] [LOG] PR #1 đã được gửi duyệt bởi #1
+[2026-09-09T07:27:02.819Z] [LOG] PR #1 đã được duyệt bởi #999
+[2026-09-09T07:27:02.822Z] [LOG] PR #1 đã được duyệt bởi #5
+[2026-09-09T07:27:02.825Z] [LOG] PR #1 đã bị từ chối bởi #5: Ngân sách không đủ
+[2026-09-09T07:27:02.839Z] [LOG] PR #1 (đã Approved) → phát hành PO #50
