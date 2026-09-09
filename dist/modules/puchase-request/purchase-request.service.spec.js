@@ -108,7 +108,10 @@ describe('PurchaseRequestService', () => {
             const savedPr = { id: 10, status: purchase_request_entity_1.PurchaseRequestStatus.DRAFT };
             mockManager.create.mockImplementation((_entity, data) => data);
             mockManager.save.mockImplementation(async (data) => {
-                if (!Array.isArray(data) && data && !('purchaseRequestId' in data) && !('itemName' in data)) {
+                if (!Array.isArray(data) &&
+                    data &&
+                    !('purchaseRequestId' in data) &&
+                    !('itemName' in data)) {
                     return savedPr;
                 }
                 return data;
@@ -225,7 +228,7 @@ describe('PurchaseRequestService', () => {
             });
             await expect(service.submit(1, actorId)).rejects.toThrow(common_1.ForbiddenException);
         });
-        it('nên throw BadRequestException (BR-01) nếu PR không có item nào', async () => {
+        it('nên throw BadRequestException nếu PR không có item nào', async () => {
             jest.spyOn(service, 'findOne').mockResolvedValue({
                 id: 1,
                 status: purchase_request_entity_1.PurchaseRequestStatus.DRAFT,
@@ -235,7 +238,7 @@ describe('PurchaseRequestService', () => {
             });
             await expect(service.submit(1, actorId)).rejects.toThrow('purchase-request-must-have-at-least-1-item');
         });
-        it('nên throw BadRequestException (BR-02) nếu PR có ít hơn 2 báo giá', async () => {
+        it('nên throw BadRequestException nếu PR có ít hơn 2 báo giá', async () => {
             jest.spyOn(service, 'findOne').mockResolvedValue({
                 id: 1,
                 status: purchase_request_entity_1.PurchaseRequestStatus.DRAFT,
@@ -346,13 +349,18 @@ describe('PurchaseRequestService', () => {
     });
     describe('getHistory', () => {
         it('nên throw NotFoundException nếu PR không tồn tại (uỷ quyền qua findOne)', async () => {
-            jest.spyOn(service, 'findOne').mockRejectedValue(new common_1.NotFoundException('purchase-request-not-found'));
+            jest
+                .spyOn(service, 'findOne')
+                .mockRejectedValue(new common_1.NotFoundException('purchase-request-not-found'));
             await expect(service.getHistory(999)).rejects.toThrow(common_1.NotFoundException);
             expect(historyRepository.find).not.toHaveBeenCalled();
         });
         it('nên trả về lịch sử sắp xếp theo createdAt tăng dần', async () => {
             jest.spyOn(service, 'findOne').mockResolvedValue({ id: 1 });
-            const history = [{ id: 1, toStatus: 'DRAFT' }, { id: 2, toStatus: 'PENDING' }];
+            const history = [
+                { id: 1, toStatus: 'DRAFT' },
+                { id: 2, toStatus: 'PENDING' },
+            ];
             historyRepository.find.mockResolvedValue(history);
             const result = await service.getHistory(1);
             expect(historyRepository.find).toHaveBeenCalledWith({
@@ -364,7 +372,12 @@ describe('PurchaseRequestService', () => {
     });
     describe('findAll', () => {
         it('nên áp dụng filter status và keyword (ILike trên purposeOfUse) khi có', async () => {
-            const query = { page: 1, limit: 10, status: purchase_request_entity_1.PurchaseRequestStatus.PENDING, keyword: 'laptop' };
+            const query = {
+                page: 1,
+                limit: 10,
+                status: purchase_request_entity_1.PurchaseRequestStatus.PENDING,
+                keyword: 'laptop',
+            };
             prRepository.findAndCount.mockResolvedValue([[], 0]);
             await service.findAll(query);
             expect(prRepository.findAndCount).toHaveBeenCalledWith(expect.objectContaining({
@@ -398,7 +411,12 @@ describe('PurchaseRequestService', () => {
             const result = await service.findOne(1);
             expect(prRepository.findOne).toHaveBeenCalledWith({
                 where: { id: 1 },
-                relations: { requester: true, department: true, items: true, quotations: { supplier: true } },
+                relations: {
+                    requester: true,
+                    department: true,
+                    items: true,
+                    quotations: { supplier: true },
+                },
             });
             expect(result).toEqual(pr);
         });

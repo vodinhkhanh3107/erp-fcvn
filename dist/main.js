@@ -18,7 +18,7 @@ async function bootstrap() {
     (0, swagger_1.swaggerModule)(app);
     const port = process.env.PORT || 3000;
     await app.listen(port);
-    console.log('Server đang chạy tại http://localhost:${port}););
+    console.log(`Server đang chạy tại http://localhost:${port}`);
 }
 bootstrap();
 //# sourceMappingURL=main.js.map

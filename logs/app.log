@@ -61770,3 +61770,259 @@
 [2026-09-08T08:46:26.109Z] [LOG] Đã tạo KPI #1 cho nhân sự #10, kỳ 2026-08 → On-track
 [2026-09-08T08:46:26.113Z] [LOG] Đã tạo KPI #3 cho nhân sự #10, kỳ 2026-08 → Off-track
 [2026-09-08T08:46:26.111Z] [LOG] Đã tạo KPI #2 cho nhân sự #10, kỳ 2026-08 → On-track
+[2026-09-08T10:04:13.767Z] [LOG] Đã tạo nhân sự #1 (a@fcvn.local)
+[2026-09-08T10:04:13.774Z] [LOG] Đã đổi trạng thái nhân sự #1 → inactive
+[2026-09-08T10:04:13.808Z] [LOG] Đã tạo KPI #1 cho nhân sự #10, kỳ 2026-08 → On-track
+[2026-09-08T10:04:13.815Z] [LOG] Đã tạo KPI #3 cho nhân sự #10, kỳ 2026-08 → Off-track
+[2026-09-08T10:04:13.813Z] [LOG] Đã tạo KPI #2 cho nhân sự #10, kỳ 2026-08 → On-track
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #1
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #10
+[2026-08-27T08:00:00.000Z] [LOG] Yêu cầu nghỉ phép #1 đã được  duyệt: Rejected
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #5
+[2026-08-27T08:00:00.000Z] [LOG] Yêu cầu nghỉ phép #1 đã được  duyệt: Approved
+[2026-08-27T00:00:00.000Z] [LOG] Đã tạo công việc #1: "Task test"
+[2026-08-27T00:00:00.000Z] [LOG] Đã tạo công việc #2: "Task tương lai"
+[2026-09-08T10:04:14.748Z] [ERROR] Request trùng (requestKey="undefined") → trả lại PR #99 cũ
+[2026-09-08T10:04:14.765Z] [LOG] Tạo nháp yêu cầu mua hàng thành công
+[2026-09-08T10:04:14.773Z] [LOG] PR #1 đã được cập nhật bởi #1
+[2026-09-08T10:04:14.775Z] [LOG] PR #1 đã được cập nhật bởi #1
+[2026-09-08T10:04:14.781Z] [LOG] PR #1 đã được gửi duyệt bởi #1
+[2026-09-08T10:04:14.784Z] [LOG] PR #1 đã được duyệt bởi #999
+[2026-09-08T10:04:14.787Z] [LOG] PR #1 đã được duyệt bởi #5
+[2026-09-08T10:04:14.790Z] [LOG] PR #1 đã bị từ chối bởi #5: Ngân sách không đủ
+[2026-09-08T10:04:14.804Z] [LOG] PR #1 (đã Approved) → phát hành PO #50
+[2026-09-08T10:08:26.074Z] [LOG] Đã tạo nhân sự #1 (a@fcvn.local)
+[2026-09-08T10:08:26.081Z] [LOG] Đã đổi trạng thái nhân sự #1 → inactive
+[2026-08-27T00:00:00.000Z] [LOG] Đã tạo công việc #1: "Task test"
+[2026-08-27T00:00:00.000Z] [LOG] Đã tạo công việc #2: "Task tương lai"
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #1
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #10
+[2026-08-27T08:00:00.000Z] [LOG] Yêu cầu nghỉ phép #1 đã được  duyệt: Approved
+[2026-08-27T08:00:00.000Z] [LOG] Yêu cầu nghỉ phép #1 đã được  duyệt: Rejected
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #5
+[2026-09-08T10:08:26.307Z] [LOG] Đã tạo KPI #1 cho nhân sự #10, kỳ 2026-08 → On-track
+[2026-09-08T10:08:26.311Z] [LOG] Đã tạo KPI #2 cho nhân sự #10, kỳ 2026-08 → On-track
+[2026-09-08T10:08:26.312Z] [LOG] Đã tạo KPI #3 cho nhân sự #10, kỳ 2026-08 → Off-track
+[2026-09-08T10:08:26.327Z] [ERROR] Request trùng (requestKey="undefined") → trả lại PR #99 cũ
+[2026-09-08T10:08:26.369Z] [LOG] PR #1 đã được cập nhật bởi #1
+[2026-09-08T10:08:26.384Z] [LOG] PR #1 đã được gửi duyệt bởi #1
+[2026-09-08T10:08:26.373Z] [LOG] PR #1 đã được cập nhật bởi #1
+[2026-09-08T10:08:26.387Z] [LOG] PR #1 đã được duyệt bởi #999
+[2026-09-08T10:08:26.396Z] [LOG] PR #1 đã bị từ chối bởi #5: Ngân sách không đủ
+[2026-09-08T10:08:26.390Z] [LOG] PR #1 đã được duyệt bởi #5
+[2026-09-08T10:08:26.412Z] [LOG] PR #1 (đã Approved) → phát hành PO #50
+[2026-09-08T10:08:26.353Z] [LOG] Tạo nháp yêu cầu mua hàng thành công
+[2026-09-08T10:13:19.711Z] [LOG] Đã tạo nhân sự #1 (a@fcvn.local)
+[2026-09-08T10:13:19.718Z] [LOG] Đã đổi trạng thái nhân sự #1 → inactive
+[2026-09-08T10:13:19.640Z] [ERROR] Request trùng (requestKey="undefined") → trả lại PR #99 cũ
+[2026-09-08T10:13:19.675Z] [LOG] Tạo nháp yêu cầu mua hàng thành công
+[2026-09-08T10:13:19.700Z] [LOG] PR #1 đã được cập nhật bởi #1
+[2026-09-08T10:13:19.696Z] [LOG] PR #1 đã được cập nhật bởi #1
+[2026-09-08T10:13:19.716Z] [LOG] PR #1 đã được gửi duyệt bởi #1
+[2026-09-08T10:13:19.728Z] [LOG] PR #1 đã được duyệt bởi #5
+[2026-09-08T10:13:19.723Z] [LOG] PR #1 đã được duyệt bởi #999
+[2026-09-08T10:13:19.736Z] [LOG] PR #1 đã bị từ chối bởi #5: Ngân sách không đủ
+[2026-09-08T10:13:19.769Z] [LOG] PR #1 (đã Approved) → phát hành PO #50
+[2026-09-08T10:13:19.832Z] [LOG] Đã tạo KPI #2 cho nhân sự #10, kỳ 2026-08 → On-track
+[2026-09-08T10:13:19.834Z] [LOG] Đã tạo KPI #3 cho nhân sự #10, kỳ 2026-08 → Off-track
+[2026-09-08T10:13:19.828Z] [LOG] Đã tạo KPI #1 cho nhân sự #10, kỳ 2026-08 → On-track
+[2026-08-27T00:00:00.000Z] [LOG] Đã tạo công việc #1: "Task test"
+[2026-08-27T00:00:00.000Z] [LOG] Đã tạo công việc #2: "Task tương lai"
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #1
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #5
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #10
+[2026-08-27T08:00:00.000Z] [LOG] Yêu cầu nghỉ phép #1 đã được  duyệt: Rejected
+[2026-08-27T08:00:00.000Z] [LOG] Yêu cầu nghỉ phép #1 đã được  duyệt: Approved
+[2026-09-08T10:13:52.592Z] [LOG] Đã tạo nhân sự #1 (a@fcvn.local)
+[2026-09-08T10:13:52.599Z] [LOG] Đã đổi trạng thái nhân sự #1 → inactive
+[2026-08-27T00:00:00.000Z] [LOG] Đã tạo công việc #1: "Task test"
+[2026-08-27T00:00:00.000Z] [LOG] Đã tạo công việc #2: "Task tương lai"
+[2026-09-08T10:13:52.620Z] [LOG] Đã tạo KPI #1 cho nhân sự #10, kỳ 2026-08 → On-track
+[2026-09-08T10:13:52.625Z] [LOG] Đã tạo KPI #2 cho nhân sự #10, kỳ 2026-08 → On-track
+[2026-09-08T10:13:52.627Z] [LOG] Đã tạo KPI #3 cho nhân sự #10, kỳ 2026-08 → Off-track
+[2026-09-08T10:13:52.592Z] [ERROR] Request trùng (requestKey="undefined") → trả lại PR #99 cũ
+[2026-09-08T10:13:52.630Z] [LOG] Tạo nháp yêu cầu mua hàng thành công
+[2026-09-08T10:13:52.651Z] [LOG] PR #1 đã được cập nhật bởi #1
+[2026-09-08T10:13:52.648Z] [LOG] PR #1 đã được cập nhật bởi #1
+[2026-09-08T10:13:52.668Z] [LOG] PR #1 đã được duyệt bởi #999
+[2026-09-08T10:13:52.663Z] [LOG] PR #1 đã được gửi duyệt bởi #1
+[2026-09-08T10:13:52.678Z] [LOG] PR #1 đã bị từ chối bởi #5: Ngân sách không đủ
+[2026-09-08T10:13:52.703Z] [LOG] PR #1 (đã Approved) → phát hành PO #50
+[2026-09-08T10:13:52.673Z] [LOG] PR #1 đã được duyệt bởi #5
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #1
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #10
+[2026-08-27T08:00:00.000Z] [LOG] Yêu cầu nghỉ phép #1 đã được  duyệt: Rejected
+[2026-08-27T08:00:00.000Z] [LOG] Yêu cầu nghỉ phép #1 đã được  duyệt: Approved
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #5
+[2026-09-09T01:48:10.409Z] [LOG] [NestFactory] Starting Nest application...
+[2026-09-09T01:48:10.409Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-09T01:48:10.409Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-09-09T01:48:10.410Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-09-09T01:48:10.410Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-09-09T01:48:10.410Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-09-09T01:48:10.410Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-09-09T01:48:10.410Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-09-09T01:48:10.411Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-09T01:48:10.410Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-09-09T01:48:10.411Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-09T01:48:10.411Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-09T01:48:10.410Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-09-09T01:48:10.411Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-09T01:48:10.411Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-09T01:48:10.411Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-09T01:48:10.411Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-09T01:48:10.411Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-09T01:48:10.411Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-09T01:48:10.411Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-09T01:48:10.412Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-09T01:48:10.412Z] [LOG] [InstanceLoader] PermissionRoleModule dependencies initialized
+[2026-09-09T01:48:10.412Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-09-09T01:48:10.412Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-09-09T01:48:10.412Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-09T01:48:10.412Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-09-09T01:48:10.412Z] [LOG] [InstanceLoader] AttendanceModule dependencies initialized
+[2026-09-09T01:48:10.412Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-09-09T01:48:10.412Z] [LOG] [InstanceLoader] TaskModule dependencies initialized
+[2026-09-09T01:48:10.412Z] [LOG] [InstanceLoader] DepartmentModule dependencies initialized
+[2026-09-09T01:48:10.413Z] [LOG] [InstanceLoader] PurchaseOrderModule dependencies initialized
+[2026-09-09T01:48:10.413Z] [LOG] [InstanceLoader] KpiModule dependencies initialized
+[2026-09-09T01:48:10.413Z] [LOG] [InstanceLoader] PurchaseRequestModule dependencies initialized
+[2026-09-09T01:48:10.413Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-09-09T01:48:10.413Z] [LOG] [InstanceLoader] AuditLogModule dependencies initialized
+[2026-09-09T01:48:10.413Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-09-09T01:48:10.413Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-09-09T01:48:10.413Z] [LOG] [InstanceLoader] LeaveModule dependencies initialized
+[2026-09-09T01:48:10.414Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-09-09T01:48:10.413Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-09-09T01:48:10.414Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-09-09T01:48:10.413Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-09-09T01:48:10.414Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-09-09T01:48:10.414Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-09-09T01:48:10.414Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-09-09T01:48:10.414Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-09-09T01:48:10.414Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-09-09T01:48:10.414Z] [LOG] [RouterExplorer] Mapped {/audit-logs, GET} route
+[2026-09-09T01:48:10.414Z] [LOG] [RoutesResolver] AuditLogController {/audit-logs}:
+[2026-09-09T01:48:10.415Z] [LOG] [RouterExplorer] Mapped {/roles, GET} route
+[2026-09-09T01:48:10.415Z] [LOG] [RouterExplorer] Mapped {/roles, POST} route
+[2026-09-09T01:48:10.415Z] [LOG] [RouterExplorer] Mapped {/roles/:id, GET} route
+[2026-09-09T01:48:10.415Z] [LOG] [RouterExplorer] Mapped {/roles/:id/permissions, PUT} route
+[2026-09-09T01:48:10.415Z] [LOG] [RoutesResolver] PermissionController {/permissions}:
+[2026-09-09T01:48:10.415Z] [LOG] [RoutesResolver] RoleController {/roles}:
+[2026-09-09T01:48:10.415Z] [LOG] [RouterExplorer] Mapped {/roles/:id, PUT} route
+[2026-09-09T01:48:10.416Z] [LOG] [RouterExplorer] Mapped {/permissions, POST} route
+[2026-09-09T01:48:10.416Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-09-09T01:48:10.415Z] [LOG] [RouterExplorer] Mapped {/permissions, GET} route
+[2026-09-09T01:48:10.416Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-09-09T01:48:10.416Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-09-09T01:48:10.416Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-09-09T01:48:10.416Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-09-09T01:48:10.416Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-09-09T01:48:10.416Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-09-09T01:48:10.416Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-09-09T01:48:10.417Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-09-09T01:48:10.417Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-09-09T01:48:10.417Z] [LOG] [RouterExplorer] Mapped {/attendances, POST} route
+[2026-09-09T01:48:10.417Z] [LOG] [RoutesResolver] AttendanceController {/attendances}:
+[2026-09-09T01:48:10.417Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-09-09T01:48:10.417Z] [LOG] [RoutesResolver] DepartmentController {/departments}:
+[2026-09-09T01:48:10.417Z] [LOG] [RouterExplorer] Mapped {/attendances/:id, GET} route
+[2026-09-09T01:48:10.418Z] [LOG] [RouterExplorer] Mapped {/departments, POST} route
+[2026-09-09T01:48:10.418Z] [LOG] [RouterExplorer] Mapped {/departments, GET} route
+[2026-09-09T01:48:10.417Z] [LOG] [RouterExplorer] Mapped {/attendances, GET} route
+[2026-09-09T01:48:10.418Z] [LOG] [RouterExplorer] Mapped {/departments/:id, GET} route
+[2026-09-09T01:48:10.418Z] [LOG] [RouterExplorer] Mapped {/departments/:id/status, PUT} route
+[2026-09-09T01:48:10.418Z] [LOG] [RouterExplorer] Mapped {/departments/:id, PUT} route
+[2026-09-09T01:48:10.418Z] [LOG] [RouterExplorer] Mapped {/tasks, POST} route
+[2026-09-09T01:48:10.418Z] [LOG] [RoutesResolver] TaskController {/tasks}:
+[2026-09-09T01:48:10.418Z] [LOG] [RouterExplorer] Mapped {/tasks/:id, GET} route
+[2026-09-09T01:48:10.418Z] [LOG] [RouterExplorer] Mapped {/tasks, GET} route
+[2026-09-09T01:48:10.419Z] [LOG] [RouterExplorer] Mapped {/tasks/:id/status, PUT} route
+[2026-09-09T01:48:10.419Z] [LOG] [RouterExplorer] Mapped {/kpis, GET} route
+[2026-09-09T01:48:10.419Z] [LOG] [RoutesResolver] KpiController {/kpis}:
+[2026-09-09T01:48:10.419Z] [LOG] [RouterExplorer] Mapped {/kpis, POST} route
+[2026-09-09T01:48:10.419Z] [LOG] [RouterExplorer] Mapped {/kpis/:id, GET} route
+[2026-09-09T01:48:10.419Z] [LOG] [RouterExplorer] Mapped {/kpis/:id/actual, PUT} route
+[2026-09-09T01:48:10.419Z] [LOG] [RouterExplorer] Mapped {/leaves, GET} route
+[2026-09-09T01:48:10.419Z] [LOG] [RoutesResolver] LeaveController {/leaves}:
+[2026-09-09T01:48:10.419Z] [LOG] [RouterExplorer] Mapped {/leaves, POST} route
+[2026-09-09T01:48:10.419Z] [LOG] [RouterExplorer] Mapped {/leaves/me, GET} route
+[2026-09-09T01:48:10.420Z] [LOG] [RouterExplorer] Mapped {/leaves/:id/review, PUT} route
+[2026-09-09T01:48:10.420Z] [LOG] [RoutesResolver] PurchaseOrderController {/purchase-orders}:
+[2026-09-09T01:48:10.420Z] [LOG] [RouterExplorer] Mapped {/purchase-orders/:id, GET} route
+[2026-09-09T01:48:10.419Z] [LOG] [RouterExplorer] Mapped {/leaves/:id, GET} route
+[2026-09-09T01:48:10.420Z] [LOG] [RoutesResolver] PurchaseRequestController {/purchase-requests}:
+[2026-09-09T01:48:10.420Z] [LOG] [RouterExplorer] Mapped {/purchase-orders, GET} route
+[2026-09-09T01:48:10.420Z] [LOG] [RouterExplorer] Mapped {/purchase-requests, POST} route
+[2026-09-09T01:48:10.420Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id, PUT} route
+[2026-09-09T01:48:10.421Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/reject, PUT} route
+[2026-09-09T01:48:10.421Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/approve, PUT} route
+[2026-09-09T01:48:10.420Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/submit, PUT} route
+[2026-09-09T01:48:10.421Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/history, GET} route
+[2026-09-09T01:48:10.421Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/issue-po, POST} route
+[2026-09-09T01:48:10.421Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id, GET} route
+[2026-09-09T01:48:10.421Z] [LOG] [RouterExplorer] Mapped {/purchase-requests, GET} route
+[2026-09-09T01:48:10.421Z] [LOG] [NestApplication] Nest application successfully started
+[2026-09-09T01:48:32.434Z] [LOG] Đã tạo nhân sự #1 (a@fcvn.local)
+[2026-09-09T01:48:32.440Z] [LOG] Đã đổi trạng thái nhân sự #1 → inactive
+[2026-09-09T01:48:32.525Z] [LOG] Đã tạo KPI #1 cho nhân sự #10, kỳ 2026-08 → On-track
+[2026-09-09T01:48:32.532Z] [LOG] Đã tạo KPI #3 cho nhân sự #10, kỳ 2026-08 → Off-track
+[2026-09-09T01:48:32.529Z] [LOG] Đã tạo KPI #2 cho nhân sự #10, kỳ 2026-08 → On-track
+[2026-08-27T00:00:00.000Z] [LOG] Đã tạo công việc #1: "Task test"
+[2026-08-27T00:00:00.000Z] [LOG] Đã tạo công việc #2: "Task tương lai"
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #1
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #5
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #10
+[2026-08-27T08:00:00.000Z] [LOG] Yêu cầu nghỉ phép #1 đã được  duyệt: Rejected
+[2026-08-27T08:00:00.000Z] [LOG] Yêu cầu nghỉ phép #1 đã được  duyệt: Approved
+[2026-09-09T01:48:32.544Z] [ERROR] Request trùng (requestKey="undefined") → trả lại PR #99 cũ
+[2026-09-09T01:48:32.571Z] [LOG] Tạo nháp yêu cầu mua hàng thành công
+[2026-09-09T01:48:32.582Z] [LOG] PR #1 đã được cập nhật bởi #1
+[2026-09-09T01:48:32.592Z] [LOG] PR #1 đã được gửi duyệt bởi #1
+[2026-09-09T01:48:32.599Z] [LOG] PR #1 đã được duyệt bởi #5
+[2026-09-09T01:48:32.596Z] [LOG] PR #1 đã được duyệt bởi #999
+[2026-09-09T01:48:32.584Z] [LOG] PR #1 đã được cập nhật bởi #1
+[2026-09-09T01:48:32.619Z] [LOG] PR #1 (đã Approved) → phát hành PO #50
+[2026-09-09T01:48:32.603Z] [LOG] PR #1 đã bị từ chối bởi #5: Ngân sách không đủ
+[2026-08-27T00:00:00.000Z] [LOG] Đã tạo công việc #1: "Task test"
+[2026-08-27T00:00:00.000Z] [LOG] Đã tạo công việc #2: "Task tương lai"
+[2026-09-09T02:09:34.216Z] [LOG] Đã tạo nhân sự #1 (a@fcvn.local)
+[2026-09-09T02:09:34.222Z] [LOG] Đã đổi trạng thái nhân sự #1 → inactive
+[2026-09-09T02:09:34.165Z] [ERROR] Request trùng (requestKey="undefined") → trả lại PR #99 cũ
+[2026-09-09T02:09:34.191Z] [LOG] Tạo nháp yêu cầu mua hàng thành công
+[2026-09-09T02:09:34.208Z] [LOG] PR #1 đã được cập nhật bởi #1
+[2026-09-09T02:09:34.211Z] [LOG] PR #1 đã được cập nhật bởi #1
+[2026-09-09T02:09:34.246Z] [LOG] Đã tạo KPI #1 cho nhân sự #10, kỳ 2026-08 → On-track
+[2026-09-09T02:09:34.234Z] [LOG] PR #1 đã được duyệt bởi #5
+[2026-09-09T02:09:34.241Z] [LOG] PR #1 đã bị từ chối bởi #5: Ngân sách không đủ
+[2026-09-09T02:09:34.250Z] [LOG] Đã tạo KPI #2 cho nhân sự #10, kỳ 2026-08 → On-track
+[2026-09-09T02:09:34.269Z] [LOG] PR #1 (đã Approved) → phát hành PO #50
+[2026-09-09T02:09:34.252Z] [LOG] Đã tạo KPI #3 cho nhân sự #10, kỳ 2026-08 → Off-track
+[2026-09-09T02:09:34.224Z] [LOG] PR #1 đã được gửi duyệt bởi #1
+[2026-09-09T02:09:34.229Z] [LOG] PR #1 đã được duyệt bởi #999
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #1
+[2026-08-27T08:00:00.000Z] [LOG] Yêu cầu nghỉ phép #1 đã được  duyệt: Approved
+[2026-08-27T08:00:00.000Z] [LOG] Yêu cầu nghỉ phép #1 đã được  duyệt: Rejected
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #10
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #5
+[2026-09-09T02:29:36.505Z] [LOG] Đã tạo nhân sự #1 (a@fcvn.local)
+[2026-09-09T02:29:36.516Z] [LOG] Đã đổi trạng thái nhân sự #1 → inactive
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #1
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #5
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #10
+[2026-08-27T08:00:00.000Z] [LOG] Yêu cầu nghỉ phép #1 đã được  duyệt: Approved
+[2026-08-27T08:00:00.000Z] [LOG] Yêu cầu nghỉ phép #1 đã được  duyệt: Rejected
+[2026-08-27T00:00:00.000Z] [LOG] Đã tạo công việc #1: "Task test"
+[2026-08-27T00:00:00.000Z] [LOG] Đã tạo công việc #2: "Task tương lai"
+[2026-09-09T02:29:36.633Z] [LOG] Đã tạo KPI #1 cho nhân sự #10, kỳ 2026-08 → On-track
+[2026-09-09T02:29:36.638Z] [LOG] Đã tạo KPI #3 cho nhân sự #10, kỳ 2026-08 → Off-track
+[2026-09-09T02:29:36.636Z] [LOG] Đã tạo KPI #2 cho nhân sự #10, kỳ 2026-08 → On-track
+[2026-09-09T02:29:36.628Z] [ERROR] Request trùng (requestKey="undefined") → trả lại PR #99 cũ
+[2026-09-09T02:29:36.649Z] [LOG] Tạo nháp yêu cầu mua hàng thành công
+[2026-09-09T02:29:36.661Z] [LOG] PR #1 đã được cập nhật bởi #1
+[2026-09-09T02:29:36.668Z] [LOG] PR #1 đã được gửi duyệt bởi #1
+[2026-09-09T02:29:36.659Z] [LOG] PR #1 đã được cập nhật bởi #1
+[2026-09-09T02:29:36.671Z] [LOG] PR #1 đã được duyệt bởi #999
+[2026-09-09T02:29:36.674Z] [LOG] PR #1 đã được duyệt bởi #5
+[2026-09-09T02:29:36.678Z] [LOG] PR #1 đã bị từ chối bởi #5: Ngân sách không đủ
+[2026-09-09T02:29:36.693Z] [LOG] PR #1 (đã Approved) → phát hành PO #50

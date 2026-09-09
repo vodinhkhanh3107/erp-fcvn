@@ -1,4 +1,0 @@
-npx lint-staged
-npm run test
-
-/usr/bin/env sh

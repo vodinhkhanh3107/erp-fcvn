@@ -2,16 +2,15 @@ name: CI
 
 on:
   pull_request:
-    branches: [main, develop]
+    branches: [main]
   push:
-    branches: [main, develop]
+    branches: [main, dev]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  # ===== Job 1: Lint & Format check =====
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -24,7 +23,6 @@ jobs:
       - run: npm run lint
       - run: npm run format:check
 
-  # ===== Job 2: Build =====
   build:
     runs-on: ubuntu-latest
     needs: lint
@@ -37,8 +35,6 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-  # ===== Job 3: Unit test + coverage =====
-  # Dùng đúng script "test:cov" đã có sẵn trong package.json, không tự chế thêm flag.
   test:
     runs-on: ubuntu-latest
     needs: lint
@@ -57,7 +53,6 @@ jobs:
           name: coverage-report
           path: coverage/
 
-  # ===== Job 4: Security audit =====
   security-audit:
     runs-on: ubuntu-latest
     steps:
@@ -79,7 +74,6 @@ jobs:
       - name: Run CodeQL Analysis
         uses: github/codeql-action/analyze@v3
 
-  # ===== Job 5: Gate tổng hợp - required status check duy nhất cho branch protection =====
   quality-gate:
     runs-on: ubuntu-latest
     needs: [lint, build, test, security-audit]
