@@ -101,19 +101,19 @@ let PurchaseRequestService = class PurchaseRequestService {
     }
     async createDraft(dto, requesterId) {
         const effectiveRequestKey = dto.requestKey ?? this.generateContentHash(dto, requesterId);
-        const existedRequestKey = await this.prRepository.findOne({
-            where: { requestKey: effectiveRequestKey },
+        const existedRequestKey = await this.prRepository.findOneBy({
+            requestKey: effectiveRequestKey,
         });
         if (existedRequestKey) {
-            this.logger.error(`Request trùng (requestKey="${existedRequestKey.requestKey}") → trả lại PR #${existedRequestKey.id} cũ`);
+            this.logger.warn(`Request trùng (requestKey="${existedRequestKey.requestKey}") → trả lại PR #${existedRequestKey.id} cũ`);
             return {
                 message: 'Yêu cầu đã được ghi nhận trước đó (request trùng lặp)',
                 result: existedRequestKey,
             };
         }
-        const existedDepartment = await this.departmentRepository.findOneBy({ id: dto.departmentId });
-        if (!existedDepartment) {
-            throw new common_1.NotFoundException('Not-found-department');
+        const department = await this.departmentRepository.findOneBy({ id: dto.departmentId });
+        if (!department) {
+            throw new common_1.NotFoundException('Not-found-deparment');
         }
         const saved = await this.runInTransaction(async (manager) => {
             const pr = manager.create(purchase_request_entity_1.PurchaseRequest, {

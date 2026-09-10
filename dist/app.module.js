@@ -27,6 +27,8 @@ const purchase_request_module_1 = require("./modules/puchase-request/purchase-re
 const audit_log_module_1 = require("./modules/audit-log/audit-log.module");
 const leave_module_1 = require("./modules/leave/leave.module");
 const permission_role_module_1 = require("./modules/permission-role/permission-role.module");
+const stock_module_1 = require("./modules/stock/stock.module");
+const good_receipt_module_1 = require("./modules/good-receipt/good-receipt.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -60,6 +62,8 @@ exports.AppModule = AppModule = __decorate([
             leave_module_1.LeaveModule,
             purchase_order_module_1.PurchaseOrderModule,
             purchase_request_module_1.PurchaseRequestModule,
+            good_receipt_module_1.GoodReceiptModule,
+            stock_module_1.StockModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
