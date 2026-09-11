@@ -18,19 +18,19 @@ export class SupplierController {
   constructor(private readonly supplierService: SupplierService) {}
 
   @Post()
-  @RequirePermission(PERMISSIONS.PURCHASE_ORDER_CREATE)
+  @RequirePermission(PERMISSIONS.SUPPLIER_CREATE)
   create(@Body() dto: CreateSupplierDto, @CurrentUser() user: { userId: number }) {
     return this.supplierService.createSupplier(dto, user.userId);
   }
 
   @Get()
-  @RequirePermission(PERMISSIONS.SUPPLIER_CREATE)
+  @RequirePermission(PERMISSIONS.SUPPLIER_READ)
   findAll(@Query() query: PaginationDto) {
     return this.supplierService.findAll(query);
   }
 
   @Get(':id')
-  @RequirePermission(PERMISSIONS.SUPPLIER_CREATE)
+  @RequirePermission(PERMISSIONS.SUPPLIER_READ)
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.supplierService.findOne(id);
   }
