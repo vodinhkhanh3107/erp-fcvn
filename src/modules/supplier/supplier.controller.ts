@@ -1,4 +1,14 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Query, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { PaginationDto } from '../../common/dto/pagination.dto';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
@@ -9,6 +19,7 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { PermissionGuard } from 'src/common/guards/permission.guard';
 import { RequirePermission } from 'src/common/decorators/permission.decorator';
 import { PERMISSIONS } from 'src/common/constants/permission.constants';
+import { UpdateSupplierDto } from './dto/update-supplier.dto';
 
 @ApiTags('Supplier')
 @ApiBearerAuth('access-token')
@@ -33,5 +44,11 @@ export class SupplierController {
   @RequirePermission(PERMISSIONS.SUPPLIER_READ)
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.supplierService.findOne(id);
+  }
+
+  @Put(':id')
+  @RequirePermission(PERMISSIONS.SUPPLIER_UPDATE)
+  update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateSupplierDto) {
+    return this.supplierService.updateSupplier(id, dto);
   }
 }

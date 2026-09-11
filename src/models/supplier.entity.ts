@@ -26,13 +26,13 @@ export class Supplier {
   @Column({ name: 'tax_code', length: 50, unique: true })
   taxCode: string;
 
-  @Column({ name: 'contact_name', length: 100, nullable: true })
+  @Column({ name: 'contact_name', length: 100, nullable: true, unique: true })
   contactName?: string;
 
-  @Column({ name: 'contact_email', length: 100, nullable: true })
+  @Column({ name: 'contact_email', length: 100, nullable: true, unique: true })
   contactEmail?: string;
 
-  @Column({ name: 'contact_phone', length: 20, nullable: true })
+  @Column({ name: 'contact_phone', length: 20, nullable: true, unique: true })
   contactPhone?: string;
 
   @Column({ name: 'payment_term', length: 20, nullable: true })

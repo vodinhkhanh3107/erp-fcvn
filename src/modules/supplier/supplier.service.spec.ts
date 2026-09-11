@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { ConflictException } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { ConflictException, NotFoundException } from '@nestjs/common';
+import { Not, Repository } from 'typeorm';
 import { SupplierService } from './supplier.service';
 import { Supplier } from '../../models/supplier.entity';
 
@@ -13,6 +13,7 @@ const createMockRepository = <T = any>(): MockRepository<T> => ({
   findOne: jest.fn(),
   findAndCount: jest.fn(),
   softDelete: jest.fn(),
+  findOneBy: jest.fn(),
 });
 
 describe('SupplierService', () => {
@@ -115,6 +116,112 @@ describe('SupplierService', () => {
       await expect(service.createSupplier(dto, actorId)).rejects.toThrow(ConflictException);
 
       expect(createSpy).not.toHaveBeenCalled();
+    });
+  });
+  describe('updateSupplier', () => {
+    const id = 1;
+    const existedSupplier = { id, name: 'Công ty cũ', taxCode: '111', contactEmail: 'old@abc.com' };
+
+    it('nên throw NotFoundException nếu supplier không tồn tại', async () => {
+      // Existence check giờ dùng findOneBy({ id }) — KHÔNG phải findOne({ where: { taxCode } })
+      (repository.findOneBy as jest.Mock).mockResolvedValue(null);
+
+      await expect(service.updateSupplier(999, {} as any)).rejects.toThrow(NotFoundException);
+      await expect(service.updateSupplier(999, {} as any)).rejects.toThrow('not-found-supplier');
+
+      // Không được đi tới bước check trùng taxCode/email khi supplier gốc còn không tồn tại
+      expect(repository.findOne).not.toHaveBeenCalled();
+    });
+
+    it('KHÔNG nên check trùng taxCode/email nếu dto không truyền field đó (chỉ sửa field khác)', async () => {
+      (repository.findOneBy as jest.Mock).mockResolvedValue(existedSupplier);
+      const updateSpy = jest.spyOn(service, 'update').mockResolvedValue({
+        ...existedSupplier,
+        name: 'Tên mới',
+      } as any);
+
+      const dto = { name: 'Tên mới' } as any; // không có taxCode, không có contactEmail
+
+      await service.updateSupplier(id, dto);
+
+      expect(repository.findOne).not.toHaveBeenCalled();
+      expect(updateSpy).toHaveBeenCalledWith(id, dto);
+    });
+
+    it('nên throw ConflictException nếu taxCode mới trùng với supplier KHÁC (không phải chính nó)', async () => {
+      (repository.findOneBy as jest.Mock).mockResolvedValue(existedSupplier);
+      (repository.findOne as jest.Mock).mockResolvedValueOnce({ id: 99, taxCode: '222' }); // trùng ở supplier khác
+
+      const dto = { taxCode: '222' } as any;
+
+      let thrownError: any;
+      try {
+        await service.updateSupplier(id, dto);
+      } catch (err) {
+        thrownError = err;
+      }
+
+      expect(thrownError).toBeInstanceOf(ConflictException);
+      expect(thrownError.message).toBe('tax-code-already-exists');
+      expect(repository.findOne).toHaveBeenCalledWith({
+        where: { id: Not(id), taxCode: '222' },
+      });
+    });
+
+    it('KHÔNG nên throw nếu taxCode không đổi (trùng với chính bản thân supplier đang sửa)', async () => {
+      (repository.findOneBy as jest.Mock).mockResolvedValue(existedSupplier);
+      // findOne dùng Not(id) nên sẽ không bao giờ trả về chính record đang sửa — mock đúng hành vi này: null
+      (repository.findOne as jest.Mock).mockResolvedValueOnce(null);
+      const updateSpy = jest.spyOn(service, 'update').mockResolvedValue(existedSupplier as any);
+
+      const dto = { taxCode: existedSupplier.taxCode } as any; // giữ nguyên taxCode cũ
+
+      await expect(service.updateSupplier(id, dto)).resolves.toEqual({
+        message: 'Cập nhật nhà cung cấp thành công',
+        result: existedSupplier,
+      });
+      expect(updateSpy).toHaveBeenCalledWith(id, dto);
+    });
+
+    it('nên throw ConflictException nếu contactEmail mới trùng với supplier khác', async () => {
+      (repository.findOneBy as jest.Mock).mockResolvedValue(existedSupplier);
+      // dto chỉ có contactEmail, KHÔNG có taxCode → nhánh check taxCode bị bỏ qua hoàn toàn,
+      // nên findOne chỉ được gọi ĐÚNG 1 LẦN (cho việc check contactEmail), không phải 2 lần.
+      (repository.findOne as jest.Mock).mockResolvedValueOnce({
+        id: 50,
+        contactEmail: 'trung@abc.com',
+      });
+
+      const dto = { contactEmail: 'trung@abc.com' } as any;
+
+      let thrownError: any;
+      try {
+        await service.updateSupplier(id, dto);
+      } catch (err) {
+        thrownError = err;
+      }
+
+      expect(thrownError).toBeInstanceOf(ConflictException);
+      expect(thrownError.message).toBe('email-already-exists');
+      expect(repository.findOne).toHaveBeenCalledTimes(1);
+    });
+
+    it('nên cập nhật thành công khi taxCode và contactEmail đều không trùng', async () => {
+      (repository.findOneBy as jest.Mock).mockResolvedValue(existedSupplier);
+      (repository.findOne as jest.Mock).mockResolvedValue(null); // cả 2 lần check đều không trùng
+
+      const dto = { taxCode: '999', contactEmail: 'new@abc.com' } as any;
+      const updatedSupplier = { ...existedSupplier, ...dto };
+      const updateSpy = jest.spyOn(service, 'update').mockResolvedValue(updatedSupplier as any);
+
+      const result = await service.updateSupplier(id, dto);
+
+      expect(repository.findOne).toHaveBeenCalledTimes(2); // 1 lần check taxCode, 1 lần check email
+      expect(updateSpy).toHaveBeenCalledWith(id, dto);
+      expect(result).toEqual({
+        message: 'Cập nhật nhà cung cấp thành công',
+        result: updatedSupplier,
+      });
     });
   });
 });
