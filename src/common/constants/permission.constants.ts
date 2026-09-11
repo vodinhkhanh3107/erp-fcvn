@@ -12,6 +12,7 @@ export const PERMISSIONS = {
   USER_CREATE: 'user.create',
   USER_UPDATE: 'user.update',
   USER_DELETE: 'user.delete',
+  USER_UPDATE_OWN: 'user.updateOwn',
 
   ROLE_MANAGE: 'role.manage',
   ROLE_READ: 'role.read',
@@ -80,6 +81,10 @@ export const PERMISSIONS = {
   LEAVE_REVIEW: 'leave.review',
   LEAVE_APPROVE: 'leave.approve',
   LEAVE_REJECT: 'leave.reject',
+
+  GOOD_RECEIPT_MANAGE: 'good-receipt.manage',
+  GOOD_RECEIPT_READ: 'good-receipt.read',
+  GOOD_RECEIPT_CONFIRM: 'good-receipt.confirm',
 };
 
 export const ALL_PERMISSION_CODES: string[] = Object.values(PERMISSIONS);
