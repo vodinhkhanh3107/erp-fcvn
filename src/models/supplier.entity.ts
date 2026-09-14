@@ -5,10 +5,12 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { SupplierGroup } from './supplier-group.entity';
+import { SupplierQuotation } from './supplier-quotation.entity';
 
 export enum SupplierStatus {
   ACTIVE = 'active',
@@ -41,12 +43,18 @@ export class Supplier {
   @Column({ type: 'enum', enum: SupplierStatus, default: SupplierStatus.ACTIVE })
   status: SupplierStatus;
 
+  @Column({ name: 'group_id', nullable: true })
+  groupId?: number;
+
   @ManyToOne(() => SupplierGroup, (group) => group.suppliers, { nullable: true })
   @JoinColumn({ name: 'group_id' })
   group?: SupplierGroup;
 
-  @Column({ name: 'group_id', nullable: true })
-  groupId?: number;
+  // @Column({ name: 'supplier_quotation_id', nullable: true })
+  // supplierQuotationId?: number
+
+  @OneToMany(() => SupplierQuotation, (sq) => sq.supplier, { nullable: true, cascade: true })
+  supplier_quotations?: SupplierQuotation[];
 
   @Column({ name: 'created_by', nullable: true })
   createdBy?: number;
