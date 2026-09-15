@@ -1,9 +1,13 @@
 import {
   Controller,
+  Delete,
   Get,
   Param,
   ParseIntPipe,
   Post,
+  Query,
+  Res,
+  StreamableFile,
   UploadedFile,
   UseGuards,
   UseInterceptors,
@@ -16,6 +20,9 @@ import { memoryStorage } from 'multer';
 import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
 import { RolesGuard } from 'src/common/guards/roles.guard';
 import { PermissionGuard } from 'src/common/guards/permission.guard';
+import { RequirePermission } from 'src/common/decorators/permission.decorator';
+import { PERMISSIONS } from 'src/common/constants/permission.constants';
+import { Response } from 'express';
 
 @ApiTags('Supplier Quotation')
 @ApiBearerAuth('access-token')
@@ -23,6 +30,22 @@ import { PermissionGuard } from 'src/common/guards/permission.guard';
 @UseGuards(JwtAuthGuard, RolesGuard, PermissionGuard)
 export class SupplierQuotationController {
   constructor(private readonly sqService: SupplierQuotationService) {}
+
+  @RequirePermission(PERMISSIONS.UPLOAD_FILE_READ)
+  @Get(':quotationId/download')
+  async download(
+    @Param('quotationId', ParseIntPipe) quotationId: number,
+    @Res({ passthrough: true }) res: Response,
+  ) {
+    const { stream, fileName, mimeType } = await this.sqService.downloadQuotation(quotationId);
+    res.set({
+      'Content-Type': mimeType,
+      'Content-Disposition': `inline; filename="${encodeURIComponent(fileName)}"`,
+    });
+    return new StreamableFile(stream);
+  }
+
+  @RequirePermission(PERMISSIONS.UPLOAD_FILE_CREATE)
   @Post()
   @UseInterceptors(
     FileInterceptor('file', {
@@ -39,9 +62,20 @@ export class SupplierQuotationController {
     return { success: 'Thêm báo giá cho nhà cung cấp thành công', data };
   }
 
+  @RequirePermission(PERMISSIONS.UPLOAD_FILE_READ)
   @Get()
-  async list(@Param('id', ParseIntPipe) id: number) {
-    const data = await this.sqService.listBySupplier(id);
-    return { success: 'Lấy danh báo báo giá cho nhà cung cấp thành công', data };
+  async list(
+    @Param('supplierId', ParseIntPipe) id: number,
+    @Query() query: { page?: number; limit?: number },
+  ) {
+    const data = await this.sqService.listBySupplier(id, query);
+    return { success: 'Lấy danh sách báo báo giá cho nhà cung cấp thành công', data };
+  }
+
+  @RequirePermission(PERMISSIONS.UPLOAD_FILE_DELETE)
+  @Delete()
+  async delete(@Param('quotationId', ParseIntPipe) id: number) {
+    const data = await this.sqService.deleteQuotation(id);
+    return { success: 'Xóa báo giá cho nhà cung cấp thành công', data };
   }
 }

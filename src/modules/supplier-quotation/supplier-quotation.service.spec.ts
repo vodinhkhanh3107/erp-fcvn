@@ -31,6 +31,7 @@ describe('SupplierQuotationService', () => {
       find: jest.fn(),
       findOneBy: jest.fn(),
       remove: jest.fn(),
+      findAndCount: jest.fn(),
     };
     mockStorage = {
       upload: jest.fn(),
@@ -123,15 +124,15 @@ describe('SupplierQuotationService', () => {
 
   describe('listBySupplier() — lấy ra danh sách file thành công', () => {
     it('phải lọc theo supplierId (KHÔNG phải theo id của bản ghi quotation)', async () => {
-      mockRepo.find.mockResolvedValue([]);
+      (mockRepo.findAndCount as jest.Mock).mockResolvedValue([[], 0]);
 
-      await service.listBySupplier(5);
+      await service.listBySupplier(5, { page: 1, limit: 20 });
 
-      // Hành vi ĐÚNG mong đợi — code hiện tại đang dùng where:{id} thay vì where:{supplierId},
-      // nên bài test này sẽ báo FAIL cho tới khi sửa đúng dòng code trong service.
-      expect(mockRepo.find).toHaveBeenCalledWith({
+      expect(mockRepo.findAndCount).toHaveBeenCalledWith({
         where: { supplierId: 5 },
         order: { uploadedAt: 'DESC' },
+        take: 20,
+        skip: 0,
       });
     });
   });

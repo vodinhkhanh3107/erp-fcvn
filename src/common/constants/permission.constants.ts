@@ -85,6 +85,10 @@ export const PERMISSIONS = {
   GOOD_RECEIPT_MANAGE: 'good-receipt.manage',
   GOOD_RECEIPT_READ: 'good-receipt.read',
   GOOD_RECEIPT_CONFIRM: 'good-receipt.confirm',
+
+  UPLOAD_FILE_READ: 'upload-file.read',
+  UPLOAD_FILE_CREATE: 'upload-file.create',
+  UPLOAD_FILE_DELETE: 'upload-file.delete',
 };
 
 export const ALL_PERMISSION_CODES: string[] = Object.values(PERMISSIONS);
