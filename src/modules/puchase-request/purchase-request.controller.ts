@@ -17,7 +17,6 @@ import { PurchaseRequestService } from './purchase-request.service';
 import { CreatePurchaseRequestDto } from './dto/create-purchase-request.dto';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import { UpdatePurchaseRequestDto } from './dto/update-purchase-request.dto';
-import { Roles } from 'src/common/decorators/roles.decorator';
 import { RejectPurchaseRequestDto } from './dto/reject-purchase-request.dto';
 import { IssuePoDto } from './dto/issue-purchase-order.dto';
 import { ListPurchaseRequestDto } from './dto/list-purchase-request.dto';
@@ -61,7 +60,6 @@ export class PurchaseRequestController {
 
   // 4. Phê duyệt — Service tự chặn "đúng Manager"; Controller chỉ chặn thô role Admin/Manager
   @Put(':id/approve')
-  @Roles(ROLES.ADMIN, ROLES.MANAGER)
   @RequirePermission(PERMISSIONS.PURCHASE_REQUEST_APPROVE)
   approve(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: JwtUser) {
     return this.purchaseRequestService.approve(id, user.userId, user.role);
@@ -69,7 +67,6 @@ export class PurchaseRequestController {
 
   // 5. Từ chối — bắt buộc lý do (chặn ở DTO)
   @Put(':id/reject')
-  @Roles(ROLES.ADMIN, ROLES.MANAGER)
   @RequirePermission(PERMISSIONS.PURCHASE_REQUEST_REJECT)
   reject(
     @Param('id', ParseIntPipe) id: number,

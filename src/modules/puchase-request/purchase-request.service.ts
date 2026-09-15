@@ -25,6 +25,7 @@ import { IssuePoDto } from './dto/issue-purchase-order.dto';
 import { ListPurchaseRequestDto } from './dto/list-purchase-request.dto';
 
 import * as crypto from 'crypto';
+import { error } from 'console';
 
 const MYSQL_DUPLICATE_ENTRY_ERROR_CODE = 'ER_DUP_ENTRY';
 
@@ -71,6 +72,7 @@ export class PurchaseRequestService {
       await queryRunner.commitTransaction();
       return result;
     } catch (err) {
+      console.log(error);
       await queryRunner.rollbackTransaction();
       throw new InternalServerErrorException('Transaction failed, rolled back');
     } finally {
