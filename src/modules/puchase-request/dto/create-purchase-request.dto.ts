@@ -1,15 +1,7 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
-import {
-  IsInt,
-  IsNotEmpty,
-  IsOptional,
-  IsString,
-  MaxLength,
-  ValidateNested,
-} from 'class-validator';
-import { CreatePrItemDto } from './create-purchase-item.dto';
+import { IsInt, IsOptional, IsString, MaxLength, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
-import { CreatePrQuotationDto } from './create-purchase-quotation.dto';
+import { CreatePrItemDto } from './create-purchase-item.dto';
 
 export class CreatePurchaseRequestDto {
   @ApiPropertyOptional({
@@ -22,24 +14,16 @@ export class CreatePurchaseRequestDto {
   requestKey?: string;
 
   @ApiPropertyOptional({ example: 1 })
-  @IsOptional()
   @IsInt()
   departmentId?: number;
 
   @ApiPropertyOptional({ example: 'Mua laptop phục vụ nhân sự mới onboard' })
-  @IsOptional()
   @IsString()
   purposeOfUse?: string;
 
   @ApiPropertyOptional({ type: [CreatePrItemDto] })
-  @IsNotEmpty({ message: 'must have least 1 item ' })
+  @IsOptional()
   @ValidateNested({ each: true })
   @Type(() => CreatePrItemDto)
   items?: CreatePrItemDto[];
-
-  @ApiPropertyOptional({ type: [CreatePrQuotationDto] })
-  @IsNotEmpty({ message: 'must have least 1 quotation ' })
-  @ValidateNested({ each: true })
-  @Type(() => CreatePrQuotationDto)
-  quotations?: CreatePrQuotationDto[];
 }

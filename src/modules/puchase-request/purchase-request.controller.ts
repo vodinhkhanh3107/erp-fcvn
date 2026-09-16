@@ -37,7 +37,7 @@ export class PurchaseRequestController {
   @Post()
   @RequirePermission(PERMISSIONS.PURCHASE_REQUEST_CREATE)
   create(@Body() dto: CreatePurchaseRequestDto, @CurrentUser() user: JwtUser) {
-    return this.purchaseRequestService.createDraft(dto, user.userId);
+    return this.purchaseRequestService.create(dto, user.userId);
   }
 
   // 2. Cập nhật — Service tự chặn "chỉ khi DRAFT" + "chỉ chủ sở hữu"

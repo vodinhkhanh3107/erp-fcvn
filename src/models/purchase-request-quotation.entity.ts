@@ -1,18 +1,18 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, RelationId } from 'typeorm';
 import { Supplier } from './supplier.entity';
-import { PurchaseRequest } from './purchase-request.entity';
+import { PurchaseRequestItem } from './purchase-request-item.entity';
 
 @Entity('purchase_request_quotations')
 export class PurchaseRequestQuotation {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: 'purchase_request_id' })
-  purchaseRequestId: number;
+  @ManyToOne(() => PurchaseRequestItem, (item) => item.quotations, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'item_id' })
+  item: PurchaseRequestItem;
 
-  @ManyToOne(() => PurchaseRequest, (pr) => pr.quotations, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'purchase_request_id' })
-  purchaseRequest: PurchaseRequest;
+  @RelationId((q: PurchaseRequestQuotation) => q.item)
+  purchaseRequestItemId: number;
 
   @Column({ name: 'supplier_id' })
   supplierId: number;
@@ -23,7 +23,4 @@ export class PurchaseRequestQuotation {
 
   @Column({ name: 'quoted_amount', type: 'decimal', precision: 18, scale: 2 })
   quotedAmount: number;
-
-  @Column({ name: 'quotation_file_url', length: 500, nullable: true })
-  quotationFileUrl?: string;
 }

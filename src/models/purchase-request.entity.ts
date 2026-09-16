@@ -11,7 +11,6 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { PurchaseRequestItem } from './purchase-request-item.entity';
-import { PurchaseRequestQuotation } from './purchase-request-quotation.entity';
 
 export enum PurchaseRequestStatus {
   DRAFT = 'DRAFT',
@@ -55,11 +54,8 @@ export class PurchaseRequest {
   @Column({ name: 'reject_reason', length: 500, nullable: true })
   rejectReason?: string;
 
-  @OneToMany(() => PurchaseRequestItem, (item) => item.purchaseRequest, { cascade: true })
+  @OneToMany(() => PurchaseRequestItem, (item) => item.purchaseRequestId, { cascade: true })
   items?: PurchaseRequestItem[];
-
-  @OneToMany(() => PurchaseRequestQuotation, (q) => q.purchaseRequest, { cascade: true })
-  quotations?: PurchaseRequestQuotation[];
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

@@ -50,10 +50,7 @@ export class Supplier {
   @JoinColumn({ name: 'group_id' })
   group?: SupplierGroup;
 
-  // @Column({ name: 'supplier_quotation_id', nullable: true })
-  // supplierQuotationId?: number
-
-  @OneToMany(() => SupplierQuotation, (sq) => sq.supplier, { nullable: true, cascade: true })
+  @OneToMany(() => SupplierQuotation, (sq) => sq.supplier, { cascade: true })
   supplier_quotations?: SupplierQuotation[];
 
   @Column({ name: 'created_by', nullable: true })

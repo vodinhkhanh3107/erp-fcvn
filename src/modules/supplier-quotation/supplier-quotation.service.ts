@@ -25,17 +25,22 @@ export class SupplierQuotationService {
 
   async downloadQuotation(
     quotationId: number,
+    requesterId: number,
+    isPrivilegedRole: boolean,
   ): Promise<{ stream: Readable; fileName: string; mimeType: string }> {
     const quotation = await this.repo.findOneBy({ id: quotationId });
     if (!quotation) {
       throw new NotFoundException('Not-found-quotation');
     }
 
+    if (!isPrivilegedRole && quotation.uploadedBy !== requesterId) {
+      throw new BadRequestException('Not-have-permision-to-access');
+    }
+
     const response = await axios.get(quotation.fileUrl, { responseType: 'stream' });
 
     const contentType = response.headers['content-type'];
     const mimeType = typeof contentType === 'string' ? contentType : 'application/octet-stream';
-
     return {
       stream: response.data,
       fileName: quotation.fileName,

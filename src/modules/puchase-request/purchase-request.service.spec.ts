@@ -90,8 +90,8 @@ describe('PurchaseRequestService', () => {
     expect(service).toBeDefined();
   });
 
-  // ===================== createDraft =====================
-  describe('createDraft', () => {
+  // ===================== create =====================
+  describe('create', () => {
     const requesterId = 1;
 
     it('nên trả về PR cũ nếu requestKey đã tồn tại (chống trùng), KHÔNG tạo transaction mới', async () => {
@@ -100,7 +100,7 @@ describe('PurchaseRequestService', () => {
 
       (prRepository.findOneBy as jest.Mock).mockResolvedValue(existedPr);
 
-      const result = await service.createDraft(dto, requesterId);
+      const result = await service.create(dto, requesterId);
 
       expect(result).toEqual({
         message: 'Yêu cầu đã được ghi nhận trước đó (request trùng lặp)',
@@ -116,8 +116,8 @@ describe('PurchaseRequestService', () => {
       (prRepository.findOneBy as jest.Mock).mockResolvedValue(null);
       (departmentRepository.findOneBy as jest.Mock).mockResolvedValue(null);
 
-      await expect(service.createDraft(dto, requesterId)).rejects.toThrow(NotFoundException);
-      await expect(service.createDraft(dto, requesterId)).rejects.toThrow('Not-found-deparment');
+      await expect(service.create(dto, requesterId)).rejects.toThrow(NotFoundException);
+      await expect(service.create(dto, requesterId)).rejects.toThrow('Not-found-deparment');
     });
 
     it('nên tạo PR + items + quotations + history thành công trong 1 transaction, rồi commit', async () => {
@@ -149,7 +149,7 @@ describe('PurchaseRequestService', () => {
         return data;
       });
 
-      const result = await service.createDraft(dto, requesterId);
+      const result = await service.create(dto, requesterId);
 
       expect(mockQueryRunner.connect).toHaveBeenCalled();
       expect(mockQueryRunner.startTransaction).toHaveBeenCalled();
@@ -178,9 +178,7 @@ describe('PurchaseRequestService', () => {
       mockManager.create.mockImplementation((_entity, data) => data);
       mockManager.save.mockRejectedValue(duplicateError); // request khác đã insert trước, gây trùng khoá
 
-      await expect(service.createDraft(dto, requesterId)).rejects.toThrow(
-        InternalServerErrorException,
-      );
+      await expect(service.create(dto, requesterId)).rejects.toThrow(InternalServerErrorException);
       expect(mockQueryRunner.rollbackTransaction).toHaveBeenCalledTimes(1);
       expect(mockQueryRunner.commitTransaction).not.toHaveBeenCalled();
     });
@@ -194,9 +192,7 @@ describe('PurchaseRequestService', () => {
       mockManager.create.mockImplementation((_entity, data) => data);
       mockManager.save.mockRejectedValue(new Error('DB lỗi bất kỳ'));
 
-      await expect(service.createDraft(dto, requesterId)).rejects.toThrow(
-        InternalServerErrorException,
-      );
+      await expect(service.create(dto, requesterId)).rejects.toThrow(InternalServerErrorException);
       expect(mockQueryRunner.rollbackTransaction).toHaveBeenCalled();
       expect(mockQueryRunner.commitTransaction).not.toHaveBeenCalled();
       expect(mockQueryRunner.release).toHaveBeenCalled();

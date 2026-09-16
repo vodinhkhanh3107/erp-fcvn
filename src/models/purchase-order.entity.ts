@@ -22,7 +22,7 @@ export class PurchaseOrder {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: 'purchase_request_id', unique: true })
+  @Column({ name: 'purchase_request_id' })
   purchaseRequestId: number;
 
   @Column({ name: 'supplier_id' })
