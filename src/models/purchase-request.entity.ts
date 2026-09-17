@@ -1,5 +1,3 @@
-import { Department } from './department.entity';
-import { User } from './user.entity';
 import {
   Column,
   CreateDateColumn,
@@ -11,12 +9,15 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { PurchaseRequestItem } from './purchase-request-item.entity';
+import { Department } from './department.entity';
+import { User } from './user.entity';
 
 export enum PurchaseRequestStatus {
   DRAFT = 'DRAFT',
   PENDING = 'PENDING',
   APPROVED = 'APPROVED',
   REJECTED = 'REJECTED',
+  SIGNED = 'SIGNED',
 }
 
 @Entity('purchase_requests')
@@ -24,21 +25,20 @@ export class PurchaseRequest {
   @PrimaryGeneratedColumn()
   id: number;
 
-  // Idempotency key — chống tạo trùng khi client gửi lại request (giữ nguyên từ trước)
-  @Column({ name: 'request_key', length: 100, unique: true })
-  requestKey: string;
+  @Column({ name: 'request_key', length: 100, unique: true, nullable: true })
+  requestKey?: string;
 
   @Column({ name: 'department_id', nullable: true })
   departmentId?: number;
 
-  @ManyToOne(() => Department, (deparment) => deparment.id, { nullable: true })
+  @ManyToOne(() => Department, { nullable: true })
   @JoinColumn({ name: 'department_id' })
   department?: Department;
 
   @Column({ name: 'requester_id' })
   requesterId: number;
 
-  @ManyToOne(() => User, (user) => user.id, { nullable: false })
+  @ManyToOne(() => User, { nullable: false })
   @JoinColumn({ name: 'requester_id' })
   requester: User;
 
@@ -54,8 +54,17 @@ export class PurchaseRequest {
   @Column({ name: 'reject_reason', length: 500, nullable: true })
   rejectReason?: string;
 
-  @OneToMany(() => PurchaseRequestItem, (item) => item.purchaseRequestId, { cascade: true })
+  @OneToMany(() => PurchaseRequestItem, (item) => item.purchaseRequest, { cascade: true })
   items?: PurchaseRequestItem[];
+
+  @Column({ name: 'signature_file_url', length: 500, nullable: true })
+  signatureFileUrl?: string;
+
+  @Column({ name: 'signed_by', nullable: true })
+  signedBy?: number;
+
+  @Column({ name: 'signed_at', type: 'timestamp', nullable: true })
+  signedAt?: Date;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

@@ -53,6 +53,7 @@ export class SupplierService extends BaseService<Supplier> {
     const existedEmail = await this.repository.findOne({
       where: { contactEmail: dto.contactEmail },
     });
+    console.log(existedEmail);
     if (existedEmail) throw new ConflictException('email-already-exists');
 
     const saved = await this.runInTransaction(async (manager) => {

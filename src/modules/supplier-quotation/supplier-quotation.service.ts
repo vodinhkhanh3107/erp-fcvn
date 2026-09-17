@@ -9,9 +9,7 @@ import { SupplierQuotation } from '../../models/supplier-quotation.entity';
 import { AppLogger } from '../../common/logger/app-logger.service';
 import { Readable } from 'typeorm/platform/PlatformTools.js';
 import axios from 'axios';
-
-const MAX_FILE_SIZE_BYTES = 5 * 1024 * 1024; // 5MB
-const ALLOWED_MIME_TYPES = ['application/pdf', 'image/jpeg', 'image/png'];
+import { ALLOWED_MIME_TYPES, MAX_FILE_SIZE_BYTES } from 'src/common/constants/file-size.constants';
 
 @Injectable()
 export class SupplierQuotationService {

@@ -5,10 +5,12 @@ import { ArrayMinSize, IsInt, IsOptional, IsString, ValidateNested } from 'class
 export class IssuePoItemSelectionDto {
   @ApiProperty({ example: 5, description: 'ID của PurchaseRequestItem (vật tư) trong yêu cầu mua' })
   @IsInt()
+  @Type(() => Number)
   itemId: number;
 
   @ApiProperty({ example: 2, description: 'ID nhà cung cấp được chọn cho RIÊNG vật tư này' })
   @IsInt()
+  @Type(() => Number)
   selectedSupplierId: number;
 }
 

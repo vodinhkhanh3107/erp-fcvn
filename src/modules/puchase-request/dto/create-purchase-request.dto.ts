@@ -14,10 +14,12 @@ export class CreatePurchaseRequestDto {
   requestKey?: string;
 
   @ApiPropertyOptional({ example: 1 })
+  @IsOptional()
   @IsInt()
   departmentId?: number;
 
   @ApiPropertyOptional({ example: 'Mua laptop phục vụ nhân sự mới onboard' })
+  @IsOptional()
   @IsString()
   purposeOfUse?: string;
 

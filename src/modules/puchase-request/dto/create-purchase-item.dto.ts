@@ -13,11 +13,12 @@ export class CreatePrItemDto {
   @Min(1)
   quantity: number;
 
-  /** * Mỗi vật tư bắt buộc phải có ĐÚNG/ÍT NHẤT 2 báo giá từ 2 nhà cung cấp khác nhau — */
   @ApiProperty({ type: [CreatePrQuotationDto], minItems: 2 })
   @ValidateNested({ each: true })
   @Type(() => CreatePrQuotationDto)
-  @ArrayUnique((q) => q.supplierId, { message: 'has-duplicate-supplier-in-quotations' })
   @ArrayMinSize(2, { message: 'each-item-must-have-at-least-2-supplier-quotations' })
+  @ArrayUnique((q: CreatePrQuotationDto) => q.supplierId, {
+    message: 'each-item-must-not-have-duplicate-supplier-in-quotations',
+  })
   quotations: CreatePrQuotationDto[];
 }

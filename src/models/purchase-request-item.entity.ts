@@ -8,7 +8,7 @@ import {
   RelationId,
 } from 'typeorm';
 import { PurchaseRequest } from './purchase-request.entity';
-import { PurchaseRequestQuotation } from './purchase-request-quotation.entity';
+import { PurchaseRequestItemQuotation } from './purchase-request-item-quotation.entity';
 
 @Entity('purchase_request_items')
 export class PurchaseRequestItem {
@@ -28,6 +28,6 @@ export class PurchaseRequestItem {
   @Column({ type: 'int' })
   quantity: number;
 
-  @OneToMany(() => PurchaseRequestQuotation, (q) => q.item, { cascade: true })
-  quotations: PurchaseRequestQuotation[];
+  @OneToMany(() => PurchaseRequestItemQuotation, (q) => q.item, { cascade: true })
+  quotations?: PurchaseRequestItemQuotation[];
 }

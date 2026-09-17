@@ -14,7 +14,6 @@ import { PurchaseRequestHistory } from '../../models/purchase-request-history.en
 import { Department } from '../../models/department.entity';
 import { PurchaseOrder } from '../../models/purchase-order.entity';
 import { PurchaseOrderItem } from '../../models/purchase-order-item.entity';
-import { ROLES } from '../../common/constants/role.enum';
 
 type MockRepository<T = any> = Partial<Record<keyof Repository<T>, jest.Mock>>;
 
@@ -373,9 +372,7 @@ describe('PurchaseRequestService', () => {
         status: PurchaseRequestStatus.DRAFT,
       } as any);
 
-      await expect(service.approve(1, managerId, ROLES.MANAGER)).rejects.toThrow(
-        BadRequestException,
-      );
+      await expect(service.approve(1, managerId)).rejects.toThrow(BadRequestException);
     });
 
     it('ADMIN luôn được phép duyệt, bỏ qua mọi kiểm tra phòng ban', async () => {
@@ -388,7 +385,7 @@ describe('PurchaseRequestService', () => {
       mockManager.create.mockImplementation((_entity, data) => data);
       mockManager.save.mockImplementation(async (data) => data);
 
-      const result = await service.approve(1, 999, ROLES.ADMIN);
+      const result = await service.approve(1, 999);
 
       expect(departmentRepository.findOne).not.toHaveBeenCalled();
       expect(result.message).toBe('Phê duyệt yêu cầu mua hàng thành công');
@@ -405,7 +402,7 @@ describe('PurchaseRequestService', () => {
         managerId: 5,
       });
 
-      await expect(service.approve(1, 7, ROLES.MANAGER)).rejects.toThrow(ForbiddenException);
+      await expect(service.approve(1, 7)).rejects.toThrow(ForbiddenException);
     });
 
     it('nên duyệt thành công khi đúng manager của phòng ban', async () => {
@@ -416,7 +413,7 @@ describe('PurchaseRequestService', () => {
       mockManager.create.mockImplementation((_entity, data) => data);
       mockManager.save.mockImplementation(async (data) => data);
 
-      const result = await service.approve(1, 5, ROLES.MANAGER);
+      const result = await service.approve(1, 5);
 
       expect(result.result).toEqual(
         expect.objectContaining({
@@ -431,9 +428,7 @@ describe('PurchaseRequestService', () => {
       jest.spyOn(service, 'findOne').mockResolvedValue(pr as any);
       (departmentRepository.findOne as jest.Mock).mockResolvedValue({ id: 1, managerId: null });
 
-      await expect(service.approve(1, 10, ROLES.EMPLOYEE as any)).rejects.toThrow(
-        ForbiddenException,
-      );
+      await expect(service.approve(1, 10)).rejects.toThrow(ForbiddenException);
     });
   });
 
@@ -444,9 +439,9 @@ describe('PurchaseRequestService', () => {
         status: PurchaseRequestStatus.APPROVED,
       } as any);
 
-      await expect(
-        service.reject(1, { reason: 'Không phù hợp' } as any, 5, ROLES.MANAGER),
-      ).rejects.toThrow(BadRequestException);
+      await expect(service.reject(1, { reason: 'Không phù hợp' } as any, 5)).rejects.toThrow(
+        BadRequestException,
+      );
     });
 
     it('nên từ chối thành công kèm lý do, ghi đúng vào history (note)', async () => {
@@ -458,7 +453,7 @@ describe('PurchaseRequestService', () => {
       mockManager.save.mockImplementation(async (data) => data);
 
       const dto = { reason: 'Ngân sách không đủ' } as any;
-      const result = await service.reject(1, dto, 5, ROLES.MANAGER);
+      const result = await service.reject(1, dto, 5);
 
       expect(mockManager.create).toHaveBeenCalledWith(
         PurchaseRequestHistory,
