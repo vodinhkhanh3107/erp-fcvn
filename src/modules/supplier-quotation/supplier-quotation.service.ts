@@ -9,7 +9,10 @@ import { SupplierQuotation } from '../../models/supplier-quotation.entity';
 import { AppLogger } from '../../common/logger/app-logger.service';
 import { Readable } from 'typeorm/platform/PlatformTools.js';
 import axios from 'axios';
-import { ALLOWED_MIME_TYPES, MAX_FILE_SIZE_BYTES } from 'src/common/constants/file-size.constants';
+import {
+  ALLOWED_MIME_TYPES,
+  MAX_FILE_SIZE_BYTES,
+} from '../../common/constants/file-size.constants';
 
 @Injectable()
 export class SupplierQuotationService {

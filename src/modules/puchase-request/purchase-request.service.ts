@@ -24,12 +24,15 @@ import { IssuePoDto } from './dto/issue-purchase-order.dto';
 import { ListPurchaseRequestDto } from './dto/list-purchase-request.dto';
 
 import * as crypto from 'crypto';
-import { SupplierQuotation } from 'src/models/supplier-quotation.entity';
+import { SupplierQuotation } from '../../models/supplier-quotation.entity';
 import {
   FILE_STORAGE_SERVICE,
   IFileStorageService,
-} from 'src/common/file-storage/file-storage.interface';
-import { ALLOWED_MIME_TYPES, MAX_FILE_SIZE_BYTES } from 'src/common/constants/file-size.constants';
+} from '../../common/file-storage/file-storage.interface';
+import {
+  ALLOWED_MIME_TYPES,
+  MAX_FILE_SIZE_BYTES,
+} from '../../common/constants/file-size.constants';
 import { Readable } from 'typeorm/platform/PlatformTools.js';
 import axios from 'axios';
 
@@ -311,9 +314,9 @@ export class PurchaseRequestService {
       );
     }
 
-    const initialStatus = await this.sqRepository.findOneBy({ id });
+    const supplierHasQuotation = await this.sqRepository.findOneBy({ id });
 
-    if (!initialStatus)
+    if (!supplierHasQuotation)
       throw new BadRequestException('supplier-not-have-quotation-or-not-have-supplier');
 
     const saved = await this.runInTransaction(async (manager) => {
@@ -519,10 +522,7 @@ export class PurchaseRequestService {
 
     for (const selection of dto.selections) {
       const item = itemMap.get(selection.itemId);
-      console.log(selection.itemId);
-      // console.log(item)
-
-      if (!selection.itemId) {
+      if (!item) {
         throw new BadRequestException(
           `item-${selection.itemId}-not-found-in-this-purchase-request`,
         );

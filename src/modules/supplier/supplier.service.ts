@@ -35,11 +35,6 @@ export class SupplierService extends BaseService<Supplier> {
       return result;
     } catch (error) {
       await queryRunner.rollbackTransaction();
-      // Log lỗi gốc trước khi ném lỗi chung chung ra ngoài — nếu không, lỗi thật sự
-      // (vd. sai kiểu dữ liệu, vi phạm FK, bug logic bên trong work()...) sẽ bị "nuốt mất",
-      // rất khó debug về sau (giống tình huống vừa gặp: lỗi thật là do gọi save() sai cách
-      // trên UpdateResult, nhưng thông báo ra ngoài chỉ nói chung chung "Transaction fail").
-      console.error('[SupplierService] Transaction failed:', error);
       throw new InternalServerErrorException('Transaction fail, rolled back');
     } finally {
       await queryRunner.release();
@@ -53,7 +48,6 @@ export class SupplierService extends BaseService<Supplier> {
     const existedEmail = await this.repository.findOne({
       where: { contactEmail: dto.contactEmail },
     });
-    console.log(existedEmail);
     if (existedEmail) throw new ConflictException('email-already-exists');
 
     const saved = await this.runInTransaction(async (manager) => {
