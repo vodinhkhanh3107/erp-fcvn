@@ -1,5 +1,6 @@
 import {
   IsEmail,
+  IsEnum,
   IsNotEmpty,
   IsNumber,
   IsOptional,
@@ -9,6 +10,7 @@ import {
 } from 'class-validator';
 
 import { Transform } from 'class-transformer';
+import { Position } from 'src/models/user.entity';
 
 export class CreateUserDto {
   @IsNotEmpty()
@@ -41,7 +43,9 @@ export class CreateUserDto {
   @IsOptional()
   @IsNumber()
   departmentId?: number;
-  // @IsOptional()
-  // @IsString()
-  // jobTitle?: string;
+
+  @IsOptional()
+  @IsString()
+  @IsEnum(Position)
+  position?: Position;
 }

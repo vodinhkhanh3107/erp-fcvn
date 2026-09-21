@@ -120383,3 +120383,1216 @@
 [2026-09-21T04:45:19.677Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, GET} route
 [2026-09-21T04:45:19.677Z] [LOG] [NestApplication] Nest application successfully started
 [2026-09-21T04:45:19.677Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, DELETE} route
+[2026-09-21T04:49:45.887Z] [LOG] [NestFactory] Starting Nest application...
+[2026-09-21T04:49:45.888Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:49:45.888Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-09-21T04:49:45.888Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-09-21T04:49:45.889Z] [LOG] [InstanceLoader] FileStorageModule dependencies initialized
+[2026-09-21T04:49:45.888Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-09-21T04:49:45.888Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-09-21T04:49:45.888Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-09-21T04:49:45.889Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-09-21T04:49:45.889Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-09-21T04:49:45.889Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-09-21T04:49:45.889Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:49:45.889Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:49:45.889Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:49:45.889Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:49:45.890Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:49:45.890Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:49:45.889Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:49:45.890Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:49:45.890Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:49:45.890Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:49:45.890Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:49:45.890Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:49:45.890Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:49:45.890Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:49:45.890Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:49:45.890Z] [LOG] [InstanceLoader] PermissionRoleModule dependencies initialized
+[2026-09-21T04:49:45.891Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-09-21T04:49:45.891Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-09-21T04:49:45.890Z] [LOG] [InstanceLoader] StockModule dependencies initialized
+[2026-09-21T04:49:45.891Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-09-21T04:49:45.891Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-09-21T04:49:45.891Z] [LOG] [InstanceLoader] TaskModule dependencies initialized
+[2026-09-21T04:49:45.891Z] [LOG] [InstanceLoader] DepartmentModule dependencies initialized
+[2026-09-21T04:49:45.891Z] [LOG] [InstanceLoader] KpiModule dependencies initialized
+[2026-09-21T04:49:45.891Z] [LOG] [InstanceLoader] AttendanceModule dependencies initialized
+[2026-09-21T04:49:45.891Z] [LOG] [InstanceLoader] PurchaseOrderModule dependencies initialized
+[2026-09-21T04:49:45.891Z] [LOG] [InstanceLoader] GoodReceiptModule dependencies initialized
+[2026-09-21T04:49:45.892Z] [LOG] [InstanceLoader] SupplierQuotationModule dependencies initialized
+[2026-09-21T04:49:45.891Z] [LOG] [InstanceLoader] LeaveModule dependencies initialized
+[2026-09-21T04:49:45.891Z] [LOG] [InstanceLoader] AuditLogModule dependencies initialized
+[2026-09-21T04:49:45.892Z] [LOG] [InstanceLoader] PurchaseRequestModule dependencies initialized
+[2026-09-21T04:49:45.892Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-09-21T04:49:45.892Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-09-21T04:49:45.892Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-09-21T04:49:45.892Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-09-21T04:49:45.892Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-09-21T04:49:45.892Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-09-21T04:49:45.892Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-09-21T04:49:45.892Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-09-21T04:49:45.893Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-09-21T04:49:45.893Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-09-21T04:49:45.892Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-09-21T04:49:45.893Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-09-21T04:49:45.893Z] [LOG] [RoutesResolver] AuditLogController {/audit-logs}:
+[2026-09-21T04:49:45.893Z] [LOG] [RouterExplorer] Mapped {/audit-logs, GET} route
+[2026-09-21T04:49:45.893Z] [LOG] [RouterExplorer] Mapped {/roles, GET} route
+[2026-09-21T04:49:45.893Z] [LOG] [RoutesResolver] RoleController {/roles}:
+[2026-09-21T04:49:45.893Z] [LOG] [RouterExplorer] Mapped {/roles, POST} route
+[2026-09-21T04:49:45.893Z] [LOG] [RouterExplorer] Mapped {/roles/:id, GET} route
+[2026-09-21T04:49:45.893Z] [LOG] [RouterExplorer] Mapped {/roles/:id/permissions, PUT} route
+[2026-09-21T04:49:45.894Z] [LOG] [RouterExplorer] Mapped {/permissions, GET} route
+[2026-09-21T04:49:45.894Z] [LOG] [RouterExplorer] Mapped {/permissions, POST} route
+[2026-09-21T04:49:45.894Z] [LOG] [RoutesResolver] PermissionController {/permissions}:
+[2026-09-21T04:49:45.894Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-09-21T04:49:45.893Z] [LOG] [RouterExplorer] Mapped {/roles/:id, PUT} route
+[2026-09-21T04:49:45.894Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-09-21T04:49:45.894Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-09-21T04:49:45.894Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-09-21T04:49:45.894Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-09-21T04:49:45.895Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-09-21T04:49:45.894Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, PUT} route
+[2026-09-21T04:49:45.894Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-09-21T04:49:45.895Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-09-21T04:49:45.895Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-09-21T04:49:45.895Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-09-21T04:49:45.895Z] [LOG] [RouterExplorer] Mapped {/attendances, POST} route
+[2026-09-21T04:49:45.895Z] [LOG] [RoutesResolver] AttendanceController {/attendances}:
+[2026-09-21T04:49:45.895Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-09-21T04:49:45.895Z] [LOG] [RouterExplorer] Mapped {/attendances, GET} route
+[2026-09-21T04:49:45.895Z] [LOG] [RouterExplorer] Mapped {/attendances/:id, GET} route
+[2026-09-21T04:49:45.895Z] [LOG] [RouterExplorer] Mapped {/departments, GET} route
+[2026-09-21T04:49:45.895Z] [LOG] [RoutesResolver] DepartmentController {/departments}:
+[2026-09-21T04:49:45.895Z] [LOG] [RouterExplorer] Mapped {/departments, POST} route
+[2026-09-21T04:49:45.895Z] [LOG] [RouterExplorer] Mapped {/departments/:id, PUT} route
+[2026-09-21T04:49:45.896Z] [LOG] [RouterExplorer] Mapped {/departments/:id/status, PUT} route
+[2026-09-21T04:49:45.896Z] [LOG] [RoutesResolver] TaskController {/tasks}:
+[2026-09-21T04:49:45.895Z] [LOG] [RouterExplorer] Mapped {/departments/:id, GET} route
+[2026-09-21T04:49:45.896Z] [LOG] [RouterExplorer] Mapped {/tasks, POST} route
+[2026-09-21T04:49:45.896Z] [LOG] [RouterExplorer] Mapped {/tasks/:id, GET} route
+[2026-09-21T04:49:45.896Z] [LOG] [RouterExplorer] Mapped {/tasks/:id/status, PUT} route
+[2026-09-21T04:49:45.896Z] [LOG] [RouterExplorer] Mapped {/kpis, POST} route
+[2026-09-21T04:49:45.896Z] [LOG] [RoutesResolver] KpiController {/kpis}:
+[2026-09-21T04:49:45.896Z] [LOG] [RouterExplorer] Mapped {/kpis/:id, GET} route
+[2026-09-21T04:49:45.896Z] [LOG] [RouterExplorer] Mapped {/kpis, GET} route
+[2026-09-21T04:49:45.896Z] [LOG] [RouterExplorer] Mapped {/tasks, GET} route
+[2026-09-21T04:49:45.896Z] [LOG] [RouterExplorer] Mapped {/kpis/:id/actual, PUT} route
+[2026-09-21T04:49:45.896Z] [LOG] [RoutesResolver] LeaveController {/leaves}:
+[2026-09-21T04:49:45.896Z] [LOG] [RouterExplorer] Mapped {/leaves, POST} route
+[2026-09-21T04:49:45.897Z] [LOG] [RouterExplorer] Mapped {/leaves/me, GET} route
+[2026-09-21T04:49:45.897Z] [LOG] [RouterExplorer] Mapped {/leaves/:id, GET} route
+[2026-09-21T04:49:45.897Z] [LOG] [RouterExplorer] Mapped {/leaves/:id/review, PUT} route
+[2026-09-21T04:49:45.897Z] [LOG] [RoutesResolver] PurchaseOrderController {/purchase-orders}:
+[2026-09-21T04:49:45.896Z] [LOG] [RouterExplorer] Mapped {/leaves, GET} route
+[2026-09-21T04:49:45.897Z] [LOG] [RouterExplorer] Mapped {/purchase-orders/:id, GET} route
+[2026-09-21T04:49:45.897Z] [LOG] [RouterExplorer] Mapped {/purchase-orders, GET} route
+[2026-09-21T04:49:45.897Z] [LOG] [RouterExplorer] Mapped {/purchase-requests, POST} route
+[2026-09-21T04:49:45.897Z] [LOG] [RoutesResolver] PurchaseRequestController {/purchase-requests}:
+[2026-09-21T04:49:45.897Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/approve, PUT} route
+[2026-09-21T04:49:45.897Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/submit, PUT} route
+[2026-09-21T04:49:45.897Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id, PUT} route
+[2026-09-21T04:49:45.897Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/reject, PUT} route
+[2026-09-21T04:49:45.898Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id, GET} route
+[2026-09-21T04:49:45.898Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/history, GET} route
+[2026-09-21T04:49:45.898Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/issue-po, POST} route
+[2026-09-21T04:49:45.898Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/sign, POST} route
+[2026-09-21T04:49:45.898Z] [LOG] [RouterExplorer] Mapped {/purchase-requests, GET} route
+[2026-09-21T04:49:45.898Z] [LOG] [RoutesResolver] GoodReceiptController {/good-receipts}:
+[2026-09-21T04:49:45.898Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:purchaseRequestId/download, GET} route
+[2026-09-21T04:49:45.898Z] [LOG] [RouterExplorer] Mapped {/good-receipts/:id, GET} route
+[2026-09-21T04:49:45.898Z] [LOG] [RouterExplorer] Mapped {/good-receipts, GET} route
+[2026-09-21T04:49:45.899Z] [LOG] [RouterExplorer] Mapped {/good-receipts/:id/confirm, PUT} route
+[2026-09-21T04:49:45.899Z] [LOG] [RouterExplorer] Mapped {/stocks, GET} route
+[2026-09-21T04:49:45.898Z] [LOG] [RouterExplorer] Mapped {/good-receipts, POST} route
+[2026-09-21T04:49:45.899Z] [LOG] [RoutesResolver] SupplierQuotationController {/suppliers/:supplierId/quotations}:
+[2026-09-21T04:49:45.899Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations/:quotationId/download, GET} route
+[2026-09-21T04:49:45.899Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, GET} route
+[2026-09-21T04:49:45.899Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, POST} route
+[2026-09-21T04:49:45.899Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, DELETE} route
+[2026-09-21T04:49:45.899Z] [LOG] [NestApplication] Nest application successfully started
+[2026-09-21T04:49:45.899Z] [LOG] [RoutesResolver] StockController {/stocks}:
+[2026-09-21T04:52:51.733Z] [LOG] [NestFactory] Starting Nest application...
+[2026-09-21T04:52:51.733Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:52:51.734Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-09-21T04:52:51.734Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-09-21T04:52:51.734Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-09-21T04:52:51.734Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-09-21T04:52:51.734Z] [LOG] [InstanceLoader] FileStorageModule dependencies initialized
+[2026-09-21T04:52:51.734Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-09-21T04:52:51.734Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-09-21T04:52:51.735Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-09-21T04:52:51.735Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:52:51.735Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-09-21T04:52:51.735Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:52:51.735Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:52:51.735Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:52:51.735Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:52:51.735Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:52:51.736Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:52:51.735Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:52:51.736Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:52:51.736Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:52:51.736Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:52:51.735Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:52:51.736Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:52:51.736Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:52:51.736Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T04:52:51.736Z] [LOG] [InstanceLoader] PermissionRoleModule dependencies initialized
+[2026-09-21T04:52:51.737Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-09-21T04:52:51.736Z] [LOG] [InstanceLoader] StockModule dependencies initialized
+[2026-09-21T04:52:51.736Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-09-21T04:52:51.737Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-09-21T04:52:51.737Z] [LOG] [InstanceLoader] DepartmentModule dependencies initialized
+[2026-09-21T04:52:51.737Z] [LOG] [InstanceLoader] AttendanceModule dependencies initialized
+[2026-09-21T04:52:51.737Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-09-21T04:52:51.737Z] [LOG] [InstanceLoader] KpiModule dependencies initialized
+[2026-09-21T04:52:51.737Z] [LOG] [InstanceLoader] LeaveModule dependencies initialized
+[2026-09-21T04:52:51.737Z] [LOG] [InstanceLoader] PurchaseOrderModule dependencies initialized
+[2026-09-21T04:52:51.737Z] [LOG] [InstanceLoader] GoodReceiptModule dependencies initialized
+[2026-09-21T04:52:51.737Z] [LOG] [InstanceLoader] AuditLogModule dependencies initialized
+[2026-09-21T04:52:51.737Z] [LOG] [InstanceLoader] SupplierQuotationModule dependencies initialized
+[2026-09-21T04:52:51.737Z] [LOG] [InstanceLoader] TaskModule dependencies initialized
+[2026-09-21T04:52:51.737Z] [LOG] [InstanceLoader] PurchaseRequestModule dependencies initialized
+[2026-09-21T04:52:51.738Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-09-21T04:52:51.738Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-09-21T04:52:51.738Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-09-21T04:52:51.738Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-09-21T04:52:51.738Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-09-21T04:52:51.738Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-09-21T04:52:51.738Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-09-21T04:52:51.738Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-09-21T04:52:51.739Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-09-21T04:52:51.738Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-09-21T04:52:51.738Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-09-21T04:52:51.739Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-09-21T04:52:51.739Z] [LOG] [RoutesResolver] AuditLogController {/audit-logs}:
+[2026-09-21T04:52:51.739Z] [LOG] [RouterExplorer] Mapped {/roles, POST} route
+[2026-09-21T04:52:51.739Z] [LOG] [RouterExplorer] Mapped {/audit-logs, GET} route
+[2026-09-21T04:52:51.739Z] [LOG] [RouterExplorer] Mapped {/roles, GET} route
+[2026-09-21T04:52:51.739Z] [LOG] [RouterExplorer] Mapped {/roles/:id, GET} route
+[2026-09-21T04:52:51.739Z] [LOG] [RouterExplorer] Mapped {/roles/:id/permissions, PUT} route
+[2026-09-21T04:52:51.739Z] [LOG] [RoutesResolver] RoleController {/roles}:
+[2026-09-21T04:52:51.739Z] [LOG] [RoutesResolver] PermissionController {/permissions}:
+[2026-09-21T04:52:51.740Z] [LOG] [RouterExplorer] Mapped {/permissions, POST} route
+[2026-09-21T04:52:51.740Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-09-21T04:52:51.739Z] [LOG] [RouterExplorer] Mapped {/roles/:id, PUT} route
+[2026-09-21T04:52:51.740Z] [LOG] [RouterExplorer] Mapped {/permissions, GET} route
+[2026-09-21T04:52:51.740Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-09-21T04:52:51.740Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, PUT} route
+[2026-09-21T04:52:51.740Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-09-21T04:52:51.740Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-09-21T04:52:51.740Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-09-21T04:52:51.740Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-09-21T04:52:51.741Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-09-21T04:52:51.740Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-09-21T04:52:51.741Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-09-21T04:52:51.741Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-09-21T04:52:51.741Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-09-21T04:52:51.741Z] [LOG] [RouterExplorer] Mapped {/attendances, GET} route
+[2026-09-21T04:52:51.741Z] [LOG] [RoutesResolver] AttendanceController {/attendances}:
+[2026-09-21T04:52:51.741Z] [LOG] [RoutesResolver] DepartmentController {/departments}:
+[2026-09-21T04:52:51.741Z] [LOG] [RouterExplorer] Mapped {/attendances/:id, GET} route
+[2026-09-21T04:52:51.741Z] [LOG] [RouterExplorer] Mapped {/departments, POST} route
+[2026-09-21T04:52:51.741Z] [LOG] [RouterExplorer] Mapped {/attendances, POST} route
+[2026-09-21T04:52:51.742Z] [LOG] [RouterExplorer] Mapped {/departments/:id, GET} route
+[2026-09-21T04:52:51.742Z] [LOG] [RouterExplorer] Mapped {/departments/:id/status, PUT} route
+[2026-09-21T04:52:51.741Z] [LOG] [RouterExplorer] Mapped {/departments, GET} route
+[2026-09-21T04:52:51.742Z] [LOG] [RouterExplorer] Mapped {/tasks, POST} route
+[2026-09-21T04:52:51.742Z] [LOG] [RouterExplorer] Mapped {/tasks, GET} route
+[2026-09-21T04:52:51.742Z] [LOG] [RouterExplorer] Mapped {/tasks/:id, GET} route
+[2026-09-21T04:52:51.742Z] [LOG] [RouterExplorer] Mapped {/tasks/:id/status, PUT} route
+[2026-09-21T04:52:51.742Z] [LOG] [RoutesResolver] TaskController {/tasks}:
+[2026-09-21T04:52:51.742Z] [LOG] [RouterExplorer] Mapped {/departments/:id, PUT} route
+[2026-09-21T04:52:51.742Z] [LOG] [RouterExplorer] Mapped {/kpis, POST} route
+[2026-09-21T04:52:51.743Z] [LOG] [RouterExplorer] Mapped {/kpis/:id/actual, PUT} route
+[2026-09-21T04:52:51.742Z] [LOG] [RouterExplorer] Mapped {/kpis/:id, GET} route
+[2026-09-21T04:52:51.743Z] [LOG] [RoutesResolver] LeaveController {/leaves}:
+[2026-09-21T04:52:51.742Z] [LOG] [RouterExplorer] Mapped {/kpis, GET} route
+[2026-09-21T04:52:51.743Z] [LOG] [RouterExplorer] Mapped {/leaves, POST} route
+[2026-09-21T04:52:51.743Z] [LOG] [RouterExplorer] Mapped {/leaves/me, GET} route
+[2026-09-21T04:52:51.743Z] [LOG] [RouterExplorer] Mapped {/leaves, GET} route
+[2026-09-21T04:52:51.743Z] [LOG] [RouterExplorer] Mapped {/leaves/:id, GET} route
+[2026-09-21T04:52:51.743Z] [LOG] [RouterExplorer] Mapped {/leaves/:id/review, PUT} route
+[2026-09-21T04:52:51.743Z] [LOG] [RoutesResolver] PurchaseOrderController {/purchase-orders}:
+[2026-09-21T04:52:51.742Z] [LOG] [RoutesResolver] KpiController {/kpis}:
+[2026-09-21T04:52:51.743Z] [LOG] [RouterExplorer] Mapped {/purchase-orders, GET} route
+[2026-09-21T04:52:51.743Z] [LOG] [RoutesResolver] PurchaseRequestController {/purchase-requests}:
+[2026-09-21T04:52:51.744Z] [LOG] [RouterExplorer] Mapped {/purchase-requests, POST} route
+[2026-09-21T04:52:51.743Z] [LOG] [RouterExplorer] Mapped {/purchase-orders/:id, GET} route
+[2026-09-21T04:52:51.744Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id, PUT} route
+[2026-09-21T04:52:51.744Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/approve, PUT} route
+[2026-09-21T04:52:51.744Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/submit, PUT} route
+[2026-09-21T04:52:51.744Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/reject, PUT} route
+[2026-09-21T04:52:51.744Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/history, GET} route
+[2026-09-21T04:52:51.744Z] [LOG] [RouterExplorer] Mapped {/purchase-requests, GET} route
+[2026-09-21T04:52:51.744Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/issue-po, POST} route
+[2026-09-21T04:52:51.744Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/sign, POST} route
+[2026-09-21T04:52:51.745Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:purchaseRequestId/download, GET} route
+[2026-09-21T04:52:51.745Z] [LOG] [RouterExplorer] Mapped {/good-receipts, POST} route
+[2026-09-21T04:52:51.745Z] [LOG] [RouterExplorer] Mapped {/good-receipts, GET} route
+[2026-09-21T04:52:51.744Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id, GET} route
+[2026-09-21T04:52:51.745Z] [LOG] [RouterExplorer] Mapped {/good-receipts/:id/confirm, PUT} route
+[2026-09-21T04:52:51.745Z] [LOG] [RoutesResolver] StockController {/stocks}:
+[2026-09-21T04:52:51.745Z] [LOG] [RouterExplorer] Mapped {/stocks, GET} route
+[2026-09-21T04:52:51.745Z] [LOG] [RouterExplorer] Mapped {/good-receipts/:id, GET} route
+[2026-09-21T04:52:51.745Z] [LOG] [RoutesResolver] GoodReceiptController {/good-receipts}:
+[2026-09-21T04:52:51.746Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations/:quotationId/download, GET} route
+[2026-09-21T04:52:51.745Z] [LOG] [RoutesResolver] SupplierQuotationController {/suppliers/:supplierId/quotations}:
+[2026-09-21T04:52:51.746Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, POST} route
+[2026-09-21T04:52:51.746Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, DELETE} route
+[2026-09-21T04:52:51.746Z] [LOG] [NestApplication] Nest application successfully started
+[2026-09-21T04:52:51.746Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, GET} route
+[2026-09-21T04:54:50.943Z] [LOG] Đã tạo nhân sự #1 (a@fcvn.local)
+[2026-09-21T04:54:50.953Z] [LOG] Đã đổi trạng thái nhân sự #1 → inactive
+[2026-08-27T00:00:00.000Z] [LOG] Đã tạo công việc #1: "Task test"
+[2026-08-27T00:00:00.000Z] [LOG] Đã tạo công việc #2: "Task tương lai"
+[2026-09-21T04:54:51.485Z] [LOG] Đã tạo KPI #1 cho nhân sự #10, kỳ 2026-08 → On-track
+[2026-09-21T04:54:51.493Z] [LOG] Đã tạo KPI #3 cho nhân sự #10, kỳ 2026-08 → Off-track
+[2026-09-21T04:54:51.490Z] [LOG] Đã tạo KPI #2 cho nhân sự #10, kỳ 2026-08 → On-track
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #1
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #5
+[2026-08-27T08:00:00.000Z] [LOG] Nhân sự #1 đã gửi yêu cầu nghỉ phép #10
+[2026-08-27T08:00:00.000Z] [LOG] Yêu cầu nghỉ phép #1 đã được  duyệt: Approved
+[2026-08-27T08:00:00.000Z] [LOG] Yêu cầu nghỉ phép #1 đã được  duyệt: Rejected
+[2026-09-21T04:54:53.000Z] [LOG] Tạo yêu cầu mua hàng thành công
+[2026-09-21T04:54:52.993Z] [LOG] Request trùng (requestKey="d7c5dbeb2ad5583b3827b4be7209d1c8561892e2b2a0f427a3f7e7a36ecdfec9") → trả lại PR #99 cũ
+[2026-09-21T04:54:53.006Z] [LOG] PR #1 đã được cập nhật bởi #1
+[2026-09-21T04:54:53.022Z] [LOG] PR #1 đã được gửi duyệt bởi #1
+[2026-09-21T04:54:53.029Z] [LOG] PR #1 đã được ký (upload chữ ký) bởi #1
+[2026-09-21T04:54:53.032Z] [LOG] PR #1 đã được duyệt bởi #5
+[2026-09-21T04:54:53.007Z] [LOG] PR #1 đã được cập nhật bởi #1
+[2026-09-21T04:54:53.038Z] [LOG] PR #1 đã được duyệt bởi #5
+[2026-09-21T04:54:53.040Z] [LOG] PR #1 đã bị từ chối bởi #5: Ngân sách không đủ
+[2026-09-21T04:54:53.035Z] [LOG] PR #1 đã được duyệt bởi #5
+[2026-09-21T04:54:53.057Z] [ERROR] Transaction failed, rolled back — TypeError: manager.createQueryBuilder is not a function
+    at C:\Thư mục mới (5)\erp-fcvn\src\modules\puchase-request\purchase-request.service.ts:566:10
+    at PurchaseRequestService.runInTransaction (C:\Thư mục mới (5)\erp-fcvn\src\modules\puchase-request\purchase-request.service.ts:107:28)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at PurchaseRequestService.issuePO (C:\Thư mục mới (5)\erp-fcvn\src\modules\puchase-request\purchase-request.service.ts:564:24)
+    at Object.<anonymous> (C:\Thư mục mới (5)\erp-fcvn\src\modules\puchase-request\purchase-request.service.spec.ts:833:22)
+[2026-09-21T04:54:53.058Z] [ERROR] Transaction failed, rolled back — TypeError: manager.createQueryBuilder is not a function
+    at C:\Thư mục mới (5)\erp-fcvn\src\modules\puchase-request\purchase-request.service.ts:566:10
+    at PurchaseRequestService.runInTransaction (C:\Thư mục mới (5)\erp-fcvn\src\modules\puchase-request\purchase-request.service.ts:107:28)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at PurchaseRequestService.issuePO (C:\Thư mục mới (5)\erp-fcvn\src\modules\puchase-request\purchase-request.service.ts:564:24)
+    at Object.<anonymous> (C:\Thư mục mới (5)\erp-fcvn\src\modules\puchase-request\purchase-request.service.spec.ts:873:22)
+[2026-09-21T06:41:15.259Z] [LOG] [NestFactory] Starting Nest application...
+[2026-09-21T06:41:15.260Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:15.260Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-09-21T06:41:15.260Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-09-21T06:41:15.260Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-09-21T06:41:15.261Z] [LOG] [InstanceLoader] FileStorageModule dependencies initialized
+[2026-09-21T06:41:15.261Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-09-21T06:41:15.261Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-09-21T06:41:15.261Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-09-21T06:41:15.260Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-09-21T06:41:15.261Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-09-21T06:41:15.261Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:15.261Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:15.262Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:15.262Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:15.262Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:15.262Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:15.261Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:15.262Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:15.262Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:15.262Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:15.262Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:15.263Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:15.262Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:15.263Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:15.263Z] [LOG] [InstanceLoader] StockModule dependencies initialized
+[2026-09-21T06:41:15.263Z] [LOG] [InstanceLoader] PermissionRoleModule dependencies initialized
+[2026-09-21T06:41:15.263Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-09-21T06:41:15.262Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:15.263Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-09-21T06:41:15.263Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-09-21T06:41:15.263Z] [LOG] [InstanceLoader] DepartmentModule dependencies initialized
+[2026-09-21T06:41:15.263Z] [LOG] [InstanceLoader] AttendanceModule dependencies initialized
+[2026-09-21T06:41:15.264Z] [LOG] [InstanceLoader] KpiModule dependencies initialized
+[2026-09-21T06:41:15.263Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-09-21T06:41:15.264Z] [LOG] [InstanceLoader] LeaveModule dependencies initialized
+[2026-09-21T06:41:15.263Z] [LOG] [InstanceLoader] TaskModule dependencies initialized
+[2026-09-21T06:41:15.264Z] [LOG] [InstanceLoader] PurchaseOrderModule dependencies initialized
+[2026-09-21T06:41:15.264Z] [LOG] [InstanceLoader] SupplierQuotationModule dependencies initialized
+[2026-09-21T06:41:15.264Z] [LOG] [InstanceLoader] PurchaseRequestModule dependencies initialized
+[2026-09-21T06:41:15.264Z] [LOG] [InstanceLoader] GoodReceiptModule dependencies initialized
+[2026-09-21T06:41:15.264Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-09-21T06:41:15.264Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-09-21T06:41:15.264Z] [LOG] [InstanceLoader] AuditLogModule dependencies initialized
+[2026-09-21T06:41:15.264Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-09-21T06:41:15.265Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-09-21T06:41:15.264Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-09-21T06:41:15.265Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-09-21T06:41:15.265Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-09-21T06:41:15.264Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-09-21T06:41:15.265Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-09-21T06:41:15.265Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-09-21T06:41:15.265Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-09-21T06:41:15.265Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-09-21T06:41:15.265Z] [LOG] [RouterExplorer] Mapped {/audit-logs, GET} route
+[2026-09-21T06:41:15.265Z] [LOG] [RoutesResolver] AuditLogController {/audit-logs}:
+[2026-09-21T06:41:15.265Z] [LOG] [RoutesResolver] RoleController {/roles}:
+[2026-09-21T06:41:15.266Z] [LOG] [RouterExplorer] Mapped {/roles, POST} route
+[2026-09-21T06:41:15.266Z] [LOG] [RouterExplorer] Mapped {/roles/:id, GET} route
+[2026-09-21T06:41:15.266Z] [LOG] [RouterExplorer] Mapped {/roles/:id/permissions, PUT} route
+[2026-09-21T06:41:15.266Z] [LOG] [RouterExplorer] Mapped {/roles, GET} route
+[2026-09-21T06:41:15.266Z] [LOG] [RouterExplorer] Mapped {/roles/:id, PUT} route
+[2026-09-21T06:41:15.266Z] [LOG] [RouterExplorer] Mapped {/permissions, GET} route
+[2026-09-21T06:41:15.266Z] [LOG] [RouterExplorer] Mapped {/permissions, POST} route
+[2026-09-21T06:41:15.266Z] [LOG] [RoutesResolver] PermissionController {/permissions}:
+[2026-09-21T06:41:15.267Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-09-21T06:41:15.267Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-09-21T06:41:15.267Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-09-21T06:41:15.267Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-09-21T06:41:15.267Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-09-21T06:41:15.267Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-09-21T06:41:15.267Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-09-21T06:41:15.267Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-09-21T06:41:15.267Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, PUT} route
+[2026-09-21T06:41:15.268Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-09-21T06:41:15.268Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-09-21T06:41:15.267Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-09-21T06:41:15.268Z] [LOG] [RouterExplorer] Mapped {/attendances, POST} route
+[2026-09-21T06:41:15.268Z] [LOG] [RoutesResolver] AttendanceController {/attendances}:
+[2026-09-21T06:41:15.268Z] [LOG] [RoutesResolver] DepartmentController {/departments}:
+[2026-09-21T06:41:15.268Z] [LOG] [RouterExplorer] Mapped {/attendances, GET} route
+[2026-09-21T06:41:15.268Z] [LOG] [RouterExplorer] Mapped {/departments, POST} route
+[2026-09-21T06:41:15.268Z] [LOG] [RouterExplorer] Mapped {/departments, GET} route
+[2026-09-21T06:41:15.268Z] [LOG] [RouterExplorer] Mapped {/attendances/:id, GET} route
+[2026-09-21T06:41:15.268Z] [LOG] [RouterExplorer] Mapped {/departments/:id, GET} route
+[2026-09-21T06:41:15.269Z] [LOG] [RouterExplorer] Mapped {/departments/:id/status, PUT} route
+[2026-09-21T06:41:15.269Z] [LOG] [RouterExplorer] Mapped {/tasks, POST} route
+[2026-09-21T06:41:15.268Z] [LOG] [RouterExplorer] Mapped {/departments/:id, PUT} route
+[2026-09-21T06:41:15.269Z] [LOG] [RoutesResolver] TaskController {/tasks}:
+[2026-09-21T06:41:15.269Z] [LOG] [RouterExplorer] Mapped {/tasks, GET} route
+[2026-09-21T06:41:15.269Z] [LOG] [RouterExplorer] Mapped {/tasks/:id/status, PUT} route
+[2026-09-21T06:41:15.269Z] [LOG] [RouterExplorer] Mapped {/tasks/:id, GET} route
+[2026-09-21T06:41:15.269Z] [LOG] [RoutesResolver] KpiController {/kpis}:
+[2026-09-21T06:41:15.269Z] [LOG] [RouterExplorer] Mapped {/kpis, POST} route
+[2026-09-21T06:41:15.269Z] [LOG] [RouterExplorer] Mapped {/kpis/:id/actual, PUT} route
+[2026-09-21T06:41:15.269Z] [LOG] [RouterExplorer] Mapped {/kpis, GET} route
+[2026-09-21T06:41:15.269Z] [LOG] [RouterExplorer] Mapped {/kpis/:id, GET} route
+[2026-09-21T06:41:15.270Z] [LOG] [RoutesResolver] LeaveController {/leaves}:
+[2026-09-21T06:41:15.270Z] [LOG] [RouterExplorer] Mapped {/leaves, POST} route
+[2026-09-21T06:41:15.270Z] [LOG] [RouterExplorer] Mapped {/leaves/me, GET} route
+[2026-09-21T06:41:15.270Z] [LOG] [RouterExplorer] Mapped {/leaves/:id, GET} route
+[2026-09-21T06:41:15.271Z] [LOG] [RoutesResolver] PurchaseOrderController {/purchase-orders}:
+[2026-09-21T06:41:15.270Z] [LOG] [RouterExplorer] Mapped {/leaves, GET} route
+[2026-09-21T06:41:15.270Z] [LOG] [RouterExplorer] Mapped {/leaves/:id/review, PUT} route
+[2026-09-21T06:41:15.271Z] [LOG] [RouterExplorer] Mapped {/purchase-orders/:id, GET} route
+[2026-09-21T06:41:15.271Z] [LOG] [RoutesResolver] PurchaseRequestController {/purchase-requests}:
+[2026-09-21T06:41:15.271Z] [LOG] [RouterExplorer] Mapped {/purchase-orders, GET} route
+[2026-09-21T06:41:15.271Z] [LOG] [RouterExplorer] Mapped {/purchase-requests, POST} route
+[2026-09-21T06:41:15.272Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/approve, PUT} route
+[2026-09-21T06:41:15.272Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/reject, PUT} route
+[2026-09-21T06:41:15.271Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id, PUT} route
+[2026-09-21T06:41:15.271Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/submit, PUT} route
+[2026-09-21T06:41:15.272Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/history, GET} route
+[2026-09-21T06:41:15.272Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/issue-po, POST} route
+[2026-09-21T06:41:15.272Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id, GET} route
+[2026-09-21T06:41:15.272Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/sign, POST} route
+[2026-09-21T06:41:15.272Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:purchaseRequestId/download, GET} route
+[2026-09-21T06:41:15.272Z] [LOG] [RouterExplorer] Mapped {/purchase-requests, GET} route
+[2026-09-21T06:41:15.273Z] [LOG] [RoutesResolver] GoodReceiptController {/good-receipts}:
+[2026-09-21T06:41:15.273Z] [LOG] [RouterExplorer] Mapped {/good-receipts/:id, GET} route
+[2026-09-21T06:41:15.273Z] [LOG] [RouterExplorer] Mapped {/good-receipts/:id/confirm, PUT} route
+[2026-09-21T06:41:15.273Z] [LOG] [RouterExplorer] Mapped {/good-receipts, POST} route
+[2026-09-21T06:41:15.273Z] [LOG] [RouterExplorer] Mapped {/stocks, GET} route
+[2026-09-21T06:41:15.273Z] [LOG] [RouterExplorer] Mapped {/good-receipts, GET} route
+[2026-09-21T06:41:15.273Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations/:quotationId/download, GET} route
+[2026-09-21T06:41:15.273Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, POST} route
+[2026-09-21T06:41:15.273Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, GET} route
+[2026-09-21T06:41:15.273Z] [LOG] [RoutesResolver] SupplierQuotationController {/suppliers/:supplierId/quotations}:
+[2026-09-21T06:41:15.274Z] [LOG] [NestApplication] Nest application successfully started
+[2026-09-21T06:41:15.274Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, DELETE} route
+[2026-09-21T06:41:15.273Z] [LOG] [RoutesResolver] StockController {/stocks}:
+[2026-09-21T06:41:17.273Z] [LOG] [NestFactory] Starting Nest application...
+[2026-09-21T06:41:17.274Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:17.274Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-09-21T06:41:17.274Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-09-21T06:41:17.274Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-09-21T06:41:17.274Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-09-21T06:41:17.275Z] [LOG] [InstanceLoader] FileStorageModule dependencies initialized
+[2026-09-21T06:41:17.274Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-09-21T06:41:17.275Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-09-21T06:41:17.275Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-09-21T06:41:17.275Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:17.275Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:17.275Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-09-21T06:41:17.275Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:17.275Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:17.276Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:17.276Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:17.276Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:17.276Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:17.276Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:17.276Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:17.276Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:17.276Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:17.276Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:17.277Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:17.277Z] [LOG] [InstanceLoader] PermissionRoleModule dependencies initialized
+[2026-09-21T06:41:17.277Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-09-21T06:41:17.277Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T06:41:17.277Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-09-21T06:41:17.277Z] [LOG] [InstanceLoader] StockModule dependencies initialized
+[2026-09-21T06:41:17.277Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-09-21T06:41:17.277Z] [LOG] [InstanceLoader] AttendanceModule dependencies initialized
+[2026-09-21T06:41:17.277Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-09-21T06:41:17.278Z] [LOG] [InstanceLoader] KpiModule dependencies initialized
+[2026-09-21T06:41:17.278Z] [LOG] [InstanceLoader] TaskModule dependencies initialized
+[2026-09-21T06:41:17.278Z] [LOG] [InstanceLoader] LeaveModule dependencies initialized
+[2026-09-21T06:41:17.278Z] [LOG] [InstanceLoader] DepartmentModule dependencies initialized
+[2026-09-21T06:41:17.278Z] [LOG] [InstanceLoader] PurchaseOrderModule dependencies initialized
+[2026-09-21T06:41:17.278Z] [LOG] [InstanceLoader] SupplierQuotationModule dependencies initialized
+[2026-09-21T06:41:17.278Z] [LOG] [InstanceLoader] GoodReceiptModule dependencies initialized
+[2026-09-21T06:41:17.278Z] [LOG] [InstanceLoader] PurchaseRequestModule dependencies initialized
+[2026-09-21T06:41:17.278Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-09-21T06:41:17.278Z] [LOG] [InstanceLoader] AuditLogModule dependencies initialized
+[2026-09-21T06:41:17.279Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-09-21T06:41:17.279Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-09-21T06:41:17.279Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-09-21T06:41:17.279Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-09-21T06:41:17.279Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-09-21T06:41:17.279Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-09-21T06:41:17.279Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-09-21T06:41:17.280Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-09-21T06:41:17.278Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-09-21T06:41:17.279Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-09-21T06:41:17.280Z] [LOG] [RouterExplorer] Mapped {/audit-logs, GET} route
+[2026-09-21T06:41:17.280Z] [LOG] [RoutesResolver] AuditLogController {/audit-logs}:
+[2026-09-21T06:41:17.280Z] [LOG] [RouterExplorer] Mapped {/roles, POST} route
+[2026-09-21T06:41:17.280Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-09-21T06:41:17.280Z] [LOG] [RouterExplorer] Mapped {/roles/:id, GET} route
+[2026-09-21T06:41:17.280Z] [LOG] [RouterExplorer] Mapped {/roles, GET} route
+[2026-09-21T06:41:17.280Z] [LOG] [RoutesResolver] RoleController {/roles}:
+[2026-09-21T06:41:17.281Z] [LOG] [RouterExplorer] Mapped {/roles/:id/permissions, PUT} route
+[2026-09-21T06:41:17.281Z] [LOG] [RouterExplorer] Mapped {/permissions, GET} route
+[2026-09-21T06:41:17.281Z] [LOG] [RouterExplorer] Mapped {/roles/:id, PUT} route
+[2026-09-21T06:41:17.281Z] [LOG] [RoutesResolver] PermissionController {/permissions}:
+[2026-09-21T06:41:17.281Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-09-21T06:41:17.281Z] [LOG] [RouterExplorer] Mapped {/permissions, POST} route
+[2026-09-21T06:41:17.281Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-09-21T06:41:17.281Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-09-21T06:41:17.281Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-09-21T06:41:17.282Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-09-21T06:41:17.282Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-09-21T06:41:17.282Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-09-21T06:41:17.282Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-09-21T06:41:17.281Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, PUT} route
+[2026-09-21T06:41:17.282Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-09-21T06:41:17.282Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-09-21T06:41:17.282Z] [LOG] [RoutesResolver] AttendanceController {/attendances}:
+[2026-09-21T06:41:17.282Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-09-21T06:41:17.282Z] [LOG] [RouterExplorer] Mapped {/attendances, POST} route
+[2026-09-21T06:41:17.283Z] [LOG] [RouterExplorer] Mapped {/attendances/:id, GET} route
+[2026-09-21T06:41:17.283Z] [LOG] [RouterExplorer] Mapped {/departments, POST} route
+[2026-09-21T06:41:17.283Z] [LOG] [RoutesResolver] DepartmentController {/departments}:
+[2026-09-21T06:41:17.283Z] [LOG] [RouterExplorer] Mapped {/departments/:id, GET} route
+[2026-09-21T06:41:17.282Z] [LOG] [RouterExplorer] Mapped {/attendances, GET} route
+[2026-09-21T06:41:17.283Z] [LOG] [RouterExplorer] Mapped {/departments/:id, PUT} route
+[2026-09-21T06:41:17.283Z] [LOG] [RouterExplorer] Mapped {/departments/:id/status, PUT} route
+[2026-09-21T06:41:17.283Z] [LOG] [RouterExplorer] Mapped {/departments, GET} route
+[2026-09-21T06:41:17.283Z] [LOG] [RouterExplorer] Mapped {/tasks, GET} route
+[2026-09-21T06:41:17.283Z] [LOG] [RouterExplorer] Mapped {/tasks/:id, GET} route
+[2026-09-21T06:41:17.283Z] [LOG] [RouterExplorer] Mapped {/tasks, POST} route
+[2026-09-21T06:41:17.284Z] [LOG] [RouterExplorer] Mapped {/tasks/:id/status, PUT} route
+[2026-09-21T06:41:17.283Z] [LOG] [RoutesResolver] TaskController {/tasks}:
+[2026-09-21T06:41:17.284Z] [LOG] [RoutesResolver] KpiController {/kpis}:
+[2026-09-21T06:41:17.284Z] [LOG] [RouterExplorer] Mapped {/kpis, POST} route
+[2026-09-21T06:41:17.284Z] [LOG] [RouterExplorer] Mapped {/kpis/:id, GET} route
+[2026-09-21T06:41:17.284Z] [LOG] [RouterExplorer] Mapped {/kpis/:id/actual, PUT} route
+[2026-09-21T06:41:17.284Z] [LOG] [RouterExplorer] Mapped {/leaves, POST} route
+[2026-09-21T06:41:17.284Z] [LOG] [RouterExplorer] Mapped {/kpis, GET} route
+[2026-09-21T06:41:17.285Z] [LOG] [RouterExplorer] Mapped {/leaves, GET} route
+[2026-09-21T06:41:17.284Z] [LOG] [RoutesResolver] LeaveController {/leaves}:
+[2026-09-21T06:41:17.285Z] [LOG] [RouterExplorer] Mapped {/leaves/:id/review, PUT} route
+[2026-09-21T06:41:17.285Z] [LOG] [RoutesResolver] PurchaseOrderController {/purchase-orders}:
+[2026-09-21T06:41:17.285Z] [LOG] [RouterExplorer] Mapped {/leaves/me, GET} route
+[2026-09-21T06:41:17.285Z] [LOG] [RouterExplorer] Mapped {/purchase-orders, GET} route
+[2026-09-21T06:41:17.285Z] [LOG] [RouterExplorer] Mapped {/purchase-orders/:id, GET} route
+[2026-09-21T06:41:17.285Z] [LOG] [RoutesResolver] PurchaseRequestController {/purchase-requests}:
+[2026-09-21T06:41:17.286Z] [LOG] [RouterExplorer] Mapped {/purchase-requests, POST} route
+[2026-09-21T06:41:17.285Z] [LOG] [RouterExplorer] Mapped {/leaves/:id, GET} route
+[2026-09-21T06:41:17.286Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id, PUT} route
+[2026-09-21T06:41:17.286Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/approve, PUT} route
+[2026-09-21T06:41:17.286Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/submit, PUT} route
+[2026-09-21T06:41:17.286Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/reject, PUT} route
+[2026-09-21T06:41:17.286Z] [LOG] [RouterExplorer] Mapped {/purchase-requests, GET} route
+[2026-09-21T06:41:17.286Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/history, GET} route
+[2026-09-21T06:41:17.286Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/sign, POST} route
+[2026-09-21T06:41:17.286Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/issue-po, POST} route
+[2026-09-21T06:41:17.287Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:purchaseRequestId/download, GET} route
+[2026-09-21T06:41:17.287Z] [LOG] [RoutesResolver] GoodReceiptController {/good-receipts}:
+[2026-09-21T06:41:17.286Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id, GET} route
+[2026-09-21T06:41:17.287Z] [LOG] [RouterExplorer] Mapped {/good-receipts, POST} route
+[2026-09-21T06:41:17.287Z] [LOG] [RouterExplorer] Mapped {/good-receipts/:id, GET} route
+[2026-09-21T06:41:17.287Z] [LOG] [RouterExplorer] Mapped {/good-receipts/:id/confirm, PUT} route
+[2026-09-21T06:41:17.287Z] [LOG] [RoutesResolver] StockController {/stocks}:
+[2026-09-21T06:41:17.287Z] [LOG] [RouterExplorer] Mapped {/stocks, GET} route
+[2026-09-21T06:41:17.287Z] [LOG] [RouterExplorer] Mapped {/good-receipts, GET} route
+[2026-09-21T06:41:17.287Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, POST} route
+[2026-09-21T06:41:17.287Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations/:quotationId/download, GET} route
+[2026-09-21T06:41:17.287Z] [LOG] [RoutesResolver] SupplierQuotationController {/suppliers/:supplierId/quotations}:
+[2026-09-21T06:41:17.288Z] [LOG] [NestApplication] Nest application successfully started
+[2026-09-21T06:41:17.287Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, DELETE} route
+[2026-09-21T06:41:17.287Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, GET} route
+[2026-09-21T08:27:23.344Z] [LOG] [NestFactory] Starting Nest application...
+[2026-09-21T08:27:23.344Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T08:27:23.344Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-09-21T08:27:23.344Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-09-21T08:27:23.344Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-09-21T08:27:23.345Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-09-21T08:27:23.345Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-09-21T08:27:23.345Z] [LOG] [InstanceLoader] FileStorageModule dependencies initialized
+[2026-09-21T08:27:23.345Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-09-21T08:27:23.345Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-09-21T08:27:23.345Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-09-21T08:27:23.345Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T08:27:23.345Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T08:27:23.345Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T08:27:23.345Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T08:27:23.345Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T08:27:23.346Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T08:27:23.346Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T08:27:23.346Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T08:27:23.346Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T08:27:23.346Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T08:27:23.346Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T08:27:23.346Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T08:27:23.346Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T08:27:23.346Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T08:27:23.346Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T08:27:23.346Z] [LOG] [InstanceLoader] StockModule dependencies initialized
+[2026-09-21T08:27:23.346Z] [LOG] [InstanceLoader] PermissionRoleModule dependencies initialized
+[2026-09-21T08:27:23.346Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-09-21T08:27:23.347Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-09-21T08:27:23.346Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-09-21T08:27:23.347Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-09-21T08:27:23.347Z] [LOG] [InstanceLoader] AttendanceModule dependencies initialized
+[2026-09-21T08:27:23.347Z] [LOG] [InstanceLoader] DepartmentModule dependencies initialized
+[2026-09-21T08:27:23.347Z] [LOG] [InstanceLoader] TaskModule dependencies initialized
+[2026-09-21T08:27:23.347Z] [LOG] [InstanceLoader] KpiModule dependencies initialized
+[2026-09-21T08:27:23.347Z] [LOG] [InstanceLoader] LeaveModule dependencies initialized
+[2026-09-21T08:27:23.347Z] [LOG] [InstanceLoader] PurchaseOrderModule dependencies initialized
+[2026-09-21T08:27:23.347Z] [LOG] [InstanceLoader] GoodReceiptModule dependencies initialized
+[2026-09-21T08:27:23.347Z] [LOG] [InstanceLoader] AuditLogModule dependencies initialized
+[2026-09-21T08:27:23.347Z] [LOG] [InstanceLoader] SupplierQuotationModule dependencies initialized
+[2026-09-21T08:27:23.347Z] [LOG] [InstanceLoader] PurchaseRequestModule dependencies initialized
+[2026-09-21T08:27:23.347Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-09-21T08:27:23.347Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-09-21T08:27:23.348Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-09-21T08:27:23.348Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-09-21T08:27:23.348Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-09-21T08:27:23.348Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-09-21T08:27:23.348Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-09-21T08:27:23.348Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-09-21T08:27:23.348Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-09-21T08:27:23.348Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-09-21T08:27:23.348Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-09-21T08:27:23.348Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-09-21T08:27:23.348Z] [LOG] [RoutesResolver] RoleController {/roles}:
+[2026-09-21T08:27:23.348Z] [LOG] [RouterExplorer] Mapped {/roles, POST} route
+[2026-09-21T08:27:23.348Z] [LOG] [RoutesResolver] AuditLogController {/audit-logs}:
+[2026-09-21T08:27:23.348Z] [LOG] [RouterExplorer] Mapped {/audit-logs, GET} route
+[2026-09-21T08:27:23.349Z] [LOG] [RouterExplorer] Mapped {/roles/:id, PUT} route
+[2026-09-21T08:27:23.349Z] [LOG] [RouterExplorer] Mapped {/roles/:id/permissions, PUT} route
+[2026-09-21T08:27:23.349Z] [LOG] [RoutesResolver] PermissionController {/permissions}:
+[2026-09-21T08:27:23.349Z] [LOG] [RouterExplorer] Mapped {/permissions, GET} route
+[2026-09-21T08:27:23.349Z] [LOG] [RouterExplorer] Mapped {/permissions, POST} route
+[2026-09-21T08:27:23.349Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-09-21T08:27:23.349Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-09-21T08:27:23.349Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-09-21T08:27:23.349Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-09-21T08:27:23.349Z] [LOG] [RouterExplorer] Mapped {/roles/:id, GET} route
+[2026-09-21T08:27:23.349Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-09-21T08:27:23.348Z] [LOG] [RouterExplorer] Mapped {/roles, GET} route
+[2026-09-21T08:27:23.350Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-09-21T08:27:23.350Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-09-21T08:27:23.350Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-09-21T08:27:23.350Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-09-21T08:27:23.350Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-09-21T08:27:23.350Z] [LOG] [RoutesResolver] AttendanceController {/attendances}:
+[2026-09-21T08:27:23.350Z] [LOG] [RouterExplorer] Mapped {/attendances, POST} route
+[2026-09-21T08:27:23.349Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, PUT} route
+[2026-09-21T08:27:23.350Z] [LOG] [RouterExplorer] Mapped {/attendances/:id, GET} route
+[2026-09-21T08:27:23.350Z] [LOG] [RoutesResolver] DepartmentController {/departments}:
+[2026-09-21T08:27:23.349Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-09-21T08:27:23.350Z] [LOG] [RouterExplorer] Mapped {/departments, GET} route
+[2026-09-21T08:27:23.350Z] [LOG] [RouterExplorer] Mapped {/departments/:id, GET} route
+[2026-09-21T08:27:23.351Z] [LOG] [RouterExplorer] Mapped {/departments/:id, PUT} route
+[2026-09-21T08:27:23.351Z] [LOG] [RouterExplorer] Mapped {/departments/:id/status, PUT} route
+[2026-09-21T08:27:23.351Z] [LOG] [RoutesResolver] TaskController {/tasks}:
+[2026-09-21T08:27:23.351Z] [LOG] [RouterExplorer] Mapped {/tasks, POST} route
+[2026-09-21T08:27:23.350Z] [LOG] [RouterExplorer] Mapped {/departments, POST} route
+[2026-09-21T08:27:23.351Z] [LOG] [RouterExplorer] Mapped {/tasks, GET} route
+[2026-09-21T08:27:23.351Z] [LOG] [RouterExplorer] Mapped {/tasks/:id/status, PUT} route
+[2026-09-21T08:27:23.352Z] [LOG] [RoutesResolver] KpiController {/kpis}:
+[2026-09-21T08:27:23.352Z] [LOG] [RouterExplorer] Mapped {/kpis, POST} route
+[2026-09-21T08:27:23.352Z] [LOG] [RouterExplorer] Mapped {/kpis, GET} route
+[2026-09-21T08:27:23.353Z] [LOG] [RouterExplorer] Mapped {/kpis/:id, GET} route
+[2026-09-21T08:27:23.355Z] [LOG] [RouterExplorer] Mapped {/kpis/:id/actual, PUT} route
+[2026-09-21T08:27:23.356Z] [LOG] [RoutesResolver] LeaveController {/leaves}:
+[2026-09-21T08:27:23.356Z] [LOG] [RouterExplorer] Mapped {/leaves, POST} route
+[2026-09-21T08:27:23.356Z] [LOG] [RouterExplorer] Mapped {/leaves, GET} route
+[2026-09-21T08:27:23.356Z] [LOG] [RouterExplorer] Mapped {/leaves/me, GET} route
+[2026-09-21T08:27:23.357Z] [LOG] [RouterExplorer] Mapped {/leaves/:id, GET} route
+[2026-09-21T08:27:23.357Z] [LOG] [RouterExplorer] Mapped {/leaves/:id/review, PUT} route
+[2026-09-21T08:27:23.357Z] [LOG] [RoutesResolver] PurchaseOrderController {/purchase-orders}:
+[2026-09-21T08:27:23.350Z] [LOG] [RouterExplorer] Mapped {/attendances, GET} route
+[2026-09-21T08:27:23.357Z] [LOG] [RouterExplorer] Mapped {/purchase-orders, GET} route
+[2026-09-21T08:27:23.358Z] [LOG] [RouterExplorer] Mapped {/purchase-orders/:id, GET} route
+[2026-09-21T08:27:23.351Z] [LOG] [RouterExplorer] Mapped {/tasks/:id, GET} route
+[2026-09-21T08:27:23.358Z] [LOG] [RoutesResolver] PurchaseRequestController {/purchase-requests}:
+[2026-09-21T08:27:23.359Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/submit, PUT} route
+[2026-09-21T08:27:23.359Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/approve, PUT} route
+[2026-09-21T08:27:23.358Z] [LOG] [RouterExplorer] Mapped {/purchase-requests, POST} route
+[2026-09-21T08:27:23.359Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/reject, PUT} route
+[2026-09-21T08:27:23.359Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/history, GET} route
+[2026-09-21T08:27:23.360Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id, GET} route
+[2026-09-21T08:27:23.359Z] [LOG] [RouterExplorer] Mapped {/purchase-requests, GET} route
+[2026-09-21T08:27:23.360Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/issue-po, POST} route
+[2026-09-21T08:27:23.358Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id, PUT} route
+[2026-09-21T08:27:23.360Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:purchaseRequestId/download, GET} route
+[2026-09-21T08:27:23.360Z] [LOG] [RoutesResolver] GoodReceiptController {/good-receipts}:
+[2026-09-21T08:27:23.360Z] [LOG] [RouterExplorer] Mapped {/good-receipts, POST} route
+[2026-09-21T08:27:23.361Z] [LOG] [RouterExplorer] Mapped {/good-receipts/:id, GET} route
+[2026-09-21T08:27:23.361Z] [LOG] [RouterExplorer] Mapped {/good-receipts/:id/confirm, PUT} route
+[2026-09-21T08:27:23.361Z] [LOG] [RoutesResolver] StockController {/stocks}:
+[2026-09-21T08:27:23.361Z] [LOG] [RouterExplorer] Mapped {/stocks, GET} route
+[2026-09-21T08:27:23.361Z] [LOG] [RouterExplorer] Mapped {/good-receipts, GET} route
+[2026-09-21T08:27:23.362Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations/:quotationId/download, GET} route
+[2026-09-21T08:27:23.362Z] [LOG] [RoutesResolver] SupplierQuotationController {/suppliers/:supplierId/quotations}:
+[2026-09-21T08:27:23.362Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, GET} route
+[2026-09-21T08:27:23.363Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, DELETE} route
+[2026-09-21T08:27:23.363Z] [LOG] [NestApplication] Nest application successfully started
+[2026-09-21T08:27:23.362Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, POST} route
+[2026-09-21T08:27:23.360Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/sign, POST} route
+[2026-09-21T09:53:52.055Z] [LOG] [NestFactory] Starting Nest application...
+[2026-09-21T09:53:52.056Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:53:52.056Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-09-21T09:53:52.056Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-09-21T09:53:52.056Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-09-21T09:53:52.057Z] [LOG] [InstanceLoader] FileStorageModule dependencies initialized
+[2026-09-21T09:53:52.056Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-09-21T09:53:52.057Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-09-21T09:53:52.057Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-09-21T09:53:52.057Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:53:52.056Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-09-21T09:53:52.057Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:53:52.057Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-09-21T09:53:52.057Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:53:52.058Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:53:52.058Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:53:52.058Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:53:52.057Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:53:52.058Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:53:52.058Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:53:52.058Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:53:52.058Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:53:52.058Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:53:52.058Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:53:52.058Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:53:52.059Z] [LOG] [InstanceLoader] PermissionRoleModule dependencies initialized
+[2026-09-21T09:53:52.058Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:53:52.059Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-09-21T09:53:52.059Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-09-21T09:53:52.059Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-09-21T09:53:52.059Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-09-21T09:53:52.058Z] [LOG] [InstanceLoader] StockModule dependencies initialized
+[2026-09-21T09:53:52.059Z] [LOG] [InstanceLoader] AttendanceModule dependencies initialized
+[2026-09-21T09:53:52.059Z] [LOG] [InstanceLoader] KpiModule dependencies initialized
+[2026-09-21T09:53:52.059Z] [LOG] [InstanceLoader] TaskModule dependencies initialized
+[2026-09-21T09:53:52.059Z] [LOG] [InstanceLoader] DepartmentModule dependencies initialized
+[2026-09-21T09:53:52.060Z] [LOG] [InstanceLoader] PurchaseOrderModule dependencies initialized
+[2026-09-21T09:53:52.059Z] [LOG] [InstanceLoader] LeaveModule dependencies initialized
+[2026-09-21T09:53:52.060Z] [LOG] [InstanceLoader] AuditLogModule dependencies initialized
+[2026-09-21T09:53:52.060Z] [LOG] [InstanceLoader] PurchaseRequestModule dependencies initialized
+[2026-09-21T09:53:52.060Z] [LOG] [InstanceLoader] SupplierQuotationModule dependencies initialized
+[2026-09-21T09:53:52.060Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-09-21T09:53:52.060Z] [LOG] [InstanceLoader] GoodReceiptModule dependencies initialized
+[2026-09-21T09:53:52.060Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-09-21T09:53:52.060Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-09-21T09:53:52.060Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-09-21T09:53:52.060Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-09-21T09:53:52.060Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-09-21T09:53:52.060Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-09-21T09:53:52.060Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-09-21T09:53:52.061Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-09-21T09:53:52.061Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-09-21T09:53:52.061Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-09-21T09:53:52.061Z] [LOG] [RoutesResolver] AuditLogController {/audit-logs}:
+[2026-09-21T09:53:52.061Z] [LOG] [RoutesResolver] RoleController {/roles}:
+[2026-09-21T09:53:52.061Z] [LOG] [RouterExplorer] Mapped {/audit-logs, GET} route
+[2026-09-21T09:53:52.061Z] [LOG] [RouterExplorer] Mapped {/roles, POST} route
+[2026-09-21T09:53:52.060Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-09-21T09:53:52.061Z] [LOG] [RouterExplorer] Mapped {/roles, GET} route
+[2026-09-21T09:53:52.061Z] [LOG] [RouterExplorer] Mapped {/roles/:id, GET} route
+[2026-09-21T09:53:52.062Z] [LOG] [RouterExplorer] Mapped {/roles/:id/permissions, PUT} route
+[2026-09-21T09:53:52.062Z] [LOG] [RouterExplorer] Mapped {/permissions, GET} route
+[2026-09-21T09:53:52.062Z] [LOG] [RoutesResolver] PermissionController {/permissions}:
+[2026-09-21T09:53:52.062Z] [LOG] [RouterExplorer] Mapped {/permissions, POST} route
+[2026-09-21T09:53:52.062Z] [LOG] [RouterExplorer] Mapped {/roles/:id, PUT} route
+[2026-09-21T09:53:52.062Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-09-21T09:53:52.066Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-09-21T09:53:52.062Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-09-21T09:53:52.062Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-09-21T09:53:52.066Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-09-21T09:53:52.066Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-09-21T09:53:52.066Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-09-21T09:53:52.066Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-09-21T09:53:52.067Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-09-21T09:53:52.066Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, PUT} route
+[2026-09-21T09:53:52.067Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-09-21T09:53:52.067Z] [LOG] [RouterExplorer] Mapped {/attendances, POST} route
+[2026-09-21T09:53:52.066Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-09-21T09:53:52.067Z] [LOG] [RouterExplorer] Mapped {/attendances/:id, GET} route
+[2026-09-21T09:53:52.067Z] [LOG] [RoutesResolver] AttendanceController {/attendances}:
+[2026-09-21T09:53:52.067Z] [LOG] [RouterExplorer] Mapped {/attendances, GET} route
+[2026-09-21T09:53:52.067Z] [LOG] [RoutesResolver] DepartmentController {/departments}:
+[2026-09-21T09:53:52.067Z] [LOG] [RouterExplorer] Mapped {/departments/:id, GET} route
+[2026-09-21T09:53:52.067Z] [LOG] [RouterExplorer] Mapped {/departments, POST} route
+[2026-09-21T09:53:52.068Z] [LOG] [RouterExplorer] Mapped {/departments/:id/status, PUT} route
+[2026-09-21T09:53:52.068Z] [LOG] [RouterExplorer] Mapped {/departments/:id, PUT} route
+[2026-09-21T09:53:52.068Z] [LOG] [RoutesResolver] TaskController {/tasks}:
+[2026-09-21T09:53:52.067Z] [LOG] [RouterExplorer] Mapped {/departments, GET} route
+[2026-09-21T09:53:52.068Z] [LOG] [RouterExplorer] Mapped {/tasks/:id, GET} route
+[2026-09-21T09:53:52.068Z] [LOG] [RouterExplorer] Mapped {/tasks, POST} route
+[2026-09-21T09:53:52.068Z] [LOG] [RouterExplorer] Mapped {/tasks/:id/status, PUT} route
+[2026-09-21T09:53:52.068Z] [LOG] [RouterExplorer] Mapped {/tasks, GET} route
+[2026-09-21T09:53:52.068Z] [LOG] [RouterExplorer] Mapped {/kpis, POST} route
+[2026-09-21T09:53:52.068Z] [LOG] [RoutesResolver] KpiController {/kpis}:
+[2026-09-21T09:53:52.068Z] [LOG] [RouterExplorer] Mapped {/kpis, GET} route
+[2026-09-21T09:53:52.068Z] [LOG] [RouterExplorer] Mapped {/kpis/:id, GET} route
+[2026-09-21T09:53:52.068Z] [LOG] [RouterExplorer] Mapped {/kpis/:id/actual, PUT} route
+[2026-09-21T09:53:52.069Z] [LOG] [RouterExplorer] Mapped {/leaves, GET} route
+[2026-09-21T09:53:52.069Z] [LOG] [RouterExplorer] Mapped {/leaves, POST} route
+[2026-09-21T09:53:52.069Z] [LOG] [RouterExplorer] Mapped {/leaves/me, GET} route
+[2026-09-21T09:53:52.069Z] [LOG] [RouterExplorer] Mapped {/leaves/:id, GET} route
+[2026-09-21T09:53:52.069Z] [LOG] [RouterExplorer] Mapped {/leaves/:id/review, PUT} route
+[2026-09-21T09:53:52.069Z] [LOG] [RoutesResolver] PurchaseOrderController {/purchase-orders}:
+[2026-09-21T09:53:52.070Z] [LOG] [RouterExplorer] Mapped {/purchase-orders/:id, GET} route
+[2026-09-21T09:53:52.070Z] [LOG] [RouterExplorer] Mapped {/purchase-orders, GET} route
+[2026-09-21T09:53:52.070Z] [LOG] [RoutesResolver] PurchaseRequestController {/purchase-requests}:
+[2026-09-21T09:53:52.068Z] [LOG] [RoutesResolver] LeaveController {/leaves}:
+[2026-09-21T09:53:52.070Z] [LOG] [RouterExplorer] Mapped {/purchase-requests, POST} route
+[2026-09-21T09:53:52.070Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/submit, PUT} route
+[2026-09-21T09:53:52.071Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/approve, PUT} route
+[2026-09-21T09:53:52.070Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id, PUT} route
+[2026-09-21T09:53:52.071Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/history, GET} route
+[2026-09-21T09:53:52.071Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/reject, PUT} route
+[2026-09-21T09:53:52.071Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id, GET} route
+[2026-09-21T09:53:52.071Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:purchaseRequestId/download, GET} route
+[2026-09-21T09:53:52.071Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/issue-po, POST} route
+[2026-09-21T09:53:52.071Z] [LOG] [RoutesResolver] GoodReceiptController {/good-receipts}:
+[2026-09-21T09:53:52.071Z] [LOG] [RouterExplorer] Mapped {/purchase-requests, GET} route
+[2026-09-21T09:53:52.071Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/sign, POST} route
+[2026-09-21T09:53:52.072Z] [LOG] [RouterExplorer] Mapped {/good-receipts, POST} route
+[2026-09-21T09:53:52.072Z] [LOG] [RouterExplorer] Mapped {/good-receipts, GET} route
+[2026-09-21T09:53:52.072Z] [LOG] [RouterExplorer] Mapped {/good-receipts/:id, GET} route
+[2026-09-21T09:53:52.072Z] [LOG] [RouterExplorer] Mapped {/good-receipts/:id/confirm, PUT} route
+[2026-09-21T09:53:52.072Z] [LOG] [RouterExplorer] Mapped {/stocks, GET} route
+[2026-09-21T09:53:52.072Z] [LOG] [RoutesResolver] StockController {/stocks}:
+[2026-09-21T09:53:52.072Z] [LOG] [RoutesResolver] SupplierQuotationController {/suppliers/:supplierId/quotations}:
+[2026-09-21T09:53:52.072Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, POST} route
+[2026-09-21T09:53:52.072Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations/:quotationId/download, GET} route
+[2026-09-21T09:53:52.073Z] [LOG] [NestApplication] Nest application successfully started
+[2026-09-21T09:53:52.073Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, DELETE} route
+[2026-09-21T09:53:52.073Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, GET} route
+[2026-09-21T09:56:08.162Z] [LOG] [NestFactory] Starting Nest application...
+[2026-09-21T09:56:08.163Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:08.163Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-09-21T09:56:08.163Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-09-21T09:56:08.164Z] [LOG] [InstanceLoader] FileStorageModule dependencies initialized
+[2026-09-21T09:56:08.163Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-09-21T09:56:08.163Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-09-21T09:56:08.164Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-09-21T09:56:08.164Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-09-21T09:56:08.164Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-09-21T09:56:08.165Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:08.165Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:08.164Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-09-21T09:56:08.165Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:08.165Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:08.165Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:08.165Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:08.166Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:08.165Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:08.166Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:08.166Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:08.166Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:08.166Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:08.165Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:08.166Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:08.166Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:08.166Z] [LOG] [InstanceLoader] StockModule dependencies initialized
+[2026-09-21T09:56:08.167Z] [LOG] [InstanceLoader] PermissionRoleModule dependencies initialized
+[2026-09-21T09:56:08.167Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-09-21T09:56:08.167Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-09-21T09:56:08.167Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-09-21T09:56:08.167Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-09-21T09:56:08.167Z] [LOG] [InstanceLoader] AttendanceModule dependencies initialized
+[2026-09-21T09:56:08.168Z] [LOG] [InstanceLoader] TaskModule dependencies initialized
+[2026-09-21T09:56:08.167Z] [LOG] [InstanceLoader] DepartmentModule dependencies initialized
+[2026-09-21T09:56:08.168Z] [LOG] [InstanceLoader] PurchaseOrderModule dependencies initialized
+[2026-09-21T09:56:08.168Z] [LOG] [InstanceLoader] KpiModule dependencies initialized
+[2026-09-21T09:56:08.168Z] [LOG] [InstanceLoader] GoodReceiptModule dependencies initialized
+[2026-09-21T09:56:08.168Z] [LOG] [InstanceLoader] LeaveModule dependencies initialized
+[2026-09-21T09:56:08.168Z] [LOG] [InstanceLoader] AuditLogModule dependencies initialized
+[2026-09-21T09:56:08.168Z] [LOG] [InstanceLoader] SupplierQuotationModule dependencies initialized
+[2026-09-21T09:56:08.169Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-09-21T09:56:08.169Z] [LOG] [InstanceLoader] PurchaseRequestModule dependencies initialized
+[2026-09-21T09:56:08.169Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-09-21T09:56:08.169Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-09-21T09:56:08.169Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-09-21T09:56:08.169Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-09-21T09:56:08.170Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-09-21T09:56:08.170Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-09-21T09:56:08.170Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-09-21T09:56:08.170Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-09-21T09:56:08.170Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-09-21T09:56:08.170Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-09-21T09:56:08.169Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-09-21T09:56:08.170Z] [LOG] [RoutesResolver] AuditLogController {/audit-logs}:
+[2026-09-21T09:56:08.170Z] [LOG] [RouterExplorer] Mapped {/audit-logs, GET} route
+[2026-09-21T09:56:08.171Z] [LOG] [RoutesResolver] RoleController {/roles}:
+[2026-09-21T09:56:08.171Z] [LOG] [RouterExplorer] Mapped {/roles, GET} route
+[2026-09-21T09:56:08.171Z] [LOG] [RouterExplorer] Mapped {/roles, POST} route
+[2026-09-21T09:56:08.171Z] [LOG] [RouterExplorer] Mapped {/roles/:id, PUT} route
+[2026-09-21T09:56:08.171Z] [LOG] [RouterExplorer] Mapped {/roles/:id/permissions, PUT} route
+[2026-09-21T09:56:08.171Z] [LOG] [RouterExplorer] Mapped {/roles/:id, GET} route
+[2026-09-21T09:56:08.172Z] [LOG] [RouterExplorer] Mapped {/permissions, GET} route
+[2026-09-21T09:56:08.171Z] [LOG] [RoutesResolver] PermissionController {/permissions}:
+[2026-09-21T09:56:08.172Z] [LOG] [RouterExplorer] Mapped {/permissions, POST} route
+[2026-09-21T09:56:08.172Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-09-21T09:56:08.172Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-09-21T09:56:08.172Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-09-21T09:56:08.172Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, PUT} route
+[2026-09-21T09:56:08.172Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-09-21T09:56:08.173Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-09-21T09:56:08.172Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-09-21T09:56:08.173Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-09-21T09:56:08.173Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-09-21T09:56:08.173Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-09-21T09:56:08.173Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-09-21T09:56:08.173Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-09-21T09:56:08.173Z] [LOG] [RouterExplorer] Mapped {/attendances, POST} route
+[2026-09-21T09:56:08.173Z] [LOG] [RouterExplorer] Mapped {/attendances, GET} route
+[2026-09-21T09:56:08.173Z] [LOG] [RoutesResolver] AttendanceController {/attendances}:
+[2026-09-21T09:56:08.174Z] [LOG] [RouterExplorer] Mapped {/departments, POST} route
+[2026-09-21T09:56:08.173Z] [LOG] [RouterExplorer] Mapped {/attendances/:id, GET} route
+[2026-09-21T09:56:08.174Z] [LOG] [RouterExplorer] Mapped {/departments/:id, GET} route
+[2026-09-21T09:56:08.174Z] [LOG] [RouterExplorer] Mapped {/departments, GET} route
+[2026-09-21T09:56:08.174Z] [LOG] [RoutesResolver] DepartmentController {/departments}:
+[2026-09-21T09:56:08.174Z] [LOG] [RouterExplorer] Mapped {/departments/:id/status, PUT} route
+[2026-09-21T09:56:08.174Z] [LOG] [RoutesResolver] TaskController {/tasks}:
+[2026-09-21T09:56:08.174Z] [LOG] [RouterExplorer] Mapped {/tasks, POST} route
+[2026-09-21T09:56:08.174Z] [LOG] [RouterExplorer] Mapped {/departments/:id, PUT} route
+[2026-09-21T09:56:08.175Z] [LOG] [RouterExplorer] Mapped {/tasks/:id/status, PUT} route
+[2026-09-21T09:56:08.174Z] [LOG] [RouterExplorer] Mapped {/tasks/:id, GET} route
+[2026-09-21T09:56:08.174Z] [LOG] [RouterExplorer] Mapped {/tasks, GET} route
+[2026-09-21T09:56:08.175Z] [LOG] [RouterExplorer] Mapped {/kpis, GET} route
+[2026-09-21T09:56:08.175Z] [LOG] [RouterExplorer] Mapped {/kpis, POST} route
+[2026-09-21T09:56:08.175Z] [LOG] [RouterExplorer] Mapped {/kpis/:id, GET} route
+[2026-09-21T09:56:08.175Z] [LOG] [RouterExplorer] Mapped {/kpis/:id/actual, PUT} route
+[2026-09-21T09:56:08.175Z] [LOG] [RoutesResolver] KpiController {/kpis}:
+[2026-09-21T09:56:08.175Z] [LOG] [RouterExplorer] Mapped {/leaves, POST} route
+[2026-09-21T09:56:08.175Z] [LOG] [RouterExplorer] Mapped {/leaves/me, GET} route
+[2026-09-21T09:56:08.175Z] [LOG] [RoutesResolver] LeaveController {/leaves}:
+[2026-09-21T09:56:08.175Z] [LOG] [RouterExplorer] Mapped {/leaves, GET} route
+[2026-09-21T09:56:08.175Z] [LOG] [RouterExplorer] Mapped {/leaves/:id/review, PUT} route
+[2026-09-21T09:56:08.175Z] [LOG] [RoutesResolver] PurchaseOrderController {/purchase-orders}:
+[2026-09-21T09:56:08.175Z] [LOG] [RouterExplorer] Mapped {/leaves/:id, GET} route
+[2026-09-21T09:56:08.175Z] [LOG] [RouterExplorer] Mapped {/purchase-orders, GET} route
+[2026-09-21T09:56:08.176Z] [LOG] [RoutesResolver] PurchaseRequestController {/purchase-requests}:
+[2026-09-21T09:56:08.176Z] [LOG] [RouterExplorer] Mapped {/purchase-orders/:id, GET} route
+[2026-09-21T09:56:08.176Z] [LOG] [RouterExplorer] Mapped {/purchase-requests, POST} route
+[2026-09-21T09:56:08.176Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id, PUT} route
+[2026-09-21T09:56:08.176Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/approve, PUT} route
+[2026-09-21T09:56:08.176Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/reject, PUT} route
+[2026-09-21T09:56:08.176Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/history, GET} route
+[2026-09-21T09:56:08.176Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/submit, PUT} route
+[2026-09-21T09:56:08.176Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/issue-po, POST} route
+[2026-09-21T09:56:08.176Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id, GET} route
+[2026-09-21T09:56:08.176Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/sign, POST} route
+[2026-09-21T09:56:08.176Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:purchaseRequestId/download, GET} route
+[2026-09-21T09:56:08.176Z] [LOG] [RoutesResolver] GoodReceiptController {/good-receipts}:
+[2026-09-21T09:56:08.177Z] [LOG] [RouterExplorer] Mapped {/good-receipts, POST} route
+[2026-09-21T09:56:08.176Z] [LOG] [RouterExplorer] Mapped {/purchase-requests, GET} route
+[2026-09-21T09:56:08.177Z] [LOG] [RouterExplorer] Mapped {/good-receipts/:id, GET} route
+[2026-09-21T09:56:08.177Z] [LOG] [RouterExplorer] Mapped {/good-receipts, GET} route
+[2026-09-21T09:56:08.177Z] [LOG] [RouterExplorer] Mapped {/good-receipts/:id/confirm, PUT} route
+[2026-09-21T09:56:08.177Z] [LOG] [RouterExplorer] Mapped {/stocks, GET} route
+[2026-09-21T09:56:08.177Z] [LOG] [RoutesResolver] SupplierQuotationController {/suppliers/:supplierId/quotations}:
+[2026-09-21T09:56:08.177Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations/:quotationId/download, GET} route
+[2026-09-21T09:56:08.177Z] [LOG] [RoutesResolver] StockController {/stocks}:
+[2026-09-21T09:56:08.177Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, GET} route
+[2026-09-21T09:56:08.177Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, POST} route
+[2026-09-21T09:56:08.177Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, DELETE} route
+[2026-09-21T09:56:08.177Z] [LOG] [NestApplication] Nest application successfully started
+[2026-09-21T09:56:22.697Z] [LOG] [NestFactory] Starting Nest application...
+[2026-09-21T09:56:22.698Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:22.698Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-09-21T09:56:22.698Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-09-21T09:56:22.698Z] [LOG] [InstanceLoader] FileStorageModule dependencies initialized
+[2026-09-21T09:56:22.698Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-09-21T09:56:22.698Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-09-21T09:56:22.699Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-09-21T09:56:22.698Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-09-21T09:56:22.699Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-09-21T09:56:22.699Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:22.699Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-09-21T09:56:22.699Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:22.699Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:22.699Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:22.699Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:22.699Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:22.699Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:22.699Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:22.699Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:22.700Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:22.700Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:22.699Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:22.700Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:22.700Z] [LOG] [InstanceLoader] StockModule dependencies initialized
+[2026-09-21T09:56:22.700Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:22.700Z] [LOG] [InstanceLoader] PermissionRoleModule dependencies initialized
+[2026-09-21T09:56:22.700Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-09-21T09:56:22.700Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:56:22.700Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-09-21T09:56:22.700Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-09-21T09:56:22.700Z] [LOG] [InstanceLoader] AttendanceModule dependencies initialized
+[2026-09-21T09:56:22.700Z] [LOG] [InstanceLoader] TaskModule dependencies initialized
+[2026-09-21T09:56:22.700Z] [LOG] [InstanceLoader] DepartmentModule dependencies initialized
+[2026-09-21T09:56:22.700Z] [LOG] [InstanceLoader] KpiModule dependencies initialized
+[2026-09-21T09:56:22.700Z] [LOG] [InstanceLoader] LeaveModule dependencies initialized
+[2026-09-21T09:56:22.700Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-09-21T09:56:22.701Z] [LOG] [InstanceLoader] GoodReceiptModule dependencies initialized
+[2026-09-21T09:56:22.701Z] [LOG] [InstanceLoader] AuditLogModule dependencies initialized
+[2026-09-21T09:56:22.701Z] [LOG] [InstanceLoader] PurchaseOrderModule dependencies initialized
+[2026-09-21T09:56:22.701Z] [LOG] [InstanceLoader] PurchaseRequestModule dependencies initialized
+[2026-09-21T09:56:22.701Z] [LOG] [InstanceLoader] SupplierQuotationModule dependencies initialized
+[2026-09-21T09:56:22.701Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-09-21T09:56:22.701Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-09-21T09:56:22.701Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-09-21T09:56:22.701Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-09-21T09:56:22.701Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-09-21T09:56:22.701Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-09-21T09:56:22.701Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-09-21T09:56:22.701Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-09-21T09:56:22.701Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-09-21T09:56:22.701Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-09-21T09:56:22.701Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-09-21T09:56:22.701Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-09-21T09:56:22.702Z] [LOG] [RoutesResolver] RoleController {/roles}:
+[2026-09-21T09:56:22.701Z] [LOG] [RoutesResolver] AuditLogController {/audit-logs}:
+[2026-09-21T09:56:22.702Z] [LOG] [RouterExplorer] Mapped {/audit-logs, GET} route
+[2026-09-21T09:56:22.702Z] [LOG] [RouterExplorer] Mapped {/roles/:id, GET} route
+[2026-09-21T09:56:22.702Z] [LOG] [RouterExplorer] Mapped {/roles, POST} route
+[2026-09-21T09:56:22.702Z] [LOG] [RouterExplorer] Mapped {/roles/:id, PUT} route
+[2026-09-21T09:56:22.702Z] [LOG] [RouterExplorer] Mapped {/roles/:id/permissions, PUT} route
+[2026-09-21T09:56:22.702Z] [LOG] [RoutesResolver] PermissionController {/permissions}:
+[2026-09-21T09:56:22.702Z] [LOG] [RouterExplorer] Mapped {/roles, GET} route
+[2026-09-21T09:56:22.702Z] [LOG] [RouterExplorer] Mapped {/permissions, GET} route
+[2026-09-21T09:56:22.702Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-09-21T09:56:22.702Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-09-21T09:56:22.702Z] [LOG] [RouterExplorer] Mapped {/permissions, POST} route
+[2026-09-21T09:56:22.702Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-09-21T09:56:22.702Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-09-21T09:56:22.702Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, PUT} route
+[2026-09-21T09:56:22.702Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-09-21T09:56:22.703Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-09-21T09:56:22.703Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-09-21T09:56:22.703Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-09-21T09:56:22.703Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-09-21T09:56:22.703Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-09-21T09:56:22.703Z] [LOG] [RouterExplorer] Mapped {/attendances, POST} route
+[2026-09-21T09:56:22.703Z] [LOG] [RoutesResolver] AttendanceController {/attendances}:
+[2026-09-21T09:56:22.703Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-09-21T09:56:22.703Z] [LOG] [RoutesResolver] DepartmentController {/departments}:
+[2026-09-21T09:56:22.703Z] [LOG] [RouterExplorer] Mapped {/attendances, GET} route
+[2026-09-21T09:56:22.703Z] [LOG] [RouterExplorer] Mapped {/attendances/:id, GET} route
+[2026-09-21T09:56:22.703Z] [LOG] [RouterExplorer] Mapped {/departments, POST} route
+[2026-09-21T09:56:22.704Z] [LOG] [RouterExplorer] Mapped {/departments/:id, PUT} route
+[2026-09-21T09:56:22.703Z] [LOG] [RouterExplorer] Mapped {/departments, GET} route
+[2026-09-21T09:56:22.703Z] [LOG] [RouterExplorer] Mapped {/departments/:id, GET} route
+[2026-09-21T09:56:22.704Z] [LOG] [RouterExplorer] Mapped {/departments/:id/status, PUT} route
+[2026-09-21T09:56:22.704Z] [LOG] [RouterExplorer] Mapped {/tasks, GET} route
+[2026-09-21T09:56:22.704Z] [LOG] [RouterExplorer] Mapped {/tasks, POST} route
+[2026-09-21T09:56:22.704Z] [LOG] [RouterExplorer] Mapped {/tasks/:id, GET} route
+[2026-09-21T09:56:22.704Z] [LOG] [RouterExplorer] Mapped {/tasks/:id/status, PUT} route
+[2026-09-21T09:56:22.704Z] [LOG] [RoutesResolver] KpiController {/kpis}:
+[2026-09-21T09:56:22.704Z] [LOG] [RouterExplorer] Mapped {/kpis, POST} route
+[2026-09-21T09:56:22.704Z] [LOG] [RouterExplorer] Mapped {/kpis/:id, GET} route
+[2026-09-21T09:56:22.704Z] [LOG] [RoutesResolver] TaskController {/tasks}:
+[2026-09-21T09:56:22.704Z] [LOG] [RouterExplorer] Mapped {/kpis, GET} route
+[2026-09-21T09:56:22.704Z] [LOG] [RouterExplorer] Mapped {/kpis/:id/actual, PUT} route
+[2026-09-21T09:56:22.704Z] [LOG] [RouterExplorer] Mapped {/leaves, GET} route
+[2026-09-21T09:56:22.704Z] [LOG] [RoutesResolver] LeaveController {/leaves}:
+[2026-09-21T09:56:22.704Z] [LOG] [RouterExplorer] Mapped {/leaves, POST} route
+[2026-09-21T09:56:22.704Z] [LOG] [RouterExplorer] Mapped {/leaves/:id, GET} route
+[2026-09-21T09:56:22.705Z] [LOG] [RouterExplorer] Mapped {/leaves/:id/review, PUT} route
+[2026-09-21T09:56:22.705Z] [LOG] [RoutesResolver] PurchaseOrderController {/purchase-orders}:
+[2026-09-21T09:56:22.705Z] [LOG] [RouterExplorer] Mapped {/purchase-orders, GET} route
+[2026-09-21T09:56:22.705Z] [LOG] [RouterExplorer] Mapped {/purchase-orders/:id, GET} route
+[2026-09-21T09:56:22.705Z] [LOG] [RoutesResolver] PurchaseRequestController {/purchase-requests}:
+[2026-09-21T09:56:22.705Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id, PUT} route
+[2026-09-21T09:56:22.704Z] [LOG] [RouterExplorer] Mapped {/leaves/me, GET} route
+[2026-09-21T09:56:22.705Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/submit, PUT} route
+[2026-09-21T09:56:22.705Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/reject, PUT} route
+[2026-09-21T09:56:22.705Z] [LOG] [RouterExplorer] Mapped {/purchase-requests, POST} route
+[2026-09-21T09:56:22.705Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/approve, PUT} route
+[2026-09-21T09:56:22.705Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/history, GET} route
+[2026-09-21T09:56:22.705Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/issue-po, POST} route
+[2026-09-21T09:56:22.705Z] [LOG] [RouterExplorer] Mapped {/purchase-requests, GET} route
+[2026-09-21T09:56:22.705Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/sign, POST} route
+[2026-09-21T09:56:22.705Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:purchaseRequestId/download, GET} route
+[2026-09-21T09:56:22.705Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id, GET} route
+[2026-09-21T09:56:22.706Z] [LOG] [RouterExplorer] Mapped {/good-receipts, POST} route
+[2026-09-21T09:56:22.706Z] [LOG] [RoutesResolver] GoodReceiptController {/good-receipts}:
+[2026-09-21T09:56:22.706Z] [LOG] [RouterExplorer] Mapped {/good-receipts/:id/confirm, PUT} route
+[2026-09-21T09:56:22.706Z] [LOG] [RouterExplorer] Mapped {/good-receipts, GET} route
+[2026-09-21T09:56:22.706Z] [LOG] [RoutesResolver] StockController {/stocks}:
+[2026-09-21T09:56:22.706Z] [LOG] [RouterExplorer] Mapped {/good-receipts/:id, GET} route
+[2026-09-21T09:56:22.706Z] [LOG] [RoutesResolver] SupplierQuotationController {/suppliers/:supplierId/quotations}:
+[2026-09-21T09:56:22.706Z] [LOG] [RouterExplorer] Mapped {/stocks, GET} route
+[2026-09-21T09:56:22.706Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, POST} route
+[2026-09-21T09:56:22.706Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations/:quotationId/download, GET} route
+[2026-09-21T09:56:22.706Z] [LOG] [NestApplication] Nest application successfully started
+[2026-09-21T09:56:22.706Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, GET} route
+[2026-09-21T09:56:22.706Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, DELETE} route
+[2026-09-21T09:57:10.488Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:57:10.488Z] [LOG] [NestFactory] Starting Nest application...
+[2026-09-21T09:57:10.489Z] [LOG] [InstanceLoader] TokenModule dependencies initialized
+[2026-09-21T09:57:10.489Z] [LOG] [InstanceLoader] AppModule dependencies initialized
+[2026-09-21T09:57:10.489Z] [LOG] [InstanceLoader] FileStorageModule dependencies initialized
+[2026-09-21T09:57:10.489Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-09-21T09:57:10.489Z] [LOG] [InstanceLoader] ConfigHostModule dependencies initialized
+[2026-09-21T09:57:10.489Z] [LOG] [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[2026-09-21T09:57:10.490Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:57:10.490Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:57:10.490Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:57:10.490Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:57:10.490Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:57:10.490Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:57:10.490Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:57:10.489Z] [LOG] [InstanceLoader] JwtModule dependencies initialized
+[2026-09-21T09:57:10.490Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:57:10.489Z] [LOG] [InstanceLoader] ConfigModule dependencies initialized
+[2026-09-21T09:57:10.490Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:57:10.489Z] [LOG] [InstanceLoader] RedisModule dependencies initialized
+[2026-09-21T09:57:10.490Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:57:10.490Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:57:10.490Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:57:10.490Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:57:10.490Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:57:10.491Z] [LOG] [InstanceLoader] TypeOrmModule dependencies initialized
+[2026-09-21T09:57:10.491Z] [LOG] [InstanceLoader] StockModule dependencies initialized
+[2026-09-21T09:57:10.491Z] [LOG] [InstanceLoader] PermissionRoleModule dependencies initialized
+[2026-09-21T09:57:10.491Z] [LOG] [InstanceLoader] SupplierModule dependencies initialized
+[2026-09-21T09:57:10.491Z] [LOG] [InstanceLoader] AuthModule dependencies initialized
+[2026-09-21T09:57:10.491Z] [LOG] [InstanceLoader] SupplierGroupModule dependencies initialized
+[2026-09-21T09:57:10.491Z] [LOG] [InstanceLoader] UserModule dependencies initialized
+[2026-09-21T09:57:10.491Z] [LOG] [InstanceLoader] AttendanceModule dependencies initialized
+[2026-09-21T09:57:10.491Z] [LOG] [InstanceLoader] KpiModule dependencies initialized
+[2026-09-21T09:57:10.491Z] [LOG] [InstanceLoader] TaskModule dependencies initialized
+[2026-09-21T09:57:10.491Z] [LOG] [InstanceLoader] LeaveModule dependencies initialized
+[2026-09-21T09:57:10.491Z] [LOG] [InstanceLoader] DepartmentModule dependencies initialized
+[2026-09-21T09:57:10.491Z] [LOG] [InstanceLoader] GoodReceiptModule dependencies initialized
+[2026-09-21T09:57:10.491Z] [LOG] [InstanceLoader] PurchaseOrderModule dependencies initialized
+[2026-09-21T09:57:10.492Z] [LOG] [InstanceLoader] SupplierQuotationModule dependencies initialized
+[2026-09-21T09:57:10.492Z] [LOG] [RoutesResolver] AppController {/}:
+[2026-09-21T09:57:10.492Z] [LOG] [InstanceLoader] AuditLogModule dependencies initialized
+[2026-09-21T09:57:10.492Z] [LOG] [InstanceLoader] PurchaseRequestModule dependencies initialized
+[2026-09-21T09:57:10.492Z] [LOG] [RouterExplorer] Mapped {/users, POST} route
+[2026-09-21T09:57:10.492Z] [LOG] [RoutesResolver] UserController {/users}:
+[2026-09-21T09:57:10.492Z] [LOG] [RouterExplorer] Mapped {/, GET} route
+[2026-09-21T09:57:10.492Z] [LOG] [RouterExplorer] Mapped {/users, GET} route
+[2026-09-21T09:57:10.492Z] [LOG] [RouterExplorer] Mapped {/users/:id, GET} route
+[2026-09-21T09:57:10.492Z] [LOG] [RouterExplorer] Mapped {/auth/login, POST} route
+[2026-09-21T09:57:10.492Z] [LOG] [RouterExplorer] Mapped {/users/:id/status, PUT} route
+[2026-09-21T09:57:10.492Z] [LOG] [RouterExplorer] Mapped {/auth/logout, POST} route
+[2026-09-21T09:57:10.492Z] [LOG] [RouterExplorer] Mapped {/auth/refresh, POST} route
+[2026-09-21T09:57:10.492Z] [LOG] [RoutesResolver] AuthController {/auth}:
+[2026-09-21T09:57:10.493Z] [LOG] [RoutesResolver] AuditLogController {/audit-logs}:
+[2026-09-21T09:57:10.493Z] [LOG] [RoutesResolver] RoleController {/roles}:
+[2026-09-21T09:57:10.493Z] [LOG] [RouterExplorer] Mapped {/auth/me, GET} route
+[2026-09-21T09:57:10.493Z] [LOG] [RouterExplorer] Mapped {/roles, POST} route
+[2026-09-21T09:57:10.493Z] [LOG] [RouterExplorer] Mapped {/audit-logs, GET} route
+[2026-09-21T09:57:10.493Z] [LOG] [RouterExplorer] Mapped {/roles, GET} route
+[2026-09-21T09:57:10.493Z] [LOG] [RouterExplorer] Mapped {/roles/:id, PUT} route
+[2026-09-21T09:57:10.493Z] [LOG] [RouterExplorer] Mapped {/roles/:id/permissions, PUT} route
+[2026-09-21T09:57:10.493Z] [LOG] [RoutesResolver] PermissionController {/permissions}:
+[2026-09-21T09:57:10.493Z] [LOG] [RouterExplorer] Mapped {/permissions, POST} route
+[2026-09-21T09:57:10.493Z] [LOG] [RouterExplorer] Mapped {/roles/:id, GET} route
+[2026-09-21T09:57:10.493Z] [LOG] [RouterExplorer] Mapped {/permissions, GET} route
+[2026-09-21T09:57:10.494Z] [LOG] [RouterExplorer] Mapped {/suppliers, POST} route
+[2026-09-21T09:57:10.494Z] [LOG] [RoutesResolver] SupplierController {/suppliers}:
+[2026-09-21T09:57:10.494Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, PUT} route
+[2026-09-21T09:57:10.494Z] [LOG] [RouterExplorer] Mapped {/suppliers/:id, GET} route
+[2026-09-21T09:57:10.494Z] [LOG] [RoutesResolver] SupplierGroupController {/supplier-groups}:
+[2026-09-21T09:57:10.494Z] [LOG] [RouterExplorer] Mapped {/suppliers, GET} route
+[2026-09-21T09:57:10.494Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, POST} route
+[2026-09-21T09:57:10.494Z] [LOG] [RouterExplorer] Mapped {/supplier-groups, GET} route
+[2026-09-21T09:57:10.495Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, PUT} route
+[2026-09-21T09:57:10.494Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id, GET} route
+[2026-09-21T09:57:10.495Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/status, PUT} route
+[2026-09-21T09:57:10.495Z] [LOG] [RouterExplorer] Mapped {/supplier-groups/:id/assign-suppliers, POST} route
+[2026-09-21T09:57:10.495Z] [LOG] [RoutesResolver] AttendanceController {/attendances}:
+[2026-09-21T09:57:10.495Z] [LOG] [RouterExplorer] Mapped {/attendances, GET} route
+[2026-09-21T09:57:10.495Z] [LOG] [RouterExplorer] Mapped {/attendances, POST} route
+[2026-09-21T09:57:10.495Z] [LOG] [RouterExplorer] Mapped {/attendances/:id, GET} route
+[2026-09-21T09:57:10.495Z] [LOG] [RouterExplorer] Mapped {/departments, GET} route
+[2026-09-21T09:57:10.495Z] [LOG] [RoutesResolver] DepartmentController {/departments}:
+[2026-09-21T09:57:10.495Z] [LOG] [RouterExplorer] Mapped {/departments, POST} route
+[2026-09-21T09:57:10.496Z] [LOG] [RouterExplorer] Mapped {/departments/:id, PUT} route
+[2026-09-21T09:57:10.496Z] [LOG] [RouterExplorer] Mapped {/departments/:id/status, PUT} route
+[2026-09-21T09:57:10.496Z] [LOG] [RoutesResolver] TaskController {/tasks}:
+[2026-09-21T09:57:10.496Z] [LOG] [RouterExplorer] Mapped {/departments/:id, GET} route
+[2026-09-21T09:57:10.496Z] [LOG] [RouterExplorer] Mapped {/tasks, POST} route
+[2026-09-21T09:57:10.496Z] [LOG] [RouterExplorer] Mapped {/tasks/:id, GET} route
+[2026-09-21T09:57:10.496Z] [LOG] [RouterExplorer] Mapped {/tasks/:id/status, PUT} route
+[2026-09-21T09:57:10.496Z] [LOG] [RoutesResolver] KpiController {/kpis}:
+[2026-09-21T09:57:10.496Z] [LOG] [RouterExplorer] Mapped {/kpis, POST} route
+[2026-09-21T09:57:10.497Z] [LOG] [RouterExplorer] Mapped {/kpis/:id, GET} route
+[2026-09-21T09:57:10.496Z] [LOG] [RouterExplorer] Mapped {/tasks, GET} route
+[2026-09-21T09:57:10.497Z] [LOG] [RoutesResolver] LeaveController {/leaves}:
+[2026-09-21T09:57:10.497Z] [LOG] [RouterExplorer] Mapped {/kpis/:id/actual, PUT} route
+[2026-09-21T09:57:10.497Z] [LOG] [RouterExplorer] Mapped {/leaves, GET} route
+[2026-09-21T09:57:10.496Z] [LOG] [RouterExplorer] Mapped {/kpis, GET} route
+[2026-09-21T09:57:10.497Z] [LOG] [RouterExplorer] Mapped {/leaves/me, GET} route
+[2026-09-21T09:57:10.497Z] [LOG] [RouterExplorer] Mapped {/leaves/:id, GET} route
+[2026-09-21T09:57:10.497Z] [LOG] [RouterExplorer] Mapped {/leaves/:id/review, PUT} route
+[2026-09-21T09:57:10.497Z] [LOG] [RoutesResolver] PurchaseOrderController {/purchase-orders}:
+[2026-09-21T09:57:10.497Z] [LOG] [RouterExplorer] Mapped {/purchase-orders/:id, GET} route
+[2026-09-21T09:57:10.497Z] [LOG] [RouterExplorer] Mapped {/leaves, POST} route
+[2026-09-21T09:57:10.498Z] [LOG] [RouterExplorer] Mapped {/purchase-requests, POST} route
+[2026-09-21T09:57:10.498Z] [LOG] [RoutesResolver] PurchaseRequestController {/purchase-requests}:
+[2026-09-21T09:57:10.498Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id, PUT} route
+[2026-09-21T09:57:10.498Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/submit, PUT} route
+[2026-09-21T09:57:10.497Z] [LOG] [RouterExplorer] Mapped {/purchase-orders, GET} route
+[2026-09-21T09:57:10.498Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/approve, PUT} route
+[2026-09-21T09:57:10.498Z] [LOG] [RouterExplorer] Mapped {/purchase-requests, GET} route
+[2026-09-21T09:57:10.498Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/reject, PUT} route
+[2026-09-21T09:57:10.498Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/history, GET} route
+[2026-09-21T09:57:10.498Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/sign, POST} route
+[2026-09-21T09:57:10.498Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id/issue-po, POST} route
+[2026-09-21T09:57:10.498Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:purchaseRequestId/download, GET} route
+[2026-09-21T09:57:10.498Z] [LOG] [RouterExplorer] Mapped {/purchase-requests/:id, GET} route
+[2026-09-21T09:57:10.499Z] [LOG] [RoutesResolver] GoodReceiptController {/good-receipts}:
+[2026-09-21T09:57:10.499Z] [LOG] [RouterExplorer] Mapped {/good-receipts, GET} route
+[2026-09-21T09:57:10.499Z] [LOG] [RouterExplorer] Mapped {/good-receipts, POST} route
+[2026-09-21T09:57:10.499Z] [LOG] [RouterExplorer] Mapped {/good-receipts/:id/confirm, PUT} route
+[2026-09-21T09:57:10.499Z] [LOG] [RouterExplorer] Mapped {/stocks, GET} route
+[2026-09-21T09:57:10.499Z] [LOG] [RouterExplorer] Mapped {/good-receipts/:id, GET} route
+[2026-09-21T09:57:10.499Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations/:quotationId/download, GET} route
+[2026-09-21T09:57:10.499Z] [LOG] [RoutesResolver] StockController {/stocks}:
+[2026-09-21T09:57:10.499Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, POST} route
+[2026-09-21T09:57:10.499Z] [LOG] [RoutesResolver] SupplierQuotationController {/suppliers/:supplierId/quotations}:
+[2026-09-21T09:57:10.499Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, GET} route
+[2026-09-21T09:57:10.499Z] [LOG] [RouterExplorer] Mapped {/suppliers/:supplierId/quotations, DELETE} route
+[2026-09-21T09:57:10.500Z] [LOG] [NestApplication] Nest application successfully started
