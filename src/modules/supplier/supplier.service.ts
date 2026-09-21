@@ -12,6 +12,8 @@ import { Supplier } from '../../models/supplier.entity';
 import { UpdateSupplierDto } from './dto/update-supplier.dto';
 import { DataSource } from 'typeorm';
 
+const SLOW_OPERATION_THRESHOLD_MS = 3000;
+
 @Injectable()
 export class SupplierService extends BaseService<Supplier> {
   constructor(
@@ -42,24 +44,35 @@ export class SupplierService extends BaseService<Supplier> {
   }
 
   async createSupplier(dto: CreateSupplierDto, actorId: number) {
-    const existed = await this.repository.findOne({ where: { taxCode: dto.taxCode } });
-    if (existed) throw new ConflictException('tax-code-already-exists');
+    const startedAt = Date.now();
 
-    const existedEmail = await this.repository.findOne({
-      where: { contactEmail: dto.contactEmail },
-    });
-    if (existedEmail) throw new ConflictException('email-already-exists');
+    try {
+      const existed = await this.repository.findOne({ where: { taxCode: dto.taxCode } });
+      if (existed) throw new ConflictException('tax-code-already-exists');
 
-    const saved = await this.runInTransaction(async (manager) => {
-      const newSupplier = manager.create(Supplier, {
-        ...dto,
-        createdBy: actorId,
-        updatedBy: actorId,
+      const existedEmail = await this.repository.findOne({
+        where: { contactEmail: dto.contactEmail },
       });
-      return manager.save(newSupplier);
-    });
+      if (existedEmail) throw new ConflictException('email-already-exists');
 
-    return { message: 'Tạo nhà cung cấp thành công', result: saved };
+      const saved = await this.runInTransaction(async (manager) => {
+        const newSupplier = manager.create(Supplier, {
+          ...dto,
+          createdBy: actorId,
+          updatedBy: actorId,
+        });
+        return manager.save(newSupplier);
+      });
+
+      return { message: 'Tạo nhà cung cấp thành công', result: saved };
+    } finally {
+      const elapsedMs = Date.now() - startedAt;
+      if (elapsedMs > SLOW_OPERATION_THRESHOLD_MS) {
+        console.warn(
+          `[SupplierService] createSupplier chạy chậm bất thường: ${elapsedMs}ms (giới hạn ${SLOW_OPERATION_THRESHOLD_MS}ms), taxCode="${dto.taxCode}"`,
+        );
+      }
+    }
   }
 
   async updateSupplier(id: number, dto: UpdateSupplierDto) {

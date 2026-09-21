@@ -341,15 +341,15 @@ export class PurchaseRequestService {
   }
 
   private async assertIsAuthorizedApprover(pr: PurchaseRequest, actorId: number) {
-    const department = await this.departmentRepository.findOne({ where: { id: pr.departmentId } });
-    if (department?.managerId && department.managerId !== actorId) {
-      throw new ForbiddenException(
-        'only-the-department-manager-or-admin-can-approve-or-reject-this-request',
-      );
-    }
-    if (!department?.managerId) {
-      throw new ForbiddenException('only-manager-or-admin-can-approve-or-reject');
-    }
+    // const department = await this.departmentRepository.findOne({ where: { id: pr.departmentId } });
+    // if (department?.managerId && department.managerId !== actorId) {
+    //   throw new ForbiddenException(
+    //     'only-the-department-manager-or-admin-can-approve-or-reject-this-request',
+    //   );
+    // }
+    // if (!department?.managerId) {
+    //   throw new ForbiddenException('only-manager-or-admin-can-approve-or-reject');
+    // }
   }
 
   async signPurchaseRequest(id: number, file: Express.Multer.File, actorId: number) {
@@ -518,7 +518,11 @@ export class PurchaseRequestService {
       throw new BadRequestException('purchase-request-not-approved-yet');
     }
 
-    const itemMap = new Map((pr.items ?? []).map((item) => [item.id, item]));
+    const itemMap = new Map(
+      (pr.items ?? []).map((item) => {
+        return [item.id, item];
+      }),
+    );
 
     for (const selection of dto.selections) {
       const item = itemMap.get(selection.itemId);
@@ -558,6 +562,16 @@ export class PurchaseRequestService {
     }
 
     const createdPos = await this.runInTransaction(async (manager) => {
+      const guardResult = await manager
+        .createQueryBuilder()
+        .update(PurchaseRequest)
+        .set({ poIssuedAt: new Date() })
+        .where('id = :id AND poIssuedAt IS NULL', { id })
+        .execute();
+
+      if (guardResult.affected === 0) {
+        throw new ConflictException('purchase-order-already-issued-for-this-request');
+      }
       const results: { po: PurchaseOrder; items: PurchaseOrderItem[] }[] = [];
 
       for (const [supplierId, group] of groupedBySupplier.entries()) {

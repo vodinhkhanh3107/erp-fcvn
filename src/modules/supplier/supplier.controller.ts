@@ -8,6 +8,7 @@ import {
   Put,
   Query,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { PaginationDto } from '../../common/dto/pagination.dto';
@@ -20,6 +21,7 @@ import { PermissionGuard } from 'src/common/guards/permission.guard';
 import { RequirePermission } from 'src/common/decorators/permission.decorator';
 import { PERMISSIONS } from 'src/common/constants/permission.constants';
 import { UpdateSupplierDto } from './dto/update-supplier.dto';
+import { TimeoutInterceptor } from 'src/common/interceptors/timeout.interceptor';
 
 @ApiTags('Supplier')
 @ApiBearerAuth('access-token')
@@ -30,6 +32,7 @@ export class SupplierController {
 
   @Post()
   @RequirePermission(PERMISSIONS.SUPPLIER_CREATE)
+  @UseInterceptors(new TimeoutInterceptor(3000)) // 3000ms = 3 giây, đúng yêu cầu ERP
   create(@Body() dto: CreateSupplierDto, @CurrentUser() user: { userId: number }) {
     return this.supplierService.createSupplier(dto, user.userId);
   }

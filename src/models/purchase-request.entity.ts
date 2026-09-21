@@ -71,4 +71,7 @@ export class PurchaseRequest {
 
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
+
+  @Column({ name: 'po_issued_at', type: 'timestamp', nullable: true })
+  poIssuedAt?: Date;
 }
