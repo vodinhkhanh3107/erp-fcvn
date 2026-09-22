@@ -341,15 +341,15 @@ export class PurchaseRequestService {
   }
 
   private async assertIsAuthorizedApprover(pr: PurchaseRequest, actorId: number) {
-    // const department = await this.departmentRepository.findOne({ where: { id: pr.departmentId } });
-    // if (department?.managerId && department.managerId !== actorId) {
-    //   throw new ForbiddenException(
-    //     'only-the-department-manager-or-admin-can-approve-or-reject-this-request',
-    //   );
-    // }
-    // if (!department?.managerId) {
-    //   throw new ForbiddenException('only-manager-or-admin-can-approve-or-reject');
-    // }
+    const department = await this.departmentRepository.findOne({ where: { id: pr.departmentId } });
+    if (department?.managerId && department.managerId !== actorId) {
+      throw new ForbiddenException(
+        'only-the-department-manager-or-admin-can-approve-or-reject-this-request',
+      );
+    }
+    if (!department?.managerId) {
+      throw new ForbiddenException('only-manager-or-admin-can-approve-or-reject');
+    }
   }
 
   async signPurchaseRequest(id: number, file: Express.Multer.File, actorId: number) {
@@ -402,7 +402,7 @@ export class PurchaseRequestService {
   // ===================== 4. PHÊ DUYỆT — PENDING -> APPROVED =====================
   async approve(id: number, actorId: number) {
     const pr = await this.findOne(id);
-    if (pr.status !== PurchaseRequestStatus.PENDING) {
+    if (pr.status !== PurchaseRequestStatus.SIGNED) {
       throw new BadRequestException('purchase-request-not-pending-approval');
     }
 

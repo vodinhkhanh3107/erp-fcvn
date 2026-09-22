@@ -4,6 +4,7 @@ import request from 'supertest';
 import * as dotenv from 'dotenv';
 import { AppModule } from '../src/app.module';
 import { FILE_STORAGE_SERVICE, IFileStorageService } from 'src/common/file-storage/file-storage.interface';
+import * as os from 'os'
 
 dotenv.config();
 
@@ -212,4 +213,5 @@ describe('Luồng Purchase Request đầy đủ (E2E)', () => {
 
     expect(duplicateIssueRes.status).toBe(409); // ConflictException
   });
+  
 });

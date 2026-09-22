@@ -35,7 +35,7 @@ export class AuditLogService {
       });
       await this.repository.save(entity);
     } catch (err) {
-      this.logger.error('Ghi audit log thất bại');
+      this.logger.warn('Ghi audit log thất bại', (err as Error).stack);
     }
   }
 

@@ -10,7 +10,7 @@ import {
 } from 'class-validator';
 
 import { Transform } from 'class-transformer';
-import { Position } from 'src/models/user.entity';
+import { Position } from '../../..//models/user.entity';
 
 export class CreateUserDto {
   @IsNotEmpty()
