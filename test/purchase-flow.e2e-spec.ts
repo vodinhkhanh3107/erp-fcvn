@@ -213,5 +213,200 @@ describe('Luồng Purchase Request đầy đủ (E2E)', () => {
 
     expect(duplicateIssueRes.status).toBe(409); // ConflictException
   });
-  
+
+  // NHÓM TEST BỔ SUNG — Sai quyền / Thiếu báo giá / Chưa duyệt / Performance
+ 
+  it('Negative: user KHÔNG có quyền issue-po thì bị chặn (403), dù PR hợp lệ', async () => {
+    // Tạo 1 role "giới hạn" — CHỈ có quyền đọc, KHÔNG có quyền issue-po.
+    const limitedRoleRes = await request(app.getHttpServer())
+      .post('/roles')
+      .set(authHeader())
+      .send({ code: `limited-${uniqueSuffix}`, name: 'Role giới hạn (test)' });
+    expect(limitedRoleRes.status).toBe(201);
+    const limitedRoleId = limitedRoleRes.body.result.id;
+ 
+    await request(app.getHttpServer())
+      .put(`/roles/${limitedRoleId}/permissions`)
+      .set(authHeader())
+      .send({ permissionCodes: ['purchase-request.read'] }) // cố tình KHÔNG có 'purchase-request.issue'
+      .expect(200);
+ 
+    // Tạo user mới gắn role giới hạn này
+    const limitedUserEmail = `limited-user-${uniqueSuffix}@example.com`;
+    const createUserRes = await request(app.getHttpServer())
+      .post('/users')
+      .set(authHeader())
+      .send({
+        fullName: 'User Giới Hạn Test',
+        email: limitedUserEmail,
+        password: 'Password123',
+        roleId: limitedRoleId,
+        departmentId
+      });
+    expect(createUserRes.status).toBe(201);
+ 
+    // Đăng nhập bằng user giới hạn này
+    const limitedLoginRes = await request(app.getHttpServer())
+      .post('/auth/login')
+      .send({ email: limitedUserEmail, password: 'Password123' });
+    const limitedToken = limitedLoginRes.body.accessToken;
+    expect(limitedToken).toBeDefined();
+ 
+    const forbiddenRes = await request(app.getHttpServer())
+      .post(`/purchase-requests/${purchaseRequestId}/issue-po`)
+      .set({ Authorization: `Bearer ${limitedToken}` })
+      .send({ selections: [{ itemId, selectedSupplierId: supplierAId }] });
+ 
+    expect(forbiddenRes.status).toBe(403);
+  });
+ 
+  it('Negative: tạo PR bị chặn (400) nếu có nhà cung cấp CHƯA từng upload báo giá', async () => {
+    // Nhà cung cấp mới hoàn toàn — CHƯA gọi upload quotation lần nào
+    const newSupplierRes = await request(app.getHttpServer())
+      .post('/suppliers')
+      .set(authHeader())
+      .send({
+        name: `Nhà cung cấp chưa báo giá ${uniqueSuffix}`,
+        taxCode: `TAXC-${uniqueSuffix}`,
+        contactEmail: `supplier-c-${uniqueSuffix}@example.com`,
+      });
+    expect(newSupplierRes.status).toBe(201);
+    const supplierWithoutQuotationId = newSupplierRes.body.result.id;
+ 
+    const createRes = await request(app.getHttpServer())
+      .post('/purchase-requests')
+      .set(authHeader())
+      .send({
+        departmentId,
+        purposeOfUse: 'Test thiếu báo giá',
+        items: [
+          {
+            itemName: 'Vật tư test thiếu báo giá',
+            quantity: 1,
+            quotations: [
+              { supplierId: supplierAId, quotedAmount: 1000000 },
+              { supplierId: supplierWithoutQuotationId, quotedAmount: 900000 },
+            ],
+          },
+        ],
+      });
+ 
+    expect(createRes.status).toBe(400);
+    expect(createRes.body.message).toContain('supplier-not-have-quotation-or-not-have-supplier');
+  });
+ 
+  it('Negative: issue-po bị chặn (400) khi PR mới chỉ SIGNED, CHƯA được approve', async () => {
+    const createRes = await request(app.getHttpServer())
+      .post('/purchase-requests')
+      .set(authHeader())
+      .send({
+        departmentId,
+        purposeOfUse: 'Test chưa duyệt',
+        items: [
+          {
+            itemName: 'Vật tư test chưa duyệt',
+            quantity: 1,
+            quotations: [
+              { supplierId: supplierAId, quotedAmount: 500000 },
+              { supplierId: supplierBId, quotedAmount: 480000 },
+            ],
+          },
+        ],
+      });
+    expect(createRes.status).toBe(201);
+    const notApprovedPrId = createRes.body.result.id;
+ 
+    const getRes = await request(app.getHttpServer())
+      .get(`/purchase-requests/${notApprovedPrId}`)
+      .set(authHeader());
+    const notApprovedItemId = getRes.body.items[0].id;
+ 
+    const signRes = await request(app.getHttpServer())
+      .post(`/purchase-requests/${notApprovedPrId}/sign`)
+      .set(authHeader())
+      .attach('file', Buffer.from('%PDF-1.4 fake signature'), 'sig-not-approved.pdf');
+    expect(signRes.status).toBe(201);
+    expect(signRes.body.result.status).toBe('SIGNED');
+    // CỐ TÌNH KHÔNG gọi approve() — để trạng thái dừng lại ở SIGNED, chưa APPROVED
+ 
+    const issueRes = await request(app.getHttpServer())
+      .post(`/purchase-requests/${notApprovedPrId}/issue-po`)
+      .set(authHeader())
+      .send({ selections: [{ itemId: notApprovedItemId, selectedSupplierId: supplierAId }] });
+ 
+    expect(issueRes.status).toBe(400);
+    expect(issueRes.body.message).toContain('purchase-request-not-approved-yet');
+  });
+ 
+  it('NFR Performance: tạo PR → sign → approve → issue-po phải hoàn tất trong ≤3 giây', async () => {
+    const PERFORMANCE_THRESHOLD_MS = 3000;
+    const startedAt = Date.now();
+ 
+    const createRes = await request(app.getHttpServer())
+      .post('/purchase-requests')
+      .set(authHeader())
+      .send({
+        departmentId,
+        purposeOfUse: 'Test performance NFR',
+        items: [
+          {
+            itemName: 'Vật tư test performance',
+            quantity: 1,
+            quotations: [
+              { supplierId: supplierAId, quotedAmount: 300000 },
+              { supplierId: supplierBId, quotedAmount: 280000 },
+            ],
+          },
+        ],
+      });
+    expect(createRes.status).toBe(201);
+    const perfPrId = createRes.body.result.id;
+ 
+    const getRes = await request(app.getHttpServer())
+      .get(`/purchase-requests/${perfPrId}`)
+      .set(authHeader());
+    const perfItemId = getRes.body.items[0].id;
+ 
+    await request(app.getHttpServer())
+      .post(`/purchase-requests/${perfPrId}/sign`)
+      .set(authHeader())
+      .attach('file', Buffer.from('%PDF-1.4 fake signature perf'), 'sig-perf.pdf')
+      .expect(201);
+ 
+    await request(app.getHttpServer())
+      .put(`/purchase-requests/${perfPrId}/approve`)
+      .set(authHeader())
+      .expect(200);
+ 
+    await request(app.getHttpServer())
+      .post(`/purchase-requests/${perfPrId}/issue-po`)
+      .set(authHeader())
+      .send({ selections: [{ itemId: perfItemId, selectedSupplierId: supplierAId }] })
+      .expect(201);
+ 
+    const elapsedMs = Date.now() - startedAt;
+ 
+    const envInfo = {
+      hostname: os.hostname(),
+      platform: os.platform(),
+      nodeVersion: process.version,
+      measuredAt: new Date().toISOString(),
+      elapsedMs,
+      thresholdMs: PERFORMANCE_THRESHOLD_MS,
+      withinThreshold: elapsedMs <= PERFORMANCE_THRESHOLD_MS,
+    };
+    console.log('[NFR Performance Report]', JSON.stringify(envInfo, null, 2));
+ 
+    if (elapsedMs > PERFORMANCE_THRESHOLD_MS) {
+      console.warn(
+        `VƯỢT NGƯỠNG NFR: luồng tạo PR → sign → approve → issue-po mất ${elapsedMs}ms ` +
+          `(ngưỡng cho phép: ${PERFORMANCE_THRESHOLD_MS}ms). Xem [NFR Performance Report] ở trên ` +
+          `để biết môi trường đo (host, platform, thời điểm) phục vụ điều tra nguyên nhân.`,
+      );
+    }
+ 
+    expect(elapsedMs).toBeLessThanOrEqual(PERFORMANCE_THRESHOLD_MS);
+  });
+
+
 });
