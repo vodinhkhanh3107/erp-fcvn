@@ -1,7 +1,7 @@
 import { BadRequestException, ConflictException } from '@nestjs/common';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Test, TestingModule } from '@nestjs/testing';
-import { User, UserStatus } from '../../models/user.entity';
+import { Position, User, UserStatus } from '../../models/user.entity';
 import { UserService } from './user.service';
 
 jest.mock('bcrypt');
@@ -19,6 +19,7 @@ describe('UserService', () => {
     roleId: 1,
     status: UserStatus.ACTIVE,
     departmentId: 1,
+    position: Position.EMPLOYEE,
   };
 
   beforeEach(async () => {
@@ -57,6 +58,7 @@ describe('UserService', () => {
           password: '123456',
           departmentId: fakeUser.departmentId,
           roleId: fakeUser.roleId,
+          position: Position.EMPLOYEE,
         }),
       ).rejects.toThrow(ConflictException);
 
@@ -73,6 +75,7 @@ describe('UserService', () => {
         email: fakeUser.email,
         password: '123456',
         departmentId: 1,
+        position: Position.EMPLOYEE,
       });
 
       expect(result.message).toBe('Tạo nhân sự thành công');

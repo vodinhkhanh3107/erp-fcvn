@@ -5,10 +5,12 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { SupplierGroup } from './supplier-group.entity';
+import { SupplierQuotation } from './supplier-quotation.entity';
 
 export enum SupplierStatus {
   ACTIVE = 'active',
@@ -26,13 +28,13 @@ export class Supplier {
   @Column({ name: 'tax_code', length: 50, unique: true })
   taxCode: string;
 
-  @Column({ name: 'contact_name', length: 100, nullable: true })
+  @Column({ name: 'contact_name', length: 100, nullable: true, unique: true })
   contactName?: string;
 
-  @Column({ name: 'contact_email', length: 100, nullable: true })
+  @Column({ name: 'contact_email', length: 100, nullable: true, unique: true })
   contactEmail?: string;
 
-  @Column({ name: 'contact_phone', length: 20, nullable: true })
+  @Column({ name: 'contact_phone', length: 20, nullable: true, unique: true })
   contactPhone?: string;
 
   @Column({ name: 'payment_term', length: 20, nullable: true })
@@ -41,12 +43,15 @@ export class Supplier {
   @Column({ type: 'enum', enum: SupplierStatus, default: SupplierStatus.ACTIVE })
   status: SupplierStatus;
 
+  @Column({ name: 'group_id', nullable: true })
+  groupId?: number;
+
   @ManyToOne(() => SupplierGroup, (group) => group.suppliers, { nullable: true })
   @JoinColumn({ name: 'group_id' })
   group?: SupplierGroup;
 
-  @Column({ name: 'group_id', nullable: true })
-  groupId?: number;
+  @OneToMany(() => SupplierQuotation, (sq) => sq.supplier, { cascade: true })
+  supplier_quotations?: SupplierQuotation[];
 
   @Column({ name: 'created_by', nullable: true })
   createdBy?: number;

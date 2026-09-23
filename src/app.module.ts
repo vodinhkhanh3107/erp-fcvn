@@ -18,6 +18,10 @@ import { PurchaseRequestModule } from './modules/puchase-request/purchase-reques
 import { AuditLogModule } from './modules/audit-log/audit-log.module';
 import { LeaveModule } from './modules/leave/leave.module';
 import { PermissionRoleModule } from './modules/permission-role/permission-role.module';
+import { StockModule } from './modules/stock/stock.module';
+import { GoodReceiptModule } from './modules/good-receipt/good-receipt.module';
+import { FileStorageModule } from './common/file-storage/file-storage.module';
+import { SupplierQuotationModule } from './modules/supplier-quotation/supplier-quotation.module';
 
 @Module({
   imports: [
@@ -50,6 +54,11 @@ import { PermissionRoleModule } from './modules/permission-role/permission-role.
     LeaveModule,
     PurchaseOrderModule,
     PurchaseRequestModule,
+    GoodReceiptModule,
+    StockModule,
+    SupplierQuotationModule,
+
+    FileStorageModule,
   ],
   controllers: [AppController],
   providers: [AppService],

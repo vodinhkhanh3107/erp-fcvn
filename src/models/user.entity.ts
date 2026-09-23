@@ -14,6 +14,7 @@ import {
 import { Role } from './role.entity';
 // import { RoleSystem } from 'src/common/constants/role.enum';
 import { Department } from './department.entity';
+import { IsOptional } from 'class-validator';
 
 export enum UserStatus {
   ACTIVE = 'active',
@@ -24,6 +25,12 @@ export enum ContractType {
   TRIAL = 'trial',
   OFFICIAL = 'official',
   PART_TIME = 'part_time',
+}
+
+export enum Position {
+  EMPLOYEE = 'employee',
+  MANAGER = 'manager',
+  BOD = 'bod',
 }
 
 @Entity('users')
@@ -68,6 +75,10 @@ export class User {
   @ManyToOne(() => Department, (department) => department.users)
   @JoinColumn({ name: 'department_id' })
   department?: Department;
+
+  @IsOptional()
+  @Column({ type: 'enum', enum: Position, default: Position.EMPLOYEE })
+  position?: Position;
 
   @Column({ name: 'contract_type', type: 'enum', enum: ContractType, default: ContractType.TRIAL })
   contractType?: ContractType;
